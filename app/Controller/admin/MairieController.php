@@ -10,7 +10,7 @@ class MairieController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('Admin','Mairie',$slug)){
+      if($this->allowToTwo('Admin','Mairie',$slug)){
 
         $donnee = $this->infoBdd('Mairie',$slug,['statusA' => 'Actif','statusB' => 'En attente']);
         $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee]);
@@ -24,7 +24,7 @@ class MairieController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('Admin','Mairie',$slug)){
+      if($this->allowToTwo('Admin','Mairie',$slug)){
 
         $donnee = $this->listing('Mairie',$slug);
         $this->show('admin/liste',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee]);

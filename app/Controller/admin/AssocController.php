@@ -10,7 +10,7 @@ class AssocController extends CustomController
   public function home($slug)
   {
     if(isset($_SESSION['user'])){
-      if($this->allowTo('Admin','Assoc',$slug)){
+      if($this->allowToTwo('Admin','Assoc',$slug)){
 
         $donnee = $this->infoBdd('Assoc',$slug,['statusA'=> 'Actif','statusB'=> 'En attente']);
         $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee]);
@@ -19,12 +19,12 @@ class AssocController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
-  //retourne la liste des menbres inscrit dans l'association 
+  //retourne la liste des menbres inscrit dans l'association
   public function listeMenbres($slug)
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('Admin','Assoc',$slug)){
+      if($this->allowToTwo('Admin','Assoc',$slug)){
 
         $donnee = $this->listing('Assoc',$slug);
         $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee]);

@@ -52,6 +52,20 @@ class CustomController extends Controller
     }
   }
 
+  public function allowToTwo($roles,$organisation,$slug_orga)
+  {
+    if (!is_array($roles)){
+      $roles = [$roles];
+    }
+    $UserCustomModel = new UsersCustomModel();
+    foreach($roles as $role){
+      if ($UserCustomModel->isGranted($role,$organisation,$slug_orga)){
+        return true;
+      }
+    }
+
+    $this->showForbidden();
+  }
 
   //surcharge !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //surcharge !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -89,21 +103,7 @@ class CustomController extends Controller
     echo $engine->render($file, $data);
     die();
   }
-  //surcharge !!!!
-  public function allowTo($roles,$organisation,$slug_orga)
-  {
-    if (!is_array($roles)){
-      $roles = [$roles];
-    }
-    $UserCustomModel = new UsersCustomModel();
-    foreach($roles as $role){
-      if ($UserCustomModel->isGranted($role,$organisation,$slug_orga)){
-        return true;
-      }
-    }
 
-    $this->showForbidden();
-  }
 
   //trim stip tag la totaliter des donnee recu
   // que se soit une string , un array , ou un array multidimensionel

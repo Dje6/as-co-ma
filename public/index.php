@@ -1,5 +1,4 @@
 <?php
-
 //autochargement des classes
 require '../vendor/autoload.php';
 
