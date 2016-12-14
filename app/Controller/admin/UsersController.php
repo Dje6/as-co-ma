@@ -22,7 +22,7 @@ class UsersController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('Admin','Assoc',$slug)){
+      if($this->allowToTwo('Admin','Assoc',$slug)){
         $model = new monCompteModel;
         $donnees =  $model->menbre($slug,$id);
         $this->show('admin/users',['orga' => 'assoc','slug' => $slug,'acces' => 'np','donnee' => $donnees]);

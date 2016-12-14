@@ -10,8 +10,8 @@ class SuperAdminController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('SuperAdmin','Site',0)){
-        $this->show('admin/SuperAdmin');        
+      if($this->allowToTwo('SuperAdmin','Site',0)){
+        $this->show('admin/SuperAdmin');
       }
     }else{
       $this->redirectToRoute('racine_form');

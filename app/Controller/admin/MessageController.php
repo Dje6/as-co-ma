@@ -33,7 +33,7 @@ class MessageController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('Admin','Mairie',$slug)){
+      if($this->allowToTwo('Admin','Mairie',$slug)){
         $limit = 5;
         //limit d'affichage par page
         $Pagination = new Pagination('contact');
@@ -58,7 +58,7 @@ class MessageController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
-      if($this->allowTo('Admin','Assoc',$slug)){
+      if($this->allowToTwo('Admin','Assoc',$slug)){
         $limit = 5;
         //limit d'affichage par page
         $Pagination = new Pagination('contact');
