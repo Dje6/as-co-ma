@@ -12,6 +12,7 @@
 	<div class="container">
 		<header>
 			<ul>
+				<a href="<?php echo $this->url('default_home'); ?>"><li>Accueil</li></a>
 			<?php	if(isset($_SESSION['user'])){ ?>
 				<a href="<?php echo $this->url('racine_unlog'); ?>"><li>Deconnexion</li></a>
 				<a href="<?php echo $this->url('admin_monCompte'); ?>"><li>Administration</li></a>
