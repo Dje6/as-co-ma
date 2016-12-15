@@ -1,4 +1,4 @@
-<?php $this->layout('layout_back', ['title' => 'User','orga' => $orga,'slug' =>$slug]) ?>
+<?php $this->layout('layout_back', ['title' => 'User','orga' => isset($orga),'slug' => isset($slug)]) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
@@ -15,16 +15,53 @@ if(isset($acces)){
 echo '<h1>Vos information personnel</h1><br/>';
 }
 
-if(isset($donnee)){
-  if(is_array($donnee)){
-    $masquer = array('roles','id','token','status');
-    //liste des element que je ne souhaite pas voir afficher dans le foreach
-    foreach ($donnee as $key => $value) {
-      if(!in_array($key,$masquer)){
-        if(empty($value)){
-          $value = 'Non renseigner' ;
+if(isset($donnee)){//si la base de donnee retourne des information , array comme string
+  if(is_array($donnee)){//si la base de donnee retourne un array
+    if(isset($edition) && !isset($acces)){
+      echo '<form method="POST" action="'.$this->url('admin_monCompte_edition_post').'">';
+    }
+        if(isset($edition) && !isset($acces)){
+          echo '<label for="pseudo">pseudo</label><br>';
+          echo '<input type="text" name="pseudo" value="'.$donnee['pseudo'].'"><br/>';
+
+          echo '<label for="mail">mail</label><br>';
+          echo '<input type="text" name="mail" value="'.$donnee['mail'].'"><br/>';
+
+          echo '<label for="adresse">adresse</label><br>';
+          echo '<input type="text" name="adresse" value="'.$donnee['adresse'].'"><br/>';
+
+          echo '<label for="code_postal">code postal</label><br>';
+          echo '<input type="text" name="code_postal" value="'.$donnee['code_postal'].'"><br/>';
+
+          echo '<label for="ville">ville</label><br>';
+          echo '<input type="text" name="ville" value="'.$donnee['ville'].'"><br/>';
+
+          echo '<label for="mobile">mobile</label><br>';
+          echo '<input type="text" name="mobile" value="'.$donnee['mobile'].'"><br/>';
+
+          echo '<label for="fix">fix</label><br>';
+          echo '<input type="text" name="fix" value="'.$donnee['fix'].'"><br/>';
+
+          echo '<label for="avatar">avatar</label><br>';
+          echo '<input type="text" name="avatar" value="'.$donnee['avatar'].'"><br/>';
+        }else{
+          echo '<abc>pseudo : '.$donnee['pseudo'].'</abc><br/>';
+          echo '<abc>nom : '.$donnee['nom'].'</abc><br/>';
+          echo '<abc>prenom : '.$donnee['prenom'].'</abc><br/>';
+          echo '<abc>mail : '.$donnee['mail'].'</abc><br/>';
+          echo '<abc>adresse : '.$donnee['adresse'].'</abc><br/>';
+          echo '<abc>code postal : '.$donnee['code_postal'].'</abc><br/>';
+          echo '<abc>ville : '.$donnee['ville'].'</abc><br/>';
+          echo (empty($donnee['fix']))? '<abc>fix : Non renseigner</abc><br/>' : '<abc>fix : '.$donnee['fix'].'</abc><br/>';
+          echo (empty($donnee['mobile']))? '<abc>mobile : Non renseigner</abc><br/>' : '<abc>mobile : '.$donnee['mobile'].'</abc><br/>';
         }
-        echo $key.' : '.$value.'<br/>';
+
+    if(isset($edition) && !isset($acces)){
+      echo '<input type="submit" name="submit" value="Enregistrer"><br/>';
+      echo '</form>';
+    }else{
+      if(!isset($acces)){
+        echo '<a href="'.$this->url('admin_monCompte_edition').'"><button>Modifier</button></a><br/>';
       }
     }
   }else{

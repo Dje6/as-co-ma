@@ -17,6 +17,26 @@ class UsersController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+  public function homeEditionForm()
+  {
+    if(isset($_SESSION['user']))
+    {
+      $donnees = $_SESSION['user'];
+      $this->show('admin/users',['donnee' => $donnees,'edition' => true]);
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+  public function homeEditionPost()
+  {
+    if(isset($_SESSION['user']))
+    {
+      $donnees = $_SESSION['user'];
+      $this->show('admin/users',['donnee' => 'Moulinette en cours']);
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
   //affiche les information user d'un menbre d'association
   public function ficheMenbre($slug,$id)
   {

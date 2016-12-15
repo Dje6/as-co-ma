@@ -25,9 +25,7 @@ class ConnexionController extends CustomController
         $user_id = $get_user->isValidLoginInfo($_POST['pseudo'], $_POST['password']);
 
         if($user_id == 0){  //si ya un soucis on retourne sur le formulaire avec les erreur
-          $this->show('connexion/login',array(
-            'error'  => 'Les donnee saisi sont invalide'
-          ));
+          $this->show('racine/connexion',['error'  => 'Les donnee saisi sont invalide']);
         }else{//sinon on verifie si le compte est active
           $user = $get_user->getUserByUsernameOrEmail($_POST['pseudo']);
 
@@ -188,13 +186,15 @@ class ConnexionController extends CustomController
 
       if(empty($r_POST['capcha'])){
         //on fait les verif si le mail es ok et en base de donnee
-        $email = $r_POST['email'];
-        $error['email'] = ValidationTools::emailValid($email,true);
+        $error['email'] = ValidationTools::emailValid($r_POST['email'],true);
         $app = getApp();
         $urlBase = $app->getConfig('urlBase');
-        $urlLink = $urlBase.$this->generateUrl('racine_modifyForm',['mail' => urlencode($r_POST['email']), 'token' => $token]);
         if(ValidationTools::isValid($error)){
-            $token = 'string';
+
+            $usersModel = new UsersCustomModel;
+            $token = $usersModel->recupToken($r_POST['email']);
+            $urlLink = $urlBase.$this->generateUrl('racine_modifyForm',['mail' => urlencode($r_POST['email']), 'token' => $token]);
+
             $message = '<a href="'.$urlLink.'">cliquez ici</a>';
             $mail-> isMail();
             $mail->setFrom('ascoma@ascoma.com', 'Mailer');
@@ -234,14 +234,37 @@ class ConnexionController extends CustomController
   }
   public function modifyForm($mail,$token)
   {
-
-
-    $this->show('racine/modify');
+    $this->show('racine/modify',['mail' => urldecode(trim(strip_tags($mail))), 'token' => urldecode(trim(strip_tags($token)))]);
   }
 
   public function modifyPost()
   {
+    // debug($_POST);
+    if($_POST){
+      $usersModel = new UsersCustomModel;
+      $r_POST = $this->nettoyage($_POST);
 
+      if(!$usersModel->emailExists($r_POST['mail'])){ $error['mail'] = 'Cet email n\'existe pas' ; }
+
+      if(empty($usersModel->tokenOK($r_POST['mail'],$r_POST['token']))){ $error['token'] = 'Token introuvable' ;
+      } else { $id = $usersModel->tokenOK($r_POST['mail'],$r_POST['token']); }
+
+      $error['password'] = ValidationTools::passwordValid($r_POST['password'],$r_POST['repeat_password'],5,30);
+      $error['repeat_password'] = ValidationTools::passwordValid($r_POST['password'],$r_POST['repeat_password'],5,30);
+
+      if(ValidationTools::isValid($error)){
+
+        $newToken = StringUtils::randomString(50);
+        $data = array('password' => password_hash($r_POST['password'], PASSWORD_DEFAULT), 'token' => $newToken);
+        $usersModel->update($data,$id);
+
+        $this->redirectToRoute('racine_form');
+      } else {
+        $this->show('racine/modify', ['error' => $error,'donnee' => $r_POST]);
+      }
+
+
+    }
   }
 }
  ?>

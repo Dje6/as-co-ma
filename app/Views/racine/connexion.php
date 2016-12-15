@@ -12,13 +12,13 @@
 <?php $this->start('main_content') ?>
 <h1>bienvenu sur la page de connection Users</h1><br/>
 <form action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
-  <span><?php if(isset($error)){ echo $error ;} ?></span>
+  <?php if(isset($error)){ echo '<span>'.$error.'</span> <br>' ;} ?>
   <label for="pseudo">Pseudo/Email : </label>
   <input type="text" name="pseudo" value=""><br/>
   <label for="password">Password : </label>
   <input type="text" name="password" value=""><br/>
 
-  <input type="submit" name="" value="conecter">
+  <input type="submit" name="" value="connecter">
 </form><br/>
 
 <a href="<?php echo $this->url('racine_inscriptForm'); ?>">Inscription</a><br/>

@@ -7,6 +7,15 @@ use \W\Security\AuthentificationModel;
 
 class UsersCustomModel extends UsersModel
 {
+  public function recupToken($mail)
+  {
+    $sql = 'SELECT token FROM ' . $this->table . ' WHERE mail = :mail';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':mail', $mail);
+    $sth->execute();
+
+    return $sth->fetchColumn();
+  }
   //verifie si le token et l'email corresponde bien a un utilisateur
   //si oui on retourne sont ID
   public function tokenOk($mail,$token)

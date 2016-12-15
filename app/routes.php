@@ -62,7 +62,9 @@
 		//administration user
 		//
 		['GET|POST', '/Admin/message/[:page]', 'admin\Message#home', 'admin_message'],//affiche les message du user connecter
-		['GET|POST', '/profile/', 'admin\Users#home', 'admin_monCompte'],//affiche les info du user connecter
+		['GET', '/profile/', 'admin\Users#home', 'admin_monCompte'],//affiche les info du user connecter
+		['GET', '/EditProfile/', 'admin\Users#homeEditionForm', 'admin_monCompte_edition'],//affiche le formulaire de modification des données
+		['POST', '/EditProfile/', 'admin\Users#homeEditionPost', 'admin_monCompte_edition_post'],//affiche le formulaire de modification des données
 		//
 		//administration superAdmin
 		//
