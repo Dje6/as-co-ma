@@ -1,14 +1,38 @@
 html, body {
 	font-family: Consolas, monaco, monospace;
-	background-color: #272822;
-	color: #F8F8F2;
+	/*background-color: #272822;*/
+	background-image: url('../img/background-accueil.jpg');
+	/*color: #F8F8F2;*/
 }
 
-.container {
-	margin: 50px;
+header {
+	/*margin: 50px;*/
+	background-color: white;
+	background-image: url('../img/green-waves.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-
-a {
+.menu_home li {
+	list-style: none;
+	display: inline-block;
+	margin: auto 10px;
+	font-size: 1.5em;
+}
+.menu_footer li{
+	list-style: none;
+	font-size: 1.2em;
+}
+.content {
+	margin-top: 2em;
+}
+.slogan{
+	color: #52C9FF;
+	margin-top: 5em;
+}
+.logo{
+	margin-top: 6em;
+}
+/*a {
 	text-decoration: none;
 	color: #A6E22E;
 }
@@ -24,6 +48,7 @@ h1 {
 h2 {
 	color: #66D9EF;
 }
+*/
 input {
 	color: black;
 }

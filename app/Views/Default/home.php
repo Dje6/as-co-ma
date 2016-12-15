@@ -10,10 +10,8 @@
 
 
 <?php $this->start('main_content') ?>
-	<p>Vous avez atteint la page d'accueil.<br/><br/>
-<?php if(!isset($_SESSION['user'])){
-	?><a href="<?php echo $this->url('racine_connexion'); ?>">connection users</a></p><?php
-} ?>
+	<h1>Vous avez atteint la page d'accueil.</h1><br/><br/>
+
 <?php $this->stop('main_content') ?>
 
 

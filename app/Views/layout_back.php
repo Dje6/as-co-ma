@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
 	<?= $this->section('main_head') ?>
@@ -73,7 +73,7 @@
 			</ul>
 			<?php
 			if(isset($orga) && $orga != 'user'){
-				echo '<h1>'.$slug.'</h1>';
+				echo '<h1>'.$this->unslug($slug).'</h1>';
 				if($orga == 'mairie'){ ?>
 					<ul>
 						<a href="<?php echo $this->url('admin_message_mairie',['slug' => $slug,'page' => 1]); ?>"><li>Messagerie</li></a>

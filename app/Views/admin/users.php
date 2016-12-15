@@ -10,10 +10,11 @@
 <?php
 
 if(isset($acces)){
-  echo '<h1>Information du menbre</h1><br/>';
+  echo '<h1>Information du membre</h1><br/>';
 }else{
-echo '<h1>Vos information personnel</h1><br/>';
+echo '<h1>Vos informations personnelles</h1><br/>';
 }
+
 
 if(isset($donnee)){//si la base de donnee retourne des information , array comme string
   if(is_array($donnee)){//si la base de donnee retourne un array
@@ -65,8 +66,9 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
       }
     }
   }else{
-    echo $donnee;
+    echo '<p>'.$donnee.'</p>';
   }
+  echo '</div>';
 }
 
 ?>
