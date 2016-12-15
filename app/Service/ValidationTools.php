@@ -1,6 +1,8 @@
 <?php
 namespace Service;
 
+use \Model\UsersCustomModel;
+
 class ValidationTools
 {
 
@@ -20,16 +22,22 @@ class ValidationTools
    * @return string $error
    */
 
-  public static function emailValid($email)
+  public static function emailValid($email,$exist=false)
   {
-    $error = '';
+    $model = new UsersCustomModel();
+
     if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
-      $error = 'Adresse email invalide.';
+      return 'Adresse email invalide.';
     }
       elseif(strlen($email) > 50) {
-      $error = 'Votre adresse e-mail est trop longue.';
+      return 'Votre adresse e-mail est trop longue.';
     }
-    return $error;
+    if($exist){
+      if(!$model->emailExists($email)){
+        return "Cet email n'existe pas";
+      }
+    }
+
   }
 
   public static function code_postalVerif($valeur)

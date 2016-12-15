@@ -13,6 +13,7 @@ class ConnexionController extends CustomController
 {  //traite la connexion
   public function login()
   {
+
     if(isset($_SESSION['user'])){//si on es deja connecter on affiche directement la page perso
       $this->show('admin/users');
     }else{ // sinon on verifie les donnee
@@ -124,19 +125,23 @@ class ConnexionController extends CustomController
   public function sendMailValidate($email,$token)
   {
 
-    $mail = new PHPMailer;
+    $app = getApp();
+    $urlBase = $app->getConfig('urlBase');
+    $urlLink = $urlBase.$this->generateUrl('racine_valide_inscript',
+    ['mail' => trim(strip_tags($email)), 'token' => trim(strip_tags($token))]);
+
+    $mail = new PHPMailer();
     //$mail->SMTPDebug = 3;                              // Enable verbose debug output
     $mail->isMail();
     $mail->setFrom('Assaucisse@xamp.com', 'Mailer');
-    $mail->addAddress(urldecode($email), '');
+    $mail->addAddress(urldecode($email), 'exemple@example.com');
     $mail->addReplyTo('do-no-reply@xamp.com', 'Information');
     $mail->isHTML(true);                                  // Set email format to HTML
 
     $mail->Subject = 'Bienvenue sur Assaussice ';
     $mail->Body    = 'Bonjour, <br/>
     Votre inscription a bien ete prise en compte, veuillez suivre ce lien pour activer votre compte :
-    <a href="http://127.0.0.1/ecole/assaucisse/public/valid_inscript/'.trim(strip_tags($email)).'/
-    '.trim(strip_tags($token)).'">Cliquez ici</a><br/>' ;
+    <a href="'.$urlLink.'">Cliquez ici</a><br/>' ;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) {
@@ -151,8 +156,8 @@ class ConnexionController extends CustomController
   public function validation($mail,$token)
   {
     if(!empty($mail) && !empty($token)){
-      $mail = trim(strip_tags(urldecode($mail)));
-      $token =  trim(strip_tags(urldecode($token)));
+      $mail = urldecode(trim(strip_tags($mail)));
+      $token =  urldecode(trim(strip_tags($token)));
       $array = array();
       $usersModel = new UsersCustomModel;
       $id = $usersModel->tokenOK($mail,$token);
@@ -162,6 +167,8 @@ class ConnexionController extends CustomController
           $this->show('racine/inscription',['confirmation'=> 'Votre compte est activer!
           <a href="'.$this->generateUrl('racine_form').'">Connectez-vous !</a>']);
         }
+      }else {
+        $this->redirectToRoute('default_home');
       }
     }
   }
@@ -173,13 +180,42 @@ class ConnexionController extends CustomController
   //traite la demande de changement de passe
   public function mdpPost()
   {
+
+    $mail = new PHPMailer();
     $error = array();
     if($_POST){
       $r_POST = $this->nettoyage($_POST);
 
       if(empty($r_POST['capcha'])){
-
         //on fait les verif si le mail es ok et en base de donnee
+        $email = $r_POST['email'];
+        $error['email'] = ValidationTools::emailValid($email,true);
+        $app = getApp();
+        $urlBase = $app->getConfig('urlBase');
+        $urlLink = $urlBase.$this->generateUrl('racine_modifyForm',['mail' => urlencode($r_POST['email']), 'token' => $token]);
+        if(ValidationTools::isValid($error)){
+            $token = 'string';
+            $message = '<a href="'.$urlLink.'">cliquez ici</a>';
+            $mail-> isMail();
+            $mail->setFrom('ascoma@ascoma.com', 'Mailer');
+            $mail->addAddress($r_POST['email'], 'Joe User');     // Add a recipient
+
+            $mail->isHTML(true);                                  // Set email format to HTML
+
+            $mail->Subject = 'Here is the subject';
+            $mail->Body    = $message;
+
+            if(!$mail->send()) {
+              echo 'Message could not be sent.';
+              echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+              echo 'Message has been sent';
+              $this->redirectToRoute('default_home');
+            }
+
+        } else {
+          $this->show('racine/rescu', ['error' => $error]);
+        }
 
       }else {
         $error['capcha'] = 'vous etes un bots';
@@ -195,6 +231,17 @@ class ConnexionController extends CustomController
     }else{
       //on envoi le mail pour recuperer le mot de passe
     }
+  }
+  public function modifyForm($mail,$token)
+  {
+
+
+    $this->show('racine/modify');
+  }
+
+  public function modifyPost()
+  {
+
   }
 }
  ?>

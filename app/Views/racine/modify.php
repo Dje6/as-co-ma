@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Récupération de mot de passe']) ?>
+<?php $this->layout('layout', ['title' => 'Modifier mot de passe']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -10,13 +10,15 @@
 
 
 <?php $this->start('main_content') ?>
-<h1>Page recuperation mot de passe</h1><br/>
+<h1>Page modification de mot de passe</h1><br/>
 
-<form action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
+<form action="<?php echo $this->url('racine_modifyPost'); ?>" method="POST">
 
-  <span><?php if(isset($error['email'])){ echo $error['email'] ;} ?></span>
-  <label for="email">Email : </label>
-  <input type="email" name="email" value=""><br/>
+  <span><?php if(isset($error['password'])){ echo $error['password'] ;} ?></span>
+  <label for="password">Password : </label>
+  <input type="text" name="password" value=""><br/>
+  <label for="repeat_password">Repeat password :</label>
+  <input type="text" name="repeat_password" value=""><br/>
   <input type="hidden" name="capcha" value="">
 
   <input type="submit" name="submit" value="Envoyer">

@@ -22,6 +22,10 @@
 
 		['GET', '/rescu/', 'racine\Connexion#mdpForm', 'racine_mdpForm'],//formulaire de mot de passe oublier
 		['POST', '/rescu/', 'racine\Connexion#mdpPost', 'racine_mdpPost'],//traite la demande de changement de mot de passe
+
+		['GET', '/modify/[*:mail]/[:token]', 'racine\Connexion#modifyForm', 'racine_modifyForm'],//formulaire de modification de mot de passe
+		['POST', '/modifyPost/', 'racine\Connexion#modifyPost', 'racine_modifyPost'],//traite la demande de changement de mot de passe
+
 		//
 		//inscrition public
 		//
