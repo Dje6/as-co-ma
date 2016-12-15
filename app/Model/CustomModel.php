@@ -36,7 +36,7 @@ class CustomModel extends Model
     if(!empty($info)){
       return $info;
     }else {
-      return 'Aucun element trouver';
+      return 'Aucune '.$this->table.' correspondante ';
     }
   }
 }

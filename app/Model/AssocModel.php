@@ -86,6 +86,10 @@ class AssocModel extends customModel
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
     $sth->execute();
-    return $sth->fetchAll();
+    if(empty($sth->fetchAll())){
+      return 'Aucun menbre dans l\'association';
+    }else{
+      return $sth->fetchAll();
+    }
   }
 }
