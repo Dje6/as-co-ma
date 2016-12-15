@@ -11,7 +11,7 @@
 
 if(isset($donnee)){
   if(is_array($donnee)){
-    $masquer = array('id_mairie','id_user','slug','id','token','created_at');
+    $masquer = array('id_mairie','id_user','slug','id','token','created_at', 'avatar', 'background');
     //liste des element que je ne souhaite pas voir afficher dans le foreach
     foreach ($donnee as $key => $value) {
       if(!in_array($key,$masquer)){ // affiche toute les cle sauf celle specifier dans le tableau $masquer

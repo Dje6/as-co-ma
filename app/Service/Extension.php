@@ -19,6 +19,7 @@ class Extension implements ExtensionInterface
     {
         $engine->registerFunction('AsOk', [$this, 'author']);
 				$engine->registerFunction('in_multi_array', [$this, 'in_multi_array']);
+				$engine->registerFunction('unslug', [$this, 'unslug']);
     }
 		public function author($role,$organisation,$id_orga)
 	  {
@@ -36,6 +37,12 @@ class Extension implements ExtensionInterface
 				}
 			}
 			return false;
+		}
+
+		public function unslug($string){
+			$string = str_replace('-',' ',$string);
+			$string = strtoupper($string);
+			return $string;
 		}
 
 }

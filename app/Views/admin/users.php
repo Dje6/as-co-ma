@@ -10,26 +10,27 @@
 <?php
 
 if(isset($acces)){
-  echo '<h1>Information du menbre</h1><br/>';
+  echo '<h1>Information du membre</h1><br/>';
 }else{
-echo '<h1>Vos information personnel</h1><br/>';
+echo '<h1>Vos informations personnelles</h1><br/>';
 }
 
 if(isset($donnee)){
+  echo '<div>';
   if(is_array($donnee)){
-    $masquer = array('roles','id','token','status');
-    //liste des element que je ne souhaite pas voir afficher dans le foreach
-    foreach ($donnee as $key => $value) {
-      if(!in_array($key,$masquer)){
-        if(empty($value)){
-          $value = 'Non renseigner' ;
-        }
-        echo $key.' : '.$value.'<br/>';
-      }
-    }
+    //debug($donnee);
+    echo '<p class="">pseudo : '.$donnee['pseudo'].'</p>';
+    echo '<p class="">nom : '.$donnee['nom'].'</p>';
+    echo '<p class="">pseudo : '.$donnee['pseudo'].'</p>';
+    echo '<p class="">pseudo : '.$donnee['pseudo'].'</p>';
+    echo '<p class="">pseudo : '.$donnee['pseudo'].'</p>';
+    echo '<p class="">pseudo : '.$donnee['pseudo'].'</p>';
+
+
   }else{
-    echo $donnee;
+    echo '<p>'.$donnee.'</p>';
   }
+  echo '</div>';
 }
 
 ?>
