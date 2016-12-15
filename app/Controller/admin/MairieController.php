@@ -33,4 +33,19 @@ class MairieController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+
+  public function homeEditForm($slug)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if($this->allowToTwo('Admin','Mairie',$slug)){
+
+        $donnee = $this->infoBdd('Mairie',$slug,['statusA' => 'Actif','statusB' => 'En attente']);
+        $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee,'edition' => true]);
+      }
+
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
 }
