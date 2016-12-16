@@ -27,7 +27,7 @@ if(!isset($confirmation)){
 		<?php if(isset($_SESSION['user'])){
 			echo '<input type="text" name="emeteur_pseudo" value="'.$_SESSION['user']['pseudo'].'" readonly><br/>';
 		}else{
-		 echo '<input type="text" name="emeteur_pseudo" value=""><br/>';
+		 echo '<input type="hidden" name="emeteur_pseudo" value="non-inscrit" ><br/>';
 	 	} ?>
     <label for="mail">Mail</label><?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?><br/>
 		<?php if(isset($_SESSION['user'])){

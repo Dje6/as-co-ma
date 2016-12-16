@@ -37,10 +37,11 @@ class MairieModel extends customModel
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
     $sth->execute();
-    if(empty($sth->fetchAll())){
+    $donnee = $sth->fetchAll();
+    if(!is_array($donnee)){
       return 'Aucune association n\'est enregistrer a la mairie';
     }else{
-      return $sth->fetchAll();
+      return $donnee;
     }
   }
 }

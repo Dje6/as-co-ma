@@ -2,6 +2,8 @@
 namespace Service;
 
 use \Model\UsersCustomModel;
+use \Model\AssocModel;
+use \Model\MairieModel;
 
 class ValidationTools
 {
@@ -37,7 +39,38 @@ class ValidationTools
         return "Cet email n'existe pas";
       }
     }
+  }
+  public static function emailValidAssoc($email,$exist=false)
+  {
+    $model = new AssocModel;
 
+    if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
+      return 'Adresse email invalide.';
+    }
+      elseif(strlen($email) > 50) {
+      return 'Votre adresse e-mail est trop longue.';
+    }
+    if($exist){
+      if(!$model->emailExistsOrga($email)){
+        return "Cet email n'existe pas";
+      }
+    }
+  }
+  public static function emailValidMairie($email,$exist=false)
+  {
+    $model = new MairieModel;
+
+    if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
+      return 'Adresse email invalide.';
+    }
+      elseif(strlen($email) > 50) {
+      return 'Votre adresse e-mail est trop longue.';
+    }
+    if($exist){
+      if(!$model->emailExistsOrga($email)){
+        return "Cet email n'existe pas";
+      }
+    }
   }
 
   public static function code_postalVerif($valeur)
