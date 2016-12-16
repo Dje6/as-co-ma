@@ -116,7 +116,9 @@ class UsersCustomModel extends UsersModel
 		if($sth->execute()){
 			$foundUser = $sth->fetch();
       $sql = 'SELECT r.id_mairie,r.id_assoc,r.id_site,r.role,a.slug AS Aslug,
-      m.slug AS Mslug,a.nom AS Anom,m.nom AS Mnom
+      m.slug AS Mslug,a.nom AS Anom,m.nom AS Mnom,
+      m.id_user AS Mid_user,a.id_user AS Aid_user,a.id_mairie AS Aid_mairie,
+      (SELECT mairie.slug FROM mairie WHERE id = Aid_mairie) AS MslugA
       FROM roles AS r LEFT JOIN assoc AS a
       ON r.id_assoc = a.id LEFT JOIN mairie AS m
       ON r.id_mairie = m.id WHERE r.id_user = :userid ';
@@ -134,6 +136,7 @@ class UsersCustomModel extends UsersModel
           $foundUser['roles'][$key]['role'] = $value['role'];
           $foundUser['roles'][$key]['nom'] = $value['Mnom'];
           $foundUser['roles'][$key]['slug'] = $value['Mslug'];
+          $foundUser['roles'][$key]['id_user'] = $value['Mid_user'];
 
         }elseif(!empty($value['id_site'])){
           $foundUser['roles'][$key]['orga'] = 'Site';
@@ -147,6 +150,9 @@ class UsersCustomModel extends UsersModel
           $foundUser['roles'][$key]['role'] = $value['role'];
           $foundUser['roles'][$key]['nom'] = $value['Anom'];
           $foundUser['roles'][$key]['slug'] = $value['Aslug'];
+          $foundUser['roles'][$key]['id_user'] = $value['Aid_user'];
+          $foundUser['roles'][$key]['id_mairie'] = $value['Aid_mairie'];
+          $foundUser['roles'][$key]['slug_mairie'] = $value['MslugA'];
         }
       }
 			if($foundUser){

@@ -8,7 +8,6 @@
 <?php $this->start('main_content') ?>
 
 <?php
-
 if(isset($acces)){
   echo '<h1 class="titreusers">Information du membre</h1><br/>';
 }else{

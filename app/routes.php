@@ -49,7 +49,7 @@
 		//administration Assoc
 		//
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
-		['GET', '/Admin/message/assoc/[:slug]/[:page]', 'admin\Message#assoc', 'admin_message_assoc'],//affiche les message de lassociation
+		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message de lassociation
 		['GET', '/Admin/ListeMenbres/[:slug]/[:page]', 'admin\Assoc#listeMenbres', 'admin_assoc_menbres'],//affiche le listing des menbre de lassoc
 		['GET', '/Admin/infoMenbres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
 		['GET|POST', '/Admin/ContactMenbres/[:slugE]/[:slugR]', 'admin\message#contactMenbre', 'admin_assoc_contact_menbre'],//permet d'envoyer un message personnel a un menbre de lassoc
@@ -58,7 +58,7 @@
 		//administration mairie
 		//
 		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#home', 'admin_mairie'],//page d'administration des mairie,affichage des info
-		['GET', '/Admin/message/mairie/[:slug]/[:page]', 'admin\Message#mairie', 'admin_message_mairie'],//affiche les message de la mairie
+		['GET', '/Admin/message/mairie/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_mairie'],//affiche les message de la mairie
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/Edit/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//listing des assoc enregistrer dans la mairie
 		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\message#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
