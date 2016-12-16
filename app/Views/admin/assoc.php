@@ -12,30 +12,35 @@
 if(isset($donnee)){
   if(is_array($donnee)){
     if(isset($edition) && !isset($acces)){
-      echo '<form method="POST" action="'.$this->url('admin_assoc_edit_post').'">';
-      echo '<label for="nom">Nom</label><br>';
-      echo '<input type="text" name="nom" value="'.$donnee['nom'].'"><br>';
+      if(isset($bug)){ echo $bug ; } ?>
+      <form method="POST" action="<?php echo $this->url('admin_assoc_edit_post',['slug' => $slug]);?>">
+      <label for="nom">Nom</label><br>
+      <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
+      <input type="text" name="nom" value="<?php echo $donnee['nom'] ; ?>"><br>
 
-      echo '<label for="adresse">Adresse</label><br>';
-      echo '<input type="text" name="adresse" value="'.$donnee['adresse'].'"><br>';
+      <label for="adresse">Adresse</label><br>
+      <?php if(isset($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
+      <input type="text" name="adresse" value="<?php echo $donnee['adresse'] ; ?>"><br>
 
-      echo '<label for="code_postal">Code postal</label><br>';
-      echo '<input type="text" name="code_postal" value="'.$donnee['code_postal'].'"><br>';
+      <label for="code_postal">Code postal</label><br>
+      <?php if(isset($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
+      <input type="text" name="code_postal" value="<?php echo $donnee['code_postal'] ; ?>"><br>
 
-      echo '<label for="ville">Ville</label><br>';
-      echo '<input type="text" name="ville" value="'.$donnee['ville'].'"><br>';
+      <label for="ville">Ville</label><br>
+      <?php if(isset($error['ville'])){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
+      <input type="text" name="ville" value="<?php echo $donnee['ville'] ; ?>"><br>
 
-      echo '<label for="fix">Fixe</label><br>';
-      echo '<input type="text" name="fix" value="'.$donnee['fix'].'"><br>';
+      <label for="fix">Fixe</label><br>
+      <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
+      <input type="text" name="fix" value="<?php echo $donnee['fix'] ; ?>"><br>
 
-      echo '<label for="description">Description</label><br>';
-      echo '<input type="text" name="description" value="'.$donnee['description'].'"><br>';
+      <label for="description">Description</label><br>
+      <?php if(isset($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
+      <input type="text" name="description" value="<?php echo $donnee['description'] ; ?>"><br>
 
-      echo '<label for="status">Statut</label><br>';
-      echo '<input type="text" name="status" value="'.$donnee['status'].'"><br>';
-
-      echo '<input type="submit" name="submit" value="Enregistrer"><br>';
-      echo '</form>';
+      <input type="submit" name="submit" value="Enregistrer"><br>
+      </form>
+      <?php
     }else {
       echo '<abc>Nom : '.$donnee['nom'].'</abc><br>';
       echo '<abc>Adresse : '.$donnee['adresse'].'</abc><br>';
