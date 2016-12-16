@@ -32,6 +32,10 @@ if(isset($donnee)){
       // echo '<label for="horaire">Horaire</label><br>';
       // echo '<input type="text" name="horaire" value="'.$donnee['horaire'].'"><br>';
 
+      // foreach (unserialize($donnees['horaire']) as $key => $value) {
+      //   echo $key.' : '.$value.'<br/>';
+      // }
+
       echo '<label for="mail">Mail</label><br>';
       echo '<input type="text" name="mail" value="'.$donnee['mail'].'"><br>';
 
@@ -45,7 +49,11 @@ if(isset($donnee)){
       echo '<abc>code postal : '.$donnee['code_postal'].'</abc><br/>';
       echo '<abc>ville : '.$donnee['ville'].'</abc><br/>';
       echo '<abc>Fixe : '.$donnee['fix'].'</abc><br/>';
-      // echo '<abc>horaire : '.$donnee['horaire'].'</abc><br/>';
+      echo '<abc>Horaire : <br>';
+      foreach (unserialize($donnee['horaire']) as $key => $value) {
+        echo '<abc>'.$key.' : '.$value.'</abc><br/>';
+      }
+      echo '</abc><br>';
       echo '<abc>mail : '.$donnee['mail'].'</abc><br/>';
       echo '<abc>statut : '.$donnee['status'].'</abc><br/>';
       if(!isset($acces)){

@@ -52,13 +52,16 @@
 		['GET', '/Admin/message/assoc/[:slug]/[:page]', 'admin\Message#assoc', 'admin_message_assoc'],//affiche les message de lassociation
 		['GET', '/Admin/ListeMenbres/[:slug]/[:page]', 'admin\Assoc#listeMenbres', 'admin_assoc_menbres'],//affiche le listing des menbre de lassoc
 		['GET', '/Admin/infoMenbres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
+		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc
+		['POST', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditPost', 'admin_assoc_edit_post'],//edition des données assoc
+
 		//
 		//administration mairie
 		//
 		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#home', 'admin_mairie'],//page d'administration des mairie,affichage des info
 		['GET', '/Admin/message/mairie/[:slug]/[:page]', 'admin\Message#mairie', 'admin_message_mairie'],//affiche les message de la mairie
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
-		['GET', '/Admin/Edit/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
+		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 
 		//
 		//administration user

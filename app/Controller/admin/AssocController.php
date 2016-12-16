@@ -34,4 +34,27 @@ class AssocController extends CustomController
     }
   }
 
+  public function homeEditForm($slug)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if($this->allowToTwo('Admin','Assoc',$slug)){
+
+        $donnee = $this->infoBdd('Assoc',$slug,['statusA' => 'Actif','statusB' => 'En attente']);
+        $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'edition' => true]);
+      }
+
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+  public function homeEditPost($slug)
+  {
+    if(isset($_SESSION['user']))
+    {
+        $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true]);
+    }
+  }
+
 }

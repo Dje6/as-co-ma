@@ -11,19 +11,47 @@
 
 if(isset($donnee)){
   if(is_array($donnee)){
-    $masquer = array('id_mairie','id_user','slug','id','token','created_at', 'avatar', 'background');
-    //liste des element que je ne souhaite pas voir afficher dans le foreach
-    foreach ($donnee as $key => $value) {
-      if(!in_array($key,$masquer)){ // affiche toute les cle sauf celle specifier dans le tableau $masquer
-        if(empty($value)){//si la valeur es vide , on affiche "non renseigner"
-          $value = 'Non renseigner' ;
-        }
-        echo $key.' : '.$value.'<br/>';
+    if(isset($edition) && !isset($acces)){
+      echo '<form method="POST" action="'.$this->url('admin_assoc_edit_post').'">';
+      echo '<label for="nom">Nom</label><br>';
+      echo '<input type="text" name="nom" value="'.$donnee['nom'].'"><br>';
+
+      echo '<label for="adresse">Adresse</label><br>';
+      echo '<input type="text" name="adresse" value="'.$donnee['adresse'].'"><br>';
+
+      echo '<label for="code_postal">Code postal</label><br>';
+      echo '<input type="text" name="code_postal" value="'.$donnee['code_postal'].'"><br>';
+
+      echo '<label for="ville">Ville</label><br>';
+      echo '<input type="text" name="ville" value="'.$donnee['ville'].'"><br>';
+
+      echo '<label for="fix">Fixe</label><br>';
+      echo '<input type="text" name="fix" value="'.$donnee['fix'].'"><br>';
+
+      echo '<label for="description">Description</label><br>';
+      echo '<input type="text" name="description" value="'.$donnee['description'].'"><br>';
+
+      echo '<label for="status">Statut</label><br>';
+      echo '<input type="text" name="status" value="'.$donnee['status'].'"><br>';
+
+      echo '<input type="submit" name="submit" value="Enregistrer"><br>';
+      echo '</form>';
+    }else {
+      echo '<abc>Nom : '.$donnee['nom'].'</abc><br>';
+      echo '<abc>Adresse : '.$donnee['adresse'].'</abc><br>';
+      echo '<abc>Code postal : '.$donnee['code_postal'].'</abc><br>';
+      echo '<abc>Ville : '.$donnee['ville'].'</abc><br>';
+      echo '<abc>Fixe : '.$donnee['fix'].'</abc><br>';
+      echo '<abc>Description : '.$donnee['description'].'</abc><br>';
+      echo '<abc>statut : '.$donnee['status'].'</abc><br>';
+      if(!isset($acces)){
+        echo '<a href="'.$this->url('admin_assoc_edit_form', ['slug' => $slug]).'"><button>Modifier</button></a><br>';
       }
     }
   }else{
-    echo $donnee;
+    echo '<p>'.$donnee.'</p>';
   }
+  echo '</div>';
 }
 
 ?>
