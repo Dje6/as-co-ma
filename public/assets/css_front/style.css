@@ -1,54 +1,58 @@
+/*GLOBAL*/
 html, body {
 	font-family: Consolas, monaco, monospace;
 	/*background-color: #272822;*/
 	background-image: url('../img/background-accueil.jpg');
 	/*color: #F8F8F2;*/
 }
-
 header {
-	/*margin: 50px;*/
 	background-color: white;
 	background-image: url('../img/green-waves.png');
 	background-repeat: no-repeat;
 	background-size: cover;
+	width: 100%;
 }
+input {
+	color: black;
+}
+
+/*STYLE CONTENU DU HEADER*/
 .menu_home li {
 	list-style: none;
 	display: inline-block;
-	margin: auto 10px;
+	margin: auto 5px;
 	font-size: 1.5em;
 }
-.menu_footer li{
-	list-style: none;
-	font-size: 1.2em;
+.description_home{
+	/*color: #52C9FF;*/
+	margin-top: 10em;
 }
+.logo {
+	margin-top: 6em;
+}
+
+/*DISPLAY CONTENT DES VIEWS*/
 .content {
 	margin-top: 2em;
 }
-.slogan{
-	color: #52C9FF;
-	margin-top: 5em;
-}
-.logo{
-	margin-top: 6em;
-}
-/*a {
-	text-decoration: none;
-	color: #A6E22E;
+
+/*//////////////////////////////////////*/
+/*responsive menu layout front*/
+.slicknav_menu {
+	display:none;
 }
 
-a:hover {
-	color: #F92672;
-}
+@media screen and (max-width: 960px) {
+	/* #menu is the original menu */
+	#menu {
+		display:none;
+	}
 
-h1 {
-	color: #F92672;
-}
-
-h2 {
-	color: #66D9EF;
-}
-*/
-input {
-	color: black;
+	.slicknav_menu {
+		display:block;
+		background-color: #7fc346;
+	}
+	.slicknav_nav {
+		display: flex;
+	}
 }
