@@ -11,7 +11,7 @@
 
 <?php $this->start('main_content') ?>
 <?php
-echo 'listing des mairie et possibiliter den creer';
+echo 'Listing des mairies et possibilité d\'en créer';
 //rien de creer pour le moment
 ?>
 

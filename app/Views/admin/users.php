@@ -10,9 +10,9 @@
 <?php
 
 if(isset($acces)){
-  echo '<h1>Information du membre</h1><br/>';
+  echo '<h1 class="titreusers">Information du membre</h1><br/>';
 }else{
-echo '<h1>Vos informations personnelles</h1><br/>';
+echo '<h1 class="titreusers">Vos informations personnelles</h1><br/>';
 }
 
 
@@ -45,26 +45,53 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 
           echo '<label for="avatar">avatar</label><br>';
           echo '<input type="text" name="avatar" value="'.$donnee['avatar'].'"><br/>';
-        }else{
-          echo '<abc>pseudo : '.$donnee['pseudo'].'</abc><br/>';
-          echo '<abc>nom : '.$donnee['nom'].'</abc><br/>';
-          echo '<abc>prenom : '.$donnee['prenom'].'</abc><br/>';
-          echo '<abc>mail : '.$donnee['mail'].'</abc><br/>';
-          echo '<abc>adresse : '.$donnee['adresse'].'</abc><br/>';
-          echo '<abc>code postal : '.$donnee['code_postal'].'</abc><br/>';
-          echo '<abc>ville : '.$donnee['ville'].'</abc><br/>';
-          echo (empty($donnee['fix']))? '<abc>fix : Non renseigner</abc><br/>' : '<abc>fix : '.$donnee['fix'].'</abc><br/>';
-          echo (empty($donnee['mobile']))? '<abc>mobile : Non renseigner</abc><br/>' : '<abc>mobile : '.$donnee['mobile'].'</abc><br/>';
+        }else{ ?>
+          <div class="container">
+            <div class="row alignement">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-6 toppad" >
+                <div class="panel panel-info">
+                  <div class="panel-heading"><?php
+                    echo '<h3 classe"userpseudo">Votre Pseudo  : '.$donnee['pseudo'].'</h3><br/>'; ?>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12 " align="center">
+                        <!-- <img alt="User Pic" src="<?php //echo $donnee['avatar'] ; ?>" class="img-circle img-responsive"> -->
+                        <img alt="User Pic" src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png"
+                        class="img-circle img-responsive col-md-3">
+                        <div class=" col-md-9 col-lg-9 cartevisite">
+                          <table class="table table-user-information">
+                            <tbody>
+                              <tr><td>Nom:</td><td><?php echo $donnee['nom'] ; ?></td></tr>
+                              <tr><td>Prénom</td><td><?php echo $donnee['prenom'] ; ?></td></tr>
+                              <tr><td>Email</td><td><a href="mailto:<?php echo $donnee['mail'] ; ?>"><?php echo $donnee['mail'] ; ?></a></td></tr>
+                              <tr><td>Adresse</td><td><?php echo $donnee['adresse'] ; ?></td></tr>
+                              <tr><td>Code postal</td><td><?php echo $donnee['code_postal'] ; ?></td></tr>
+                              <tr><td>Ville</td><td><?php echo $donnee['ville'] ; ?></td></tr> <?php
+                              echo (empty($donnee['fix']))? '<tr><td>Téléphone : </td><td>Non renseigné</td></tr>' : '<tr><td>Téléphone :</td><td> '.$donnee['fix'].'</td></tr>';
+                              echo (empty($donnee['mobile']))? '<tr><td>Portable : </td><td>Non renseigné</td></tr>' : '<tr><td>Portable :</td><td> '.$donnee['mobile'].'</td></tr>'; ?>
+                            </tbody>
+                          </table><?php
+                          if(isset($edition) && !isset($acces)){
+                            echo '<input type="submit" name="submit" value="Enregistrer"><br/>';
+                            echo '</form>';
+                          }else{
+                            if(!isset($acces)){
+                              echo '<span class="centrer"><a href="'.$this->url('admin_monCompte_edition').'"><button >EDITER</button></a>';
+                              echo '<a href="'.$this->url('admin_monCompte_edition').'"><button >SUPPRIMER</button></a></span>';
+                            }
+                          } ?>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <?php
         }
 
-    if(isset($edition) && !isset($acces)){
-      echo '<input type="submit" name="submit" value="Enregistrer"><br/>';
-      echo '</form>';
-    }else{
-      if(!isset($acces)){
-        echo '<a href="'.$this->url('admin_monCompte_edition').'"><button>Modifier</button></a><br/>';
-      }
-    }
+
   }else{
     echo '<p>'.$donnee.'</p>';
   }

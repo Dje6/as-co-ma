@@ -7,7 +7,7 @@
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
-<h1>Administration</h1><br/><?php
+<h1 class="titreback">Administration</h1><br/><?php
 // liste soccupe dafficher les bouton dans liste menbre et liste association , sur le back
 if($orga == 'mairie'){
   if(isset($donnee)){
