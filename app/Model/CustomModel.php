@@ -39,4 +39,33 @@ class CustomModel extends Model
       return 'Aucune '.$this->table.' correspondante ';
     }
   }
+  public function emailExistsOrga($email)
+  {
+   $sql = 'SELECT COUNT(mail) FROM '.$this->table.' WHERE mail = :email ';
+   $sth = $this->dbh->prepare($sql);
+   $sth->bindValue(':email', $email);
+   if($sth->execute()){
+     $foundUser = $sth->fetchColumn();
+     if($foundUser > 0){
+         return true;
+     }else{
+       return false;
+     }
+   }
+  }
+  
+  public function recupMailBySlug($slugEmeteur)
+  {
+    $sql = 'SELECT mail FROM '.$this->table.' WHERE slug = :slugEmeteur ';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':slugEmeteur', $slugEmeteur);
+    if($sth->execute()){
+      $foundUser = $sth->fetchColumn();
+      if(!empty($foundUser)){
+          return $foundUser ;
+      }else{
+        return false;
+      }
+    }
+  }
 }
