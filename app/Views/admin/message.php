@@ -12,7 +12,7 @@ $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $or
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
-	<h1>Messagerie</h1><br/>
+	<h1 class="titreback">Messagerie</h1><br/>
 <?php
 if(isset($donnees)){
 	if(!empty($donnees)){

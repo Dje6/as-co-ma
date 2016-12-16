@@ -3,103 +3,135 @@
 <head>
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
 	<?= $this->section('main_head') ?>
 
 </head>
 <body>
-	<div class="container">
-		<header>
-			<ul>
-				<a href="<?php echo $this->url('racine_unlog'); ?>"><li>Deconnexion</li></a>
-				<a href="<?php echo $this->url('default_home'); ?>"><li>Accueil</li></a>
-				<a href="<?php echo $this->url('admin_message',['page' => 1]); ?>"><li>Message</li></a>
-				<a href="<?php echo $this->url('admin_monCompte'); ?>"><li>Mon compte</li></a>
+	<div class="navbar-wrapper">
+  	<div class="container-fluid">
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">As-Co-Ma</a>
+      	</div>
 
+			<div id="navbar" class="col-xs-offset-3 navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
+					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
+					<li><a href="<?php echo $this->url('admin_message',['page' => 1]); ?>">Message</a></li>
+					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon compte</a></li>
+
+					<?php
+					if((isset($_SESSION['user']['roles']) && !empty($_SESSION['user']['roles'])))
+					{
+						if($this->in_multi_array('Assoc',$_SESSION['user']['roles'])){
+							echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Association <span class="caret"></span></a><ul class="dropdown-menu">';
+							foreach ($_SESSION['user']['roles'] as $key => $value) {
+								if(isset($value['orga']) && $value['orga'] == 'Assoc'){
+									if($value['role'] == 'Admin'){ ?>
+										<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
+										<?php echo $value['nom']; ?></a></li>
+										<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
+										<?php echo $value['nom']; ?></a></li><?php
+									}elseif($value['role'] == 'User'){?>
+										<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
+										<?php echo $value['nom']; ?></a></li><?php
+									}
+								}
+							}
+							echo '</ul></li>';
+						}
+
+						if($this->in_multi_array('Mairie',$_SESSION['user']['roles'])){
+							echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mairie <span class="caret"></span></a><ul class="dropdown-menu">';
+							foreach ($_SESSION['user']['roles'] as $key => $value) {
+								if(isset($value['orga']) && $value['orga'] == 'Mairie'){
+									if($value['role'] == 'Admin'){ ?>
+										<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
+										<?php echo $value['nom']; ?></a></li>
+										<li><a href="<?php echo $this->url('racine_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
+										<?php echo $value['nom']; ?></a></li><?php
+									}
+								}
+							}
+							echo '</ul></li>';
+						}
+
+						if($this->in_multi_array('Site',$_SESSION['user']['roles'])){
+							echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SuperAdmin <span class="caret"></span></a><ul class="dropdown-menu">';
+							foreach ($_SESSION['user']['roles'] as $key => $value) {
+								if(isset($value['orga']) && $value['orga'] == 'Site'){
+									if($value['role'] == 'SuperAdmin'){?>
+										<li><a href="<?php echo $this->url('admin_superAdmin',['slug' => $value['slug']]); ?>">SuperAdmin</a></li><?php
+									}
+								}
+							}
+							echo '</ul></li>';
+						}
+
+					}else { ?>
+						<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Trouvez une association</a></li>
+						<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Fonder une association</a></li><?php
+					} ?>
+				</ul>
+			</div>
+		 </nav>
 				<?php
-				if((isset($_SESSION['user']['roles']) && !empty($_SESSION['user']['roles'])))
-				{
-					if($this->in_multi_array('Assoc',$_SESSION['user']['roles'])){
-						echo '<li>Assoc<ul>';
-						foreach ($_SESSION['user']['roles'] as $key => $value) {
-							if(isset($value['orga']) && $value['orga'] == 'Assoc'){
-								if($value['role'] == 'Admin'){ ?>
-									<a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>"><li>Gerer
-									<?php echo $value['nom']; ?></li></a>
-									<a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>"><li>Consulter
-									<?php echo $value['nom']; ?></li></a><?php
-								}elseif($value['role'] == 'User'){?>
-									<a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>"><li>Consulter
-									<?php echo $value['nom']; ?></li></a><?php
-								}
-							}
-						}
-						echo '</ul></li>';
+				if(isset($orga) && $orga != 'user'){
+					if(isset($slug) && !empty($slug)){ echo '<h1 class="titreback">'.$this->unslug($slug).'</h1>' ; }
+					if($orga == 'mairie'){ ?>
+						<div id="navbar" class="navbar-collapse collapse ">
+							<ul class="nav navbar-nav navbar_organisation">
+							<li><a href="<?php echo $this->url('admin_message_mairie',['slug' => $slug,'page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
+							</li>
+							<li><a href="<?php echo $this->url('admin_mairie',['orga' => $orga,'slug' => $slug]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
+							</li>
+							<li><a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Voir Association</button></a>
+							</li>
+						</ul>
+					</div> <?php
+					}elseif($orga == 'assoc'){ ?>
+						<div id="navbar" class="navbar-collapse collapse ">
+							<ul class="nav navbar-nav navbar_organisation">
+							<li><a href="<?php echo $this->url('admin_message_assoc',['slug' => $slug,'page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
+							</li>
+							<li><a href="<?php echo $this->url('admin_assoc',['orga' => $orga,'slug' => $slug]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
+							</li>
+							<li><a href="<?php echo $this->url('admin_assoc_menbres',['slug' => $slug,'page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
+							</li>
+						</ul>
+					</div><?php
 					}
-
-					if($this->in_multi_array('Mairie',$_SESSION['user']['roles'])){
-						echo '<li>Mairie<ul>';
-						foreach ($_SESSION['user']['roles'] as $key => $value) {
-							if(isset($value['orga']) && $value['orga'] == 'Mairie'){
-								if($value['role'] == 'Admin'){ ?>
-									<a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>"><li>Gerer
-									<?php echo $value['nom']; ?></li></a>
-									<a href="<?php echo $this->url('racine_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>"><li>Consulter
-									<?php echo $value['nom']; ?></li></a><?php
-								}
-							}
-						}
-						echo '</ul></li>';
-					}
-
-					if($this->in_multi_array('Site',$_SESSION['user']['roles'])){
-						echo '<li>SuperAdmin<ul>';
-						foreach ($_SESSION['user']['roles'] as $key => $value) {
-							if(isset($value['orga']) && $value['orga'] == 'Site'){
-								if($value['role'] == 'SuperAdmin'){?>
-									<a href="<?php echo $this->url('admin_superAdmin',['slug' => $value['slug']]); ?>"><li>SuperAdmin</li></a><?php
-								}
-							}
-						}
-						echo '</ul></li>';
-					}
-
-				}else { ?>
-					<a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>"><li>Trouvez une association</li></a>
-					<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>"><li>Fonder une association</li></a><?php
-				} ?>
-			</ul>
-			<?php
-			if(isset($orga) && $orga != 'user'){
-				echo '<h1>'.$this->unslug($slug).'</h1>';
-				if($orga == 'mairie'){ ?>
-					<ul>
-						<a href="<?php echo $this->url('admin_message_mairie',['slug' => $slug,'page' => 1]); ?>"><li>Messagerie</li></a>
-						<a href="<?php echo $this->url('admin_mairie',['orga' => $orga,'slug' => $slug]); ?>"><li>Compte</li></a>
-						<a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>"><li>Voir Associations</li></a>
-					</ul> <?php
-				}elseif($orga == 'assoc'){ ?>
-					<ul>
-						<a href="<?php echo $this->url('admin_message_assoc',['slug' => $slug,'page' => 1]); ?>"><li>Messagerie</li></a>
-						<a href="<?php echo $this->url('admin_assoc',['orga' => $orga,'slug' => $slug]); ?>"><li>Compte</li></a>
-						<a href="<?php echo $this->url('admin_assoc_menbres',['slug' => $slug,'page' => 1]); ?>"><li>Voir Membres</li></a>
-					</ul><?php
 				}
-			}
-			 ?>
-		</header>
+				 ?>
 
 		<section>
 			<?= $this->section('main_content') ?>
-
 		</section>
 
-		<footer>
-
-		</footer>
+		</div>
 	</div>
+
+	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.1.min.js'); ?>"></script>
+	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js'); ?>"></script>
+	<!-- <script type="text/javascript">
+		$('.dropdown-toggle').dropdown();
+	</script> -->
 	<?= $this->section('main_script') ?>
 </body>
 </html>
