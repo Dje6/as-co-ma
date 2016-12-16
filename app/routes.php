@@ -58,7 +58,7 @@
 		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#home', 'admin_mairie'],//page d'administration des mairie,affichage des info
 		['GET', '/Admin/message/mairie/[:slug]/[:page]', 'admin\Message#mairie', 'admin_message_mairie'],//affiche les message de la mairie
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
-		['GET', '/Admin/Edit/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//listing des assoc enregistrer dans la mairie
+		['GET', '/Admin/Edit/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 
 		//
 		//administration user
