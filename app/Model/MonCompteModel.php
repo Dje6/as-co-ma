@@ -29,7 +29,6 @@ class MonCompteModel extends CustomModel
     }else {
       return $info ;
     }
-
   }
 
 }

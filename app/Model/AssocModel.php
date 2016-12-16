@@ -60,9 +60,13 @@ class AssocModel extends customModel
       $sth->bindValue(':'.$key, '%'.$value.'%');
     }
     if(!$sth->execute()){
+      return false;
+    }
+    $donnee = $sth->fetchAll();
+    if(!is_array($donnee)){
       return 'Aucune association trouver';
     }
-        return $sth->fetchAll();
+        return $donnee;
   }
 // recherche un menbre par son ID et retourne ses information
   public function findMenbre($slug)
@@ -86,10 +90,11 @@ class AssocModel extends customModel
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
     $sth->execute();
-    if(empty($sth->fetchAll())){
+    $donnee = $sth->fetchAll();
+    if(!is_array($donnee)){
       return 'Aucun menbre dans l\'association';
     }else{
-      return $sth->fetchAll();
+      return $donnee;
     }
   }
 }

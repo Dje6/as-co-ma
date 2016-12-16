@@ -44,7 +44,7 @@
 		['GET', '/contact/accepte/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#accepte', 'admin_accepte'],//accepte la demande d'inscritpion
 		['GET', '/contact/plusInfo/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#plusInfo', 'admin_plus_info'],//refuse linscritpion manque d'info
 		['GET', '/contact/refuse/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#refuse', 'admin_refuse'],//refuse la demande d'inscritpion
-		['GET', '/contact/repondre/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#repondre', 'admin_repondre'],//permet denvoyer une reponse par email
+		['GET|POST', '/contact/repondre/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#repondre', 'admin_repondre'],//permet denvoyer une reponse par email
 		//
 		//administration Assoc
 		//
@@ -54,6 +54,8 @@
 		['GET', '/Admin/infoMenbres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
 		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc
 		['POST', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditPost', 'admin_assoc_edit_post'],//edition des données assoc
+		['GET|POST', '/Admin/ContactMenbres/[:slugE]/[:slugR]', 'admin\message#contactMenbre', 'admin_assoc_contact_menbre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\message#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
 
 		//
 		//administration mairie
@@ -63,6 +65,9 @@
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 		['POST', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditPost', 'admin_mairie_edit_post'],//edition des données mairie
+		['GET', '/Admin/Edit/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//listing des assoc enregistrer dans la mairie
+		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\message#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
+		['GET|POST', '/Admin/ContactWebmaster/[:slugE]/[:slugR]', 'admin\message#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
 
 		//
 		//administration user

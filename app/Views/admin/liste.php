@@ -7,7 +7,7 @@
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
-<h1>Administration</h1><br/><?php
+<h1 class="titreback">Administration</h1><br/><?php
 // liste soccupe dafficher les bouton dans liste menbre et liste association , sur le back
 if($orga == 'mairie'){
   if(isset($donnee)){
@@ -17,12 +17,14 @@ if($orga == 'mairie'){
         <tr>
           <td><?php echo $value['nom']; ?></td>
           <td><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button>Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Contacter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
         </tr><?php
       }
       echo '</table>';
+    }else{
+      echo $donnee;
     }
   }
 }elseif ($orga == 'assoc') {
@@ -33,12 +35,14 @@ if($orga == 'mairie'){
         <tr>
           <td><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
           <td><a href="<?php echo $this->url('admin_assoc_menbre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button>Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Contacter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
         </tr><?php
       }
       echo '</table>';
+    }else{
+      echo $donnee;
     }
   }
 }

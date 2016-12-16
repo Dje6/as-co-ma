@@ -50,10 +50,11 @@ class MessageModel extends customModel
     if(!$sth->execute()){
       return false;
     }
-    if(empty($sth->fetchAll())){
+    $donnee = $sth->fetchAll();
+    if(!is_array($donnee)){
       return 'Aucun message';
     }else {
-      return $sth->fetchAll();
+      return $donnee;
     }
   }
   //searchMessagesOrga recupere les message d'un organisation
@@ -97,10 +98,13 @@ class MessageModel extends customModel
     if(!$sth->execute()){
       return false;
     }
-    if(empty($sth->fetchAll())){
+    $donnee = $sth->fetchAll();
+    if(!is_array($donnee)){
       return 'Aucun message';
     }else {
-      return $sth->fetchAll();
+      return $donnee;
     }
   }
+
+
 }

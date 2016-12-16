@@ -3,7 +3,11 @@ namespace Controller\admin;
 
 use \Controller\CustomController;
 use \Model\MessageModel;
+use \Model\ContactModel;
+use \Model\AssocModel;
+use \Model\MairieModel;
 use \Service\Pagination;
+use \Service\ValidationTools;
 
 class MessageController extends CustomController
 {
@@ -87,5 +91,95 @@ class MessageController extends CustomController
   {
       $MessageModel = new MessageModel('contact');
       return $MessageModel->searchMessagesOrga(['destinataire' => $slug,'organisme' => $table],'AND',true,$limit,$offset);
+  }
+
+
+  public function contactMairie($slugEmeteur,$sulgRecepteur)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if($this->allowToTwo('Admin','Assoc',$slugEmeteur)){
+        if($_POST){
+          $r_POST = $this->nettoyage($_POST);
+          $error['mail'] = ValidationTools::emailValidAssoc($r_POST['mail'],true);
+          if(empty($error['mail'])){
+            $this->sendMessage('mairie',$slugEmeteur,$sulgRecepteur,$r_POST);
+          }
+        }else{
+          $MessageModel = new MessageModel('mairie');
+          $mail = $MessageModel->recupMailBySlug($slugRecepteur);
+          $this->show('admin/Editmessage',['slugEmeteur' => $slugEmeteur,'slugRecepteur' => $slugRecepteur,'mailRecepteur'=> $mail]);
+        }
+      }
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+  public function contactAssoc($slugEmeteur,$slugRecepteur)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if($this->allowToTwo('Admin','Mairie',$slugEmeteur)){
+        if($_POST) {
+          $r_POST = $this->nettoyage($_POST);
+          $error['destinataire'] = ValidationTools::emailValidAssoc($r_POST['destinataire'],true);
+          $error['mail'] = ValidationTools::emailValidMairie($r_POST['mail'],true);
+          if(empty($error['mail']) && empty($error['destinataire'])){
+            $this->sendMessage('assoc',$slugEmeteur,$slugRecepteur,$r_POST);
+          }else{
+            debug($error);
+          }
+        }else{
+          $AssocModel = new AssocModel;
+          $maildestinataire = $AssocModel->recupMailBySlug($slugRecepteur);
+          $MairieModel = new MairieModel;
+          $mailEmeteur = $MairieModel->recupMailBySlug($slugEmeteur);
+          $this->show('admin/Editmessage',['slugEmeteur' => $slugEmeteur,'slugRecepteur' => $slugRecepteur,
+          'mailRecepteur' => $maildestinataire,'mailEmeteur' => $mailEmeteur]);
+        }
+      }
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+  public function sendMessage($orga,$slugEmeteur,$slugRecepteur,$donnee)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if(!empty($donnee)){
+        if(empty($donnee['capcha'])){
+
+          $error['emeteur_pseudo'] = ValidationTools::textValid($donnee['emeteur_pseudo'], 'pseudo',3,50);
+          $error['objet'] = ValidationTools::textValid($donnee['objet'], 'objet',3,30);
+          $error['contenu'] = ValidationTools::textValid($donnee['contenu'], 'message',3,500);
+
+        }else {
+          $error['capcha'] = 'vous etes un bots';
+        }
+      }else{
+        $error['donnee'] = 'donnee manquante';
+      }
+      if(!ValidationTools::IsValid($error)){
+        $this->show('admin/Editmessage',['slugEmeteur' => $slugEmeteur,'slugRecepteur' => $slugRecepteur,
+        'donnee' => $donnee,'error' => $error,'mailEmeteur' => $donnee['mail']]);
+
+      }else{
+        unset($donnee['submit']);
+        unset($donnee['capcha']);
+
+        $donnee['date_envoi'] = date('Y-m-d H:i:s');
+        $donnee['status'] = 'non-lu';
+        $donnee['organisme'] = $orga;
+
+         $contactModel = new ContactModel;
+
+        if($contactModel->insert($donnee,false)){
+          $this->show('admin/Editmessage',['orga' => $orga ,'slug' => $slugRecepteur,'confirmation'=> 'Votre message a bien ete envoyer']);
+        }else{
+          $this->show('admin/Editmessage',['orga' => $orga ,'slug' => $slugRecepteur,'confirmation'=> 'une erreur est survenu']);
+        }
+      }
+    }
   }
 }
