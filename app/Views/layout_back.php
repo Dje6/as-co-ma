@@ -91,6 +91,9 @@
 					if($orga == 'mairie'){ ?>
 						<div id="navbar" class="navbar-collapse collapse ">
 							<ul class="nav navbar-nav navbar_organisation">
+							<li><a href="<?php echo $this->url('admin_mairie_contact_Webmaster',['slugE' => $slug]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Contacter le Webmaster</button></a>
+							</li>
 							<li><a href="<?php echo $this->url('admin_message_mairie',['slug' => $slug,'orga' => 'mairie','page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
 							</li>
@@ -102,14 +105,16 @@
 							</li>
 						</ul>
 					</div> <?php
+
 					}elseif($orga == 'assoc'){ ?>
 						<div id="navbar" class="navbar-collapse collapse ">
 							<ul class="nav navbar-nav navbar_organisation">
-								<?php $array_retourner = $this->in_multi_array_return_array($slug,$_SESSION['user']['roles']);
-								if(is_array($array_retourner)){ $mairieReferente = $array_retourner['slug_mairie'] ;} ?>
-							<li><a href="<?php echo $this->url('admin_assoc_contact_mairie',['slugE' => $slug,'slugR' => $mairieReferente]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Contacter la mairie</button></a>
-							</li>
+							<?php $array_retourner = $this->in_multi_array_return_array($slug,$_SESSION['user']['roles']);
+							if(is_array($array_retourner)){ ?>
+								<li><a href="<?php echo $this->url('admin_assoc_contact_mairie',['slugE' => $slug,'slugR' => $array_retourner['slug_mairie']]); ?>">
+									<button type="button" class="btn btn-info btn-lg">Contacter la mairie</button></a>
+								</li>
+							<?php } ?>
 							<li><a href="<?php echo $this->url('admin_message_assoc',['slug' => $slug,'orga' => 'assoc','page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
 							</li>
