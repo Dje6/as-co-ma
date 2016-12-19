@@ -41,9 +41,9 @@ class ContactController extends CustomController
       unset($r_POST['capcha']);
 
       $UserModel = new UserModel;
-      if($UserModel->FinIdByMail($r_POST['emeteur_mailOrId'])){
+      if($UserModel->FindIdByMail($r_POST['emeteur_mailOrId'])){
         $email = $r_POST['emeteur_mailOrId'];
-        $r_POST['emeteur_mailOrId'] = $UserModel->FinIdByMail($r_POST['emeteur_mailOrId']);
+        $r_POST['emeteur_mailOrId'] = $UserModel->FindIdByMail($r_POST['emeteur_mailOrId']);
         $r_POST['emeteur_orga'] = 'users';
         $r_POST['emeteur_pseudo'] = $UserModel->FindPseudoByMail($email);
       }else{
