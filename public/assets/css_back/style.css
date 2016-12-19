@@ -202,3 +202,33 @@ button[type="reset"]    {
 .centerBut {
 	margin-left: 35%;
 }
+.affichage {
+	background-image: url('../img/backblanc.png');
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid #99ccff;
+	color: #108fcc;
+	border-radius: 2%;
+	padding: 1em;
+}
+.bouge {
+	padding: 1em;
+	margin: 2em;
+}
+/*///////////////////////////////////////////////////////////////////////////////*/
+/*css page mairie.php*/
+.affichageMairie {
+		background-image: url('../img/backblanc.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid #99ccff;
+	color: #108fcc;
+	border-radius: 2%;
+}
+.centragetitre{
+	text-align: center;
+	font-weight: bolder;
+	font-size: 2.5em;
+}
