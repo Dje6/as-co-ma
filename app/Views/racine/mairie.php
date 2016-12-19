@@ -44,8 +44,7 @@
 	if(isset($donnees)){
 		if(is_array($donnees)){ ?>
 
-			<h1>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></h1>
-			<br>
+			<h2>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></h2>
 
 			<li><a href="<?php echo $this->url('racine_contact',['orga' => 'mairie' ,'slug' => $slug]); ?>">Contacter la Mairie</a></li>
 

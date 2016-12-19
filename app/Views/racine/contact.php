@@ -87,7 +87,7 @@ if(!isset($confirmation)){
 	<?php	}
 	//end if(!isset($confirmation))
 } else {
-	echo $confirmation;
+	echo '<h2 class="text-center">' . $confirmation . '</h2>';
 } ?>
 
 <?php $this->stop('main_content') ?>
