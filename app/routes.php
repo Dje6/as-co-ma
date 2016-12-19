@@ -62,7 +62,8 @@
 		//administration mairie
 		//
 		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#home', 'admin_mairie'],//page d'administration des mairie,affichage des info
-		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#homeEditStatus', 'admin_mairie_edit_status'],//edition des données mairie
+		['GET', '/Admin/Mairie/status/[:slug]/[:slugA]', 'admin\Mairie#homeEditStatus', 'admin_mairie_edit_status'],//edition du statut de l'assoc (actif, en attente)
+		['GET', '/Admin/Mairie/delete/[:slug]/[:slugA]', 'admin\Mairie#homeDeleteAssoc', 'admin_mairie_delete_assoc'],//edition du statut de l'assoc (actif, en attente)
 		['GET', '/Admin/message/mairie/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_mairie'],//affiche les message de la mairie
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie

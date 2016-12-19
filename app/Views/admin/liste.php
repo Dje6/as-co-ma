@@ -16,11 +16,16 @@ if($orga == 'mairie'){
       echo '<table>';
       foreach ($donnee as $key => $value) { ?>
         <tr>
-          <td class="bouge"><?php echo $value['nom']; ?></td>
+          <td><?php echo $value['nom']; ?></td>
           <td><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button class="btn btn-info bouge">Consulter</button></a></td>
           <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+          <?php if($value['status'] == 'Actif'){ ?>
+            <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
+          <?php }else { ?>
+            <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button class="btn btn-success bouge">Activer</button></a></td>
+          <?php } ?>
+          <td><a href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+
         </tr><?php
       }
       echo '</table>';
@@ -43,6 +48,7 @@ if($orga == 'mairie'){
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
         </tr>
         <?php
+
       }
       echo '</table>';
     }else{
