@@ -76,7 +76,7 @@ class MairieController extends CustomController
           }
           unset($r_POST['submit']);
 
-          $id = $mairieModel->findIDBySlug($slug);
+          $id = $mairieModel->FindElementByElement('id','slug',$slug);
           $result = $mairieModel->update($r_POST,$id);
           if(!$result){
             $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
@@ -104,7 +104,7 @@ class MairieController extends CustomController
 
          $slug = $this->nettoyage($slug);
          $slugA = $this->nettoyage($slugA);
-         $id = $assocModel->findIDBySlug($slugA);
+         $id = $assocModel->FindElementByElement('id','slug',$slugA);
          $status = $assocModel->FindElementByElement('status','slug',$slugA);
          if($status == 'Actif'){
            $result = $assocModel->update(['status' => 'En attente'],$id);
@@ -127,7 +127,7 @@ class MairieController extends CustomController
       if($this->allowToTwo('Admin','Mairie',$slug)){
         $slug = $this->nettoyage($slug);
         $slugA = $this->nettoyage($slugA);
-        $id = $assocModel->findIDBySlug($slugA);
+        $id = $assocModel->FindElementByElement('id','slug',$slugA);
         $result = $assocModel->delete($id);
         if($result){
           $rolesModel = new RolesModel;

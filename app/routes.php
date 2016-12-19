@@ -42,21 +42,22 @@
 		//
 		//administration des demande
 		//
-		['GET', '/contact/accepte/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#accepte', 'admin_accepte'],//accepte la demande d'inscritpion
-		['GET', '/contact/plusInfo/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#plusInfo', 'admin_plus_info'],//refuse linscritpion manque d'info
-		['GET', '/contact/refuse/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#refuse', 'admin_refuse'],//refuse la demande d'inscritpion
-		['GET|POST', '/contact/repondre/[*:mail]/[:orga]/[:slug]/', 'admin\Contact#repondre', 'admin_repondre'],//permet denvoyer une reponse par email
+		['GET', '/Admin/contact/accepte/[:id]/[:orga]/[:slug]/', 'admin\Reponse#accepte', 'admin_accepte'],//accepte la demande d'inscritpion
+		['GET', '/Admin/contact/plusInfo/[:id]/[:orga]/[:slug]/', 'admin\Reponse#plusInfo', 'admin_plus_info'],//refuse linscritpion manque d'info
+		['GET', '/Admin/contact/refuse/[:id]/[:orga]/[:slug]/', 'admin\Reponse#refuse', 'admin_refuse'],//refuse la demande d'inscritpion
+		['GET|POST', '/Admin/contact/repondre/[:id]/[:orga]/[:slug]/', 'admin\Reponse#repondre', 'admin_repondre'],//permet denvoyer une reponse par email
+		['GET|POST', '/Admin/contact/repondreUser/[:id]/', 'admin\Reponse#repondreUser', 'admin_repondre_User'],
 		//
 		//administration Assoc
 		//
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
 		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message de lassociation
 		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
-		['GET', '/Admin/infoMembres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
+		['GET', '/Admin/infoMembres/[:slug]/[:id]', 'admin\Users#ficheMembre', 'admin_assoc_membre'],//affiche la fiche personnel des menbre de lassoc
 		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc
 		['POST', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditPost', 'admin_assoc_edit_post'],//edition des données assoc
-		['GET|POST', '/Admin/ContactMembres/[:slugE]/[:id]', 'admin\message#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
-		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\message#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
+		['GET|POST', '/Admin/ContactMembres/[:slugE]/[:id]', 'admin\contact#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\contact#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
 
 		//
 		//administration mairie
@@ -68,8 +69,8 @@
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 		['POST', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditPost', 'admin_mairie_edit_post'],//edition des données mairie
-		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\message#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
-		['GET|POST', '/Admin/ContactWebmaster/[:slugE]', 'admin\message#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
+		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\contact#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
+		['GET|POST', '/Admin/ContactWebmaster/[:slugE]', 'admin\contact#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
 
 		//
 		//administration user

@@ -23,7 +23,7 @@ class AssocController extends CustomController
     }
   }
   //retourne la liste des menbres inscrit dans l'association
-  public function listeMenbres($slug)
+  public function listeMembres($slug)
   {
     if(isset($_SESSION['user']))
     {
@@ -78,7 +78,7 @@ class AssocController extends CustomController
           }
           unset($r_POST['submit']);
 
-          $id = $assocModel->findIDBySlug($slug);
+          $id = $assocModel->FindElementByElement('id','slug',$slug);
           $result = $assocModel->update($r_POST,$id);
           if(!$result){
             $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
