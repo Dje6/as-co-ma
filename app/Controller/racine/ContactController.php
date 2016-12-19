@@ -4,6 +4,8 @@ namespace Controller\racine;
 use \Controller\CustomController;
 use \Service\ValidationTools;
 use \Model\ContactModel;
+use \Model\AssocModel;
+use \Model\MairieModel;
 
 class ContactController extends CustomController
 {
@@ -37,7 +39,14 @@ class ContactController extends CustomController
     }else{
       unset($r_POST['submit']);
       unset($r_POST['capcha']);
-      $r_POST['destinataire'] = $slug;
+      if($orga == 'assoc'){
+        $AssocModel = new AssocModel;
+        $maildestinataire = $AssocModel->recupMailBySlug($slug);
+      }elseif($orga == 'mairie'){
+        $MairieModel = new MairieModel;
+        $maildestinataire = $MairieModel->recupMailBySlug($slug);
+      }
+      $r_POST['destinataire'] = $maildestinataire;
       $r_POST['date_envoi'] = date('Y-m-d H:i:s');
       $r_POST['status'] = 'non-lu';
       $r_POST['organisme'] = $orga;

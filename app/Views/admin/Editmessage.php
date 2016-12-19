@@ -1,26 +1,23 @@
 <?php
-if($w_current_route == 'admin_assoc_contact_mairie'){
-  echo '<p>Contacter la '.$slugRecepteur.'</p>';
-  $orga = 'Mairie';
+if($w_current_route == 'admin_assoc_contact_mairie' || $orga == 'assoc'){
+  $quiContacter = '<p>Contacter la '.$slugRecepteur.'</p>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
-}elseif($w_current_route == 'admin_mairie_contact_assoc') {
-  echo '<p>Contacter l\'association '.$slug.'</p>';
-  $orga = 'Assoc';
+}elseif($w_current_route == 'admin_mairie_contact_assoc' || ($orga == 'mairie' && $slugRecepteur != 'Webmaster')) {
+  $quiContacter = '<p>Contacter l\'association '.$slugRecepteur.'</p>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
-}elseif($w_current_route == 'admin_assoc_contact_menbre') {
-  echo '<p>Contacter le menbre</p>';
-  $orga = 'Menbre';
+}elseif($w_current_route == 'admin_assoc_contact_menbre' ) {
+  $quiContacter = '<p>Contacter le menbre</p>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
-}elseif($w_current_route == 'admin_mairie_contact_Webmaster') {
-  echo '<p>Contacter le Webmaster</p>';
-  $orga = 'Site';
+}elseif($w_current_route == 'admin_mairie_contact_Webmaster' || $orga == 'site' || $slugRecepteur == 'Webmaster') {
+  $quiContacter = '<p>Contacter le Webmaster</p>';
+  $orga = 'mairie';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 }
 
-$this->layout('layout_back', ['title' => 'Message','slug' => $slugEmeteur,'orga' => $orga]);
+$this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
  ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -32,22 +29,22 @@ $this->layout('layout_back', ['title' => 'Message','slug' => $slugEmeteur,'orga'
 
 <?php $this->start('main_content') ?>
 
-	<h1>Contacter <?php echo $slugRecepteur ;?></h1><br/>
+	<h1><?php echo $quiContacter ;?></h1><br/>
 <?php
 if(!isset($confirmation)){ ?>
 
   <form class="" action="<?php echo $urlDePost; ?>" method="post">
-    <?php if(isset($error['emeteur_pseudo'])){ echo '<span>'.$error['emeteur_pseudo'].'</span><br/>' ;} ?>
-		<input type="hidden" name="emeteur_pseudo" value="<?php echo $slugEmeteur ; ?>"><br/>
-    <input type="hidden" name="mail" value="<?php echo $mailEmeteur ;?>"><br/>
 
-    <label for="destinatire">Destinataire </label><?php if(isset($error['destinataire'])){ echo '<span>'.$error['destinataire'].'</span>' ;} ?><br/>
+    <label for="destinatire">Destinataire </label>
+    <?php if(isset($error['destinataire'])){ echo '<span style="color:red;">'.$error['destinataire'].'</span>' ;} ?><br/>
 		<input type="text" name="destinataire" value="<?php echo $mailRecepteur ;?>" readonly><br/>
 
-    <label for="objet">Objet</label><?php if(isset($error['objet'])){ echo '<span>'.$error['objet'].'</span>' ;} ?><br/>
+    <label for="objet">Objet</label>
+    <?php if(isset($error['objet'])){ echo '<span style="color:red;">'.$error['objet'].'</span>' ;} ?><br/>
     <input type="text" name="objet" value="<?php if(isset($donnee['objet'])){ echo $donnee['objet'] ; } ?>"><br/>
 
-    <label for="contenu">Message</label><?php if(isset($error['contenu'])){ echo '<span>'.$error['contenu'].'</span>' ;} ?><br/>
+    <label for="contenu">Message</label>
+    <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
     <textarea name="contenu" rows="8" cols="80"><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea><br/>
 
 		<input type="hidden" name="capcha" value="">

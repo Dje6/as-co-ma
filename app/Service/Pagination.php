@@ -47,26 +47,28 @@ class Pagination extends CustomModel
 
     if($nb_page > 1){ $html .='<br/>';};
     $html .='<div class="pagin">';
-    $cle='';
-    $valeur='';
+    $argumentFull='';
 
     if(!empty($arg)){
       foreach ($arg as $key => $value) {
-        $cle = $key;
-        $valeur = $value;
+        $argumentFull[$key] = $value ;
       }
     }
 
     if($page == $nb_page && $page != 1){
-      $html .='<a href="'.CustomController::generateUrl($route,['page' => ($page-1),$cle => $valeur]).'"> << </a>';
-      $html .= $this->liste($nb_page,$route,$page,$cle,$valeur);
+      $argumentFull['page'] = ($page-1);
+      $html .='<a href="'.CustomController::generateUrl($route,$argumentFull).'"> << </a>';
+      $html .= $this->liste($nb_page,$route,$page,$argumentFull);
     }elseif ($page < $nb_page && $page > 1) {
-      $html .= '<a href="'.CustomController::generateUrl($route,['page' => ($page-1),$cle => $valeur]).'"> << </a>';
-      $html .= $this->liste($nb_page,$route,$page,$cle,$valeur);
-      $html .= '<a href="'.CustomController::generateUrl($route,['page' => ($page+1),$cle => $valeur]).'">  >> </a>';
+      $argumentFull['page'] = ($page-1);
+      $html .= '<a href="'.CustomController::generateUrl($route,$argumentFull).'"> << </a>';
+      $html .= $this->liste($nb_page,$route,$page,$argumentFull);
+      $argumentFull['page'] = ($page+1);
+      $html .= '<a href="'.CustomController::generateUrl($route,$argumentFull).'">  >> </a>';
     }elseif($page == 1 && $nb_page > 1){
-      $html .= $this->liste($nb_page,$route,$page,$cle,$valeur);
-      $html .= '<a href="'.CustomController::generateUrl($route,['page' => ($page+1),$cle => $valeur]).'">  >> </a>';
+      $argumentFull['page'] = ($page+1);
+      $html .= $this->liste($nb_page,$route,$page,$argumentFull);
+      $html .= '<a href="'.CustomController::generateUrl($route,$argumentFull).'">  >> </a>';
     }
     $html .='</div>';
     if($nb_page > 1){
@@ -74,14 +76,16 @@ class Pagination extends CustomModel
     }
     return $html;
   }
-  public function liste($nb_page,$route,$page,$cle=NULL,$valeur=NULL)
+  public function liste($nb_page,$route,$page,$argumentFull)
   {
     $html ='';
     for($i=1; $i <= $nb_page; $i++) {
       if($i == $page){
-        $style = '<span class="actuel"><a href="'.CustomController::generateUrl($route,['page' => $i,$cle => $valeur]).'">'.$i.'</a></span>';
+        $argumentFull['page'] = $i;
+        $style = '<span class="actuel"><a href="'.CustomController::generateUrl($route,$argumentFull).'">'.$i.'</a></span>';
       }else {
-        $style = '<span class="voisin"><a href="'.CustomController::generateUrl($route,['page' => $i,$cle => $valeur]).'">'.$i.'</a></span>';
+        $argumentFull['page'] = $i;
+        $style = '<span class="voisin"><a href="'.CustomController::generateUrl($route,$argumentFull).'">'.$i.'</a></span>';
       }
 
       if($i ==1 && $i != $page){

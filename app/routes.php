@@ -49,7 +49,7 @@
 		//administration Assoc
 		//
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
-		['GET', '/Admin/message/assoc/[:slug]/[:page]', 'admin\Message#assoc', 'admin_message_assoc'],//affiche les message de lassociation
+		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message de lassociation
 		['GET', '/Admin/ListeMenbres/[:slug]/[:page]', 'admin\Assoc#listeMenbres', 'admin_assoc_menbres'],//affiche le listing des menbre de lassoc
 		['GET', '/Admin/infoMenbres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
 		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc
@@ -61,12 +61,12 @@
 		//administration mairie
 		//
 		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#home', 'admin_mairie'],//page d'administration des mairie,affichage des info
-		['GET', '/Admin/message/mairie/[:slug]/[:page]', 'admin\Message#mairie', 'admin_message_mairie'],//affiche les message de la mairie
+		['GET', '/Admin/message/mairie/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_mairie'],//affiche les message de la mairie
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 		['POST', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditPost', 'admin_mairie_edit_post'],//edition des données mairie
 		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\message#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
-		['GET|POST', '/Admin/ContactWebmaster/[:slugE]/[:slugR]', 'admin\message#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
+		['GET|POST', '/Admin/ContactWebmaster/[:slugE]', 'admin\message#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
 
 		//
 		//administration user

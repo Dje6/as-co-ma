@@ -9,6 +9,7 @@ class UsersController extends CustomController
   //affiche les donnee de la session actuel
   public function home()
   {
+    
     if(isset($_SESSION['user']))
     {
       $donnees = $_SESSION['user'];

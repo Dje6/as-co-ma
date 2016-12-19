@@ -19,6 +19,7 @@ class Extension implements ExtensionInterface
     {
         $engine->registerFunction('AsOk', [$this, 'author']);
 				$engine->registerFunction('in_multi_array', [$this, 'in_multi_array']);
+				$engine->registerFunction('in_multi_array_return_array', [$this, 'in_multi_array_return_array']);
 				$engine->registerFunction('unslug', [$this, 'unslug']);
     }
 		public function author($role,$organisation,$id_orga)
@@ -34,6 +35,14 @@ class Extension implements ExtensionInterface
 			foreach ($array as $key => $value) {
 				if(in_array($string,$value)){
 					return true;
+				}
+			}
+			return false;
+		}
+		public function in_multi_array_return_array($string,$array){
+			foreach ($array as $key => $value) {
+				if(in_array($string,$value)){
+					return $value;
 				}
 			}
 			return false;
