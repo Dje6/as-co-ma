@@ -1,5 +1,5 @@
 <?php
-namespace Model\admin;
+namespace Model;
 
 use \Model\UsersCustomModel;
 use \W\Model\ConnectionModel;

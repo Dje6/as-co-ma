@@ -22,7 +22,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-6 toppad" >
             <div class="panel panel-info">
               <div class="panel-heading"><?php
-                echo '<h3 classe"userpseudo">Votre Pseudo  : '.$donnee['pseudo'].'</h3><br/>'; ?>
+                echo '<h3 classe"userpseudo">Votre Pseudo  : '.$_SESSION['user']['pseudo'].'</h3><br/>'; ?>
               </div>
               <div class="panel-body">
                 <div class="row">
@@ -37,31 +37,36 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                             <table class="table table-user-information">
                               <tbody>
 
-                              <?php if(isset($error['pseudo'])){ echo '<tr><td>Erreur </td><td>'.$error['pseudo'].'</td></tr>'; } ?>
-                              <tr><td><label for="pseudo">pseudo</label></td>
-                              <td><input type="text" name="pseudo" value="<?php echo $donnee['pseudo'] ; ?>"><td/></tr>
 
-                              <?php if(isset($error['mail'])){ echo '<tr><td>Erreur </td><td>'.$error['mail'].'</td></tr>'; } ?>
+                              <?php if(isset($error['nom']) && !empty($error['nom'])){ echo '<tr><td>Erreur </td><td>'.$error['nom'].'</td></tr>'; } ?>
+                              <tr><td><label for="nom">Nom</label></td>
+                              <td><input type="text" name="nom" value="<?php echo $donnee['nom'] ; ?>"><td/></tr>
+
+                              <?php if(isset($error['prenom'])&& !empty($error['prenom'])){ echo '<tr><td>Erreur </td><td>'.$error['prenom'].'</td></tr>'; } ?>
+                              <tr><td><label for="prenom">Prenom</label></td>
+                              <td><input type="text" name="prenom" value="<?php echo $donnee['prenom'] ; ?>"><td/></tr>
+
+                              <?php if(isset($error['mail'])&& !empty($error['mail'])){ echo '<tr><td>Erreur </td><td>'.$error['mail'].'</td></tr>'; } ?>
                               <tr><td><label for="mail">mail</label></td>
                               <td><input type="text" name="mail" value="<?php echo $donnee['mail'] ; ?>"><td/></tr>
 
-                              <?php if(isset($error['adresse'])){ echo '<tr><td>Erreur </td><td>'.$error['adresse'].'</td></tr>'; } ?>
+                              <?php if(isset($error['adresse'])&& !empty($error['adresse'])){ echo '<tr><td>Erreur </td><td>'.$error['adresse'].'</td></tr>'; } ?>
                               <tr><td><label for="adresse">adresse</label></td>
                               <td><input type="text" name="adresse" value="<?php echo $donnee['adresse'] ; ?>"><td/></tr>
 
-                              <?php if(isset($error['code_postal'])){ echo '<tr><td>Erreur </td><td>'.$error['code_postal'].'</td></tr>'; } ?>
+                              <?php if(isset($error['code_postal'])&& !empty($error['code_postal'])){ echo '<tr><td>Erreur </td><td>'.$error['code_postal'].'</td></tr>'; } ?>
                               <tr><td><label for="code_postal">code postal</label></td>
                               <td><input type="text" name="code_postal" value="<?php echo $donnee['code_postal'] ; ?>"><td/></tr>
 
-                              <?php if(isset($error['ville'])){ echo '<tr><td>Erreur </td><td>'.$error['ville'].'</td></tr>'; } ?>
+                              <?php if(isset($error['ville'])&& !empty($error['ville'])){ echo '<tr><td>Erreur </td><td>'.$error['ville'].'</td></tr>'; } ?>
                               <tr><td><label for="ville">ville</label></td>
                               <td><input type="text" name="ville" value="<?php echo $donnee['ville'] ; ?>"><td/></tr>
 
-                              <?php if(isset($error['mobile'])){ echo '<tr><td>Erreur </td><td>'.$error['mobile'].'</td></tr>'; } ?>
+                              <?php if(isset($error['mobile'])&& !empty($error['mobile'])){ echo '<tr><td>Erreur </td><td>'.$error['mobile'].'</td></tr>'; } ?>
                               <tr><td><label for="mobile">mobile</label></td>
                               <td><input type="text" name="mobile" value="<?php echo $donnee['mobile'] ; ?>"><td/></tr>
 
-                              <?php if(isset($error['fix'])){ echo '<tr><td>Erreur </td><td>'.$error['fix'].'</td></tr>'; } ?>
+                              <?php if(isset($error['fix'])&& !empty($error['fix'])){ echo '<tr><td>Erreur </td><td>'.$error['fix'].'</td></tr>'; } ?>
                               <tr><td><label for="fix">fix</label></td>
                               <td><input type="text" name="fix" value="<?php echo $donnee['fix'] ; ?>"><td/></tr>
 

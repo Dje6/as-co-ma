@@ -34,7 +34,7 @@ if(isset($donnee)){
       <label for="fix">Fixe</label><br>
       <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
       <input type="text" name="fix" value="<?php echo $donnee['fix']?>"><br>
-      
+
       <label for="mail">Mail</label><br>
       <?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
       <input type="text" name="mail" value="<?php echo $donnee['mail']?>"><br>
@@ -55,7 +55,8 @@ if(isset($donnee)){
       echo '<abc>mail : '.$donnee['mail'].'</abc><br/>';
       echo '<abc>statut : '.$donnee['status'].'</abc><br/>';
       if(!isset($acces)){
-        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button>Modifier</button></a><br>';
+        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button>Modifier</button></a>';
+        echo '<a href="'.$this->url('admin_mairie_edit_status', ['slug' => $slug]).'"><button>Suspendre</button></a>';
       }
     }
   }else{
