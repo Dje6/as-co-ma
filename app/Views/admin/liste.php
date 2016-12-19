@@ -9,17 +9,18 @@
 <?php $this->start('main_content') ?>
 <h1 class="titreback">Administration</h1><br/><?php
 // liste soccupe dafficher les bouton dans liste menbre et liste association , sur le back
+echo '<div class="container affichage">';
 if($orga == 'mairie'){
   if(isset($donnee)){
     if(is_array($donnee)){
       echo '<table>';
       foreach ($donnee as $key => $value) { ?>
         <tr>
-          <td><?php echo $value['nom']; ?></td>
-          <td><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button>Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
+          <td class="bouge"><?php echo $value['nom']; ?></td>
+          <td><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button class="btn btn-info bouge">Consulter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
         </tr><?php
       }
       echo '</table>';
@@ -32,13 +33,16 @@ if($orga == 'mairie'){
     if(is_array($donnee)){
       echo '<table>';
       foreach ($donnee as $key => $value) { ?>
+
         <tr>
-          <td><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
-          <td><a href="<?php echo $this->url('admin_assoc_menbre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button>Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
-        </tr><?php
+          <td class="bouge"><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
+
+          <td><a href="<?php echo $this->url('admin_assoc_menbre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info bouge">Consulter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+        </tr>
+        <?php
       }
       echo '</table>';
     }else{
@@ -46,7 +50,9 @@ if($orga == 'mairie'){
     }
   }
 }
+echo '</div>';
 ?>
+<a href="#" class="btn btn-info return">Retour Menu</a>
 <?php $this->stop('main_content') ?>
 
 
