@@ -29,7 +29,7 @@ class ValidationTools
     $model = new UsersCustomModel();
 
     if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
-      return 'Adresse email invalide.';
+      return 'Adresse e-mail invalide.';
     }
       elseif(strlen($email) > 50) {
       return 'Votre adresse e-mail est trop longue.';
@@ -45,7 +45,7 @@ class ValidationTools
     $model = new AssocModel;
 
     if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
-      return 'Adresse email invalide.';
+      return 'Adresse e-mail invalide.';
     }
       elseif(strlen($email) > 50) {
       return 'Votre adresse e-mail est trop longue.';
@@ -61,7 +61,7 @@ class ValidationTools
     $model = new MairieModel;
 
     if(empty($email) || (filter_var($email, FILTER_VALIDATE_EMAIL)) === false) {
-      return 'Adresse email invalide.';
+      return 'Adresse e-mail invalide.';
     }
       elseif(strlen($email) > 50) {
       return 'Votre adresse e-mail est trop longue.';
@@ -82,7 +82,7 @@ class ValidationTools
     }elseif(strlen($valeur) < 5) {
       return 'Votre code postal est trop court.';
     }elseif(!is_numeric($valeur)) {
-      return 'Votre code postal doit etre un nombre.';
+      return 'Votre code postal doit être un nombre.';
     }
   }
 
@@ -90,16 +90,16 @@ class ValidationTools
   {
     if(!$empty) {
       if(empty($valeur)){
-        return 'Merci de saisir un numeros';
+        return 'Merci de saisir un numéro';
       }
     }
       if(!empty($valeur)){
         if(strlen($valeur) > 10) {
-          return 'Votre numeros est trop long.';
+          return 'Votre numéro est trop long.';
         }elseif(strlen($valeur) < 10) {
-          return 'Votre numeros est trop court.';
+          return 'Votre numéro est trop court.';
         }elseif(!is_numeric($valeur)) {
-          return 'Votre numeros doit etre un nombre entier.';
+          return 'Votre numéro doit être un nombre entier.';
         }
       }
   }
@@ -121,13 +121,13 @@ class ValidationTools
     if(!empty($text)) {
       $strtext = strlen($text);
       if($strtext > $max) {
-        $error = 'Your ' . $title . ' is too long.';
+        $error = 'Votre ' . $title . ' est trop long.';
       } elseif($strtext < $min) {
-        $error = 'Your ' . $title . ' is too short.';
+        $error = 'Votre ' . $title . ' trop court.';
       }
     } else {
       if(!$empty) {
-        $error = 'Veuillez renseigner un ' . $title . '.';
+        $error = 'Veuillez renseigner un(e) ' . $title . '.';
       }
     }
     return $error;
@@ -148,7 +148,7 @@ class ValidationTools
           return 'Vos mots de passe ne sont pas identiques';
         }
       }else {
-        return 'Veuillez repeter votre mot de passe ' ;
+        return 'Veuillez répéter votre mot de passe ' ;
       }
     }else{
       return 'Veuillez saisir un mot de passe.';
