@@ -34,7 +34,7 @@ if(isset($donnee)){
       <label for="fix">Fixe</label><br>
       <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
       <input type="text" name="fix" value="<?php echo $donnee['fix']?>"><br>
-      
+
       <label for="mail">Mail</label><br>
       <?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
       <input type="text" name="mail" value="<?php echo $donnee['mail']?>"><br>

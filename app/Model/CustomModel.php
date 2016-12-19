@@ -53,7 +53,8 @@ class CustomModel extends Model
       return $info;
     }else {
       return 'Aucune '.$this->table.' correspondante ';
-
+    }
+  }
   public function emailExistsOrga($email)
   {
    $sql = 'SELECT COUNT(mail) FROM '.$this->table.' WHERE mail = :email ';
