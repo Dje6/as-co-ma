@@ -28,12 +28,12 @@ if(!isset($confirmation)){
 
 		<!-- MAIL EMETTEUR -->
 		<div class="form-group col-xs-12">
-	    <label for="mail">Votre E-mail : </label><span class="errorForm"><?php if(isset($error['mail'])){ echo $error['mail']; } ?></span>
+	    <label for="mail">Votre E-mail : </label><span class="errorForm"><?php if(isset($error['emeteur_mailOrId'])){ echo $error['emeteur_mailOrId']; } ?></span>
 			<!-- Input du mail de l'emetteur -->
 			<?php if(isset($_SESSION['user'])){
-				echo '<input type="text" class="form-control" name="destinataire_mailOrId" value="'.$_SESSION['user']['mail'].'" readonly>';
+				echo '<input type="text" class="form-control" name="emeteur_mailOrId" value="'.$_SESSION['user']['mail'].'" readonly>';
 			} else {
-			 echo '<input type="text" class="form-control" name="destinataire_mailOrId" placeholder="Entrez votre adresse mail pour recevoir une réponse">';
+			 echo '<input type="text" class="form-control" name="emeteur_mailOrId" placeholder="Entrez votre adresse mail pour recevoir une réponse">';
 			} ?>
 		</div>
 
