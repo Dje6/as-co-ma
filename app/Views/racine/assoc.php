@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Association']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Association']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -16,7 +16,8 @@
 	<form class="" action="<?php echo $this->url('racine_assoc_search',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
 
 		<div class="form-group">
-			<label for="cp">Saisissez le code postal de la commune de l'Association recherchée ou son nom : </label>
+			<label for="cp"><h2>Saisissez le code postal ou le nom de l'Association recherchée : </h2></label>
+
 			<input type="text" class="form-control" name="cp" value="">
 			<input type="hidden" class="form-control" name="capcha" value="">
 			<br>

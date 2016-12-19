@@ -25,10 +25,10 @@ class ContactController extends CustomController
         $error['contenu'] = ValidationTools::textValid($r_POST['contenu'], 'message',3,400);
 
       }else {
-        $error['capcha'] = 'vous etes un bots';
+        $error['capcha'] = 'Hello ROBOT';
       }
     }else{
-      $error['donnee'] = 'donnee manquante';
+      $error['donnee'] = 'Donnée(s) manquante(s).';
     }
     if(!ValidationTools::IsValid($error)){
       $this->show('admin/contact',array('orga' => $orga ,'slug' => $slug,'saisi' => $r_POST,'error' => $error));
@@ -46,9 +46,9 @@ class ContactController extends CustomController
         $contactModel = new ContactModel($orga);
       }
       if($contactModel->insert($r_POST,false)){
-        $this->show('admin/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Votre message a bien ete envoyer']);
+        $this->show('admin/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Votre message a bien été envoyé.']);
       }else{
-        $this->show('admin/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'une erreur est survenu']);
+        $this->show('admin/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Une erreur est survenue.']);
       }
     }
   }

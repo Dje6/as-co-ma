@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Mairie']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Mairie']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -15,7 +15,7 @@
 	<form class="" action="<?php echo $this->url('racine_mairie_search',['orga'=>'Mairie','slug' => $slug]) ; ?>" method="post">
 		<!-- Recherche par CP -->
 		<div class="form-group">
-			<label for="cp">Saisissez le code postal ou le numéro de département de la Mairie recherchée : </label>
+			<label for="cp"><h2>Saisissez le code postal ou le numéro de département de la Mairie recherchée : </h2></label>
 
 			<input type="text" class="form-control" name="cp" value="">
 			<input type="hidden" class="form-control" name="capcha" value="">

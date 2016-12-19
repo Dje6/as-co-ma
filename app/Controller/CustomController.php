@@ -45,10 +45,10 @@ class CustomController extends Controller
           return $AssocModel->searchAssoc($r_POST['cp']);
         }
       }else{
-        return 'merci de saisir une recherche';
+        return 'Merci de saisir ce champs.';
       }
     }else{
-      return 'vous etes un bot';
+      return 'Hello ROBOT';
     }
   }
 

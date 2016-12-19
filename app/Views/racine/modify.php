@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Modifier mot de passe']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Modifier mot de passe']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 

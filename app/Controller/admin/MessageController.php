@@ -92,7 +92,7 @@ class MessageController extends CustomController
             $r_POST['emeteur_mailOrId'] = $mailEmeteur;
             $this->sendMessage('mairie','assoc',$slugEmeteur,$slugRecepteur,$r_POST);
           }else {
-            echo 'rien ne corespon au slug';
+            echo 'Aucune correspondance avec le slug.';
           }
         }else{
           $MairieModel = new MairieModel;
@@ -123,7 +123,7 @@ class MessageController extends CustomController
             $this->sendMessage('assoc','mairie',$slugEmeteur,$slugRecepteur,$r_POST);
           }
           else {
-            echo 'rien ne corespon au slug';
+            echo 'Aucune correspondance avec le slug.';
           }
         }else{
           $AssocModel = new AssocModel;
@@ -151,7 +151,7 @@ class MessageController extends CustomController
             $this->sendMessage('site','mairie',$slugEmeteur,'Webmaster',$r_POST);
           }
           else {
-            echo 'rien ne corespon au slug';
+            echo 'Aucune correspondance avec le slug.';
           }
         }else{
           $this->show('admin/Editmessage',['orga' => 'site','slug' => $slugEmeteur,'slugEmeteur' => $slugEmeteur,
@@ -175,10 +175,10 @@ class MessageController extends CustomController
           $error['contenu'] = ValidationTools::textValid($r_POST['contenu'], 'message',3,500);
 
         }else {
-          $error['capcha'] = 'vous etes un bots';
+          $error['capcha'] = 'Hello ROBOT';
         }
       }else{
-        $error['donnee'] = 'donnee manquante';
+        $error['donnee'] = 'Donnée(s) manquante(s).';
       }
       if(!ValidationTools::IsValid($error)){
         $this->show('admin/Editmessage',['slugEmeteur' => $slugEmeteur,'slugRecepteur' => $slugRecepteur,
@@ -213,10 +213,10 @@ class MessageController extends CustomController
 
         if($contactModel->insert($r_POST,false)){
           $this->show('admin/Editmessage',['orga' => $orgaEmeteur ,'slug' => $slugEmeteur,
-          'slugRecepteur' => $slugRecepteur,'confirmation'=> 'Votre message a bien ete envoyer']);
+          'slugRecepteur' => $slugRecepteur,'confirmation'=> 'Votre message a bien été envoyé.']);
         }else{
           $this->show('admin/Editmessage',['orga' => $orgaEmeteur ,'slug' => $slugEmeteur,
-          'slugRecepteur' => $slugRecepteur,'confirmation'=> 'une erreur est survenu']);
+          'slugRecepteur' => $slugRecepteur,'confirmation'=> 'Une erreur est survenue.']);
         }
       }
     }

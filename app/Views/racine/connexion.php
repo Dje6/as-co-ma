@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Connexion']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Connexion']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -14,13 +14,12 @@
 
 
   <form action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
-  <?php if(isset($error)){ echo '<span>'.$error.'</span> <br>' ;} ?>
 
     <fieldset>
       <legend><h1 class="text-center">Connectez-vous à votre compte sur AS-CO-MA : </h1></legend>
 
       <div class="form-group">
-        <label for="pseudo">Pseudo ou Email : </label>
+        <label for="pseudo">Pseudo ou Email : </label><span class="errorForm"><?php if(isset($error)){ echo $error; } ?></span>
         <input class="form-control" type="text" name="pseudo" value="">
       </div>
       <br>

@@ -14,4 +14,12 @@ class DefaultController extends CustomController
 		$this->show('default/home');
 	}
 
+	/**
+	 * Page CGU
+	 */
+	public function cgu()
+	{
+		$this->show('default/cgu');
+	}
+
 }
