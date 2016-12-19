@@ -53,6 +53,8 @@ class CustomModel extends Model
       return $info;
     }else {
       return 'Aucune '.$this->table.' correspondante ';
+    }
+  }  
 
   public function emailExistsOrga($email)
   {

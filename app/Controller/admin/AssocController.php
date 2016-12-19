@@ -57,7 +57,7 @@ class AssocController extends CustomController
     if(isset($_SESSION['user']))
     {
       $error = array();
-      $assocModel = new AssocModel;
+      $assocModel = new AssocModel();
 
       if(!empty($_POST))
       {

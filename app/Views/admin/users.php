@@ -31,10 +31,11 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                     <img alt="User Pic" src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png"
                     class="img-circle img-responsive col-md-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
-                      <form method="POST" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
-                        <table class="table table-user-information">
-                          <tbody><?php
-                            if(isset($edition) && !isset($acces)){ ?>
+                      <?php
+                        if(isset($edition) && !isset($acces)){ ?>
+                          <form method="POST" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
+                            <table class="table table-user-information">
+                              <tbody>
 
                               <?php if(isset($error['pseudo'])){ echo '<tr><td>Erreur </td><td>'.$error['pseudo'].'</td></tr>'; } ?>
                               <tr><td><label for="pseudo">pseudo</label></td>
@@ -64,12 +65,15 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                               <tr><td><label for="fix">fix</label></td>
                               <td><input type="text" name="fix" value="<?php echo $donnee['fix'] ; ?>"><td/></tr>
 
-                          </tbody>
-                        </table>
-                        <input type="submit" name="submit" value="Enregistrer">
-                      </form>
+                              </tbody>
+                            </table>
+                              <input type="submit" name="submit" value="Enregistrer">
+                        </form>
                     </div> <?php
                           }else{ ?>
+                            <table class="table table-user-information">
+                              <tbody>
+
                             <tr><td>Nom:</td><td><?php echo $donnee['nom'] ; ?></td></tr>
                             <tr><td>Prénom</td><td><?php echo $donnee['prenom'] ; ?></td></tr>
                             <tr><td>Email</td><td><a href="mailto:<?php echo $donnee['mail'] ; ?>"><?php echo $donnee['mail'] ; ?></a></td></tr>
