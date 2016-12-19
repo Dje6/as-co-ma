@@ -10,25 +10,42 @@
 
 
 <?php $this->start('main_content') ?>
-<h1>Page modification de mot de passe</h1><br/>
+
 <?php if(empty($mail)){ $mail = $donnee['mail']; } ?>
 <?php if(empty($token)){ $token = $donnee['token']; } ?>
 
 <form action="<?php echo $this->url('racine_modifyPost'); ?>" method="POST">
 
-  <?php if(isset($error['password'])){ echo '<span>'.$error['password'].'</span>' ;} ?>
-  <label for="password">Password : </label>
-  <input type="text" name="password" value=""><br/>
-  <label for="repeat_password">Repeat password :</label>
-  <input type="text" name="repeat_password" value=""><br/>
+  <legend><h2>Modifiez votre mot de passe</h2></legend>
+
+  <!-- PASSWORD MODIFY -->
+  <div class="form-group">
+    <label for="password">Nouveau mot de passe : </label><span class="errorForm"><?php if(isset($error['password'])){ echo $error['password']; } ?></span>
+    <input type="text" class="form-control" name="password" value=""><br/>
+  </div>
+
+  <!-- REPEAT PASSWORD MODIFY -->
+  <div class="form-group">
+    <label for="repeat_password">Répétez votre nouveau mot de passe :</label>
+    <input type="text" class="form-control" name="repeat_password" value=""><br/>
+  </div>
+
 
   <input type="hidden" name="capcha" value="">
-  <?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?>
-  <input type="hidden" name="mail" value="<?= $mail ;?>">
-    <?php if(isset($error['token'])){ echo '<span>'.$error['token'].'</span>' ;} ?>
-  <input type="hidden" name="token" value="<?= $token ;?>">
 
-  <input type="submit" name="submit" value="Envoyer">
+  <!-- MAIL HIDDEN -->
+  <div class="form-group">
+    <input type="hidden" name="mail" value="<?= $mail ;?>">
+    <span class="errorForm"><?php if(isset($error['mail'])){ echo $error['mail']; } ?></span>
+  </div>
+
+  <!-- TOKEN HIDDEN -->
+  <div class="form-group">
+    <input type="hidden" name="token" value="<?= $token ;?>">
+    <span class="errorForm"><?php if(isset($error['token'])){ echo '<span>'.$error['token'].'</span>' ;} ?></span>
+  </div>
+
+  <button type="submit" name="submit">Modifier</button>
 </form>
 
 <?php $this->stop('main_content') ?>

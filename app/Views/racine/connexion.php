@@ -16,7 +16,7 @@
   <form action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
 
     <fieldset>
-      <legend><h1 class="text-center">Connectez-vous à votre compte sur AS-CO-MA : </h1></legend>
+      <legend><h2 class="text-center">Connectez-vous à votre compte sur AS-CO-MA : </h2></legend>
 
       <div class="form-group">
         <label for="pseudo">Pseudo ou Email : </label><span class="errorForm"><?php if(isset($error)){ echo $error; } ?></span>

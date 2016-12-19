@@ -13,7 +13,7 @@
 
 <!-- FORMULAIRE OUBLI DE MOT DE PASSE -->
 <form action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
-  <legend><h1>Mot de passe oublié ?</h1></legend>
+  <legend><h2>Mot de passe oublié ?</h2></legend>
 
   <div class="form-group">
     <label for="email">Adresse E-mail : </label>

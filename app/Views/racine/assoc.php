@@ -48,8 +48,7 @@
 	if(isset($donnees)) {
 		if(is_array($donnees)) { ?>
 
-			<h1>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); ?></h1>
-			<br>
+			<h2>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></h2>
 
 			<li><a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>">Contacter l'association</a></li>
 
