@@ -46,9 +46,9 @@ if(!isset($confirmation)){ ?>
 
                         <div class="form-group">
                             <div class="input-group">
-                                <?php if(isset($error['destinataire'])){ echo '<span style="color:red;">'.$error['destinataire'].'</span>' ;} ?><br/>
+                                <?php if(isset($error['destinataire_mailOrId'])){ echo '<span style="color:red;">'.$error['destinataire_mailOrId'].'</span>' ;} ?><br/>
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope blue"></i></span>
-                                <input type="text" name="destinataire" placeholder="Destinataire" class="form-control" value="<?php echo $mailRecepteur ;?>" readonly>
+                                <input type="text" name="destinataire_mailOrId" placeholder="Destinataire" class="form-control" value="<?php echo $mailRecepteur ;?>" readonly>
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@ if(!isset($confirmation)){ ?>
                             <div class="input-group">
                                 <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
-                                <textarea name="InputMessage" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
+                                <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
                             </div>
                         </div>
                         <div class="">
