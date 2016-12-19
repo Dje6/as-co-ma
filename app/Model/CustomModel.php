@@ -39,6 +39,21 @@ class CustomModel extends Model
       return 'Aucune '.$this->table.' correspondante ';
     }
   }
+
+  public function findIDBySlug($slug)
+  {
+
+    $sql = 'SELECT id FROM '.$this->table.' WHERE slug = :slug ';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':slug', $slug);
+    $sth->execute();
+    $info = $sth->fetchColumn();
+
+    if(!empty($info)){
+      return $info;
+    }else {
+      return 'Aucune '.$this->table.' correspondante ';
+
   public function emailExistsOrga($email)
   {
    $sql = 'SELECT COUNT(mail) FROM '.$this->table.' WHERE mail = :email ';
@@ -53,7 +68,7 @@ class CustomModel extends Model
      }
    }
   }
-  
+
   public function recupMailBySlug($slugEmeteur)
   {
     $sql = 'SELECT mail FROM '.$this->table.' WHERE slug = :slugEmeteur ';

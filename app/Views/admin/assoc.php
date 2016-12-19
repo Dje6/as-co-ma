@@ -11,19 +11,52 @@
 
 if(isset($donnee)){
   if(is_array($donnee)){
-    $masquer = array('id_mairie','id_user','slug','id','token','created_at', 'avatar', 'background');
-    //liste des element que je ne souhaite pas voir afficher dans le foreach
-    foreach ($donnee as $key => $value) {
-      if(!in_array($key,$masquer)){ // affiche toute les cle sauf celle specifier dans le tableau $masquer
-        if(empty($value)){//si la valeur es vide , on affiche "non renseigner"
-          $value = 'Non renseigner' ;
-        }
-        echo $key.' : '.$value.'<br/>';
+    if(isset($edition) && !isset($acces)){
+      if(isset($bug)){ echo $bug ; } ?>
+      <form method="POST" action="<?php echo $this->url('admin_assoc_edit_post',['slug' => $slug]);?>">
+      <label for="nom">Nom</label><br>
+      <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
+      <input type="text" name="nom" value="<?php echo $donnee['nom'] ; ?>"><br>
+
+      <label for="adresse">Adresse</label><br>
+      <?php if(isset($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
+      <input type="text" name="adresse" value="<?php echo $donnee['adresse'] ; ?>"><br>
+
+      <label for="code_postal">Code postal</label><br>
+      <?php if(isset($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
+      <input type="text" name="code_postal" value="<?php echo $donnee['code_postal'] ; ?>"><br>
+
+      <label for="ville">Ville</label><br>
+      <?php if(isset($error['ville'])){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
+      <input type="text" name="ville" value="<?php echo $donnee['ville'] ; ?>"><br>
+
+      <label for="fix">Fixe</label><br>
+      <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
+      <input type="text" name="fix" value="<?php echo $donnee['fix'] ; ?>"><br>
+
+      <label for="description">Description</label><br>
+      <?php if(isset($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
+      <input type="text" name="description" value="<?php echo $donnee['description'] ; ?>"><br>
+
+      <input type="submit" name="submit" value="Enregistrer"><br>
+      </form>
+      <?php
+    }else {
+      echo '<abc>Nom : '.$donnee['nom'].'</abc><br>';
+      echo '<abc>Adresse : '.$donnee['adresse'].'</abc><br>';
+      echo '<abc>Code postal : '.$donnee['code_postal'].'</abc><br>';
+      echo '<abc>Ville : '.$donnee['ville'].'</abc><br>';
+      echo '<abc>Fixe : '.$donnee['fix'].'</abc><br>';
+      echo '<abc>Description : '.$donnee['description'].'</abc><br>';
+      echo '<abc>statut : '.$donnee['status'].'</abc><br>';
+      if(!isset($acces)){
+        echo '<a href="'.$this->url('admin_assoc_edit_form', ['slug' => $slug]).'"><button>Modifier</button></a><br>';
       }
     }
   }else{
-    echo $donnee;
+    echo '<p>'.$donnee.'</p>';
   }
+  echo '</div>';
 }
 
 ?>

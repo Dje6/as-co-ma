@@ -12,40 +12,46 @@
 
 if(isset($donnee)){
   if(is_array($donnee)){
-    if(isset($edition) && !isset($acces)){
-      echo '<form method="POST" action ="'.$this->url('admin_mairie_edit_form').'">';
-      echo '<label for="nom">Nom</label><br>';
-      echo '<input type="text" name="nom" value="'.$donnee['nom'].'"><br>';
+    if(isset($edition) && !isset($acces)){ ?>
 
-      echo '<label for="adresse">Adresse</label><br>';
-      echo '<input type="text" name="adresse" value="'.$donnee['adresse'].'"><br>';
+      <form method="POST" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
+      <label for="nom">Nom</label><br>
+      <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
+      <input type="text" name="nom" value="<?php echo $donnee['nom']?>"><br>
 
-      echo '<label for="code_postal">Code postal</label><br>';
-      echo '<input type="text" name="code_postal" value="'.$donnee['code_postal'].'"><br>';
+      <label for="adresse">Adresse</label><br>
+      <?php if(isset($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
+      <input type="text" name="adresse" value="<?php echo $donnee['adresse']?>"><br>
 
-      echo '<label for="ville">Ville</label><br>';
-      echo '<input type="text" name="ville" value="'.$donnee['ville'].'"><br>';
+      <label for="code_postal">Code postal</label><br>
+      <?php if(isset($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
+      <input type="text" name="code_postal" value="<?php echo $donnee['code_postal']?>"><br>
 
-      echo '<label for="fix">Fixe</label><br>';
-      echo '<input type="text" name="fix" value="'.$donnee['fix'].'"><br>';
+      <label for="ville">Ville</label><br>
+      <?php if(isset($error['ville'])){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
+      <input type="text" name="ville" value="<?php echo $donnee['ville']?>"><br>
 
-      // echo '<label for="horaire">Horaire</label><br>';
-      // echo '<input type="text" name="horaire" value="'.$donnee['horaire'].'"><br>';
-
-      echo '<label for="mail">Mail</label><br>';
-      echo '<input type="text" name="mail" value="'.$donnee['mail'].'"><br>';
-
-      echo '<label for="status">Statut</label><br>';
-      echo '<input type="text" name="status" value="'.$donnee['status'].'"><br>';
-      echo '<input type="submit" name="submit" value="Enregistrer"><br>';
-      echo '</form>';
+      <label for="fix">Fixe</label><br>
+      <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
+      <input type="text" name="fix" value="<?php echo $donnee['fix']?>"><br>
+      
+      <label for="mail">Mail</label><br>
+      <?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
+      <input type="text" name="mail" value="<?php echo $donnee['mail']?>"><br>
+      <input type="submit" name="submit" value="Enregistrer"><br>
+      </form>
+      <?php
     }else {
       echo '<abc>nom : '.$donnee['nom'].'</abc><br/>';
       echo '<abc>adresse : '.$donnee['adresse'].'</abc><br/>';
       echo '<abc>code postal : '.$donnee['code_postal'].'</abc><br/>';
       echo '<abc>ville : '.$donnee['ville'].'</abc><br/>';
       echo '<abc>Fixe : '.$donnee['fix'].'</abc><br/>';
-      // echo '<abc>horaire : '.$donnee['horaire'].'</abc><br/>';
+      echo '<abc>Horaire : <br>';
+      foreach (unserialize($donnee['horaire']) as $key => $value) {
+        echo '<abc>'.$key.' : '.$value.'</abc><br/>';
+      }
+      echo '</abc><br>';
       echo '<abc>mail : '.$donnee['mail'].'</abc><br/>';
       echo '<abc>statut : '.$donnee['status'].'</abc><br/>';
       if(!isset($acces)){

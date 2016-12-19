@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Contact']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Contact']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -14,10 +14,10 @@
 if(!isset($confirmation)){
 
 	if($slug == 'All'){
-		echo '<p>Contacter les administrateur du site</p>';
+		echo '<h1>Contacter les Administrateurs du site</h1>';
 	}else{
 		if($orga == 'mairie'){
-			echo '<p>Contacter la '.$slug.'</p>';
+			echo '<p>Contacter la '.$this->unslug($slug).'</p>'; //unslug du slug de la mairie à contacter
 		}elseif($orga == 'assoc') {
 			echo '<p>Contacter l\'association '.$slug.'</p>';
 		}
@@ -39,22 +39,22 @@ if(!isset($confirmation)){
     <select class="" name="objet"><?php
       if($slug == 'All'){ ?>
 
-        <option value="inscript_mairie">Inscrire ma Mairie*</option>
-        <option value="probleme_site">Signaler un probleme sur le site</option>
-        <option value="info_site">Obtenir des information sur le site</option><?php
+        <option value="inscript_mairie">Inscrire ma Mairie *</option>
+        <option value="probleme_site">Signaler un problème sur le site</option>
+        <option value="info_site">Obtenir des informations sur le site</option><?php
 
       }else{
         if($orga =='mairie'){ ?>
 
           <option value="inscript_assoc">Inscrire mon Association</option>
-          <option value="probleme_mairie">Signaler un probleme sur la page de la Mairie</option>
-					<option value="info_mairie">Obtenir des information sur la mairie</option><?php
+          <option value="probleme_mairie">Signaler un problème sur la page de la Mairie</option>
+					<option value="info_mairie">Obtenir des informations sur la Mairie</option><?php
 
         }elseif($orga == 'assoc'){ ?>
 
-          <option value="inscript_menbre">Devenir Menbre</option>
-          <option value="probleme_assoc">Signaler un probleme sur la page de l'association</option>
-          <option value="info_assoc">Obtenir des information sur l'association</option><?php
+          <option value="inscript_menbre">Devenir membre de l'association</option>
+          <option value="probleme_assoc">Signaler un problème sur la page de l'association</option>
+          <option value="info_assoc">Obtenir des informations sur l'association</option><?php
         }
       } ?>
     </select><br/>
@@ -66,7 +66,7 @@ if(!isset($confirmation)){
 
   </form>
 	<?php if($slug == 'All'){
-		echo '<br/>* : Pour toute inscription de mairie , <br/>nous vous recontacteron pour confirmer votre identité';
+		echo '<br/>* : Vous recevrez une réponse à votre demande d\'inscription de Mairie <br/> après étude de votre demande par nos services.';
 	}
 }else {
 	echo $confirmation;

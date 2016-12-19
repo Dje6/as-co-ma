@@ -10,20 +10,37 @@
 
 
 <?php $this->start('main_content') ?>
-<h1>bienvenu sur la page de connection Users</h1><br/>
-<form action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
+
+
+
+  <form action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
   <?php if(isset($error)){ echo '<span>'.$error.'</span> <br>' ;} ?>
-  <label for="pseudo">Pseudo/Email : </label>
-  <input type="text" name="pseudo" value=""><br/>
-  <label for="password">Password : </label>
-  <input type="text" name="password" value=""><br/>
 
-  <input type="submit" name="" value="connecter">
-</form><br/>
+    <fieldset>
+      <legend><h1 class="text-center">Connectez-vous à votre compte sur AS-CO-MA : </h1></legend>
 
-<a href="<?php echo $this->url('racine_inscriptForm'); ?>">Inscription</a><br/>
+      <div class="form-group">
+        <label for="pseudo">Pseudo ou Email : </label>
+        <input class="form-control" type="text" name="pseudo" value="">
+      </div>
+      <br>
 
-<a href="<?php echo $this->url('racine_mdpForm'); ?>">Mot de passe oublier</a>
+      <div class="form-group">
+        <label for="password">Password : </label>
+        <input class="form-control" type="text" name="password" value="">
+      </div>
+      <br>
+
+      <button class="btn btn-success btn-md" type="submit" name="submit">Se Connecter</button>
+    </fieldset>
+  </form>
+  <br>
+
+  Pas encore de compte ? <a href="<?php echo $this->url('racine_inscriptForm'); ?>">Rejoignez-nous !</a>
+  <br>
+
+  <a href="<?php echo $this->url('racine_mdpForm'); ?>">Mot de passe oublié ?</a>
+
 <?php $this->stop('main_content') ?>
 
 

@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/slicknav.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style.css') ?>">
 
-	<?= $this->section('main_head'); ?>
+	<?= $this->section('main_head') ?>
 
 </head>
 <body>

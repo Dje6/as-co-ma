@@ -5,7 +5,7 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
-	<?php $this->assetUrl('css_front/style_home.css'); ?>
+	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_home.css'); ?>"> 
 <?php $this->stop('main_head') ?>
 
 
