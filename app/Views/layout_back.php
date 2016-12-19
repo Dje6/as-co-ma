@@ -67,7 +67,7 @@
 						}
 
 						if($this->in_multi_array('Site',$_SESSION['user']['roles'])){
-							echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SuperAdmin <span class="caret"></span></a><ul class="dropdown-menu">';
+							echo '<li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SuperAdmin <span class="caret"></span></a><ul class="dropdown-menu">';
 							foreach ($_SESSION['user']['roles'] as $key => $value) {
 								if(isset($value['orga']) && $value['orga'] == 'Site'){
 									if($value['role'] == 'SuperAdmin'){?>
