@@ -27,7 +27,7 @@ if(isset($donnees)){
 
 			foreach ($donnees as $key => $value) {
 				echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
-				echo 'Email : '.$value['mail'].'<br/>';
+				echo 'Email : '.$value['emeteur_mail'].'<br/>';
 				echo 'Objet : '.$value['objet'].'<br/>';
 				echo 'Message : '.$value['contenu'].'<br/>';
 				echo 'Envoye le : '.$value['date_envoi'].'<br/>';

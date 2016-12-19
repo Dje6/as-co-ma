@@ -23,17 +23,11 @@ if(!isset($confirmation)){
 		}
 	} ?>
   <form class="" action="<?php echo $this->url('racine_contact_send',['orga'=> $orga,'slug'=>$slug]); ?>" method="post">
-    <label for="emeteur_pseudo">Pseudo</label><?php if(isset($error['emeteur_pseudo'])){ echo '<span>'.$error['emeteur_pseudo'].'</span>' ;} ?><br/>
-		<?php if(isset($_SESSION['user'])){
-			echo '<input type="text" name="emeteur_pseudo" value="'.$_SESSION['user']['pseudo'].'" readonly><br/>';
-		}else{
-		 echo '<input type="hidden" name="emeteur_pseudo" value="non-inscrit" ><br/>';
-	 	} ?>
     <label for="mail">Mail</label><?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?><br/>
 		<?php if(isset($_SESSION['user'])){
-			echo '<input type="text" name="mail" value="'.$_SESSION['user']['mail'].'" readonly><br/>';
+			echo '<input type="text" name="emeteur_mailOrId" value="'.$_SESSION['user']['mail'].'" readonly><br/>';
 		}else{
-		 echo '<input type="text" name="mail" value=""><br/>';
+		 echo '<input type="text" name="emeteur_mailOrId" value=""><br/>';
 		} ?>
     <label for="objet">Objet</label><?php if(isset($error['objet'])){ echo '<span>'.$error['objet'].'</span>' ;} ?><br/>
     <select class="" name="objet"><?php

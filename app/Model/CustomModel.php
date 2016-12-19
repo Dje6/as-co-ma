@@ -56,6 +56,9 @@ class CustomModel extends Model
     }
   }  
 
+
+
+
   public function emailExistsOrga($email)
   {
    $sql = 'SELECT COUNT(mail) FROM '.$this->table.' WHERE mail = :email ';
@@ -85,4 +88,20 @@ class CustomModel extends Model
       }
     }
   }
+
+  public function FinIdByMail($mail)
+  {
+    $sql = 'SELECT id FROM '.$this->table.' WHERE mail = :mail ';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':mail', $mail);
+    if($sth->execute()){
+      $foundUser = $sth->fetchColumn();
+      if(!empty($foundUser)){
+          return $foundUser ;
+      }else{
+        return false;
+      }
+    }
+  }
+
 }

@@ -5,6 +5,7 @@ use \Controller\CustomController;
 use \Model\ContactModel;
 use \Model\AssocModel;
 use \Model\MairieModel;
+use \Model\UserModel;
 use \Service\Pagination;
 use \Service\ValidationTools;
 
@@ -19,13 +20,14 @@ class MessageController extends CustomController
       //limit d'affichage par page
       $Pagination = new Pagination('contact');
       //on precise la table a exploiter
-      $calcule = $Pagination->calcule_page('destinataire = \''.$_SESSION['user']['mail'].'\'',$limit,$page);
+      $calcule = $Pagination->calcule_page('destinataire_mailOrId = \''.$_SESSION['user']['id'].'\'
+      AND destinataire_orga = \'users\' ',$limit,$page);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
       $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_message');
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
-      $donnees = $this->messagesUser($_SESSION['user']['mail'],$limit,$calcule['offset']);
+      $donnees = $this->messagesOrga($_SESSION['user']['id'],'users',$limit,$calcule['offset']);
       $this->show('admin/message',['donnees' => $donnees, 'pagination' => $affichage_pagination,'limit' => $limit]);
     }else{
       $this->redirectToRoute('racine_form');
@@ -39,16 +41,17 @@ class MessageController extends CustomController
       if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
         if($orga == 'assoc'){
           $AssocModel = new AssocModel;
-          $maildestinataire = $AssocModel->recupMailBySlug($slug);
+          $maildestinataire = $AssocModel->findIDBySlug($slug);
         }elseif($orga == 'mairie'){
           $MairieModel = new MairieModel;
-          $maildestinataire = $MairieModel->recupMailBySlug($slug);
+          $maildestinataire = $MairieModel->findIDBySlug($slug);
         }
         $limit = 1;
         //limit d'affichage par page
         $Pagination = new Pagination('contact');
         //on precise la table a exploiter
-        $calcule = $Pagination->calcule_page('destinataire = \''.$maildestinataire.'\' AND organisme = \''.$orga.'\'',$limit,$page);
+        $calcule = $Pagination->calcule_page('destinataire_mailOrId = \''.$maildestinataire.'\' AND
+         destinataire_orga = \''.$orga.'\'',$limit,$page);
 
         //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
         //ce qui calcule le nombre de page total et le offset
@@ -56,7 +59,7 @@ class MessageController extends CustomController
         'admin_message_'.$orga,['slug' => $slug,'orga' => $orga]);
         //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
-        $donnees = $this->messagesOrga($maildestinataire,$limit,$calcule['offset']);
+        $donnees = $this->messagesOrga($maildestinataire,$orga,$limit,$calcule['offset']);
         $this->show('admin/message',['slug' => $slug,'donnees' => $donnees, 'pagination' => $affichage_pagination,
         'limit' => $limit,'orga' => $orga]);
       }
@@ -65,17 +68,11 @@ class MessageController extends CustomController
     }
   }
 
-//recupere les message en base de donnee utilisateur
-  public function messagesUser($mail,$limit,$offset)
-  {
-      $MessageModel = new ContactModel;
-      return $MessageModel->searchMessagesOrga(['destinataire' => $mail],'AND',true,$limit,$offset);
-  }
 //recupere les message de l'organisme preciser , mairie , assoc, site
-  public function messagesOrga($mail,$limit,$offset)
+  public function messagesOrga($id,$orga,$limit,$offset)
   {
       $MessageModel = new ContactModel;
-      return $MessageModel->searchMessagesOrga(['destinataire' => $mail],'AND',true,$limit,$offset);
+      return $MessageModel->searchMessagesOrga($id,$orga,true,$limit,$offset);
   }
 
 //permet a une association de contacter SA mairie referente , uniquement
@@ -87,12 +84,12 @@ class MessageController extends CustomController
         if($_POST){
           $r_POST = $this->nettoyage($_POST);
           $AssocModel = new AssocModel;
-          $mailEmeteur = $AssocModel->recupMailBySlug($slugEmeteur);
+          $mailEmeteur = $AssocModel->findIDBySlug($slugEmeteur);
           $MairieModel = new MairieModel;
           $maildestinataire = $MairieModel->recupMailBySlug($slugRecepteur);
           if($maildestinataire && $mailEmeteur){
             $r_POST['emeteur_pseudo'] = $slugEmeteur;
-            $r_POST['mail'] = $mailEmeteur;
+            $r_POST['emeteur_mailOrId'] = $mailEmeteur;
             $this->sendMessage('mairie','assoc',$slugEmeteur,$slugRecepteur,$r_POST);
           }else {
             echo 'rien ne corespon au slug';
@@ -119,10 +116,10 @@ class MessageController extends CustomController
           $AssocModel = new AssocModel;
           $maildestinataire = $AssocModel->recupMailBySlug($slugRecepteur);
           $MairieModel = new MairieModel;
-          $mailEmeteur = $MairieModel->recupMailBySlug($slugEmeteur);
+          $mailEmeteur = $MairieModel->findIDBySlug($slugEmeteur);
           if($maildestinataire && $mailEmeteur){
             $r_POST['emeteur_pseudo'] = $slugEmeteur;
-            $r_POST['mail'] = $mailEmeteur;
+            $r_POST['emeteur_mailOrId'] = $mailEmeteur;
             $this->sendMessage('assoc','mairie',$slugEmeteur,$slugRecepteur,$r_POST);
           }
           else {
@@ -147,10 +144,10 @@ class MessageController extends CustomController
         if($_POST) {
           $r_POST = $this->nettoyage($_POST);
           $MairieModel = new MairieModel;
-          $mailEmeteur = $MairieModel->recupMailBySlug($slugEmeteur);
+          $mailEmeteur = $MairieModel->findIDBySlug($slugEmeteur);
           if($mailEmeteur){
             $r_POST['emeteur_pseudo'] = $slugEmeteur;
-            $r_POST['mail'] = $mailEmeteur;
+            $r_POST['emeteur_mailOrId'] = $mailEmeteur;
             $this->sendMessage('site','mairie',$slugEmeteur,'Webmaster',$r_POST);
           }
           else {
@@ -192,9 +189,25 @@ class MessageController extends CustomController
         unset($r_POST['submit']);
         unset($r_POST['capcha']);
 
+        $r_POST['destinataire_orga'] = $orgaRecepteur;
+
+        if($orgaRecepteur == 'assoc'){
+          $AssocModel = new AssocModel;
+          $r_POST['destinataire_mailOrId'] = $AssocModel->findIDBySlug($slugRecepteur);
+        }elseif($orgaRecepteur == 'mairie'){
+          $MairieModel = new MairieModel;
+          $r_POST['destinataire_mailOrId'] = $MairieModel->findIDBySlug($slugRecepteur);
+        }elseif($orgaRecepteur == 'users'){
+          $UserModel = new UserModel;
+          $r_POST['destinataire_mailOrId'] = $UserModel->FinIdByMail($r_POST['destinataire_mailOrId']);
+        }elseif($orgaRecepteur == 'site'){
+          $r_POST['destinataire_mailOrId'] = 'webmaster@as-co-ma.fr';
+          $r_POST['destinataire_orga'] = 'webmaster';
+        }
+
+        $r_POST['emeteur_orga'] = $orgaEmeteur;
         $r_POST['date_envoi'] = date('Y-m-d H:i:s');
         $r_POST['status'] = 'non-lu';
-        $r_POST['organisme'] = $orgaRecepteur;
 
          $contactModel = new ContactModel;
 
