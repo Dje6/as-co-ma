@@ -65,7 +65,6 @@
 		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 		['POST', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditPost', 'admin_mairie_edit_post'],//edition des données mairie
-		['GET', '/Admin/Edit/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//listing des assoc enregistrer dans la mairie
 		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\message#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
 		['GET|POST', '/Admin/ContactWebmaster/[:slugE]/[:slugR]', 'admin\message#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
 
