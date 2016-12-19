@@ -19,13 +19,14 @@ class MessageController extends CustomController
       //limit d'affichage par page
       $Pagination = new Pagination('contact');
       //on precise la table a exploiter
-      $calcule = $Pagination->calcule_page('destinataire = \''.$_SESSION['user']['mail'].'\'',$limit,$page);
+      $calcule = $Pagination->calcule_page('destinataire_mailOrId = \''.$_SESSION['user']['id'].'\'
+      AND destinataire_orga = \'users\' ',$limit,$page);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
       $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_message');
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
-      $donnees = $this->messagesUser($_SESSION['user']['mail'],$limit,$calcule['offset']);
+      $donnees = $this->messagesUser($_SESSION['user']['id'],$limit,$calcule['offset']);
       $this->show('admin/message',['donnees' => $donnees, 'pagination' => $affichage_pagination,'limit' => $limit]);
     }else{
       $this->redirectToRoute('racine_form');
@@ -66,10 +67,11 @@ class MessageController extends CustomController
   }
 
 //recupere les message en base de donnee utilisateur
-  public function messagesUser($mail,$limit,$offset)
+  public function messagesUser($id,$limit,$offset)
   {
       $MessageModel = new ContactModel;
-      return $MessageModel->searchMessagesOrga(['destinataire' => $mail],'AND',true,$limit,$offset);
+      return $MessageModel->searchMessagesOrga(['destinataire_mailOrId' => $id,
+      'destinataire_orga' => 'users'],'AND',true,$limit,$offset);
   }
 //recupere les message de l'organisme preciser , mairie , assoc, site
   public function messagesOrga($mail,$limit,$offset)
