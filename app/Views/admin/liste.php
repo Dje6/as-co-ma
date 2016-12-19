@@ -40,10 +40,11 @@ if($orga == 'mairie'){
       foreach ($donnee as $key => $value) { ?>
 
         <tr>
+
           <td class="bouge"><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
 
           <td><a href="<?php echo $this->url('admin_assoc_menbre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info bouge">Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
         </tr>

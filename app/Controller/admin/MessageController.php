@@ -105,6 +105,35 @@ class MessageController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+  public function contactMembre($slugEmeteur,$id)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if($this->allowToTwo('Admin','Assoc',$slugEmeteur)){
+        if($_POST){
+          $r_POST = $this->nettoyage($_POST);
+          $AssocModel = new AssocModel;
+          $mailEmeteur = $AssocModel->findIDBySlug($slugEmeteur);
+          $UserModel = new UserModel;
+          $maildestinataire = $UserModel->FindElementByElement('mail','id',$id);
+          if($maildestinataire && $mailEmeteur){
+            $r_POST['emeteur_pseudo'] = $slugEmeteur;
+            $r_POST['emeteur_mailOrId'] = $mailEmeteur;
+            $this->sendMessage('users','assoc',$slugEmeteur,$id,$r_POST);
+          }else {
+            echo 'Aucune correspondance avec le slug.';
+          }
+        }else{
+          $UserModel = new UserModel;
+          $maildestinataire = $UserModel->FindElementByElement('mail','id',$id);
+          $this->show('admin/Editmessage',['orga' => 'assoc','slug' => $slugEmeteur,'slugEmeteur' => $slugEmeteur,
+          'mailRecepteur' => $maildestinataire,'id' => $id]);
+        }
+      }
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
   //permet a une mairie de contacter une de SES association , uniquement
   public function contactAssoc($slugEmeteur,$slugRecepteur)
   {
@@ -182,8 +211,8 @@ class MessageController extends CustomController
       }
       if(!ValidationTools::IsValid($error)){
         $this->show('admin/Editmessage',['slugEmeteur' => $slugEmeteur,'slugRecepteur' => $slugRecepteur,
-        'donnee' => $r_POST,'error' => $error,'mailRecepteur' => $r_POST['destinataire'],'orga' => $orgaEmeteur ,
-         'slug' => $slugEmeteur,'mailEmeteur'=> $r_POST['mail']]);
+        'donnee' => $r_POST,'error' => $error,'mailRecepteur' => $r_POST['destinataire_mailOrId'],'orga' => $orgaEmeteur ,
+         'slug' => $slugEmeteur]);
 
       }else{
         unset($r_POST['submit']);
@@ -198,8 +227,9 @@ class MessageController extends CustomController
           $MairieModel = new MairieModel;
           $r_POST['destinataire_mailOrId'] = $MairieModel->findIDBySlug($slugRecepteur);
         }elseif($orgaRecepteur == 'users'){
-          $UserModel = new UserModel;
-          $r_POST['destinataire_mailOrId'] = $UserModel->FinIdByMail($r_POST['destinataire_mailOrId']);
+
+          $r_POST['destinataire_mailOrId'] = $slugRecepteur;
+
         }elseif($orgaRecepteur == 'site'){
           $r_POST['destinataire_mailOrId'] = 'webmaster@as-co-ma.fr';
           $r_POST['destinataire_orga'] = 'webmaster';
