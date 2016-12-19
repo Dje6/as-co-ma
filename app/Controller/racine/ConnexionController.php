@@ -25,7 +25,7 @@ class ConnexionController extends CustomController
         $user_id = $get_user->isValidLoginInfo($_POST['pseudo'], $_POST['password']);
 
         if($user_id == 0){  //si ya un soucis on retourne sur le formulaire avec les erreur
-          $this->show('racine/connexion',['error'  => 'Les donnee saisi sont invalide']);
+          $this->show('racine/connexion',['error'  => 'Les données saisies sont invalides.']);
         }else{//sinon on verifie si le compte est active
           $user = $get_user->getUserByUsernameOrEmail($_POST['pseudo']);
 
@@ -34,10 +34,10 @@ class ConnexionController extends CustomController
             $this->redirectToRoute('admin_monCompte');
           }else {// sinon on rappel que le compte n'est pas actif et on propose de renvoyer de nouveau le mail
 
-            $this->show('racine/inscription',['confirmation'=> 'Votre compte n\' est pas activer ,
-            verifier vos mail afin d\'activer votre compte<br/>Si vous souhaiter recevoir
+            $this->show('racine/inscription',['confirmation'=> 'Votre compte n\'est pas activé ,
+            vérifiez votre boîte Mail afin d\'activer votre compte.<br/>Si vous souhaitez recevoir
             un nouveau mail : <a href="'.$this->generateUrl('racine_send_valide',['mail' => urlencode($user['mail']),
-            'token' =>urlencode($user['token'])]).'">Cliquer ici</a>']);
+            'token' =>urlencode($user['token'])]).'">Cliquez ici</a>']);
           }
         }
       }else{//sinon on affiche le formulaire de connection
@@ -76,9 +76,9 @@ class ConnexionController extends CustomController
 
       if(empty($r_POST['capcha'])){
         $error['pseudo'] = ValidationTools::textValid($r_POST['pseudo'], 'pseudo',5,30);
-        if($usersModel->usernameExists($r_POST['pseudo'])){ $error['pseudo'] = 'Ce pseudo exist deja' ; }
+        if($usersModel->usernameExists($r_POST['pseudo'])){ $error['pseudo'] = 'Ce pseudo existe déjà.' ; }
         $error['mail'] = ValidationTools::emailValid($r_POST['mail']);
-        if($usersModel->emailExists($r_POST['mail'])){ $error['mail'] = 'Cet email exist deja' ; }
+        if($usersModel->emailExists($r_POST['mail'])){ $error['mail'] = 'Cet e-mail existe déjà.' ; }
         $error['password'] = ValidationTools::passwordValid($r_POST['password'],$r_POST['r_password'],5,30);
         $error['r_password'] = ValidationTools::passwordValid($r_POST['password'],$r_POST['r_password'],5,30);
         $error['prenom'] = ValidationTools::textValid($r_POST['prenom'], 'prenom',2,30);
@@ -89,10 +89,10 @@ class ConnexionController extends CustomController
         $error['fix'] = ValidationTools::telVerif($r_POST['fix'],true);
         $error['mobile'] = ValidationTools::telVerif($r_POST['mobile'],true);
       }else {
-        $error['capcha'] = 'vous etes un bots';
+        $error['capcha'] = 'Hello ROBOT';
       }
     }else{
-      $error['donnee'] = 'donnee manquante';
+      $error['donnee'] = 'Donnée manquante.';
     }
     if(!ValidationTools::IsValid($error)){
       $this->show('racine/inscription',array('saisi' => $r_POST,'error' => $error));
@@ -115,7 +115,7 @@ class ConnexionController extends CustomController
       if($usersModel->insert($r_POST,false)){
         $this->redirectToRoute('racine_send_valide',['mail' =>urlencode($r_POST['mail']),'token' =>urlencode($r_POST['token'])]);
       }else{
-        $this->show('racine/inscription',['confirmation'=> 'une erreur est survenu']);
+        $this->show('racine/inscription',['confirmation'=> 'Une erreur est survenue.']);
       }
     }
   }
@@ -136,18 +136,17 @@ class ConnexionController extends CustomController
     $mail->addReplyTo('do-no-reply@xamp.com', 'Information');
     $mail->isHTML(true);                                  // Set email format to HTML
 
-    $mail->Subject = 'Bienvenue sur Assaussice ';
+    $mail->Subject = 'Bienvenue sur AS-CO-MA ';
     $mail->Body    = 'Bonjour, <br/>
-    Votre inscription a bien ete prise en compte, veuillez suivre ce lien pour activer votre compte :
+    Votre inscription a bien été prise en compte, veuillez suivre ce lien pour activer votre compte :
     <a href="'.$urlLink.'">Cliquez ici</a><br/>' ;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if(!$mail->send()) {
       $this->show('racine/inscription',['confirmation'=> $mail->ErrorInfo]);
     } else {
-        $this->show('racine/inscription',['confirmation'=> 'Un email de confirmation
-        vous a ete adresser a l\' adresse : '.urldecode(trim(strip_tags($email))).' ,
-         consulter ce mail et cliquer sur le lien fourni pour activer votre compte']);
+        $this->show('racine/inscription',['confirmation'=> 'Un e-mail de confirmation
+        vous a été adressé à l\' adresse : '.urldecode(trim(strip_tags($email))).', consultez ce mail et cliquez sur le lien fourni pour activer votre compte.']);
     }
   }
   //traite la requete d 'activation du compte
@@ -162,7 +161,7 @@ class ConnexionController extends CustomController
       if(!empty($id) && is_numeric($id)){
         $newToken = StringUtils::randomString(50);
         if($usersModel->update(['status' => 'Actived','token' => $newToken], $id)){
-          $this->show('racine/inscription',['confirmation'=> 'Votre compte est activer!
+          $this->show('racine/inscription',['confirmation'=> 'Votre compte est activé !
           <a href="'.$this->generateUrl('racine_form').'">Connectez-vous !</a>']);
         }
       }else {
@@ -218,12 +217,12 @@ class ConnexionController extends CustomController
         }
 
       }else {
-        $error['capcha'] = 'vous etes un bots';
+        $error['capcha'] = 'Hello ROBOT';
       }
 
 
     }else{
-      $error['donnee'] = 'donnee manquante';
+      $error['donnee'] = 'Donnée manquante.';
     }
     if(!empty($error)){
       $this->show('racine/rescu',array('error' => $error));
@@ -244,7 +243,7 @@ class ConnexionController extends CustomController
       $usersModel = new UsersCustomModel;
       $r_POST = $this->nettoyage($_POST);
 
-      if(!$usersModel->emailExists($r_POST['mail'])){ $error['mail'] = 'Cet email n\'existe pas' ; }
+      if(!$usersModel->emailExists($r_POST['mail'])){ $error['mail'] = 'Cet e-mail n\'existe pas.' ; }
 
       if(empty($usersModel->tokenOK($r_POST['mail'],$r_POST['token']))){ $error['token'] = 'Token introuvable' ;
       } else { $id = $usersModel->tokenOK($r_POST['mail'],$r_POST['token']); }

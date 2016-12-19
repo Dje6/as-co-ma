@@ -5,6 +5,7 @@
 		//affichage et traitement public
 		//
 		['GET', '/', 'Default#home', 'default_home'],//page d'acceuil
+		['GET', '/cgu/', 'Default#cgu', 'default_cgu'],//page CGU redirigé depuis footer layout front
 
 		['GET', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
 		['POST', '/a/[:orga]/[:slug]', 'racine\Assoc#search', 'racine_assoc_search'],//retourne le resultat de la recherche d'association

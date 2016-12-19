@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Connexion']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Inscription']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -17,7 +17,7 @@
       } else { ?>
 
   <form action="<?php echo $this->url('racine_inscriptPost'); ?>" method="POST">
-    <legend><h1 class="text-center">Créez votre compte sur AS-CO-MA : </h1></legend>
+    <legend><h2 class="text-center">Créez votre compte sur AS-CO-MA : </h2></legend>
 
     <?php if(isset($error['capcha'])){ echo '<span>'.$error['capcha'].'</span>' ;} ?>
     <?php if(isset($error['donnee'])){ echo '<span>'.$error['donnee'].'</span>' ;} ?>
@@ -112,7 +112,9 @@
 
     <input type="hidden" name="capcha" value=""><br/>
 
-    <button type="submit" name="submit" class="btn btn-success btn-lg">Créer mon compte</button>
+    <div class="form-group">
+      <button type="submit" name="submit" class="btn btn-success btn-lg">Créer mon compte</button>
+    </div>
   </form>
   <?php
 } ?>

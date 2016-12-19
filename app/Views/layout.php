@@ -81,7 +81,7 @@
 
 			<!-- Lien vers CGU -->
 			<div class="bouton_cgu">
-				<a href="<?= $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']) ?>">
+				<a href="<?= $this->url('default_cgu'); ?>">
 					<button type="button" class="btn btn-success btn-md">CGU</button>
 				</a>
 			</div>

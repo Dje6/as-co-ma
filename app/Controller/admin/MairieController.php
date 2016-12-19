@@ -86,7 +86,7 @@ class MairieController extends CustomController
           $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'error' => $error, 'donnee' => $r_POST]);
         }
       } else {
-        $error['donnee'] = 'données manquante';
+        $error['donnee'] = 'Donnée(s) manquante(s).';
       }
     } else {
       $this->redirectToRoute('racine_form');
