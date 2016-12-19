@@ -56,7 +56,6 @@ if(isset($donnee)){
       echo '<abc>statut : '.$donnee['status'].'</abc><br/>';
       if(!isset($acces)){
         echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button>Modifier</button></a>';
-        echo '<a href="'.$this->url('admin_mairie_edit_status', ['slug' => $slug]).'"><button>Suspendre</button></a>';
       }
     }
   }else{

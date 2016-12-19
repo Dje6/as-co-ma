@@ -18,8 +18,12 @@ if($orga == 'mairie'){
           <td><?php echo $value['nom']; ?></td>
           <td><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button>Consulter</button></a></td>
           <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
+          <?php if($value['status'] == 'Actif'){ ?>
+            <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button>Suspendre</button></a></td>
+          <?php }else { ?>
+            <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button>Activer</button></a></td>
+          <?php } ?>
+          <td><a href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>"><button>Supprimer</button></a></td>
         </tr><?php
       }
       echo '</table>';
@@ -36,7 +40,7 @@ if($orga == 'mairie'){
           <td><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
           <td><a href="<?php echo $this->url('admin_assoc_menbre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button>Consulter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
+          <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button>Suspendre</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
         </tr><?php
       }
