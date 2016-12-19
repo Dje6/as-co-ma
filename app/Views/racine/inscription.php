@@ -10,53 +10,109 @@
 
 
 <?php $this->start('main_content') ?>
-<h1>Page inscription</h1><br/>
 
-<?php if(isset($confirmation)){
-  echo $confirmation;
+<?php if(isset($confirmation)) {
+        echo $confirmation;
 
-}else{ ?>
+      } else { ?>
+
   <form action="<?php echo $this->url('racine_inscriptPost'); ?>" method="POST">
+    <legend><h1 class="text-center">Créez votre compte sur AS-CO-MA : </h1></legend>
 
     <?php if(isset($error['capcha'])){ echo '<span>'.$error['capcha'].'</span>' ;} ?>
     <?php if(isset($error['donnee'])){ echo '<span>'.$error['donnee'].'</span>' ;} ?>
 
-    <label for="pseudo">Pseudo* : <?php if(isset($error['pseudo'])){ echo '<span>'.$error['pseudo'].'</span>' ;} ?>
-    <br/><input type="text" name="pseudo" value="<?php if(isset($saisi['pseudo'])){ echo $saisi['pseudo'] ;} ?>"></label><br/>
+    <!-- PSEUDO -->
+    <div class="form-group">
+      <label for="pseudo">Pseudo * : </label>
+      <span class="errorForm"><?php if(isset($error['pseudo'])) { echo $error['pseudo']; } ?></span>
+      <input type="text" class="form-control" name="pseudo" value="<?php if(isset($saisi['pseudo'])) { echo $saisi['pseudo']; } ?>">
+    </div>
+    <br>
 
-    <label for="mail">mail* : <?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?>
-    <br/><input type="text" name="mail" value="<?php if(isset($saisi['mail'])){ echo $saisi['mail'] ;} ?>"></label><br/>
+    <!-- EMAIL -->
+    <div class="form-group">
+      <label for="mail">Adresse Mail * : </label>
+      <span class="errorForm"><?php if(isset($error['mail'])) { echo $error['mail']; } ?></span>
+      <input type="text" class="form-control" name="mail" value="<?php if(isset($saisi['mail'])) { echo $saisi['mail']; } ?>">
+    </div>
+    <br>
 
-    <label for="password">Mot de passe* : <?php if(isset($error['password'])){ echo '<span>'.$error['password'].'</span>' ;} ?>
-    <br/><input type="text" name="password" value="<?php if(isset($saisi['password'])){ echo $saisi['password'] ;} ?>"></label><br/>
+    <!-- PASSWORD -->
+    <div class="form-group">
+      <label for="password">Mot de passe * : </label>
+      <span class="errorForm"><?php if(isset($error['password'])) { echo $error['password']; } ?></span>
+      <input type="text" class="form-control" name="password" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
+    </div>
+    <br>
 
-    <label for="r_password">Mot de passe* : <?php if(isset($error['r_password'])){ echo '<span>'.$error['r_password'].'</span>' ;} ?>
-    <br/><input type="text" name="r_password" value="<?php if(isset($saisi['r_password'])){ echo $saisi['r_password'] ;} ?>"></label><br/>
+    <!-- REPEAT PASSWORD -->
+    <div class="form-group">
+      <label for="r_password">Répétez votre mot de passe * : </label>
+      <span class="errorForm"><?php if(isset($error['r_password'])){ echo $error['r_password']; } ?></span>
+      <input type="text" class="form-control" name="r_password" value="<?php if(isset($saisi['r_password'])) { echo $saisi['r_password']; } ?>">
+    </div>
+    <br>
 
-    <label for="nom">Nom* : <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span>' ;} ?>
-    <br/><input type="text" name="nom" value="<?php if(isset($saisi['nom'])){ echo $saisi['nom'] ;} ?>"></label><br/>
+    <!-- Infos persos du form -->
+    <fieldset>
+      <legend class="text-center">Informations Personnelles</legend>
 
-    <label for="prenom">Prenom* : <?php if(isset($error['prenom'])){ echo '<span>'.$error['prenom'].'</span>' ;} ?>
-    <br/><input type="text" name="prenom" value="<?php if(isset($saisi['prenom'])){ echo $saisi['prenom'] ;} ?>"></label><br/>
+      <!-- NOM FAMILLE -->
+      <div class="form-group col-xs-6">
+        <label for="nom">NOM * : </label>
+        <span class="errorForm"><?php if(isset($error['nom'])) { echo $error['nom']; } ?></span>
+        <input type="text" class="form-control" name="nom" value="<?php if(isset($saisi['nom'])){ echo $saisi['nom']; } ?>">
+      </div>
 
-    <label for="adresse">Adresse* : <?php if(isset($error['adresse'])){ echo '<span>'.$error['adresse'].'</span>' ;} ?>
-    <br/><input type="text" name="adresse" value="<?php if(isset($saisi['adresse'])){ echo $saisi['adresse'] ;} ?>"></label><br/>
+      <!-- PRENOM -->
+      <div class="form-group col-xs-6">
+        <label for="prenom">Prénom * : </label>
+        <span class="errorForm"><?php if(isset($error['prenom'])){ echo $error['prenom']; } ?></span>
+        <input type="text" class="form-control" name="prenom" value="<?php if(isset($saisi['prenom'])){ echo $saisi['prenom'] ;} ?>">
+      </div>
 
-    <label for="code_postal">Code postal* : <?php if(isset($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span>' ;} ?>
-    <br/><input type="text" name="code_postal" value="<?php if(isset($saisi['code_postal'])){ echo $saisi['code_postal'] ;} ?>"></label><br/>
+      <!-- ADRESSE -->
+      <div class="form-group col-xs-6">
+        <label for="adresse">Adresse * : </label>
+        <span class="errorForm"><?php if(isset($error['adresse'])){ echo $error['adresse']; } ?></span>
+        <input type="text" class="form-control" name="adresse" value="<?php if(isset($saisi['adresse'])){ echo $saisi['adresse'] ;} ?>">
+      </div>
 
-    <label for="ville">Ville* : <?php if(isset($error['ville'])){ echo '<span>'.$error['ville'].'</span>' ;} ?>
-    <br/><input type="text" name="ville" value="<?php if(isset($saisi['ville'])){ echo $saisi['ville'] ;} ?>"></label><br/>
+      <!-- CODE POSTAL -->
+      <div class="form-group col-xs-6">
+        <label for="code_postal">Code Postal * : </label>
+        <span class="errorForm"><?php if(isset($error['code_postal'])){ echo $error['code_postal']; } ?></span>
+        <input type="text" class="form-control" name="code_postal" value="<?php if(isset($saisi['code_postal'])){ echo $saisi['code_postal']; } ?>">
+      </div>
 
-    <label for="fix">Telephone : <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span>' ;} ?>
-    <br/><input type="text" name="fix" value="<?php if(isset($saisi['fix'])){ echo $saisi['fix'] ;} ?>"></label><br/>
+      <!-- VILLE -->
+      <div class="form-group col-xs-12">
+        <label for="ville">Ville * : </label>
+        <span class="errorForm"><?php if(isset($error['ville'])){ echo $error['ville']; } ?>
+        <input type="text" class="form-control" name="ville" value="<?php if(isset($saisi['ville'])){ echo $saisi['ville'] ;} ?>">
+      </div>
 
-    <label for="mobile">Mobile : <?php if(isset($error['mobile'])){ echo '<span>'.$error['mobile'].'</span>' ;} ?>
-    <br/><input type="text" name="mobile" value="<?php if(isset($saisi['mobile'])){ echo $saisi['mobile'] ;} ?>"></label><br/>
+      <!-- TELEPHONE -->
+      <div class="form-group col-xs-6">
+        <label for="fix">Téléphone : </label>
+        <span class="errorForm"><?php if(isset($error['fix'])){ echo $error['fix']; } ?></span>
+        <input type="text" class="form-control" name="fix" value="<?php if(isset($saisi['fix'])){ echo $saisi['fix'] ;} ?>">
+      </div>
+
+      <!-- MOBILE -->
+      <div class="form-group col-xs-6">
+        <label for="mobile">Mobile : </label>
+        <span class="errorForm"><?php if(isset($error['mobile'])){ echo $error['mobile']; } ?>
+        <input type="text" class="form-control" name="mobile" value="<?php if(isset($saisi['mobile'])){ echo $saisi['mobile'] ;} ?>">
+      </div>
+      <br>
+
+    </fieldset>
 
     <input type="hidden" name="capcha" value=""><br/>
 
-    <input type="submit" name="" value="inscription">
+    <button type="submit" name="submit" class="btn btn-success btn-lg">Créer mon compte</button>
   </form>
   <?php
 } ?>
