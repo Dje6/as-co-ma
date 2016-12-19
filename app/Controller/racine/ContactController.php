@@ -42,9 +42,10 @@ class ContactController extends CustomController
 
       $UserModel = new UserModel;
       if($UserModel->FinIdByMail($r_POST['emeteur_mailOrId'])){
+        $email = $r_POST['emeteur_mailOrId'];
         $r_POST['emeteur_mailOrId'] = $UserModel->FinIdByMail($r_POST['emeteur_mailOrId']);
         $r_POST['emeteur_orga'] = 'users';
-        $r_POST['emeteur_pseudo'] = $UserModel->FinPseudoByMail($r_POST['emeteur_mailOrId']);
+        $r_POST['emeteur_pseudo'] = $UserModel->FindPseudoByMail($email);
       }else{
         $r_POST['emeteur_orga'] = 'public';
         $r_POST['emeteur_pseudo'] = 'non-inscrit';
