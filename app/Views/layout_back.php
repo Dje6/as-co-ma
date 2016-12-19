@@ -139,9 +139,9 @@
 
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.1.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js'); ?>"></script>
-	<!-- <script type="text/javascript">
-		$('.dropdown-toggle').dropdown();
-	</script> -->
+	<script type="text/javascript" src="<?= $this->assetUrl('js/app.js'); ?>"></script>
+
+	
 	<?= $this->section('main_script') ?>
 </body>
 </html>
