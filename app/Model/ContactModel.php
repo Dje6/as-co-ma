@@ -12,45 +12,29 @@ class ContactModel extends customModel
   }
   //searchMessagesOrga recupere les message d'un organisation
   //ciblé , aussi bien mairie que assoc que notre messagerie de superadmin
-  public function searchMessagesOrga(array $search, $operator = 'OR', $stripTags = true,$limit = null, $offset = null){
+  public function searchMessagesOrga($id,$orga, $stripTags = true,$limit = 1, $offset = 0){
 
-    // Sécurisation de l'opérateur
-    $operator = strtoupper($operator);
-    if($operator != 'OR' && $operator != 'AND'){
-      die('Error: invalid operator param');
-    }
-
-    $sql = 'SELECT * FROM ' . $this->table.' WHERE ';
-
-    foreach($search as $key => $value){
-      $sql .= "`$key` LIKE :$key ";
-      $sql .= $operator;
-    }
-    // Supprime les caractères superflus en fin de requète
-    if($operator == 'OR') {
-      $sql = substr($sql, 0, -3);
-    }
-    elseif($operator == 'AND') {
-      $sql = substr($sql, 0, -4);
-    }
-    $sql .= ' ORDER BY date_envoi DESC';
-
-    if($limit){
-      $sql .= ' LIMIT '.$limit;
-      if($offset){
-        $sql .= ' OFFSET '.$offset;
-      }
-    }
+    $sql = 'SELECT * FROM ' . $this->table.' WHERE destinataire_mailOrId = \''. $id.'\'
+    AND destinataire_orga = \'' . $orga.'\' ORDER BY date_envoi DESC LIMIT ' . $limit.' OFFSET ' . $offset.'';
     $sth = $this->dbh->prepare($sql);
-
-    foreach($search as $key => $value){
-      $value = ($stripTags) ? strip_tags($value) : $value;
-      $sth->bindValue(':'.$key, '%'.$value.'%');
-    }
     if(!$sth->execute()){
       return false;
     }
     $donnee = $sth->fetchAll();
+
+    foreach ($donnee as $key => $value) {
+      if(is_numeric($value['emeteur_mailOrId'])){
+        $sql = 'SELECT mail FROM ' .$value['emeteur_orga'].' WHERE Id = \''. $value['emeteur_mailOrId'].'\'';
+        $sth = $this->dbh->prepare($sql);
+        if(!$sth->execute()){
+          return false;
+        }
+        $donnee[$key]['emeteur_mail'] = $sth->fetchColumn();
+      }else {
+        $donnee[$key]['emeteur_mail'] = $value['emeteur_mailOrId'];
+      }
+    }
+
     if(!is_array($donnee)){
       return 'Aucun message';
     }else {

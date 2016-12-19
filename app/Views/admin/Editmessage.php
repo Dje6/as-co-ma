@@ -36,8 +36,8 @@ if(!isset($confirmation)){ ?>
   <form class="" action="<?php echo $urlDePost; ?>" method="post">
 
     <label for="destinatire">Destinataire </label>
-    <?php if(isset($error['destinataire'])){ echo '<span style="color:red;">'.$error['destinataire'].'</span>' ;} ?><br/>
-		<input type="text" name="destinataire" value="<?php echo $mailRecepteur ;?>" readonly><br/>
+    <?php if(isset($error['destinataire_mailOrId'])){ echo '<span style="color:red;">'.$error['destinataire_mailOrId'].'</span>' ;} ?><br/>
+		<input type="text" name="destinataire_mailOrId" value="<?php echo $mailRecepteur ;?>" readonly><br/>
 
     <label for="objet">Objet</label>
     <?php if(isset($error['objet'])){ echo '<span style="color:red;">'.$error['objet'].'</span>' ;} ?><br/>
