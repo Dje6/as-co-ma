@@ -52,10 +52,10 @@
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
 		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message de lassociation
 		['GET', '/Admin/ListeMenbres/[:slug]/[:page]', 'admin\Assoc#listeMenbres', 'admin_assoc_menbres'],//affiche le listing des menbre de lassoc
-		['GET', '/Admin/infoMenbres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
+		['GET', '/Admin/infoMembres/[:slug]/[:id]', 'admin\Users#ficheMenbre', 'admin_assoc_menbre'],//affiche la fiche personnel des menbre de lassoc
 		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc
 		['POST', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditPost', 'admin_assoc_edit_post'],//edition des données assoc
-		['GET|POST', '/Admin/ContactMenbres/[:slugE]/[:slugR]', 'admin\message#contactMenbre', 'admin_assoc_contact_menbre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactMembres/[:slugE]/[:id]', 'admin\message#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
 		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\message#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
 
 		//

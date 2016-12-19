@@ -35,7 +35,7 @@ if($orga == 'mairie'){
         <tr>
           <td><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
           <td><a href="<?php echo $this->url('admin_assoc_menbre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button>Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc_contact_menbre',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button>Contacter</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button>Contacter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Suspendre</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button>Supprimer</button></a></td>
         </tr><?php
