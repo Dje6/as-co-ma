@@ -19,13 +19,14 @@ class ConnexionController extends CustomController
     }else{ // sinon on verifie les donnee
 
       if($_POST){ //Si post exist c'est que le formulaire a deja ete envoyer
+        $r_POST = $this->nettoyage($_POST);
 
         $Authent = new AuthentificationModel();
         $get_user = new UsersCustomModel;
         $user_id = $get_user->isValidLoginInfo($_POST['pseudo'], $_POST['password']);
 
         if($user_id == 0){  //si ya un soucis on retourne sur le formulaire avec les erreur
-          $this->show('racine/connexion',['error'  => 'Les données saisies sont invalides.']);
+          $this->show('racine/connexion',['error'  => 'Les données saisies sont invalides.','saisi'=> $r_POST]);
         }else{//sinon on verifie si le compte est active
           $user = $get_user->getUserByUsernameOrEmail($_POST['pseudo']);
 

@@ -110,7 +110,10 @@
 		<hr>
 		<!-- Deuxieme ligne footer -->
 		<div class="row text-center">
-			<span><i><strong>AS-CO-MA © - Copyright 2016</strong></i></span>
+			<span>
+				<button class="btn btn-success btn-xs return">Retour en haut</button><br>
+				<i><strong>AS-CO-MA © - Copyright 2016</strong></i>
+			</span>
 		</div>
 	</footer>
 

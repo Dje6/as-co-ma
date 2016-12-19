@@ -14,7 +14,8 @@
 <?php if(empty($mail)){ $mail = $donnee['mail']; } ?>
 <?php if(empty($token)){ $token = $donnee['token']; } ?>
 
-<form action="<?php echo $this->url('racine_modifyPost'); ?>" method="POST">
+<!-- FORM MODIFY PASSWORD -->
+<form class="formFront" action="<?php echo $this->url('racine_modifyPost'); ?>" method="POST">
 
   <legend><h2>Modifiez votre mot de passe</h2></legend>
 

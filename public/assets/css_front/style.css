@@ -2,13 +2,15 @@
 /*GLOBAL*/
 /*////////////////////////////////////////*/
 html, body {
+	font-size: 17px;
 	/*font-family: Consolas, monaco, monospace;*/
 	font-family: sans-serif;
-	/*background-color: #272822;*/
 	background-image: url('../img/background-accueil.jpg');
-	/*color: #F8F8F2;*/
+	background-attachment: fixed;
 }
 .btn {
+	box-shadow: 2px 2px 5px #888888;
+	font-size: 17px;
 	border-radius: 0;
 }
 .btn-success {
@@ -22,9 +24,7 @@ header {
 	background-size: cover;
 	width: 100%;
 }
-input {
-	color: black;
-}
+
 a:hover {
 	text-decoration: none;
 }
@@ -66,6 +66,29 @@ hr {
 .main_content {
 	min-height: 520px;
 	margin-top: 3em;
+}
+
+/*////////////////////////////////////////*/
+/*STYLE FORMS DANS VIEWS FRONT*/
+/*////////////////////////////////////////*/
+.formFront {
+	border: 2px solid #6aa33b;
+	border-radius: 5px;
+	background-color: rgba(106, 163, 59, 0.5);
+	padding: 20px;
+	box-shadow: 5px 5px 5px #888888;
+}
+.errorForm {
+	font-weight: 900;
+	color: firebrick;
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 2px;
+	/*padding: 2px;*/
+	margin-left: 5px;
+}
+textarea {
+	min-width: 100%;
+	max-width: 100%;
 }
 
 

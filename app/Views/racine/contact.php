@@ -5,6 +5,7 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_contact.css'); ?>">
 <?php $this->stop('main_head') ?>
 
 
@@ -24,17 +25,18 @@ if(!isset($confirmation)){
 	} ?>
 
 	<!-- FORMULAIRE CONTACT Mairie, ou Assoc, ou Admin suivant $slug etc -->
-  <form class="" action="<?php echo $this->url('racine_contact_send',['orga'=> $orga,'slug'=>$slug]); ?>" method="post">
+  <form class="formFront" action="<?php echo $this->url('racine_contact_send',['orga'=> $orga,'slug'=>$slug]); ?>" method="post">
 
 		<!-- MAIL EMETTEUR -->
 		<div class="form-group col-xs-12">
 	    <label for="mail">Votre E-mail : </label><span class="errorForm"><?php if(isset($error['emeteur_mailOrId'])){ echo $error['emeteur_mailOrId']; } ?></span>
+
 			<!-- Input du mail de l'emetteur -->
 			<?php if(isset($_SESSION['user'])){
 				echo '<input type="text" class="form-control" name="emeteur_mailOrId" value="'.$_SESSION['user']['mail'].'" readonly>';
-			} else {
-			 echo '<input type="text" class="form-control" name="emeteur_mailOrId" placeholder="Entrez votre adresse mail pour recevoir une réponse">';
-			} ?>
+			} else { ?>
+			 <input type="text" class="form-control" name="emeteur_mailOrId" placeholder="Entrez votre adresse mail pour recevoir une réponse" value="<?php if(isset($saisi['emeteur_mailOrId'])) { echo $saisi['emeteur_mailOrId']; } ?>">
+<?php } ?>
 		</div>
 
 		<!-- OBJECT CONTACT -->
@@ -68,19 +70,19 @@ if(!isset($confirmation)){
 		<div class="form-group col-xs-12">
 	    <label for="contenu">Votre Message : </label><span class="errorForm"><?php if(isset($error['contenu'])){ echo $error['contenu']; } ?></span>
 			<!-- Textearea désactivé si user pas connecté -->
-	    <textarea name="contenu" class="form-control" rows="8" cols="80"></textarea>
+	    <textarea name="contenu" class="form-control" rows="8" cols="80"><?php if(isset($saisi['contenu'])) { echo $saisi['contenu']; } ?></textarea>
 		</div>
 
 		<input type="hidden" name="capcha" value="">
 
-    <button type="submit" class="btn btn-success btn-md" name="submit">Envoyer mon message</button>
+    <button type="submit" class="btn btn-success btn-md col-xs-offset-4 col-md-offset-5" name="submit">Envoyer mon message</button>
   </form>
 	<br><br>
 	<!-- End form contact -->
 
 	<!-- Message condition pour inscription mairie -->
 	<?php if($slug == 'All'){ ?>
-		<blockquote class="blockquote-reverse">
+		<blockquote class="blockquote-reverse quoteContact">
 		  <p>* Vous recevrez une réponse à votre demande d'inscription de Mairie après étude de votre demande par nos services.</p>
 		  <footer>Les Administrateurs, <cite title="Source Title">AS-CO-MA</cite></footer>
 		</blockquote>

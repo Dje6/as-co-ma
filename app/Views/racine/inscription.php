@@ -16,7 +16,7 @@
 
       } else { ?>
 
-  <form action="<?php echo $this->url('racine_inscriptPost'); ?>" method="POST">
+  <form class="formFront" action="<?php echo $this->url('racine_inscriptPost'); ?>" method="POST">
     <legend><h2 class="text-center">Créez votre compte sur AS-CO-MA : </h2></legend>
 
     <?php if(isset($error['capcha'])){ echo '<span>'.$error['capcha'].'</span>' ;} ?>
@@ -112,9 +112,8 @@
 
     <input type="hidden" name="capcha" value=""><br/>
 
-    <div class="form-group">
-      <button type="submit" name="submit" class="btn btn-success btn-lg">Créer mon compte</button>
-    </div>
+    <button type="submit" name="submit" class="btn btn-success btn-lg col-xs-offset-5">Créer mon compte</button>
+
   </form>
   <?php
 } ?>

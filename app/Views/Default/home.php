@@ -65,22 +65,24 @@
 	<!-- Qui sommes-nous? -->
 	<br><br>
 	<div class="row">
-		<blockquote>
-		  <p><i>
-				AS-CO-MA a été créé dans le but d'aider les communes qui le souhaitent à recenser sur un site Internet les associations qui dépendent d'elles. Il laisse également la possibilité aux présidents d'associations d'inscrire leur association auprès de la commune dont ils dépendent à leur tour. Aux personnes appartenant à ces-dites associations, nous leur laissons la possibilité de consulter les derniers articles postés par les mairies, les associations, mais aussi d'avoir accès à un système de contact simple d'utilisation.
-				Toutes les informations (adresses, horaires d'ouverture, articles) sont consultables sans nécessité d'ouvrir un compte, mais dès lors que vous souhaitez participer à la vie active du site, une inscription vous sera demandée avec vos informations personnelles, permettant ainsi à tout autre inscrit (ainsi que l'équipe du site) de vous contacter rapidement.
+		<blockquote class="presentSite">
+		  <p class="text-justify"><i>
+				AS-CO-MA a été créé dans le but d'aider les communes qui le souhaitent à recenser sur un site Internet les associations qui dépendent d'elles. Il laisse également la possibilité aux présidents d'associations de l'inscrire auprès de la commune dont ils dépendent de leur côté.<br>
+				Aux personnes appartenant à ces-dites associations, nous leur laissons la possibilité de consulter les derniers articles postés par les mairies, les associations, mais aussi d'avoir accès à un système de contact simple d'utilisation.<br>
+				Toutes les informations (adresses, horaires d'ouverture, articles) sont libres d'accès, mais dès lors que vous souhaitez participer à la vie active du site, une inscription vous sera demandée avec vos informations personnelles, permettant ainsi à tout autre utilisateur (ainsi que l'équipe du site) de vous contacter rapidement.
 			</i></p>
-		  <footer>Les Administrateurs, <cite title="Source Title">AS-CO-MA</cite></footer>
+		  <footer><strong>Les Administrateurs</strong>, <cite title="Source Title">AS-CO-MA</cite></footer>
 		</blockquote>
 	</div>
 
 	<!-- Bouton vers INSCRIPTION -->
-	<br><br>
+	<hr><br>
 	<div class="row">
 		<a href="<?= $this->url('racine_inscriptForm'); ?>">
 			<button type="button" class="btn btn-success btn-lg btn-block">Rejoignez-nous !</button>
 		</a>
 	</div>
+	<br>
 
 
 <?php $this->stop('main_content') ?>

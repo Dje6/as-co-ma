@@ -3,5 +3,12 @@
 /*////////////////////////////////////////*/
 .titre_home {
   font-weight: 900;
-  font-style: oblique;
+  /*font-style: oblique;*/
+}
+
+/*////////////////////////////////////////*/
+/*STYLE BLOCKQUOTE SUR HOME*/
+/*////////////////////////////////////////*/
+.presentSite {
+  margin: 2em auto;
 }

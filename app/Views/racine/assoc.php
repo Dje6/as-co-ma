@@ -10,31 +10,32 @@
 
 
 <?php $this->start('main_content') ?>
-<!-- Form recherche d'assoc -->
 <?php if($slug == 'All'){ ?>
 
-	<form class="" action="<?php echo $this->url('racine_assoc_search',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
+	<div class="row">
+		<!-- Form recherche d'assoc -->
+		<form class="formFront form-inline" action="<?php echo $this->url('racine_assoc_search',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
 
-		<div class="form-group">
-			<label for="cp"><h2>Saisissez le code postal ou le nom de l'Association recherchée : </h2></label>
+			<div class="form-group">
+				<label for="cp">Saisissez le code postal ou le nom de l'Association recherchée : </label>
 
-			<input type="text" class="form-control" name="cp" value="">
-			<input type="hidden" class="form-control" name="capcha" value="">
-			<br>
+				<input type="text" class="form-control" name="cp" value="">
+				<input type="hidden" class="form-control" name="capcha" value="">
+			</div>
+
 			<button class="btn btn-success btn-md" type="submit" name="submit">Rechercher</button>
-		</div>
-	</form>
-	<br>
+		</form>
+	</div>
 
 
 <?php if(isset($donnees)) {
 		if(is_array($donnees)) {
 			//Lien a cliquer pour contacter le résultat de l'association recherchée
-			//redirection vers page contact avec destinataire l'association cliquée
+			//redirection vers page contact avec en destinataire l'association cliquée
 			foreach ($donnees as $key => $value) { ?>
 				<a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]) ; ?>">
 					<article>
-						<?php echo $value['nom'].', enregistrée en '.$value['mnom'].', '.$value['mCP'] . '.'; ?>
+						<?php echo $value['nom'].', enregistrée en '.$value['mnom'].', '.$value['mCP']; ?>
 					</article>
 				</a> <?php
 			}
@@ -66,9 +67,12 @@
 } ?>
 
 <!-- Lien vers contact d'inscription d'assoc -->
-<p>
-	Vous souhaitez inscrire votre Association ?	Cliquez <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>ici</a> pour contacter la Mairie de la commune recherchée.
-</p>
+<br>
+<div class="row">
+	<p>
+		Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter la Mairie de la commune recherchée.
+	</p>
+</div>
 <?php $this->stop('main_content') ?>
 
 

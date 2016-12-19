@@ -5,6 +5,7 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_rescu.css'); ?>">
 <?php $this->stop('main_head') ?>
 
 
@@ -12,7 +13,7 @@
 <?php $this->start('main_content') ?>
 
 <!-- FORMULAIRE OUBLI DE MOT DE PASSE -->
-<form action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
+<form class="formFront" action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
   <legend><h2>Mot de passe oublié ?</h2></legend>
 
   <div class="form-group">

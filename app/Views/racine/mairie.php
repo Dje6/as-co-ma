@@ -10,34 +10,41 @@
 
 <?php $this->start('main_content') ?>
 
-<!-- Formulaire pour rechercher mairie -->
 <?php if($slug == 'All') { ?>
-	<form class="" action="<?php echo $this->url('racine_mairie_search',['orga'=>'Mairie','slug' => $slug]) ; ?>" method="post">
-		<!-- Recherche par CP -->
-		<div class="form-group">
-			<label for="cp"><h2>Saisissez le code postal ou le numéro de département de la Mairie recherchée : </h2></label>
 
-			<input type="text" class="form-control" name="cp" value="">
-			<input type="hidden" class="form-control" name="capcha" value="">
-			<br>
+	<div class="row">
+		<!-- Formulaire pour rechercher mairie -->
+		<form class="formFront form-inline" action="<?php echo $this->url('racine_mairie_search',['orga'=>'Mairie','slug' => $slug]) ; ?>" method="post">
+			<!-- Recherche par CP -->
+			<div class="form-group">
+				<label for="cp">Saisissez le code postal ou le numéro de département de la Mairie recherchée : </label>
+				<input type="text" class="form-control" name="cp" value="" width="20%">
+
+				<input type="hidden" class="form-control" name="capcha" value="">
+			</div>
+
 			<button type="submit" class="btn btn-success btn-md" name="submit">Rechercher</button>
-		</div>
-	</form>
+		</form>
+	</div>
 
 <!-- Quand recherche soumise, affiche un lien vers Mairie concernée -->
-<?php if(isset($donnees)) {
-	if(is_array($donnees)) {
-		foreach ($donnees as $key => $value) { ?>
-			<p>
-				<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>"><?php echo $value['code_postal'].', '.$value['nom'] . '. '; ?></a>
-			</p>
+<br>
+	<div class="row">
+		<?php if(isset($donnees)) {
+			if(is_array($donnees)) {
+				foreach ($donnees as $key => $value) { ?>
+					<p>
+						<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>"><?php echo $value['code_postal'].', '.$value['nom']; ?></a>
+					</p>
 
-<?php }
-	} else {
-		echo $donnees;
-	}
-}
+		<?php }
+			} else {
+				echo '<span class="errorForm">' . $donnees . '</span>';
+			}
+		} ?>
+	</div>
 
+<?php
 // Quand lien cliqué, affiche les infos de la mairie
 } else{
 
@@ -66,10 +73,13 @@
 } ?>
 
 <!-- Lien vers contact d'inscription de mairie -->
-<p>
-	Vous souhaitez inscrire votre Mairie et pouvoir remplir vos informations ?
-	<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a>
-</p>
+<br>
+<div class="row">
+	<p>
+		Vous souhaitez inscrire votre Mairie et pouvoir remplir vos informations ?
+		<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a>
+	</p>
+</div>
 <?php $this->stop('main_content') ?>
 
 
