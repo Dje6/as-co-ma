@@ -25,7 +25,7 @@ class UserModel extends UsersCustomModel
       }
     }
   }
-  public function FinPseudoByMail($mail)
+  public function FindPseudoByMail($mail)
   {
     $sql = 'SELECT pseudo FROM '.$this->table.' WHERE mail = :mail ';
     $sth = $this->dbh->prepare($sql);
