@@ -18,19 +18,22 @@ if(isset($donnees)){
 	if(!empty($donnees)){
 		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message quil contient
 
-			if(!empty($limit)){ //affiche le nombre delement par page
-				echo 'Message par page : '.$limit.'<br/><br/>' ;
-			}
+			// if(!empty($limit)){ //affiche le nombre delement par page
+			// 	echo 'Message par page : '.$limit.'<br/><br/>' ;
+			// }
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
 				echo $pagination;
 			}
-
+      echo '<div class="container affichageMairie">';
 			foreach ($donnees as $key => $value) {
+
+
 				echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
 				echo 'Email : '.$value['emeteur_mail'].'<br/>';
 				echo 'Objet : '.$value['objet'].'<br/>';
 				echo 'Message : '.$value['contenu'].'<br/>';
 				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
+
 
         preg_match_all('/inscript/', $value['objet'], $matches); // on detect si il s'agit dune demande d'inscription
         if(!empty($matches[0])){ //si oui on affiche les bouton de decision ?>
@@ -46,7 +49,7 @@ if(isset($donnees)){
         }
 				echo '<br/><br/>';
 			}
-
+        echo '</div">';
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
 				echo $pagination;
 			}
@@ -56,6 +59,7 @@ if(isset($donnees)){
   }
 }
 ?>
+<!-- <a href="#" class="btn btn-info return">Retour Menu</a> -->
 <?php $this->stop('main_content') ?>
 
 

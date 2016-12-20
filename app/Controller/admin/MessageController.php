@@ -46,7 +46,7 @@ class MessageController extends CustomController
           $MairieModel = new MairieModel;
           $maildestinataire = $MairieModel->findIDBySlug($slug);
         }
-        $limit = 1;
+        $limit = 6;
         //limit d'affichage par page
         $Pagination = new Pagination('contact');
         //on precise la table a exploiter
