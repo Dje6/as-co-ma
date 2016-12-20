@@ -104,8 +104,9 @@ if(isset($donnee)){
         echo '<div class="horaires"><h4>'.$key.' : '.$value.'</h4></div>';
       }
       if(!isset($acces)){
+
         echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button class="centerBut">Modifier</button></a>';
-        
+
 
         echo '<div class="container ">
                 <div class="row">
@@ -115,6 +116,7 @@ if(isset($donnee)){
 
 
      echo '</div">';
+
       }
     }
   }else{

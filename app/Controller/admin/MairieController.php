@@ -4,6 +4,8 @@ namespace Controller\admin;
 use \Controller\CustomController;
 use \Model\MairieModel;
 use \Service\ValidationTools;
+use \Model\AssocModel;
+use \Model\RolesModel;
 
 class MairieController extends CustomController
 {
@@ -74,7 +76,7 @@ class MairieController extends CustomController
           }
           unset($r_POST['submit']);
 
-          $id = $mairieModel->findIDBySlug($slug);
+          $id = $mairieModel->FindElementByElement('id','slug',$slug);
           $result = $mairieModel->update($r_POST,$id);
           if(!$result){
             $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
@@ -89,6 +91,56 @@ class MairieController extends CustomController
         $error['donnee'] = 'Donnée(s) manquante(s).';
       }
     } else {
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+  public function homeEditStatus($slug,$slugA)
+  {
+    if(isset($_SESSION['user']))
+    {
+      $assocModel = new AssocModel;
+      if($this->allowToTwo('Admin','Mairie',$slug)){
+
+         $slug = $this->nettoyage($slug);
+         $slugA = $this->nettoyage($slugA);
+         $id = $assocModel->FindElementByElement('id','slug',$slugA);
+         $status = $assocModel->FindElementByElement('status','slug',$slugA);
+         if($status == 'Actif'){
+           $result = $assocModel->update(['status' => 'En attente'],$id);
+         }else {
+           $result = $assocModel->update(['status' => 'Actif'],$id);
+         }
+
+        $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
+      }
+    }else {
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+  public function homeDeleteAssoc($slug,$slugA)
+  {
+    if(isset($_SESSION['user']))
+    {
+      $assocModel = new AssocModel;
+      if($this->allowToTwo('Admin','Mairie',$slug)){
+        $slug = $this->nettoyage($slug);
+        $slugA = $this->nettoyage($slugA);
+        $id = $assocModel->FindElementByElement('id','slug',$slugA);
+        $result = $assocModel->delete($id);
+        if($result){
+          $rolesModel = new RolesModel;
+          $result2 = $rolesModel->deleteRoles($id,'id_assoc');
+          if($result2){
+            $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
+          }
+        }else {
+
+        }
+      }
+
+    }else {
       $this->redirectToRoute('racine_form');
     }
   }

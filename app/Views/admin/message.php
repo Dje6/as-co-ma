@@ -37,15 +37,20 @@ if(isset($donnees)){
 
         preg_match_all('/inscript/', $value['objet'], $matches); // on detect si il s'agit dune demande d'inscription
         if(!empty($matches[0])){ //si oui on affiche les bouton de decision ?>
-          <a href="<?php echo $this->url('admin_accepte',['mail' => urlencode($value['mail']),'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_accepte',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button>Accepter</button></a>
-          <a href="<?php echo $this->url('admin_plus_info',['mail' => urlencode($value['mail']),'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_plus_info',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button>Manque d'information</button></a>
-          <a href="<?php echo $this->url('admin_refuse',['mail' => urlencode($value['mail']),'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_refuse',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button>Refuser</button></a><?php
-        }else{ //sinon j'affiche le bouton pour repondre, qui redirige vers un champ de saisi texte ?>
-          <a href="<?php echo $this->url('admin_repondre',['mail'=> urlencode($value['mail']),'orga' => $orga,'slug' => $slug]) ; ?>">
+        }else{ //sinon j'affiche le bouton pour repondre, qui redirige vers un champ de saisi texte
+          if($orga == 'user'){?>
+            <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">
             <button>Repondre</button></a><?php
+          }else { ?>
+            <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
+            <button>Repondre</button></a><?php
+          }
         }
 				echo '<br/><br/>';
 			}

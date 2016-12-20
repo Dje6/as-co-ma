@@ -1,5 +1,6 @@
 <?php
-if($w_current_route == 'admin_assoc_contact_mairie' || $orga == 'assoc'){
+if(is_numeric($slugRecepteur)){ $id = $slugRecepteur ;}
+if($w_current_route == 'admin_assoc_contact_mairie' || ($orga == 'assoc' && !isset($id))){
   $quiContacter = '<h3 class="titreback">Contacter la '.$slugRecepteur.'</h3>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
@@ -7,9 +8,9 @@ if($w_current_route == 'admin_assoc_contact_mairie' || $orga == 'assoc'){
   $quiContacter = '<h3 class="titreback">Contacter l\'association '.$slugRecepteur.'</h3>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
-}elseif($w_current_route == 'admin_assoc_contact_menbre' ) {
-  $quiContacter = '<h3 class="titreback">Contacter le menbre</h3>';
-  $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
+}elseif($w_current_route == 'admin_assoc_contact_membre' || (isset($id)) ) {
+  $quiContacter = '<h3 class="titreback">Contacter le membre</h3>';
+  $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'id' => $id]);
 
 }elseif($w_current_route == 'admin_mairie_contact_Webmaster' || $orga == 'site' || $slugRecepteur == 'Webmaster') {
   $quiContacter = '<h3 class="titreback">Contacter le Webmaster</h3>';
@@ -45,16 +46,16 @@ if(!isset($confirmation)){ ?>
                     <div class="panel-body">
 
                         <div class="form-group">
+                          <?php if(isset($error['destinataire_mailOrId'])){ echo '<span style="color:red;">'.$error['destinataire_mailOrId'].'</span>' ;} ?><br/>
                             <div class="input-group">
-                                <?php if(isset($error['destinataire_mailOrId'])){ echo '<span style="color:red;">'.$error['destinataire_mailOrId'].'</span>' ;} ?><br/>
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope blue"></i></span>
                                 <input type="text" name="destinataire_mailOrId" placeholder="Destinataire" class="form-control" value="<?php echo $mailRecepteur ;?>" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
+                          <?php if(isset($error['objet'])){ echo '<span style="color:red;">'.$error['objet'].'</span>' ;} ?><br/>
                             <div class="input-group">
-                                <?php if(isset($error['objet'])){ echo '<span style="color:red;">'.$error['objet'].'</span>' ;} ?><br/>
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
                                 <input type="text" name="objet" placeholder="Objet" class="form-control" autofocus="autofocus" value="<?php if(isset($donnee['objet'])){ echo $donnee['objet'] ; } ?>">
                             </div>
@@ -62,8 +63,8 @@ if(!isset($confirmation)){ ?>
 
 
                         <div class="form-group">
+                          <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
                             <div class="input-group">
-                                <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
                                 <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
                             </div>

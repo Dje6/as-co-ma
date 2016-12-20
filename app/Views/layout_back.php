@@ -6,6 +6,7 @@
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
+
 	<?= $this->section('main_head') ?>
 
 </head>
@@ -121,7 +122,7 @@
 							<li><a href="<?php echo $this->url('admin_assoc',['orga' => $orga,'slug' => $slug]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
 							</li>
-							<li><a href="<?php echo $this->url('admin_assoc_menbres',['slug' => $slug,'page' => 1]); ?>">
+							<li><a href="<?php echo $this->url('admin_assoc_membres',['slug' => $slug,'page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
 							</li>
 						</ul>

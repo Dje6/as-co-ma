@@ -41,11 +41,11 @@ class ContactController extends CustomController
       unset($r_POST['capcha']);
 
       $UserModel = new UserModel;
-      if($UserModel->FinIdByMail($r_POST['emeteur_mailOrId'])){
+      if($UserModel->FindElementByElement('id','mail',$r_POST['emeteur_mailOrId'])){
         $email = $r_POST['emeteur_mailOrId'];
-        $r_POST['emeteur_mailOrId'] = $UserModel->FinIdByMail($r_POST['emeteur_mailOrId']);
+        $r_POST['emeteur_mailOrId'] = $UserModel->FindElementByElement('id','mail',$r_POST['emeteur_mailOrId']);
         $r_POST['emeteur_orga'] = 'users';
-        $r_POST['emeteur_pseudo'] = $UserModel->FindPseudoByMail($email);
+        $r_POST['emeteur_pseudo'] = $UserModel->FindElementByElement('pseudo','mail',$email);
       }else{
         $r_POST['emeteur_orga'] = 'public';
         $r_POST['emeteur_pseudo'] = 'non-inscrit';
@@ -53,10 +53,10 @@ class ContactController extends CustomController
       $r_POST['destinataire_orga'] = $orga;
       if($orga == 'assoc'){
         $AssocModel = new AssocModel;
-        $r_POST['destinataire_mailOrId'] = $AssocModel->findIDBySlug($slug);
+        $r_POST['destinataire_mailOrId'] = $AssocModel->FindElementByElement('id','slug',$slug);
       }elseif($orga == 'mairie'){
         $MairieModel = new MairieModel;
-        $r_POST['destinataire_mailOrId'] = $MairieModel->findIDBySlug($slug);
+        $r_POST['destinataire_mailOrId'] = $MairieModel->FindElementByElement('id','slug',$slug);
       }elseif($orga == 'All'){
         $r_POST['destinataire_mailOrId'] = 'webmaster@as-co-mo.fr';
         $r_POST['destinataire_orga'] = 'webmaster';
