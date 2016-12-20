@@ -13,7 +13,14 @@ $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $or
 
 <?php $this->start('main_content') ?>
 	<h1 class="titreback">Messagerie</h1><br/>
+
+  <a href="<?php echo $this->url('admin_message_send_'.$orga,['slug' => $slug,'orga' => 'mairie','page' => 1]) ; ?>">
+    <button>Message Envoye</button></a>
+  <a href="<?php echo $this->url('admin_message_'.$orga,['slug' => $slug,'orga' => 'mairie','page' => 1]) ; ?>">
+    <button>Message Recu</button></a>
 <?php
+
+
 if(isset($donnees)){
 	if(!empty($donnees)){
 		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message quil contient
@@ -27,12 +34,21 @@ if(isset($donnees)){
       echo '<div class="container affichageMairie">';
 			foreach ($donnees as $key => $value) {
 
-
-				echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
-				echo 'Email : '.$value['emeteur_mail'].'<br/>';
+        if(isset($value['destinataire_pseudo'])){
+          echo 'Destinataire : '.$value['destinataire_pseudo'].'<br/>';
+          echo 'Email : '.$value['destinataire_mail'].'<br/>';
+        }else {
+          echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
+          echo 'Email : '.$value['emeteur_mail'].'<br/>';
+        }
 				echo 'Objet : '.$value['objet'].'<br/>';
 				echo 'Message : '.$value['contenu'].'<br/>';
 				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
+        if($value['status'] == 'lu'){
+          echo 'Lu le : '.$value['date_lecture'].'<br/>';
+        }elseif ($value['status'] != 'lu' && $value['status'] != 'non-lu') {
+          echo 'Repondu le : '.$value['date_lecture'].'<br/>';
+        }
 
 
         preg_match_all('/inscript/', $value['objet'], $matches); // on detect si il s'agit dune demande d'inscription
@@ -47,9 +63,17 @@ if(isset($donnees)){
           if($orga == 'user'){?>
             <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">
             <button>Repondre</button></a><?php
-          }else { ?>
+          }else {
+            if(!isset($value['destinataire_pseudo'])){?>
+              <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
+              <button>Rep</button></a><?php
+            }
+            if($value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){ ?>
+              <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
+              <button>Lu</button></a><?php
+            } ?>
             <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
-            <button>Repondre</button></a><?php
+            <button>Suppr</button></a><?php
           }
         }
 				echo '<br/><br/>';

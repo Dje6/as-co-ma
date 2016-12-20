@@ -15,7 +15,7 @@ class ContactModel extends customModel
   public function searchMessagesOrga($id,$orga, $stripTags = true,$limit = 1, $offset = 0){
 
     $sql = 'SELECT * FROM ' . $this->table.' WHERE destinataire_mailOrId = \''. $id.'\'
-    AND destinataire_orga = \'' . $orga.'\' ORDER BY date_envoi DESC LIMIT ' . $limit.' OFFSET ' . $offset.'';
+    AND destinataire_orga = \'' . $orga.'\' AND destinataire_status IS NULL ORDER BY date_envoi DESC LIMIT ' . $limit.' OFFSET ' . $offset.'';
     $sth = $this->dbh->prepare($sql);
     if(!$sth->execute()){
       return false;
@@ -39,6 +39,56 @@ class ContactModel extends customModel
       return 'Aucun message';
     }else {
       return $donnee;
+    }
+  }
+  public function searchSendMessagesOrga($id,$orga, $stripTags = true,$limit = 1, $offset = 0){
+
+    $sql = 'SELECT * FROM ' . $this->table.' WHERE emeteur_mailOrId = \''. $id.'\'
+    AND emeteur_orga = \'' . $orga.'\' AND emeteur_status IS NULL ORDER BY date_envoi DESC LIMIT ' . $limit.' OFFSET ' . $offset.'';
+    $sth = $this->dbh->prepare($sql);
+    if(!$sth->execute()){
+      return false;
+    }
+    $donnee = $sth->fetchAll();
+
+    foreach ($donnee as $key => $value) {
+      if(is_numeric($value['destinataire_mailOrId'])){
+        if($value['destinataire_orga'] == 'users'){
+          $sql = 'SELECT mail,pseudo FROM ' .$value['destinataire_orga'].' WHERE Id = \''. $value['destinataire_mailOrId'].'\'';
+        }else {
+          $sql = 'SELECT mail,slug AS pseudo FROM ' .$value['destinataire_orga'].' WHERE Id = \''. $value['destinataire_mailOrId'].'\'';
+        }
+        $sth = $this->dbh->prepare($sql);
+        if(!$sth->execute()){
+          return false;
+        }
+        $result = $sth->fetch();
+        $donnee[$key]['destinataire_mail'] = $result['mail'];
+        $donnee[$key]['destinataire_pseudo'] = $result['pseudo'];
+      }else {
+        $donnee[$key]['destinataire_mail'] = $value['destinataire_mailOrId'];
+        $donnee[$key]['destinataire_pseudo'] = 'non-inscrit';
+      }
+    }
+
+    if(!is_array($donnee)){
+      return 'Aucun message';
+    }else {
+      return $donnee;
+    }
+  }
+  public function FindMessageById($id)
+  {
+    $sql = 'SELECT * FROM '.$this->table.' WHERE id = :id ';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':id', $id);
+    if($sth->execute()){
+      $foundMessage = $sth->fetch();
+      if(!empty($foundMessage)){
+        return $foundMessage ;
+      }else{
+        return false;
+      }
     }
   }
 
