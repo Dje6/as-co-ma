@@ -7,9 +7,7 @@
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
-<h1 class="titreback">Administration</h1><br/>
-
-
+<h1 class="titreback">Administration</h1>
 
 
 <?php
@@ -19,8 +17,8 @@ if(isset($donnee)){
   if(is_array($donnee)){
     if(isset($edition) && !isset($acces)){ ?>
 
-      <div class="container fichecontact">
-        <div class="row">
+      <div class="container-fluid fichecontact ">
+        <div class="row ">
           <div class="col-sm-6 col-centered ">
             <div class="panel panel-default">
 
@@ -105,14 +103,14 @@ if(isset($donnee)){
       }
       if(!isset($acces)){
 
-        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button class="centerBut">Modifier</button></a>';
+        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button class="btn btn-primary centerBut">Modifier</button></a>';
 
 
-        echo '<div class="container ">
-                <div class="row">
-
-                </div>
-              </div>';
+        // echo '<div class="container ">
+        //         <div class="row">
+        //
+        //         </div>
+        //       </div>';
 
 
      echo '</div">';
@@ -130,7 +128,7 @@ if(isset($donnee)){
 
 
 
-<a href="#" class="btn btn-info return">Retour Menu</a>
+<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 

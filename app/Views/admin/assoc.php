@@ -96,7 +96,7 @@ if(isset($donnee)){
         echo '<h3>Description : '.$donnee['description'].'</h3><br>';
         echo '<h3>statut : '.$donnee['status'].'</h3><br>';
         if(!isset($acces)){
-          echo '<a href="'.$this->url('admin_assoc_edit_form', ['slug' => $slug]).'"><button class="centerBut">Modifier</button></a>';
+          echo '<a href="'.$this->url('admin_assoc_edit_form', ['slug' => $slug]).'"><button class="btn btn-primary centerBut">Modifier</button></a>';
 
       echo '</div">';
       }
@@ -108,7 +108,7 @@ if(isset($donnee)){
 }
 
 ?>
-<a href="#" class="btn btn-info return">Retour Menu</a>
+<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 

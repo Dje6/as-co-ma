@@ -41,7 +41,7 @@ if(!isset($confirmation)){ ?>
 <div class="container fichecontact">
             <div class="row">
                 <div class="col-sm-6 col-centered ">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default ">
                     <form class="" action="<?php echo $urlDePost; ?>" method="post">
                     <div class="panel-body">
 

@@ -21,16 +21,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">As-Co-Ma</a>
+          <a class="navbar-brand" href="<?php echo $this->url('default_home'); ?>">As-Co-Ma</a>
       	</div>
 
 			<div id="navbar" class="col-xs-offset-3 navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
+
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
 					<li><a href="<?php echo $this->url('admin_message',['page' => 1]); ?>">Message</a></li>
 					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon compte</a></li>
-
+					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
+					<br/>
 					<?php
 					if((isset($_SESSION['user']['roles']) && !empty($_SESSION['user']['roles'])))
 					{
