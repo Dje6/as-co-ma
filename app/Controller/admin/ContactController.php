@@ -179,10 +179,10 @@ class ContactController extends CustomController
 
         if($contactModel->insert($r_POST,false)){
           $this->show('admin/Editmessage',['orga' => $orgaEmeteur ,'slug' => $slugEmeteur,
-          'slugRecepteur' => $slugRecepteur,'confirmation'=> 'Votre message a bien été envoyé.']);
+          'slugRecepteur' => $slugRecepteur,'confirmation'=> '<h3 class="titrecontact glyphicon-envelope blue"> Votre message a bien été envoyé.<h3>']);
         }else{
           $this->show('admin/Editmessage',['orga' => $orgaEmeteur ,'slug' => $slugEmeteur,
-          'slugRecepteur' => $slugRecepteur,'confirmation'=> 'Une erreur est survenue.']);
+          'slugRecepteur' => $slugRecepteur,'confirmation'=> '<h3 class="titrecontact glyphicon-envelope red"> Une erreur est survenue.<h3>']);
         }
       }
     }

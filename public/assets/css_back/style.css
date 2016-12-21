@@ -7,6 +7,23 @@ html, body {
 	width: 100%;*/
 	background-attachment: fixed;
 }
+
+.texte_3D{
+    text-shadow:
+        1px 1px 1px #108fcc,
+        1px 2px 1px #108fcc,
+        1px 3px 1px #108fcc,
+        1px 4px 1px #2e6da4,
+        1px 5px 1px #2e6da4,
+        1px 6px 1px #2e6da4,
+        1px 7px 1px #2e6da4,
+        0 1px 1px rgba(68,68,68,.3),
+        0 5px 3px rgba(68,68,68,.2),
+        0 10px 4px rgba(68,68,68,.2),
+        0 15px 8px rgba(68,68,68,.2),
+        0 30px 10px rgba(68,68,68,.1);
+}
+
 .navbar-wrapper {
   position: absolute;
   top: 0;

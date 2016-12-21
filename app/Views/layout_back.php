@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>"> -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
 
 	<?= $this->section('main_head') ?>
@@ -21,7 +21,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo $this->url('default_home'); ?>">As-Co-Ma</a>
+          <a class="navbar-brand" href="<?php echo $this->url('default_home'); ?>"><h1 class="texte_3D">As-Co-Ma</h1></a>
       	</div>
 
 			<div id="navbar" class="col-xs-offset-3 navbar-collapse collapse">
