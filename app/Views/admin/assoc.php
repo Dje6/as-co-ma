@@ -7,7 +7,7 @@
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
-<h1 class="titreback">Administration</h1><br/><?php
+<h1 class="titreback ">Administration</h1><br/><?php
 
 if(isset($donnee)){
   if(is_array($donnee)){

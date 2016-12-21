@@ -21,7 +21,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo $this->url('default_home'); ?>">As-Co-Ma</a>
+          <a class="navbar-brand" href="<?php echo $this->url('default_home'); ?>"><h1 class="texte_3D">As-Co-Ma</h1></a>
       	</div>
 
 			<div id="navbar" class="col-xs-offset-3 navbar-collapse collapse">
