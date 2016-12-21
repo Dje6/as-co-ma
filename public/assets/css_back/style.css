@@ -2,9 +2,10 @@ html, body {
 	font-family: Consolas, monaco, monospace;
 	/*background-image: url('../img/backblanc.png');*/
 	background-image: url('../img/imagefondtest.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	width: 100%;
+	/*background-repeat: no-repeat;*/
+	/*background-size: cover;
+	width: 100%;*/
+	background-attachment: fixed;
 }
 .navbar-wrapper {
   position: absolute;
@@ -12,6 +13,15 @@ html, body {
   right: 0;
   left: 0;
   z-index: 20;
+}
+
+button.btn.btn-success.btn-xs.return{
+	background-color: : #108fcc;
+}
+a.navbar-brand {
+	font-weight: bold;
+	font-style: italic;
+	font-family: cursive;
 }
 
 .navbar-wrapper > .container {
@@ -56,7 +66,7 @@ html, body {
 	color: white;
 }
 .navbar-inverse .navbar-nav>li>a {
-    color: #655dd2;
+    color: #108fcc;
 }
 .navbar-inverse .navbar-brand {
     color: #108fcc;
@@ -69,19 +79,20 @@ a {
 }
 .titreback {
 	text-align: center;
+	font-style: italic;
 	color: #108fcc;
 	font-weight: bold;
-	font-size: 40px;
+	font-size: 30px;
 	border : 3px solid ##337ab7;
-	margin-left: 30%;
+	/*margin-left: 30%;
 	margin-right: 30%;
-	margin-top: 6%;
+	margin-top: 6%;*/
 }
 .navbar_organisation{
 	list-style-type: none;
 	padding: 0px;
 	margin: 0px;
-	left: 25%;
+	left: 15%;
 	position: relative;
 }
 .navbar_organisation ,.nav>li>a:focus, .nav>li>a:hover
@@ -114,15 +125,15 @@ input.form-control {
 	text-align: center;
 	color: #108fcc;
 	font-weight: bold;
-	font-size: 40px;
+	font-size: 30px;
 	border : 3px solid ##337ab7;
-	margin-left: 30%;
+	/*margin-left: 30%;
 	margin-right: 30%;
-	margin-top: 6%;
+	margin-top: 6%;*/
 }
 .userpseudo {
 	font-size: 20px;
-	font-weight: bolder;
+	font-weight: bold;
 }
 .centrer {
 	margin-left: auto;
@@ -186,6 +197,7 @@ button[type="reset"]    {
 
 .fichecontact{
     margin-left: auto;
+		margin-right: auto;
 }
 /*/////////////////////////////////////////////////////////////////////////////*/
 /*css page asso.php*/
@@ -200,7 +212,9 @@ button[type="reset"]    {
 		border-radius: 2%;
 }
 .centerBut {
-	margin-left: 35%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
 }
 .affichage {
 	background-image: url('../img/backblanc.png');
@@ -231,4 +245,19 @@ button[type="reset"]    {
 	text-align: center;
 	font-weight: bolder;
 	font-size: 2.5em;
+}
+.panel-body {
+	margin-left: auto;
+	margin-right: auto;
+}
+.couleur_bleue {
+	color: #31708f;
+}
+.titrecontact {
+	text-align: center;
+	font-style: italic;
+	color: #108fcc;
+	font-weight: bold;
+	font-size: 26px;
+	border : 3px solid ##337ab7;
 }
