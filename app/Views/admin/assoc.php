@@ -16,7 +16,7 @@ if(isset($donnee)){
 
       <div class="container fichecontact">
         <div class="row">
-          <div class="col-sm-6 col-centered ">
+          <div class="col-sm-8 col-sm-offset-2 col-centered ">
             <div class="panel panel-default">
               <form method="POST" action="<?php echo $this->url('admin_assoc_edit_post',['slug' => $slug]);?>">
                 <div class="panel-body">

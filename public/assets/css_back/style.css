@@ -82,11 +82,11 @@ a {
 	font-style: italic;
 	color: #108fcc;
 	font-weight: bold;
-	font-size: 40px;
+	font-size: 30px;
 	border : 3px solid ##337ab7;
-	margin-left: 30%;
+	/*margin-left: 30%;
 	margin-right: 30%;
-	margin-top: 6%;
+	margin-top: 6%;*/
 }
 .navbar_organisation{
 	list-style-type: none;
@@ -125,11 +125,11 @@ input.form-control {
 	text-align: center;
 	color: #108fcc;
 	font-weight: bold;
-	font-size: 40px;
+	font-size: 30px;
 	border : 3px solid ##337ab7;
-	margin-left: 30%;
+	/*margin-left: 30%;
 	margin-right: 30%;
-	margin-top: 6%;
+	margin-top: 6%;*/
 }
 .userpseudo {
 	font-size: 20px;
@@ -252,4 +252,12 @@ button[type="reset"]    {
 }
 .couleur_bleue {
 	color: #31708f;
+}
+.titrecontact {
+	text-align: center;
+	font-style: italic;
+	color: #108fcc;
+	font-weight: bold;
+	font-size: 26px;
+	border : 3px solid ##337ab7;
 }
