@@ -51,6 +51,7 @@
 		//administration Assoc
 		//
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
+		['GET', '/Admin/Mairie/role/[:slug]/[:id]', 'admin\Assoc#homeEditUserRole', 'admin_assoc_edit_user_role'],
 		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message de lassociation
 		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
 		['GET', '/Admin/infoMembres/[:slug]/[:id]', 'admin\Users#ficheMembre', 'admin_assoc_membre'],//affiche la fiche personnel des menbre de lassoc

@@ -5,6 +5,10 @@ use \Controller\CustomController;
 use \Model\UsersCustomModel;
 use \Model\AssocModel;
 use \Service\ValidationTools;
+use \Model\RolesModel;
+use \Model\UserModel;
+use \W\Security\AuthentificationModel;
+
 
 class AssocController extends CustomController
 {
@@ -93,6 +97,45 @@ class AssocController extends CustomController
         $error['donnee'] = 'Donnée(s) manquante(s).';
       }
     } else {
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+  public function homeEditUserRole($slug,$id)
+  {
+    if(isset($_SESSION['user']))
+    {
+      $assocModel = new AssocModel;
+      $rolesModel = New RolesModel;
+      if($this->allowToTwo('Admin','Assoc',$slug)){
+
+         $slug = $this->nettoyage($slug);
+         $id_membre = $this->nettoyage($id);
+         $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
+         $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
+         $id_roles =  $resultat['id'];
+         $role = $role = $resultat['role'];
+         if($role == 'Admin'){
+           $result = $rolesModel->update(['role' => 'User'],$id_roles);
+         }else {
+           $result = $rolesModel->update(['role' => 'Admin'],$id_roles);
+         }
+            if($result){
+              if($id_membre == $_SESSION['user']['id']){
+                 $pseudo = $_SESSION['user']['pseudo'];
+                 $authent = new AuthentificationModel();
+                 $authent->logUserOut();
+                 $get_user = new UserModel;
+                 $user = $get_user->getUserByUsernameOrEmail($pseudo);
+
+                 $authent->logUserIn($user);
+                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+                }
+            } else {
+              echo 'un soucis lors de la mise a jour du role';
+            }
+      }
+    }else {
       $this->redirectToRoute('racine_form');
     }
   }
