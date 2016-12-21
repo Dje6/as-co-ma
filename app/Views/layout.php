@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?= $this->e($title) ?></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/bootstrap.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/slicknav.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style.css') ?>">
 
@@ -90,19 +91,19 @@
 			<div class="reseaux_sociaux">
 				<!-- Facebook -->
 				<button type="button" class="btn btn-sm">
-					<img src="<?= $this->assetUrl('img/facebook.png'); ?>" alt="Facebook">
+					<a href="http://facebook.com"><img src="<?= $this->assetUrl('img/facebook.png'); ?>" alt="Facebook"></a>
 				</button>
 				<!-- Twitter -->
 				<button type="button" class="btn btn-sm">
-					<img src="<?= $this->assetUrl('img/twitter.png'); ?>" alt="Twitter">
+					<a href="http://twitter.com"><img src="<?= $this->assetUrl('img/twitter.png'); ?>" alt="Twitter"></a>
 				</button>
 				<!-- Google -->
 				<button type="button" class="btn btn-sm">
-					<img src="<?= $this->assetUrl('img/google.png'); ?>" alt="Google">
+					<a href="http://plus.google.com"><img src="<?= $this->assetUrl('img/google.png'); ?>" alt="Google"></a>
 				</button>
 				<!-- linkedin -->
 				<button type="button" class="btn btn-md">
-					<img src="<?= $this->assetUrl('img/linkedin.png'); ?>" alt="Linkedin">
+					<a href="http://linkedin.com"><img src="<?= $this->assetUrl('img/linkedin.png'); ?>" alt="Linkedin"></a>
 				</button>
 			</div>
 		</div>
@@ -112,7 +113,7 @@
 		<div class="row text-center">
 			<span>
 				<button class="btn btn-success btn-xs return">Retour en haut</button><br>
-				<i><strong>AS-CO-MA © - Copyright 2016</strong></i>
+				<i><strong>AS-CO-MA ©</strong> - Copyright 2016</i>
 			</span>
 		</div>
 	</footer>

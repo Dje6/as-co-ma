@@ -25,7 +25,7 @@ class MairieModel extends customModel
         return 'Votre saisie est invalide';
       }
     }else{
-      return 'Merci de saisir un numeros de departement ou un code postal';
+      return 'Merci de saisir un numéro de département ou un code postal';
     }
   }
 // retourne la liste des association present dans une mairie avec le slug de la mairie
@@ -39,7 +39,7 @@ class MairieModel extends customModel
     $sth->execute();
     $donnee = $sth->fetchAll();
     if(!is_array($donnee)){
-      return 'Aucune association n\'est enregistrer a la mairie';
+      return 'Aucune association n\'est enregistrée auprès de cette mairie';
     }else{
       return $donnee;
     }

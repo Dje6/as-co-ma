@@ -5,6 +5,7 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_mairie.css'); ?>">
 <?php $this->stop('main_head') ?>
 
 
@@ -27,22 +28,22 @@
 		</form>
 	</div>
 
-<!-- Quand recherche soumise, affiche un lien vers Mairie concernée -->
+<!-- Quand recherche soumise, affiche liens vers Mairie concernée -->
 <br>
-	<div class="row">
-		<?php if(isset($donnees)) {
-			if(is_array($donnees)) {
-				foreach ($donnees as $key => $value) { ?>
-					<p>
-						<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>"><?php echo $value['code_postal'].', '.$value['nom']; ?></a>
-					</p>
+<div class="row">
+	<?php if(isset($donnees)) {
+		if(is_array($donnees)) {
+			foreach ($donnees as $key => $value) { ?>
+				<p>
+					<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>"><?php echo $value['code_postal'].', '.$value['nom']; ?></a>
+				</p>
 
-		<?php }
-			} else {
-				echo '<span class="errorForm">' . $donnees . '</span>';
-			}
-		} ?>
-	</div>
+	<?php }
+		} else {
+			echo '<span class="errorForm">' . $donnees . '</span>';
+		}
+	} ?>
+</div>
 
 <?php
 // Quand lien cliqué, affiche les infos de la mairie
@@ -75,10 +76,13 @@
 <!-- Lien vers contact d'inscription de mairie -->
 <br>
 <div class="row">
-	<p>
-		Vous souhaitez inscrire votre Mairie et pouvoir remplir vos informations ?
-		<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a>
-	</p>
+	<blockquote class="quoteMairie blockquote-reverse">
+		<p><i>
+			Vous souhaitez inscrire votre Mairie et pouvoir remplir vos informations ?
+			<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a></i>
+		</p>
+		<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
+	</blockquote>
 </div>
 <?php $this->stop('main_content') ?>
 
