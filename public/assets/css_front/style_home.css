@@ -11,4 +11,34 @@
 /*////////////////////////////////////////*/
 .presentSite {
   margin: 2em auto;
+  border: 2px solid #6aa33b;
+  border-radius: 5px;
+  background-color: rgba(106, 163, 59, 0.5);
+  padding: 20px;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+/*////////////////////////////////////////*/
+/*STYLE CAROUSEL SUR HOME*/
+/*////////////////////////////////////////*/
+.carousel {
+  box-shadow: 5px 5px 5px #888888;
+}
+
+/*////////////////////////////////////////*/
+/*STYLE CGU via HOME*/
+/*////////////////////////////////////////*/
+.cgu {
+  border: 2px solid #6aa33b;
+  border-radius: 5px;
+  background-color: rgba(106, 163, 59, 0.5);
+  padding: 20px;
+  box-shadow: 5px 5px 5px #888888;
+}
+.cgu h1 {
+  font-weight: bolder;
+  margin-bottom: 1em;
+}
+.cgu h2 {
+  font-style: italic;
 }

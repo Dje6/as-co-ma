@@ -5,11 +5,12 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_home.css'); ?>">
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
   <div class="row">
-    <blockquote>
+    <blockquote class="cgu">
       <h1 class="text-center">Présentation</h1>
 
       <p class="text-justify">
@@ -84,7 +85,7 @@
 
         Pour toute question relative aux présentes conditions d’utilisation du site, vous pouvez nous contacter via le formulaire présent sur le site.
       </p>
-      <footer>Les Administrateurs, <cite title="Source Title">AS-CO-MA</cite></footer>
+      <footer><strong>Les Administrateurs</strong>, <cite title="Source Title">AS-CO-MA</cite></footer>
     </blockquote>
   </div>
 <?php $this->stop('main_content') ?>
