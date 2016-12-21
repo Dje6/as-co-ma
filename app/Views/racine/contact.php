@@ -75,7 +75,7 @@ if(!isset($confirmation)){
 
 		<input type="hidden" name="capcha" value="">
 
-    <button type="submit" class="btn btn-success btn-md col-xs-offset-4 col-md-offset-5" name="submit">Envoyer mon message</button>
+    <button type="submit" class="btn btn-success btn-md col-xs-offset-4 col-md-offset-5" name="submit">Envoyer</button>
   </form>
 	<br><br>
 	<!-- End form contact -->

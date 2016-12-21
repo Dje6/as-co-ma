@@ -30,13 +30,13 @@
 
 <!-- Quand recherche soumise, affiche liens vers Mairie concernée -->
 <br>
-<div class="row">
+<div class="row text-center">
 	<?php if(isset($donnees)) {
 		if(is_array($donnees)) {
 			foreach ($donnees as $key => $value) { ?>
-				<p>
-					<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>"><?php echo $value['code_postal'].', '.$value['nom']; ?></a>
-				</p>
+					<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>">
+						<button class="btn btn-success btn-sm"><?php echo $value['code_postal'].', '.$value['nom']; ?></button>
+					</a>
 
 	<?php }
 		} else {

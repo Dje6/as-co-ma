@@ -30,16 +30,14 @@
 
 	<!-- Quand recherche soumise, affiche un lien vers Mairie concernée -->
 <br>
-<div class="row">
+<div class="row text-center">
 <?php if(isset($donnees)) {
 		if(is_array($donnees)) {
 			foreach ($donnees as $key => $value) { ?>
 				<a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]) ; ?>">
-					<article>
-						<?php echo $value['nom'].', enregistrée en '.$value['mnom'].', '.$value['mCP']; ?>
-					</article>
-				</a> <?php
-			}
+					<button class="btn btn-success btn-sm"><?php echo '"'.$value['nom'].'" - enregistrée en '.$value['mnom'].', '.$value['mCP']; ?></button>
+				</a>
+<?php }
 		} else {
 			echo '<span class="errorForm">' . $donnees . '</span>';
 		}
@@ -47,9 +45,10 @@
 </div>
 
 <?php } else {
-	//affichage des infos de l'association cliquée
+	//affichage des contenus de l'association cliquée
 	if(isset($donnees)) {
 		if(is_array($donnees)) { ?>
+		<div class="row">
 
 			<h2>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></h2>
 
@@ -65,15 +64,17 @@
 		} else {
 			echo $donnees;
 		}
-	}
-} ?>
+	} ?>
+	</div>
+	<!-- fin du display des contenus de l'association -->
+<?php } ?>
 
 <!-- Lien vers contact d'inscription d'assoc -->
 <br>
 <div class="row">
 	<blockquote class="quoteAssoc blockquote-reverse">
 		<p>
-			Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter la Mairie de la commune recherchée.
+			Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter la Mairie dont elle dépend.
 		</p>
 		<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 	</blockquote>
