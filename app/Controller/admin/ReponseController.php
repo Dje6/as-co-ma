@@ -13,80 +13,7 @@ use \PHPMailer;
  */
 class ReponseController extends CustomController
 {
-  public function accepte($id,$orga,$slug)
-  {
-    if(isset($_SESSION['user']))
-    {
-      if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
-        $contactModel = new ContactModel;
-        $leMessage = $contactModel->FindMessageById($id);
-        $UserModel = new UserModel;
-        debug($leMessage);
-
-        if(is_numeric($leMessage['emeteur_mailOrId'])){
-          //si c'est un id , on repon en interne
-          if($leMessage['emeteur_orga'] == 'assoc'){
-                            //(le type de destinataire,le type demeteur, lidentifian du destinataire , lidentifian de lemeteur , les donnee)
-            $this->sendMessage($leMessage['emeteur_orga'],$leMessage['destinatire_orga'],$idDestinaire,$idEmeteur,$r_POST);
-
-          }elseif($leMessage['emeteur_orga'] == 'mairie'){
-            sendMessage($orgaDestinataire,$orgaEmeteur,$slugEmeteur,$slugRecepteur,$r_POST);
-
-          }elseif($leMessage['emeteur_orga'] == 'users'){
-            sendMessage($orgaDestinataire,$orgaEmeteur,$slugEmeteur,$slugRecepteur,$r_POST);
-
-          }
-        }else {
-          //sinon on verifie quan mm en base de donnee si le mail peu exister
-          if($leMessage['emeteur_orga'] == 'public'){
-            if($UserModel->emailExists($leMessage['emeteur_mailOrId'])){
-              $idUser = $UserModel->FindElementByElement('id','mail',$leMessage['emeteur_mailOrId']);
-
-              //si le mail fait reference a un utilisateur on repond en interne
-              //et on ajoute en tant que user
-
-            }else {
-              // on envoi un mail pour proposer de sinscrire sur le site
-              // il semblerai que votre email ne soi pas connu sur notre site ,
-              //si vous etes deja enregistrer sur le site , merci de nou refaire une demande
-              //avec le mail enregistrer , sinon cliquer sur ce lien pour creer un compte
-              //et devenir un de nos membre des la fin de votre inscritpion
-            }
-          }
-        }
-
-      }
-    }else{
-      $this->redirectToRoute('racine_form');
-    }
-  }
-  public function plusInfo($id,$orga,$slug)
-  {
-    if(isset($_SESSION['user']))
-    {
-      if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
-        $contactModel = new ContactModel;
-        $leMessage = $contactModel->FindMessageById($id);
-
-
-      }
-    }else{
-      $this->redirectToRoute('racine_form');
-    }
-  }
-  public function refuse($id,$orga,$slug)
-  {
-    if(isset($_SESSION['user']))
-    {
-      if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
-        $contactModel = new ContactModel;
-        $leMessage = $contactModel->FindMessageById($id);
-
-      }
-    }else{
-      $this->redirectToRoute('racine_form');
-    }
-  }
+  //permet de repondre a un message en tant qu'organisme
   public function Repondre($id,$orga,$slug)
   {
     if(isset($_SESSION['user']))
@@ -125,6 +52,8 @@ class ReponseController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+
+  //permet de repondre en tant que user
   public function RepondreUser($id)
   {
     if(isset($_SESSION['user'])){
@@ -149,6 +78,8 @@ class ReponseController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+
+
 //gere l'envoi des message interne ET des mail externe , detecte automatiquement comment lenvoi doit etre fait
 //si on envoi un email externe , on enregistre une copie de l'envoi en base de donnee
   public function sendMail($orgaDestinataire,$orgaEmeteur,$idDestinaire,$idEmeteur,$maildestinataire,$leMessage,$r_POST)
@@ -183,6 +114,7 @@ class ReponseController extends CustomController
         $r_POST['status'] = 'non-lu';
         //si c'est un utilisateur enregister on repon en interne
         $contactModel = new ContactModel;
+        debug($r_POST);
         if(is_numeric($r_POST['destinataire_mailOrId'])){
           if($contactModel->insert($r_POST,false)){
             $this->show('admin/EditReponse',['orga' => $orgaEmeteur ,'slug' => $r_POST['emeteur_pseudo']
@@ -194,6 +126,7 @@ class ReponseController extends CustomController
           'leMessage' => $leMessage]);
           }
         }else{ //sinon on envoi une copi interne + le mail externe
+          $r_POST['destinataire_status'] = 'del';
           $contactModel->insert($r_POST,false);
           $app = getApp();
           $urlBase = $app->getConfig('urlBase');
@@ -208,7 +141,7 @@ class ReponseController extends CustomController
 
           $messagedumail = 'Bonjour ,<br/>';
           $messagedumail .= $r_POST['contenu'].'<br/>';
-          $messagedumail .= 'N\'esitez pas a venir vous inscrire sur notre site! c\'est gratuit!';                                   
+          $messagedumail .= 'N\'esitez pas a venir vous inscrire sur notre site! c\'est gratuit!';
 
           $mail->Subject = $r_POST['objet'];
           $mail->Body    = $messagedumail ;
@@ -227,6 +160,8 @@ class ReponseController extends CustomController
       }
     }
   }
+
+
   //recupere ladresse mail du destinataire parmi les 3 table , users , mairie , assoc
   public function FindMailDestinataire($destinataire_orga,$destinataire_id)
   {

@@ -21,14 +21,35 @@ class MessageController extends CustomController
       $Pagination = new Pagination('contact');
       //on precise la table a exploiter
       $calcule = $Pagination->calcule_page('destinataire_mailOrId = \''.$_SESSION['user']['id'].'\'
-      AND destinataire_orga = \'users\' ',$limit,$page);
+      AND destinataire_orga = \'users\' AND destinataire_status IS NULL ',$limit,$page);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
       $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_message');
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
       $donnees = $this->messagesOrga($_SESSION['user']['id'],'users',$limit,$calcule['offset']);
-      $this->show('admin/message',['donnees' => $donnees, 'pagination' => $affichage_pagination,'limit' => $limit]);
+      $this->show('admin/message',['donnees' => $donnees, 'pagination' => $affichage_pagination,'limit' => $limit,'page' => $page]);
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+  public function homeSend($page)
+  {
+    if(isset($_SESSION['user']))
+    {
+      $limit = 5;
+      //limit d'affichage par page
+      $Pagination = new Pagination('contact');
+      //on precise la table a exploiter
+      $calcule = $Pagination->calcule_page('emeteur_mailOrId = \''.$_SESSION['user']['id'].'\'
+      AND emeteur_orga = \'users\' AND emeteur_status IS NULL',$limit,$page);
+      //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+      //ce qui calcule le nombre de page total et le offset
+      $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_message_send');
+      //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+
+      $donnees = $this->sendMessagesOrga($_SESSION['user']['id'],'users',$limit,$calcule['offset']);
+      $this->show('admin/message',['donnees' => $donnees, 'pagination' => $affichage_pagination,'limit' => $limit,'page' => $page]);
     }else{
       $this->redirectToRoute('racine_form');
     }
@@ -51,7 +72,7 @@ class MessageController extends CustomController
         $Pagination = new Pagination('contact');
         //on precise la table a exploiter
         $calcule = $Pagination->calcule_page('destinataire_mailOrId = \''.$maildestinataire.'\' AND
-         destinataire_orga = \''.$orga.'\'',$limit,$page);
+         destinataire_orga = \''.$orga.'\' AND destinataire_status IS NULL',$limit,$page);
 
         //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
         //ce qui calcule le nombre de page total et le offset
@@ -61,7 +82,7 @@ class MessageController extends CustomController
 
         $donnees = $this->messagesOrga($maildestinataire,$orga,$limit,$calcule['offset']);
         $this->show('admin/message',['slug' => $slug,'donnees' => $donnees, 'pagination' => $affichage_pagination,
-        'limit' => $limit,'orga' => $orga]);
+        'limit' => $limit,'orga' => $orga,'page' => $page]);
       }
     }else{
       $this->redirectToRoute('racine_form');
@@ -84,7 +105,7 @@ class MessageController extends CustomController
         $Pagination = new Pagination('contact');
         //on precise la table a exploiter
         $calcule = $Pagination->calcule_page('emeteur_mailOrId = \''.$mailemeteur.'\' AND
-         emeteur_orga = \''.$orga.'\'',$limit,$page);
+         emeteur_orga = \''.$orga.'\' AND emeteur_status IS NULL',$limit,$page);
 
         //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
         //ce qui calcule le nombre de page total et le offset
@@ -94,7 +115,7 @@ class MessageController extends CustomController
 
         $donnees = $this->sendMessagesOrga($mailemeteur,$orga,$limit,$calcule['offset']);
         $this->show('admin/message',['slug' => $slug,'donnees' => $donnees, 'pagination' => $affichage_pagination,
-        'limit' => $limit,'orga' => $orga]);
+        'limit' => $limit,'orga' => $orga,'page' => $page]);
       }
     }else{
       $this->redirectToRoute('racine_form');
@@ -112,4 +133,5 @@ class MessageController extends CustomController
       $MessageModel = new ContactModel;
       return $MessageModel->searchSendMessagesOrga($id,$orga,true,$limit,$offset);
   }
+
 }

@@ -66,6 +66,18 @@ class CustomController extends Controller
 
     $this->showForbidden();
   }
+  public function showErrors($error)
+  {
+    header('HTTP/1.0 409 Conflict');
+
+    $file = self::PATH_VIEWS.'/w_errors/409.php';
+    if(file_exists($file)){
+      $this->show('w_errors/409',['error' => $error]);
+    }
+    else {
+      die('409');
+    }
+  }
 
   //surcharge !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //surcharge !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

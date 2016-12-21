@@ -67,7 +67,11 @@ class ContactModel extends customModel
         $donnee[$key]['destinataire_pseudo'] = $result['pseudo'];
       }else {
         $donnee[$key]['destinataire_mail'] = $value['destinataire_mailOrId'];
-        $donnee[$key]['destinataire_pseudo'] = 'non-inscrit';
+        if($value['destinataire_mailOrId'] == 'webmaster@as-co-ma.fr'){
+            $donnee[$key]['destinataire_pseudo'] = 'Webmaster';
+        }else {
+          $donnee[$key]['destinataire_pseudo'] = 'non-inscrit';
+        }
       }
     }
 

@@ -58,7 +58,7 @@ if(!isset($confirmation)){
 
 	      } elseif($orga == 'assoc'){ ?>
 
-	          <option value="inscript_menbre">Devenir membre de l'association</option>
+	          <option value="inscript_membre">Devenir membre de l'association</option>
 	          <option value="probleme_assoc">Signaler un problème sur la page de l'association</option>
 	          <option value="info_assoc">Obtenir des informations sur l'association</option><?php
 	        }

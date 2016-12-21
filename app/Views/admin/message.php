@@ -11,74 +11,118 @@ $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $or
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_head') ?>
 
-<?php $this->start('main_content') ?>
+<?php $this->start('main_content');
+
+if(isset($orga) && ($orga == 'mairie' || $orga == 'assoc')){
+  $urlSend = $this->url('admin_message_send_'.$orga,['slug' => $slug,'orga' => $orga,'page' => 1]);
+  $urlReceive = $this->url('admin_message_'.$orga,['slug' => $slug,'orga' => $orga,'page' => 1]);
+}else{
+  $urlSend = $this->url('admin_message_send',['page' => 1]);
+  $urlReceive = $this->url('admin_message',['page' => 1]);
+}?>
+
+
+<!-- l'affichage commence ici ,avec les deux bouton pour les message recu ou envoyer -->
 	<h1 class="titreback">Messagerie</h1><br/>
 
-  <a href="<?php echo $this->url('admin_message_send_'.$orga,['slug' => $slug,'orga' => 'mairie','page' => 1]) ; ?>">
-    <button>Message Envoye</button></a>
-  <a href="<?php echo $this->url('admin_message_'.$orga,['slug' => $slug,'orga' => 'mairie','page' => 1]) ; ?>">
-    <button>Message Recu</button></a>
-<?php
+  <a href="<?php echo $urlSend ; ?>"><button>Message Envoye</button></a>
+  <a href="<?php echo  $urlReceive; ?>"><button>Message Recu</button></a> <?php
 
+  // ensuite on affiche les donnee retourner par sql
 
 if(isset($donnees)){
 	if(!empty($donnees)){
 		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message quil contient
 
-			// if(!empty($limit)){ //affiche le nombre delement par page
-			// 	echo 'Message par page : '.$limit.'<br/><br/>' ;
-			// }
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
+        //si tu a besoin de diminuer le nombre d'affichage c'est dan le MessageController
+        //les ligne avec '$limit', si tu es sur la messagerie :
+        //user : methode home (message recu)
+        //              homeSend (message envoyer)
+        //orga :        orga(message recu)
+        //              orgaSend (message envoyer)
+        //tout le systeme de message fonctionne ormi les bouton accepter refuser et plus info , lu suppr et rep c ok
+        //donc si besoin tu peut ecrire des message pour remplir les messagerie
+        // pence a faire la mise a jour de la table contact si tu l'avais pas fait
 				echo $pagination;
-			}
-      echo '<div class="container affichageMairie">';
-			foreach ($donnees as $key => $value) {
+			} ?>
 
-        if(isset($value['destinataire_pseudo'])){
-          echo 'Destinataire : '.$value['destinataire_pseudo'].'<br/>';
-          echo 'Email : '.$value['destinataire_mail'].'<br/>';
-        }else {
-          echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
-          echo 'Email : '.$value['emeteur_mail'].'<br/>';
-        }
-				echo 'Objet : '.$value['objet'].'<br/>';
-				echo 'Message : '.$value['contenu'].'<br/>';
-				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
-        if($value['status'] == 'lu'){
-          echo 'Lu le : '.$value['date_lecture'].'<br/>';
-        }elseif ($value['status'] != 'lu' && $value['status'] != 'non-lu') {
-          echo 'Repondu le : '.$value['date_lecture'].'<br/>';
-        }
+      <div class="container affichageMairie"><?php
+  			foreach ($donnees as $key => $value) {
 
-
-        preg_match_all('/inscript/', $value['objet'], $matches); // on detect si il s'agit dune demande d'inscription
-        if(!empty($matches[0])){ //si oui on affiche les bouton de decision ?>
-          <a href="<?php echo $this->url('admin_accepte',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-            <button>Accepter</button></a>
-          <a href="<?php echo $this->url('admin_plus_info',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-            <button>Manque d'information</button></a>
-          <a href="<?php echo $this->url('admin_refuse',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-            <button>Refuser</button></a><?php
-        }else{ //sinon j'affiche le bouton pour repondre, qui redirige vers un champ de saisi texte
-          if($orga == 'user'){?>
-            <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">
-            <button>Repondre</button></a><?php
+          if(isset($value['destinataire_pseudo'])){
+          // si on est dans les message envoyer il affiche ca
+            echo 'Destinataire : '.$value['destinataire_pseudo'].'<br/>';
+            echo 'Email : '.$value['destinataire_mail'].'<br/>';
           }else {
-            if(!isset($value['destinataire_pseudo'])){?>
-              <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
-              <button>Rep</button></a><?php
-            }
-            if($value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){ ?>
-              <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
-              <button>Lu</button></a><?php
-            } ?>
-            <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
-            <button>Suppr</button></a><?php
+          //sinon c'est ca
+            echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
+            echo 'Email : '.$value['emeteur_mail'].'<br/>';
           }
-        }
-				echo '<br/><br/>';
-			}
-        echo '</div">';
+  				echo 'Objet : '.$value['objet'].'<br/>';
+  				echo 'Message : '.$value['contenu'].'<br/>';
+  				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
+          if($value['status'] == 'lu'){
+          //si le statu est a lu , on affiche la date de lecture
+            echo 'Lu le : '.$value['date_lecture'].'<br/>';
+          }elseif ($value['status'] != 'lu' && $value['status'] != 'non-lu') {
+          //si une reponse a ete faite a ce message on indique la date de reponse
+          //qui es la meme date que pour la lecture mais mise a jour
+            echo 'Repondu le : '.$value['date_lecture'].'<br/>';
+            echo 'Status : '.$value['status'].'<br/>';
+          }
+
+          preg_match_all('/inscript/', $value['objet'], $matches);
+          // on detect si il s'agit dune demande d'inscription
+
+          if(!empty($matches[0]) && $value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){
+          //si oui on affiche les bouton de decision ?>
+
+            <a href="<?php echo $this->url('admin_accepte',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+              <button>Accepter</button>
+            </a>
+            <a href="<?php echo $this->url('admin_plus_info',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+              <button>Manque d'information</button>
+            </a>
+            <a href="<?php echo $this->url('admin_refuse',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+              <button>Refuser</button>
+            </a><?php
+
+          }else{
+          //sinon j'affiche les autre bouton
+            if($orga == 'user'){
+            //si on es un user , on ne peu que repondre , declarer Lu ou le supprimer
+              if(!isset($value['destinataire_pseudo'])){ ?>
+                <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">
+                  <button>Rep</button>
+                </a><?php
+              }
+            }else {
+            //sinon le bouton repondre s'adapte au fait que l'on es un organisme mais reste afficher identique
+              if(!isset($value['destinataire_pseudo']) && ($value['status'] == 'non-lu' || $value['status'] == 'lu')){
+                // le bouton repondre quan on es un organisme ne safiche que sous plusieur condition ?>
+                <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
+                  <button>Rep</button>
+                </a><?php
+              }
+            }
+            if($value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){
+            //le bouton pour declarer le message comme lu ne safiche QUE si on es mode boite de reception et si le message
+            // n'a pas encor ete lu ?>
+              <a href="<?php echo $this->url('admin_message_asSeen',['id'=> $value['id'],'orga' => $orga,'slug' => $slug,'page' => $page]) ; ?>">
+                <button>Lu</button>
+              </a><?php
+            }
+            //le bouton supprimer lui saffiche tout le temp dés lors que ce n'est pas une demande dinscritpion ou
+            //Si s'en est une ,il ne saffiche qui si la demande a ete traiter ?>
+            <a href="<?php echo $this->url('admin_message_delete',['id'=> $value['id'],'orga' => $orga,'slug' => $slug,'page' =>$page]) ; ?>">
+              <button>Suppr</button>
+            </a><?php
+          }?>
+          <br/>
+          <br/><?php
+  			}//fin du foreach ?>
+      </div><?php
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
 				echo $pagination;
 			}
