@@ -26,7 +26,7 @@ if(isset($donnee)){
                 <div class="panel-body">
 
                   <div class="form-group">
-                    <div class="input-group"
+                    <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
                       <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
                       <input type="text" name="nom" value="<?php echo $donnee['nom']?>"><br>

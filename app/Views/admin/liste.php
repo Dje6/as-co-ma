@@ -45,7 +45,7 @@ if($orga == 'mairie'){
 
           <td><a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info bouge">Consulter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
         </tr>
         <?php

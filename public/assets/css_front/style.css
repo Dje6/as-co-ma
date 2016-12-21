@@ -57,7 +57,7 @@ hr {
 	list-style: none;
 	display: inline-block;
 	/*margin: auto 5px;*/
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 
 /*////////////////////////////////////////*/
@@ -66,6 +66,9 @@ hr {
 .main_content {
 	min-height: 520px;
 	margin-top: 3em;
+}
+blockquote footer {
+	color: black;
 }
 
 /*////////////////////////////////////////*/
