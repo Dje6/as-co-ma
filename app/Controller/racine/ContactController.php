@@ -49,6 +49,7 @@ class ContactController extends CustomController
       }else{
         $r_POST['emeteur_orga'] = 'public';
         $r_POST['emeteur_pseudo'] = 'non-inscrit';
+        $r_POST['emeteur_status'] = 'del';
       }
       $r_POST['destinataire_orga'] = $orga;
       if($orga == 'assoc'){
@@ -58,12 +59,13 @@ class ContactController extends CustomController
         $MairieModel = new MairieModel;
         $r_POST['destinataire_mailOrId'] = $MairieModel->FindElementByElement('id','slug',$slug);
       }elseif($orga == 'All'){
-        $r_POST['destinataire_mailOrId'] = 'webmaster@as-co-mo.fr';
+        $r_POST['destinataire_mailOrId'] = 'webmaster@as-co-ma.fr';
         $r_POST['destinataire_orga'] = 'webmaster';
       }
 
       $r_POST['date_envoi'] = date('Y-m-d H:i:s');
       $r_POST['status'] = 'non-lu';
+
         $contactModel = new ContactModel;
 
       if($contactModel->insert($r_POST,false)){
