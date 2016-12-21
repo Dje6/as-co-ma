@@ -7,9 +7,7 @@
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
-<h1 class="titreback">Administration</h1><br/>
-
-
+<h1 class="titreback">Administration</h1>
 
 
 <?php
@@ -19,16 +17,16 @@ if(isset($donnee)){
   if(is_array($donnee)){
     if(isset($edition) && !isset($acces)){ ?>
 
-      <div class="container fichecontact">
-        <div class="row">
-          <div class="col-sm-6 col-centered ">
+      <div class="container-fluid fichecontact ">
+        <div class="row ">
+          <div class="col-sm-8 col-sm-offset-2 col-centered ">
             <div class="panel panel-default">
 
               <form method="POST" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
                 <div class="panel-body">
 
                   <div class="form-group">
-                    <div class="input-group"
+                    <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
                       <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
                       <input type="text" name="nom" value="<?php echo $donnee['nom']?>"><br>
@@ -105,14 +103,14 @@ if(isset($donnee)){
       }
       if(!isset($acces)){
 
-        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button class="centerBut">Modifier</button></a>';
+        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button class="btn btn-primary centerBut">Modifier</button></a>';
 
 
-        echo '<div class="container ">
-                <div class="row">
-
-                </div>
-              </div>';
+        // echo '<div class="container ">
+        //         <div class="row">
+        //
+        //         </div>
+        //       </div>';
 
 
      echo '</div">';
@@ -130,7 +128,7 @@ if(isset($donnee)){
 
 
 
-<a href="#" class="btn btn-info return">Retour Menu</a>
+<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 

@@ -15,4 +15,16 @@ class RolesModel extends CustomModel
 		$sth->bindValue(':id', $id);
 		return $sth->execute();
 	}
+
+  public function FindRole($id_assoc,$id_user)
+  {
+    $sql = "SELECT role,id FROM $this->table WHERE id_assoc = :id_assoc AND id_user = :id_user";
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindvalue(':id_assoc',$id_assoc);
+    $sth->bindvalue(':id_user',$id_user);
+    $sth->execute();
+    $result = $sth->fetch();
+    return $result;
+
+  }
 }

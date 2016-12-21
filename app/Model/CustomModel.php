@@ -54,22 +54,6 @@ class CustomModel extends Model
       }
     }
   }
-  public function findIDBySlug($slug)
-  {
-
-    $sql = 'SELECT id FROM '.$this->table.' WHERE slug = :slug ';
-    $sth = $this->dbh->prepare($sql);
-    $sth->bindValue(':slug', $slug);
-    $sth->execute();
-    $info = $sth->fetchColumn();
-
-    if(!empty($info)){
-      return $info;
-    }else {
-      return 'Aucune '.$this->table.' correspondante ';
-    }
-  }
-
 
   public function emailExistsOrga($email)
   {
@@ -85,37 +69,4 @@ class CustomModel extends Model
      }
    }
   }
-
-  public function recupMailBySlug($slugEmeteur)
-  {
-    $sql = 'SELECT mail FROM '.$this->table.' WHERE slug = :slugEmeteur ';
-    $sth = $this->dbh->prepare($sql);
-    $sth->bindValue(':slugEmeteur', $slugEmeteur);
-    if($sth->execute()){
-      $foundUser = $sth->fetchColumn();
-      if(!empty($foundUser)){
-          return $foundUser ;
-      }else{
-        return false;
-      }
-    }
-  }
-
-  public function FinIdByMail($mail)
-  {
-    $sql = 'SELECT id FROM '.$this->table.' WHERE mail = :mail ';
-    $sth = $this->dbh->prepare($sql);
-    $sth->bindValue(':mail', $mail);
-    if($sth->execute()){
-      $foundUser = $sth->fetchColumn();
-      if(!empty($foundUser)){
-          return $foundUser ;
-      }else{
-        return false;
-      }
-    }
-  }
-
-
-
 }

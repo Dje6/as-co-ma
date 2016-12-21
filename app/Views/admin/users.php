@@ -41,40 +41,40 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 
 
                               <?php if(isset($error['nom']) && !empty($error['nom'])){ echo '<tr><td>Erreur </td><td>'.$error['nom'].'</td></tr>'; } ?>
-                              <tr><td><label for="nom">Nom</label></td>
+                              <tr><td><label class ="couleur_bleue"for="nom">Nom</label></td>
                               <td><input type="text" name="nom" value="<?php echo $donnee['nom'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['prenom'])&& !empty($error['prenom'])){ echo '<tr><td>Erreur </td><td>'.$error['prenom'].'</td></tr>'; } ?>
-                              <tr><td><label for="prenom">Prenom</label></td>
+                              <tr><td><label class ="couleur_bleue" for="prenom">Prenom</label></td>
                               <td><input type="text" name="prenom" value="<?php echo $donnee['prenom'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['mail'])&& !empty($error['mail'])){ echo '<tr><td>Erreur </td><td>'.$error['mail'].'</td></tr>'; } ?>
-                              <tr><td><label for="mail">mail</label></td>
+                              <tr><td><label class ="couleur_bleue" for="mail">mail</label></td>
                               <td><input type="text" name="mail" value="<?php echo $donnee['mail'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['adresse'])&& !empty($error['adresse'])){ echo '<tr><td>Erreur </td><td>'.$error['adresse'].'</td></tr>'; } ?>
-                              <tr><td><label for="adresse">adresse</label></td>
+                              <tr><td><label class ="couleur_bleue" for="adresse">adresse</label></td>
                               <td><input type="text" name="adresse" value="<?php echo $donnee['adresse'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['code_postal'])&& !empty($error['code_postal'])){ echo '<tr><td>Erreur </td><td>'.$error['code_postal'].'</td></tr>'; } ?>
-                              <tr><td><label for="code_postal">code postal</label></td>
+                              <tr><td><label class ="couleur_bleue" for="code_postal">code postal</label></td>
                               <td><input type="text" name="code_postal" value="<?php echo $donnee['code_postal'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['ville'])&& !empty($error['ville'])){ echo '<tr><td>Erreur </td><td>'.$error['ville'].'</td></tr>'; } ?>
-                              <tr><td><label for="ville">ville</label></td>
+                              <tr><td><label class ="couleur_bleue" for="ville">ville</label></td>
                               <td><input type="text" name="ville" value="<?php echo $donnee['ville'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['mobile'])&& !empty($error['mobile'])){ echo '<tr><td>Erreur </td><td>'.$error['mobile'].'</td></tr>'; } ?>
-                              <tr><td><label for="mobile">mobile</label></td>
+                              <tr><td><label class ="couleur_bleue" for="mobile">mobile</label></td>
                               <td><input type="text" name="mobile" value="<?php echo $donnee['mobile'] ; ?>"><td/></tr>
 
                               <?php if(isset($error['fix'])&& !empty($error['fix'])){ echo '<tr><td>Erreur </td><td>'.$error['fix'].'</td></tr>'; } ?>
-                              <tr><td><label for="fix">fix</label></td>
+                              <tr><td><label class ="couleur_bleue" for="fix">fix</label></td>
                               <td><input type="text" name="fix" value="<?php echo $donnee['fix'] ; ?>"><td/></tr>
 
                               </tbody>
                             </table>
-                              <input type="submit" name="submit" value="Enregistrer">
+                              <input type="submit" name="submit" class="btn btn-success" value="Enregistrer">
                         </form>
                     </div> <?php
                           }else{ ?>
@@ -82,21 +82,22 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                             <table class="table table-user-information">
                               <tbody>
 
-                            <tr><td>Nom:</td><td><?php echo $donnee['nom'] ; ?></td></tr>
-                            <tr><td>Prénom</td><td><?php echo $donnee['prenom'] ; ?></td></tr>
-                            <tr><td>Email</td><td><a href="mailto:<?php echo $donnee['mail'] ; ?>"><?php echo $donnee['mail'] ; ?></a></td></tr>
-                            <tr><td>Adresse</td><td><?php echo $donnee['adresse'] ; ?></td></tr>
-                            <tr><td>Code postal</td><td><?php echo $donnee['code_postal'] ; ?></td></tr>
-                            <tr><td>Ville</td><td><?php echo $donnee['ville'] ; ?></td></tr> <?php
-                            echo (empty($donnee['fix']))? '<tr><td>Téléphone </td><td>Non renseigné</td></tr>' : '<tr><td>Téléphone </td><td> '.$donnee['fix'].'</td></tr>';
-                            echo (empty($donnee['mobile']))? '<tr><td>Portable </td><td>Non renseigné</td></tr>' : '<tr><td>Portable </td><td> '.$donnee['mobile'].'</td></tr>';
+                            <tr><td class ="couleur_bleue">Nom:</td><td><?php echo $donnee['nom'] ; ?></td></tr>
+                            <tr><td class ="couleur_bleue">Prénom</td><td><?php echo $donnee['prenom'] ; ?></td></tr>
+                            <tr><td class ="couleur_bleue">Email</td><td><a href="mailto:<?php echo $donnee['mail'] ; ?>"><?php echo $donnee['mail'] ; ?></a></td></tr>
+                            <tr><td class ="couleur_bleue">Adresse</td><td><?php echo $donnee['adresse'] ; ?></td></tr>
+                            <tr><td class ="couleur_bleue">Code postal</td><td><?php echo $donnee['code_postal'] ; ?></td></tr>
+                            <tr><td class ="couleur_bleue">Ville</td><td><?php echo $donnee['ville'] ; ?></td></tr> <?php
+                            echo (empty($donnee['fix']))? '<tr><td class ="couleur_bleue">Téléphone </td><td>Non renseigné</td></tr>' : '<tr><td>Téléphone </td><td> '.$donnee['fix'].'</td></tr>';
+                            echo (empty($donnee['mobile']))? '<tr><td class ="couleur_bleue">Portable </td><td>Non renseigné</td></tr>' : '<tr><td>Portable </td><td> '.$donnee['mobile'].'</td></tr>';
 
                         ?></tbody>
                         </table>
                       </div><?php
                             if(!isset($acces)){
-                              echo '<span class="centrer"><a href="'.$this->url('admin_monCompte_edition').'"><button >EDITER</button></a>';
-                              echo '<a href="'.$this->url('admin_monCompte_edition').'"><button >SUPPRIMER</button></a></span>';
+                              echo '<span class="centrer"><a href="'.$this->url('admin_monCompte_edition').'"><button class="btn btn-primary">EDITER</button></a>';
+                              echo '<a href="'.$this->url('admin_monCompte_edition').'"><button class="btn btn-danger">SUPPRIMER</button></a></span><br/>';
+                              // echo'<a href="#" class="btn btn-info return">Retour en haut</a>';
                             }
                           } ?>
                   </div>
@@ -113,7 +114,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 }
 
 ?>
-
+<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('main_script') ?>

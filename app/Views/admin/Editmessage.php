@@ -1,19 +1,19 @@
 <?php
 if(is_numeric($slugRecepteur)){ $id = $slugRecepteur ;}
 if($w_current_route == 'admin_assoc_contact_mairie' || ($orga == 'assoc' && !isset($id))){
-  $quiContacter = '<h3 class="titreback">Contacter la '.$slugRecepteur.'</h3>';
+  $quiContacter = '<h3 class="titrecontact">Contacter la '.$slugRecepteur.'</h3>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
 }elseif($w_current_route == 'admin_mairie_contact_assoc' || ($orga == 'mairie' && $slugRecepteur != 'Webmaster')) {
-  $quiContacter = '<h3 class="titreback">Contacter l\'association '.$slugRecepteur.'</h3>';
+  $quiContacter = '<h3 class="titrecontact">Contacter l\'association '.$slugRecepteur.'</h3>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
 }elseif($w_current_route == 'admin_assoc_contact_membre' || (isset($id)) ) {
-  $quiContacter = '<h3 class="titreback">Contacter le menbre</h3>';
+  $quiContacter = '<h3 class="titrecontact">Contacter le membre</h3>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'id' => $id]);
 
 }elseif($w_current_route == 'admin_mairie_contact_Webmaster' || $orga == 'site' || $slugRecepteur == 'Webmaster') {
-  $quiContacter = '<h3 class="titreback">Contacter le Webmaster</h3>';
+  $quiContacter = '<h3 class="titrecontact">Contacter le Webmaster</h3>';
   $orga = 'mairie';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 }
@@ -40,8 +40,8 @@ if(!isset($confirmation)){ ?>
 
 <div class="container fichecontact">
             <div class="row">
-                <div class="col-sm-6 col-centered ">
-                    <div class="panel panel-default">
+                <div class="col-sm-8 col-sm-offset-2 col-centered ">
+                    <div class="panel panel-default ">
                     <form class="" action="<?php echo $urlDePost; ?>" method="post">
                     <div class="panel-body">
 
@@ -89,7 +89,7 @@ if(!isset($confirmation)){ ?>
 }else {
 	echo $confirmation;
 } ?>
-
+<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 

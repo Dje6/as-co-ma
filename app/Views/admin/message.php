@@ -27,25 +27,31 @@ if(isset($donnees)){
       echo '<div class="container affichageMairie">';
 			foreach ($donnees as $key => $value) {
 
-
-				echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
+        echo '<br/>';
+				echo 'Envoyé par : '.$value['emeteur_pseudo'].'<br/><br/>';
 				echo 'Email : '.$value['emeteur_mail'].'<br/>';
+        echo 'Envoyé le : '.$value['date_envoi'].'<br/><br/>';
 				echo 'Objet : '.$value['objet'].'<br/>';
-				echo 'Message : '.$value['contenu'].'<br/>';
-				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
+				echo 'Message : '.$value['contenu'].'<br/><br/>';
+
 
 
         preg_match_all('/inscript/', $value['objet'], $matches); // on detect si il s'agit dune demande d'inscription
         if(!empty($matches[0])){ //si oui on affiche les bouton de decision ?>
-          <a href="<?php echo $this->url('admin_accepte',['mail' => urlencode($value['mail']),'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_accepte',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button>Accepter</button></a>
-          <a href="<?php echo $this->url('admin_plus_info',['mail' => urlencode($value['mail']),'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_plus_info',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button>Manque d'information</button></a>
-          <a href="<?php echo $this->url('admin_refuse',['mail' => urlencode($value['mail']),'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_refuse',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button>Refuser</button></a><?php
-        }else{ //sinon j'affiche le bouton pour repondre, qui redirige vers un champ de saisi texte ?>
-          <a href="<?php echo $this->url('admin_repondre',['mail'=> urlencode($value['mail']),'orga' => $orga,'slug' => $slug]) ; ?>">
-            <button>Repondre</button></a><?php
+        }else{ //sinon j'affiche le bouton pour repondre, qui redirige vers un champ de saisi texte
+          if($orga == 'user'){?>
+            <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">
+            <button class="btn btn-primary">Repondre</button></a><?php
+          }else { ?>
+            <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
+            <button class="btn btn-primary">Repondre</button></a><?php
+          }
         }
 				echo '<br/><br/>';
 			}
@@ -55,7 +61,7 @@ if(isset($donnees)){
 			}
 		}
 	}else{
-    echo 'Aucun messages';
+    echo '<h3 class="titreback">Aucun messages</h3>';
   }
 }
 ?>

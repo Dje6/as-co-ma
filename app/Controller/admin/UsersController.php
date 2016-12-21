@@ -90,13 +90,13 @@ class UsersController extends CustomController
     }
   }
   //affiche les information user d'un menbre d'association
-  public function ficheMenbre($slug,$id)
+  public function ficheMembre($slug,$id)
   {
     if(isset($_SESSION['user']))
     {
       if($this->allowToTwo('Admin','Assoc',$slug)){
         $model = new monCompteModel;
-        $donnees =  $model->menbre($slug,$id);
+        $donnees =  $model->membre($slug,$id);
         $this->show('admin/users',['orga' => 'assoc','slug' => $slug,'acces' => 'np','donnee' => $donnees]);
       }
     }else{

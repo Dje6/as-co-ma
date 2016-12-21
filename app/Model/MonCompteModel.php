@@ -13,7 +13,7 @@ class MonCompteModel extends CustomModel
   //recupere les information d'un menbre precis d'une association, uniquement des information "public"
   // son id , pseudo, mail,prenom,nom,adresse code postal ville, fix , mobil , date creation derniere Connectio
   // et le tableau de role
-  public function menbre($slug,$id)
+  public function membre($slug,$id)
   {
     $sql = 'SELECT u.id,u.pseudo,u.mail,u.prenom,u.nom,u.adresse,u.code_postal,
     u.ville,u.fix,u.mobile,u.created_at,u.lost_connect,r.role
