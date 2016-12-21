@@ -100,6 +100,7 @@ class ConnexionController extends CustomController
       exit();
     }else{
       unset($r_POST['r_password']);
+      unset($r_POST['submit']);
       unset($r_POST['capcha']);
       if(empty($r_POST['fix'])){
         unset($r_POST['fix']);
