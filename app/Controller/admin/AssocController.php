@@ -114,7 +114,7 @@ class AssocController extends CustomController
          $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
          $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
          $id_roles =  $resultat['id'];
-         $role = $role = $resultat['role'];
+         $role = $resultat['role'];
          if($role == 'Admin'){
            $result = $rolesModel->update(['role' => 'User'],$id_roles);
          }else {
@@ -129,6 +129,7 @@ class AssocController extends CustomController
                  $user = $get_user->getUserByUsernameOrEmail($pseudo);
 
                  $authent->logUserIn($user);
+                 echo 'hello';
                  $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
                 }
             } else {
