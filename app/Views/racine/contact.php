@@ -20,7 +20,7 @@ if(!isset($confirmation)){
 		if($orga == 'mairie'){
 			echo '<h2 class="text-center" >Contacter la '.$this->unslug($slug).'</h2>'; //unslug du slug de la mairie à contacter
 		}elseif($orga == 'assoc') {
-			echo '<h2 class="text-center" >Contacter l\'association '.$slug.'</h2>';
+			echo '<h2 class="text-center" >Contacter l\'association '.$this->unslug($slug) .'</h2>'; //unslug du nom de l'assoc a contacter
 		}
 	} ?>
 
@@ -75,7 +75,7 @@ if(!isset($confirmation)){
 
 		<input type="hidden" name="capcha" value="">
 
-    <button type="submit" class="btn btn-success btn-md col-xs-offset-4 col-md-offset-5" name="submit">Envoyer</button>
+    <button type="submit" class="btn btn-success btn-md" name="submit">Envoyer</button>
   </form>
 	<br><br>
 	<!-- End form contact -->
