@@ -126,9 +126,8 @@ class ConnexionController extends CustomController
   {
 
     $app = getApp();
-    $urlBase = $app->getConfig('urlBase');
-    $urlLink = $urlBase.$this->generateUrl('racine_valide_inscript',
-    ['mail' => trim(strip_tags($email)), 'token' => trim(strip_tags($token))]);
+    $urlLink = $this->generateUrl('racine_valide_inscript',
+    ['mail' => trim(strip_tags($email)), 'token' => trim(strip_tags($token))],true);
 
     $mail = new PHPMailer();
     //$mail->SMTPDebug = 3;                              // Enable verbose debug output
@@ -188,13 +187,11 @@ class ConnexionController extends CustomController
       if(empty($r_POST['capcha'])){
         //on fait les verif si le mail es ok et en base de donnee
         $error['email'] = ValidationTools::emailValid($r_POST['email'],true);
-        $app = getApp();
-        $urlBase = $app->getConfig('urlBase');
         if(ValidationTools::isValid($error)){
 
             $usersModel = new UsersCustomModel;
             $token = $usersModel->recupToken($r_POST['email']);
-            $urlLink = $urlBase.$this->generateUrl('racine_modifyForm',['mail' => urlencode($r_POST['email']), 'token' => $token]);
+            $urlLink = $this->generateUrl('racine_modifyForm',['mail' => urlencode($r_POST['email']), 'token' => $token],true);
 
             $message = '<a href="'.$urlLink.'">cliquez ici</a>';
             $mail-> isMail();
