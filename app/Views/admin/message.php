@@ -70,8 +70,8 @@ if(isset($donnees)){
           //si une reponse a ete faite a ce message on indique la date de reponse
           //qui es la meme date que pour la lecture mais mise a jour
             echo 'Repondu le : '.$value['date_lecture'].'<br/>';
-            echo 'Status : '.$value['status'].'<br/>';
           }
+          echo 'Status : '.$value['status'].'<br/>';
 
           preg_match_all('/inscript/', $value['objet'], $matches);
           // on detect si il s'agit dune demande d'inscription

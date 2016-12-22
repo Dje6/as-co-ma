@@ -71,8 +71,7 @@ class AssocModel extends customModel
 // recherche un menbre par son ID et retourne ses information
   public function findMenbre($slug)
   {
-    $sql = "SELECT id_user FROM roles WHERE id_assoc = (SELECT id FROM assoc WHERE slug = :slug)
-    AND (role = 'Admin' OR role = 'User')";
+    $sql = "SELECT id_user FROM roles WHERE id_assoc = (SELECT id FROM assoc WHERE slug = :slug)";
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
     $sth->execute();
@@ -83,7 +82,7 @@ class AssocModel extends customModel
       $where .= 'u.id = '.$value['id_user'].' OR ';
     }
     $where = substr($where,0,-3);
-    $where .= ") AND (r.role = 'Admin' OR r.role = 'User')";
+    $where .= ") AND r.id_assoc = (SELECT id FROM assoc WHERE slug = :slug)";
 
     $sql = 'SELECT DISTINCT u.id,u.pseudo,u.mail,u.prenom,u.nom,r.role FROM users AS u LEFT JOIN roles AS r ON
     u.id = r.id_user WHERE '.$where ;
