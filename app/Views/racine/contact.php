@@ -84,7 +84,7 @@ if(!isset($confirmation)){
 	<?php if($slug == 'All'){ ?>
 		<blockquote class="blockquote-reverse quoteContact">
 		  <p>* Vous recevrez une réponse à votre demande d'inscription de Mairie après étude de votre demande par nos services.</p>
-		  <footer>Les Administrateurs, <cite title="Source Title">AS-CO-MA</cite></footer>
+		  <footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 		</blockquote>
 	<?php	}
 	//end if(!isset($confirmation))

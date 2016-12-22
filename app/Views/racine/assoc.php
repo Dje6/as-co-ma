@@ -35,7 +35,7 @@
 		if(is_array($donnees)) {
 			foreach ($donnees as $key => $value) { ?>
 				<a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]) ; ?>">
-					<button class="btn btn-success btn-sm"><?php echo '"'.$value['nom'].'" - enregistrée en '.$value['mnom'].', '.$value['mCP']; ?></button>
+					<button class="btn btn-success btn-sm assocLien"><?php echo '"'.$value['nom'].'" - enregistrée en '.$value['mnom'].', '.$value['mCP']; ?></button>
 				</a>
 <?php }
 		} else {
@@ -50,18 +50,33 @@
 		if(is_array($donnees)) { ?>
 		<div class="row">
 
-			<h2>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></h2>
+			<h2 class="text-center"><strong>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></strong></h2>
+			<br>
 
-			<li><a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>">Contacter l'association</a></li>
+			<!-- Tableau infos assoc -->
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>Nom</th>
+					<th>Adresse</th>
+					<th>Code Postal</th>
+					<th>Ville</th>
+					<th>Téléphone</th>
+					<th>Contact</th>
+				</tr>
+				<tr>
 
-<?php echo '<article>';
-			echo $donnees['nom'].'<br/>';
-			echo $donnees['adresse'].'<br/>';
-			echo $donnees['code_postal'].'<br/>';
-			echo $donnees['ville'].'<br/>';
-			echo '<a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a><br/>';
-			echo '</article><br/><br/>';
-		} else {
+	<?php	echo '<td>' . $donnees['nom'] . '</td>';
+				echo '<td>' . $donnees['adresse'] . '</td>';
+				echo '<td>' . $donnees['code_postal'] . '</td>';
+				echo '<td>' . $donnees['ville'] . '</td>';
+				echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>'; ?>
+					<td>
+						<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter l'association</button></a>
+					</td>
+				</tr>
+			</table>
+			<!-- Fin tableau infos assoc -->
+<?php	} else {
 			echo $donnees;
 		}
 	} ?>
