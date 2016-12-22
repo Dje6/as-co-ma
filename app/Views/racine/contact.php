@@ -75,7 +75,7 @@ if(!isset($confirmation)){
 
 		<input type="hidden" name="capcha" value="">
 
-    <button type="submit" class="btn btn-success btn-md col-xs-offset-4 col-md-offset-5" name="submit">Envoyer mon message</button>
+    <button type="submit" class="btn btn-success btn-md col-xs-offset-4 col-md-offset-5" name="submit">Envoyer</button>
   </form>
 	<br><br>
 	<!-- End form contact -->
@@ -84,7 +84,7 @@ if(!isset($confirmation)){
 	<?php if($slug == 'All'){ ?>
 		<blockquote class="blockquote-reverse quoteContact">
 		  <p>* Vous recevrez une réponse à votre demande d'inscription de Mairie après étude de votre demande par nos services.</p>
-		  <footer>Les Administrateurs, <cite title="Source Title">AS-CO-MA</cite></footer>
+		  <footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 		</blockquote>
 	<?php	}
 	//end if(!isset($confirmation))

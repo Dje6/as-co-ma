@@ -34,7 +34,7 @@
     <div class="form-group">
       <label for="mail">Adresse Mail * : </label>
       <span class="errorForm"><?php if(isset($error['mail'])) { echo $error['mail']; } ?></span>
-      <input type="text" class="form-control" name="mail" value="<?php if(isset($saisi['mail'])) { echo $saisi['mail']; } ?>">
+      <input type="text" class="form-control" name="mail" placeholder="exemple@mail.com" value="<?php if(isset($saisi['mail'])) { echo $saisi['mail']; } ?>">
     </div>
     <br>
 
@@ -42,7 +42,7 @@
     <div class="form-group">
       <label for="password">Mot de passe * : </label>
       <span class="errorForm"><?php if(isset($error['password'])) { echo $error['password']; } ?></span>
-      <input type="text" class="form-control" name="password" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
+      <input type="text" class="form-control" name="password" placeholder="5 caractères minimum" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
     </div>
     <br>
 
@@ -50,7 +50,7 @@
     <div class="form-group">
       <label for="r_password">Répétez votre mot de passe * : </label>
       <span class="errorForm"><?php if(isset($error['r_password'])){ echo $error['r_password']; } ?></span>
-      <input type="text" class="form-control" name="r_password" value="<?php if(isset($saisi['r_password'])) { echo $saisi['r_password']; } ?>">
+      <input type="text" class="form-control" name="r_password" placeholder="5 caractères minimum" value="<?php if(isset($saisi['r_password'])) { echo $saisi['r_password']; } ?>">
     </div>
     <br>
 

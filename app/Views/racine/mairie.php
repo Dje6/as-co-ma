@@ -30,13 +30,13 @@
 
 <!-- Quand recherche soumise, affiche liens vers Mairie concernée -->
 <br>
-<div class="row">
+<div class="row text-center">
 	<?php if(isset($donnees)) {
 		if(is_array($donnees)) {
 			foreach ($donnees as $key => $value) { ?>
-				<p>
-					<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>"><?php echo $value['code_postal'].', '.$value['nom']; ?></a>
-				</p>
+					<a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]) ; ?>">
+						<button class="btn btn-success btn-sm mairieLien"><?php echo $value['code_postal'].', '.$value['nom']; ?></button>
+					</a>
 
 	<?php }
 		} else {
@@ -51,22 +51,55 @@
 
 	if(isset($donnees)){
 		if(is_array($donnees)){ ?>
+		<div class="row">
 
-			<h2>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></h2>
+			<h2 class="text-center"><strong>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
+			<br>
 
-			<li><a href="<?php echo $this->url('racine_contact',['orga' => 'mairie' ,'slug' => $slug]); ?>">Contacter la Mairie</a></li>
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th>Nom</th>
+					<th>Adresse</th>
+					<th>Code Postal</th>
+					<th>Ville</th>
+					<th>Téléphone</th>
+					<th>Mail</th>
+					<th>Contact</th>
+				</tr>
+				<tr>
 
-<?php	echo '<article>';
-			echo $donnees['nom'].'<br/>';
-			echo $donnees['adresse'].'<br/>';
-			echo $donnees['code_postal'].'<br/>';
-			echo $donnees['ville'].'<br/>';
-			echo '<a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a><br/>';
-				foreach (unserialize($donnees['horaire']) as $key => $value) {
-					echo $key.' : '.$value.'<br/>';
-				}
-			echo '<a href="mailto:'.$donnees['mail'].'">'.$donnees['mail'].'</a><br/>';
-			echo '</article><br/><br/>';
+<?php			echo '<td>' . $donnees['nom'] . '</td>';
+					echo '<td>' . $donnees['adresse'] . '</td>';
+					echo '<td>' . $donnees['code_postal'] . '</td>';
+					echo '<td>' . $donnees['ville'] . '</td>';
+					echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>';
+					echo '<td><a href="mailto:'.$donnees['mail'].'">'.$donnees['mail'] . '</a></td>'; ?>
+					<td>
+						<a href="<?php echo $this->url('racine_contact',['orga' => 'mairie' ,'slug' => $slug]); ?>">
+							<button class="btn btn-success btn-xs">Contacter la Mairie</button>
+						</a>
+					</td>
+				</tr>
+<!-- Deuxieme ligne tableau info mairie -->
+				<tr>
+					<th>Lundi</th>
+					<th>Mardi</th>
+					<th>Mercredi</th>
+					<th>Jeudi</th>
+					<th>Vendredi</th>
+					<th>Samedi</th>
+					<th>Dimanche</th>
+				</tr>
+				<tr>
+<?php		foreach (unserialize($donnees['horaire']) as $key => $value) {
+					echo '<td>' . $key.' : '.$value . '</td>';
+				} ?>
+				</tr>
+			</table>
+
+		</div>
+		<!-- Fin div infos mairie -->
+<?php
 		} else {
 			echo $donnees;
 		}
