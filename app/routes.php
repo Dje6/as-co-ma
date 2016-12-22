@@ -54,6 +54,7 @@
 		//
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
 		['GET', '/Admin/Mairie/role/[:slug]/[:id]', 'admin\Assoc#homeEditUserRole', 'admin_assoc_edit_user_role'],
+		['GET', '/Admin/Mairie/delete/[:slug]/[:id]', 'admin\Assoc#homeDeleteUserAssoc', 'admin_assoc_delete_user'],
 		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
 		['GET', '/Admin/infoMembres/[:slug]/[:id]', 'admin\Users#ficheMembre', 'admin_assoc_membre'],//affiche la fiche personnel des menbre de lassoc
 		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc

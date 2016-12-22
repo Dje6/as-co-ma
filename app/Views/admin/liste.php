@@ -50,7 +50,7 @@ if($orga == 'mairie'){
           <?php }else{ ?>
             <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Faire passer Admin</button></a></td>
           <?php } ?>
-          <td><a href="<?php echo $this->url('admin_assoc',['slug' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+          <td><a href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
         </tr>
         <?php
 
