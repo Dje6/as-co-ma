@@ -114,7 +114,6 @@ class ReponseController extends CustomController
         $r_POST['status'] = 'non-lu';
         //si c'est un utilisateur enregister on repon en interne
         $contactModel = new ContactModel;
-        debug($r_POST);
         if(is_numeric($r_POST['destinataire_mailOrId'])){
           if($contactModel->insert($r_POST,false)){
             $this->show('admin/EditReponse',['orga' => $orgaEmeteur ,'slug' => $r_POST['emeteur_pseudo']

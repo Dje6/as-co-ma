@@ -91,4 +91,8 @@
 		//administration superAdmin
 		//
 		['GET|POST', '/Admin/SuperAdmin/', 'admin\SuperAdmin#home', 'admin_superAdmin'],//affiche la page de gestion des mairie, uniquement supr admin
+		//messagerie
+		['GET', '/Admin/message/webmaster/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_webmaster'],//affiche les message du user connecter
+		['GET', '/Admin/messageSend/webmaster/[:slug]/[:orga]/[:page]', 'admin\Message#orgaSend', 'admin_message_send_webmaster'],//affiche les message du user connecter
+		['GET', '/Admin/ListeMairie/[:page]', 'admin\SuperAdmin#listeMairie', 'admin_webmaster_mairie'],//listing des assoc enregistrer dans la mairie
 	);

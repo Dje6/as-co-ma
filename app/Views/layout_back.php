@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>"> -->
+	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
 
 	<?= $this->section('main_head') ?>
@@ -57,21 +57,26 @@
 							echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mairie <span class="caret"></span></a><ul class="dropdown-menu">';
 							foreach ($_SESSION['user']['roles'] as $key => $value) {
 								if(isset($value['orga']) && $value['orga'] == 'Mairie'){
-									if($value['role'] == 'Admin'){ ?>
-										<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
-										<?php echo $value['nom']; ?></a></li>
-										<li><a href="<?php echo $this->url('racine_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
-										<?php echo $value['nom']; ?></a></li><?php
+									if($value['role'] == 'Admin'){
+										if($value['nom'] != ''){ ?>
+											<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
+											<?php echo $value['nom']; ?></a></li>
+											<li><a href="<?php echo $this->url('racine_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
+											<?php echo $value['nom']; ?></a></li><?php
+										}else { ?>
+											<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Creer
+											une Mairie</a></li><?php
+										}
 									}
 								}
 							}
 							echo '</ul></li>';
 						}
 
-						if($this->in_multi_array('Site',$_SESSION['user']['roles'])){
+						if($this->in_multi_array('Webmaster',$_SESSION['user']['roles'])){
 							echo '<li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SuperAdmin <span class="caret"></span></a><ul class="dropdown-menu">';
 							foreach ($_SESSION['user']['roles'] as $key => $value) {
-								if(isset($value['orga']) && $value['orga'] == 'Site'){
+								if(isset($value['orga']) && $value['orga'] == 'Webmaster'){
 									if($value['role'] == 'SuperAdmin'){?>
 										<li><a href="<?php echo $this->url('admin_superAdmin',['slug' => $value['slug']]); ?>">SuperAdmin</a></li><?php
 									}
@@ -89,7 +94,9 @@
 		 </nav>
 				<?php
 				if(isset($orga) && $orga != 'user'){
+
 					if(isset($slug) && !empty($slug)){ echo '<h1 class="titreback">'.$this->unslug($slug).'</h1>' ; }
+
 					if($orga == 'mairie'){ ?>
 						<div id="navbar" class="navbar-collapse collapse ">
 							<ul class="nav navbar-nav navbar_organisation">
@@ -125,6 +132,18 @@
 							</li>
 							<li><a href="<?php echo $this->url('admin_assoc_membres',['slug' => $slug,'page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
+							</li>
+						</ul>
+					</div><?php
+				}elseif($orga == 'webmaster'){ ?>
+						<div id="navbar" class="navbar-collapse collapse ">
+							<ul class="nav navbar-nav navbar_organisation">
+
+							<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => 'webmaster','orga' => 'webmaster','page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
+							</li>
+							<li><a href="<?php echo $this->url('admin_webmaster_mairie',['page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">Voir Mairies</button></a>
 							</li>
 						</ul>
 					</div><?php

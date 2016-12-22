@@ -4,10 +4,12 @@ use \Controller\admin\ReponseController;
 use \Model\AssocModel;
 use \Model\MairieModel;
 use \Model\ContactModel;
+use \Model\RolesModel;
 use \Model\UserModel;
 use \Controller\admin\GenerateDataController;
 use \Controller\admin\RolesController;
 use \PHPMailer;
+use \W\Security\StringUtils;
 /**
  *
  */
@@ -29,7 +31,7 @@ class DecisionController extends ReponseController
             }
           }
 
-          if(is_numeric($leMessage['emeteur_mailOrId'])){// si c'est un id on repon en interne
+          if(!is_numeric($leMessage['emeteur_mailOrId'])){// si c'est un id on repon en interne
             $maildestinataire = $this->FindMailDestinataire($leMessage['emeteur_orga'],$leMessage['emeteur_mailOrId']);
           }else {//sinon en externe
             $maildestinataire = $leMessage['emeteur_mailOrId'];
@@ -38,33 +40,47 @@ class DecisionController extends ReponseController
 
           $orga_demande = $this->analiseObject($leMessage['objet']);
 
-          if(is_numeric($pseudoEmeteur)){
-            $RolesController = new RolesController;
+          if(is_numeric($maildestinataire)){
+            $RolesModel = new RolesModel;
 
-          //   if($orga_demande = 'mairie'){
-          //     $MairieModel = new MairieModel;
-          //     $MairieModel->insert()
-          //     $RolesController->insert()
-          //   }elseif ($orga_demande = 'assoc') {
-          //     $AssocModel = new AssocModel;
-          //     $AssocModel->insert()
-          //     $RolesController->insert()
-          //   }elseif ($orga_demande = 'membre') {
-          //     $RolesController->insert()
-          //   }
-          // }
+            if($orga_demande = 'mairie'){
+              $MairieModel = new MairieModel;
+              $dateEtHeure = date('Y-m-d H:i:s');
+              $result = $MairieModel->insert(['status' =>'En attente','id_user' =>$maildestinataire,'nom' =>'',
+              'slug' => StringUtils::randomString($length = 15),
+              'token' => '','adresse' =>'','code_postal' => '','departement' => '','ville' => '',
+              'mail' => '','fix' =>'','created_at' => $dateEtHeure]);
+
+              if($result){
+                $id_mairie = $MairieModel->FindElementByElement('id','created_at',$dateEtHeure);
+
+                $result2 = $RolesModel->insert(['id_mairie' => $id_mairie,'id_user' => $maildestinataire,'role' => 'Admin']);
+                if(!$result2){
+                  echo 'probleme lors de l\'atribution du role';
+                }
+              }else {
+                echo 'probleme lors de la creation'.$result;
+              }
+
+            }//elseif ($orga_demande = 'assoc') {
+            //   $AssocModel = new AssocModel;
+            //   $AssocModel->insert()
+            //   $RolesModel->insert()
+            // }elseif ($orga_demande = 'membre') {
+            //   $RolesModel->insert()
+            // }
+          }
 
           $GenerateDataController = new GenerateDataController;
-          $donnee = $GenerateDataController->generateAccept($leMessage['objet'],$pseudoEmeteur);
+          $donnee = $GenerateDataController->generateAccept($leMessage['objet'],$maildestinataire);
 
           $r_POST['emeteur_pseudo'] = $pseudoEmeteur;
           $r_POST['objet'] = 'Re:'.$donnee['objet'] ;
           $r_POST['contenu'] = $donnee['contenu'];
-          $r_POST['destinataire_status'] = 'del';
           $r_POST['laDecision'] = 'Accepter';
 
           $this->sendDecision($orgaDestinataire = $leMessage['emeteur_orga'],$orgaEmeteur = $leMessage['destinataire_orga'],
-          $idDestinaire = $leMessage['emeteur_mailOrId'],$idEmeteur = $leMessage['destinataire_mailOrId'],
+          $idDestinaire = $maildestinataire,$idEmeteur = $leMessage['destinataire_mailOrId'],
           $maildestinataire,$leMessage,$r_POST);
 
         }
@@ -119,7 +135,7 @@ class DecisionController extends ReponseController
           //si c'est un utilisateur enregister on repon en interne
           $contactModel = new ContactModel;
 
-          if(is_numeric($r_POST['destinataire_mailOrId'])){
+          if(is_numeric($maildestinataire)){
             if($contactModel->insert($r_POST,false)){
               $contactModel->update(['status' => $laDecision,'date_lecture' => date('Y-m-d H:i:s')],$leMessage['id']);
               $this->redirectToRoute('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1]);
@@ -129,8 +145,6 @@ class DecisionController extends ReponseController
           }else{ //sinon on envoi une copi interne + le mail externe
             $r_POST['destinataire_status'] = 'del';
             $contactModel->insert($r_POST,false);
-            $app = getApp();
-            $urlBase = $app->getConfig('urlBase');
 
             $mail = new PHPMailer();
             //$mail->SMTPDebug = 3;                              // Enable verbose debug output
@@ -140,12 +154,9 @@ class DecisionController extends ReponseController
             $mail->addReplyTo('do-no-reply@as-co-ma', 'Information');
             $mail->isHTML(true);    // Set email format to HTML
 
-            $messagedumail = '';
-            $messagedumail .= $r_POST['contenu'].'';
-            $messagedumail .= '';
 
             $mail->Subject = $r_POST['objet'];
-            $mail->Body    = $messagedumail ;
+            $mail->Body    = $r_POST['contenu'];
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             if(!$mail->send()) {

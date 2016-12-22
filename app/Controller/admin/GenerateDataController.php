@@ -19,8 +19,11 @@ class GenerateDataController extends CustomController
     //entete et pied de page
     //
     //
-    $entete = 'Bonjour<br/><br/>';
-    $piedpage = '<br/><br/>Merci pour votre confiance, a biento<br/> Merci de ne pas repondre a cette email
+    $enteteEmail = 'Bonjour<br/><br/>';
+    $enteteMessagePriver = 'Bonjour<br/><br/>';
+    $piedpageEmail = '<br/><br/>Merci pour votre confiance, a biento<br/> Merci de ne pas repondre a cette email
+    pour nous contacter <a href="'.$urlContact.'">cliquez ici</a>';
+    $piedpageMessagePriver = '<br/><br/>Merci pour votre confiance, a biento<br/> Merci de ne pas repondre a cette email
     pour nous contacter <a href="'.$urlContact.'">cliquez ici</a>';
     //
     //
@@ -87,6 +90,33 @@ class GenerateDataController extends CustomController
     //
   }elseif($objet == 'inscript_membre'){//demande pour devenir membre
 
+
+
+
+
+
+
+
+
+//LE RESTE EST PAS ENCORE PRET JE TE DIRAIS QUAND JE SAURAIS QUOI METTRE XD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       $array['objet'] = 'Devenir membre de l\'association';//objet du mail
 
       if(is_numeric($pseudo)){//si c'est un utilisateur du site
@@ -107,8 +137,12 @@ class GenerateDataController extends CustomController
       }
 
     }
-    //on concataine l'entete le contenu et le pied de page
-    $array['contenu'] = $entete.$array['contenu'].$piedpage;
+    //on concataine l'entete le contenu et le pied de page selon si c'est un message priver ou un mail
+    if(is_numeric($pseudo)){
+      $array['contenu'] = $enteteMessagePriver.$array['contenu'].$piedpageMessagePriver;
+    }else {
+      $array['contenu'] = $enteteEmail.$array['contenu'].$piedpageEmail;
+    }
     //puis on renvoi le tout!
     return $array;
   }

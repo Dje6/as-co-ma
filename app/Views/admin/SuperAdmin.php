@@ -1,4 +1,4 @@
-<?php $this->layout('layout_back', ['title' => 'Mon Compte']) ?>
+<?php $this->layout('layout_back', ['title' => 'Mon Compte','slug' => $slug,'orga' => $orga]) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
