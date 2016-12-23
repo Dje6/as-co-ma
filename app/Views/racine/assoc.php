@@ -50,7 +50,7 @@
 		if(is_array($donnees)) { ?>
 		<div class="row">
 
-			<h2 class="text-center"><strong>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></strong></h2>
+			<h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2>
 			<br>
 
 			<!-- Tableau infos assoc -->

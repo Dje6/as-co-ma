@@ -4,7 +4,7 @@
 html, body {
 	font-size: 17px;
 	/*font-family: Consolas, monaco, monospace;*/
-	font-family: sans-serif;
+	font-family: serif;
 	background-image: url('../img/background-accueil.jpg');
 	background-attachment: fixed;
 }
@@ -65,7 +65,7 @@ hr {
 /*////////////////////////////////////////*/
 .main_content {
 	min-height: 520px;
-	margin-top: 3em;
+	margin-top: 2em;
 }
 blockquote footer {
 	color: black;
