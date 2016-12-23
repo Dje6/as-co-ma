@@ -110,9 +110,9 @@
 <br>
 <div class="row">
 	<blockquote class="quoteMairie blockquote-reverse">
-		<p><i>
+		<p>
 			Vous souhaitez inscrire votre Mairie et pouvoir remplir vos informations ?
-			<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a></i>
+			<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a>
 		</p>
 		<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 	</blockquote>

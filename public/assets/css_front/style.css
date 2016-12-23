@@ -133,6 +133,16 @@ footer {
 	align-items: center;
 	justify-content: center;
 }
+/*Boutons media anim zoom*/
+.reseaux_sociaux img {
+	padding-left: 20px;
+	width: 120%;
+	transition: all .5s ease;
+}
+.reseaux_sociaux img:hover {
+	transform: scale(1.3);
+	transform: rotateX(360);
+}
 
 /*//////////////////////////////////////*/
 /*responsive menu_top layout front*/
