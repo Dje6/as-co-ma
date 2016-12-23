@@ -8,6 +8,10 @@ html, body {
 	background-attachment: fixed;
 }
 
+a:link {
+ text-decoration:none;
+}
+
 .texte_3D{
     text-shadow:
         1px 1px 1px #108fcc,
@@ -277,4 +281,23 @@ button[type="reset"]    {
 	font-weight: bold;
 	font-size: 26px;
 	border : 3px solid ##337ab7;
+}
+.btn.btn-default {
+color: #108fcc;
+font-size: 20px;
+}
+
+
+.messageall {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.bouton_env {
+	margin-top: 2%;
+	justify-content: center;
+}
+.bouton_rec {
+	margin-top: 2%;
 }

@@ -44,4 +44,17 @@ class MairieModel extends customModel
       return $donnee;
     }
   }
+
+  public function findAll()
+  {
+    $sql = 'SELECT id,slug,nom,code_postal,departement,status FROM '.$this->table ;
+    $sth = $this->dbh->prepare($sql);
+    $sth->execute();
+    $donnee = $sth->fetchAll();
+    if(!is_array($donnee)){
+      return 'Aucune mairie sur le site';
+    }else{
+      return $donnee;
+    }
+  }
 }

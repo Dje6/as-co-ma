@@ -66,8 +66,10 @@ class MessageController extends CustomController
         }elseif($orga == 'mairie'){
           $MairieModel = new MairieModel;
           $maildestinataire = $MairieModel->FindElementByElement('id','slug',$slug);
+        }elseif($orga == 'webmaster'){
+          $maildestinataire = 'webmaster@as-co-ma.fr';
         }
-        $limit = 6;
+        $limit = 3;
         //limit d'affichage par page
         $Pagination = new Pagination('contact');
         //on precise la table a exploiter
@@ -99,6 +101,8 @@ class MessageController extends CustomController
         }elseif($orga == 'mairie'){
           $MairieModel = new MairieModel;
           $mailemeteur = $MairieModel->FindElementByElement('id','slug',$slug);
+        }elseif($orga == 'webmaster'){
+          $mailemeteur = 'webmaster@as-co-ma.fr';
         }
         $limit = 6;
         //limit d'affichage par page
