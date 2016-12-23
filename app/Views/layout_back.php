@@ -78,7 +78,7 @@
 							foreach ($_SESSION['user']['roles'] as $key => $value) {
 								if(isset($value['orga']) && $value['orga'] == 'Webmaster'){
 									if($value['role'] == 'SuperAdmin'){?>
-										<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => $slug,'orga' => $orga,'page' => 1]); ?>">SuperAdmin</a></li><?php
+										<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => 'webmaster','orga' => 'webmaster','page' => 1]); ?>">SuperAdmin</a></li><?php
 									}
 								}
 							}
