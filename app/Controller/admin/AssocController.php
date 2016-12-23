@@ -105,31 +105,23 @@ class AssocController extends CustomController
   {
     if(isset($_SESSION['user']))
     {
+      $assocModel = new AssocModel;
+      $rolesModel = New RolesModel;
       if($this->allowToTwo('Admin','Assoc',$slug)){
-        $assocModel = new AssocModel;
-        $rolesModel = New RolesModel;
 
          $slug = $this->nettoyage($slug);
          $id_membre = $this->nettoyage($id);
-
          $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
          $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
-
          $id_roles =  $resultat['id'];
          $role = $resultat['role'];
          if($role == 'Admin'){
-           //new role est user
-           $newRole = 'User';
-           $result = $rolesModel->update(['role' => $newRole],$id_roles);
+           $result = $rolesModel->update(['role' => 'User'],$id_roles);
          }else {
-           //new role est admin
-           $newRole = 'Admin';
-           $result = $rolesModel->update(['role' => $newRole],$id_roles);
+           $result = $rolesModel->update(['role' => 'Admin'],$id_roles);
          }
-            if($result){ //si l'update c bien passer on avance
-
+            if($result){
               if($id_membre == $_SESSION['user']['id']){
-                //si on a changer notre propre droit , on detruit notre session pour la reconstruire avec les nouveau droit
                  $pseudo = $_SESSION['user']['pseudo'];
                  $authent = new AuthentificationModel();
                  $authent->logUserOut();
@@ -137,18 +129,9 @@ class AssocController extends CustomController
                  $user = $get_user->getUserByUsernameOrEmail($pseudo);
 
                  $authent->logUserIn($user);
-                 //ca planter ici
-                 if($newRole == 'Admin'){//on detect si on vien de passer de user a admin ou de admin a user
-                   //si on es devenu user on es rediriger vers le listing (ce cas de figure est IMPOSSIBLE)
-                   //puisque pour fair un changement de role il faut etre user , mais bon c'est fais
-                   $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-                 }else {
-                   //sinon c'est qu'on es devenu user , donc on a pu acces au listing , alors on es renvoyer sur notre compte
-                   $this->redirectToRoute('admin_monCompte');
-                 }
-               }else {//sinon on peu directement rediriger puisque ca ne concerner pas notre session
+                 echo 'hello';
                  $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-               }
+                }
             } else {
               echo 'un soucis lors de la mise a jour du role';
             }
@@ -166,10 +149,34 @@ class AssocController extends CustomController
       $rolesModel = New RolesModel;
       if($this->allowToTwo('Admin','Assoc',$slug)){
 
+         $slug = $this->nettoyage($slug);
+         $id_membre = $this->nettoyage($id);
+         $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
+         $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
+         $id_roles =  $resultat['id'];
+         $role = $resultat['role'];
+         $result = $rolesModel->deleteRoles($id_membre,'id_user');
+            if($result){
+              // debug($id_membre);
+              if($id_membre == $_SESSION['user']['id']){
+                 $pseudo = $_SESSION['user']['pseudo'];
+                 $authent = new AuthentificationModel();
+                 $authent->logUserOut();
+                 $get_user = new UserModel;
+                 $user = $get_user->getUserByUsernameOrEmail($pseudo);
+
+                 $authent->logUserIn($user);
+                //  echo 'hello';
+                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+                }
+            } else {
+              echo 'un soucis lors de la mise a jour du role';
+            }
       }
     }else {
       $this->redirectToRoute('racine_form');
     }
+
   }
 
 }
