@@ -158,4 +158,18 @@ class AssocController extends CustomController
     }
   }
 
+  public function homeDeleteUserAssoc($slug,$id)
+  {
+    if(isset($_SESSION['user']))
+    {
+      $assocModel = new AssocModel;
+      $rolesModel = New RolesModel;
+      if($this->allowToTwo('Admin','Assoc',$slug)){
+
+      }
+    }else {
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
 }
