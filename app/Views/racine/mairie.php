@@ -51,7 +51,7 @@
 
 	if(isset($donnees)){
 		if(is_array($donnees)){ ?>
-		<div class="row">
+		<div class="row table-responsive">
 
 			<h2 class="text-center"><strong>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
 			<br>

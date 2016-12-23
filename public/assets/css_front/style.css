@@ -105,23 +105,33 @@ footer {
 .footer_haut {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-around;
 }
 .menu_footer {
 	list-style: none;
-	margin-top: 1%;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	font-size: 14px;
+	/*margin-top: 1%;*/
 	padding-left: 0;
 }
 .bouton_contact {
-	margin-top: 2%;
+	display: flex;
+	align-items: center;
 	justify-content: center;
 }
 .bouton_cgu {
-	margin-top: 2%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .reseaux_sociaux {
-	display: inline;
-	margin-top: 1.5%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 /*//////////////////////////////////////*/
