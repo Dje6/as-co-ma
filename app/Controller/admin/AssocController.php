@@ -168,7 +168,9 @@ class AssocController extends CustomController
                  $authent->logUserIn($user);
                 //  echo 'hello';
                  $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-                }
+               } else {
+                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+               }
             } else {
               echo 'un soucis lors de la mise a jour du role';
             }
