@@ -48,7 +48,7 @@ class DecisionController extends ReponseController
               $dateEtHeure = date('Y-m-d H:i:s');
               $result = $MairieModel->insert(['status' =>'En attente','id_user' =>$maildestinataire,'nom' =>'',
               'slug' => StringUtils::randomString($length = 15),
-              'token' => '','adresse' =>'','code_postal' => '','departement' => '','ville' => '',
+              'token' => StringUtils::randomString($length = 80),'adresse' =>'','code_postal' => '','departement' => '','ville' => '',
               'mail' => '','fix' =>'','created_at' => $dateEtHeure]);
 
               if($result){

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
+	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>"> -->
 
 
 	<?= $this->section('main_head') ?>
@@ -78,7 +78,7 @@
 							foreach ($_SESSION['user']['roles'] as $key => $value) {
 								if(isset($value['orga']) && $value['orga'] == 'Webmaster'){
 									if($value['role'] == 'SuperAdmin'){?>
-										<li><a href="<?php echo $this->url('admin_superAdmin',['slug' => $value['slug']]); ?>">SuperAdmin</a></li><?php
+										<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => $slug,'orga' => $orga,'page' => 1]); ?>">SuperAdmin</a></li><?php
 									}
 								}
 							}
@@ -95,7 +95,7 @@
 				<?php
 				if(isset($orga) && $orga != 'user'){
 
-					if(isset($slug) && !empty($slug)){ echo '<h1 class="titreback">'.$this->unslug($slug).'</h1>' ; }
+					if(isset($slug) && !empty($slug) && !isset($creation)){ echo '<h1 class="titreback">'.$this->unslug($slug).'</h1>' ; }
 
 					if($orga == 'mairie'){ ?>
 						<div id="navbar" class="navbar-collapse collapse ">
@@ -109,9 +109,11 @@
 							<li><a href="<?php echo $this->url('admin_mairie',['orga' => $orga,'slug' => $slug]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
 							</li>
+							<?php if(!isset($creation)){ ?>
 							<li><a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Voir Association</button></a>
 							</li>
+							<?php } ?>
 						</ul>
 					</div> <?php
 

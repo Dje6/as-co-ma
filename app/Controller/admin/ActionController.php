@@ -70,7 +70,7 @@ class ActionController extends CustomController
               $MairieModel = new MairieModel;
               $id_orga = $MairieModel->FindElementByElement('id','slug',$slug) ;
             }elseif($orga == 'webmaster'){
-              $id_orga = 'Webmaster@as-co-ma.fr' ;
+              $id_orga = 'webmaster@as-co-ma.fr' ;
             }
 
             if($leMessage['emeteur_mailOrId'] == $id_orga && $leMessage['emeteur_orga'] == $orga){
@@ -144,7 +144,7 @@ class ActionController extends CustomController
               $MairieModel = new MairieModel;
               $id_orga = $MairieModel->FindElementByElement('id','slug',$slug) ;
             }elseif($orga == 'webmaster'){
-              $id_orga = 'Webmaster@as-co-ma.fr' ;
+              $id_orga = 'webmaster@as-co-ma.fr' ;
             }
 
             if ($leMessage['destinataire_mailOrId'] == $id_orga && $leMessage['destinataire_orga'] == $orga) {

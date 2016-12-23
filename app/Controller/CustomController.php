@@ -156,4 +156,13 @@ class CustomController extends Controller
     }
     return false;
   }
+  public function in_multi_array_return_array_and_key($string,$array){
+    foreach ($array as $key => $value) {
+      if(in_array($string,$value)){
+        $value['key'] = $key;
+        return $value;
+      }
+    }
+    return false;
+  }
 }
