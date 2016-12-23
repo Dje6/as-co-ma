@@ -13,7 +13,7 @@ $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $or
 
 <?php $this->start('main_content');
 
-if(isset($orga) && ($orga == 'mairie' || $orga == 'assoc')){
+if(isset($orga) && ($orga == 'mairie' || $orga == 'assoc' || $orga == 'webmaster')){
   $urlSend = $this->url('admin_message_send_'.$orga,['slug' => $slug,'orga' => $orga,'page' => 1]);
   $urlReceive = $this->url('admin_message_'.$orga,['slug' => $slug,'orga' => $orga,'page' => 1]);
 }else{

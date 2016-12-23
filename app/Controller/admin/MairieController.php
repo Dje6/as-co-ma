@@ -6,6 +6,7 @@ use \Model\MairieModel;
 use \Service\ValidationTools;
 use \Model\AssocModel;
 use \Model\RolesModel;
+use \Service\Slugify;
 
 class MairieController extends CustomController
 {
@@ -17,7 +18,12 @@ class MairieController extends CustomController
       if($this->allowToTwo('Admin','Mairie',$slug)){
 
         $donnee = $this->infoBdd('Mairie',$slug,['statusA' => 'Actif','statusB' => 'En attente']);
-        $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee]);
+
+        if(empty($donnee['nom'])){
+          $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee,'creation' => true]);
+        }else {
+          $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee]);
+        }
       }
     }else{
       $this->redirectToRoute('racine_form');
@@ -45,7 +51,11 @@ class MairieController extends CustomController
       if($this->allowToTwo('Admin','Mairie',$slug)){
 
         $donnee = $this->infoBdd('Mairie',$slug,['statusA' => 'Actif','statusB' => 'En attente']);
-        $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee,'edition' => true]);
+        if(empty($donnee['nom'])){
+          $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee,'edition' => true,'creation' => true]);
+        }else {
+          $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','donnee' => $donnee,'edition' => true]);
+        }
       }
 
     }else{
@@ -63,7 +73,6 @@ class MairieController extends CustomController
       if(!empty($_POST))
       {
         $r_POST = $this->nettoyage($_POST);
-        $error['nom'] = ValidationTools::textValid($r_POST['nom'],'nom',3,100);
         $error['adresse'] = ValidationTools::textValid($r_POST['adresse'],'adresse',3,50);
         $error['code_postal'] = ValidationTools::code_postalVerif($r_POST['code_postal']);
         $error['ville'] = ValidationTools::textValid($r_POST['ville'],'ville',3,50);
@@ -71,17 +80,23 @@ class MairieController extends CustomController
         $error['mail'] = ValidationTools::emailValid($r_POST['mail']);
 
         if(ValidationTools::IsValid($error)){
-          if(empty($r_POST['fix'])){
-            unset($r_POST['fix']);
-          }
+
           unset($r_POST['submit']);
+
+          $r_POST['nom'] = 'Mairie de '.$r_POST['ville'];
+          $r_POST['slug'] = Slugify::slugify($r_POST['nom']);
+          $r_POST['departement'] = substr($r_POST['code_postal'], -5, 2);
 
           $id = $mairieModel->FindElementByElement('id','slug',$slug);
           $result = $mairieModel->update($r_POST,$id);
           if(!$result){
             $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
-            $this->redirectToRoute('admin_mairie', ['slug' => $slug]);
+            $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
+            $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
+            $_SESSION['user']['roles'][$roleSession['key']]['slug'] = $r_POST['slug'];
+
+            $this->redirectToRoute('admin_mairie', ['slug' => $r_POST['slug']]);
           }
 
         } else {

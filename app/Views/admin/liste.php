@@ -60,6 +60,34 @@ if($orga == 'mairie'){
       echo $donnee;
     }
   }
+}elseif ($orga == 'webmaster') {
+  if(isset($donnee)){
+    if(is_array($donnee)){
+      echo '<table>';
+      foreach ($donnee as $key => $value) { ?>
+
+        <tr>
+
+          <td class="bouge"><?php echo $value['nom'].' : '.$value['status']; ?></td>
+
+          <td><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]);?>"><button class="btn btn-info bouge">Consulter</button></a></td>
+          <!-- <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td> -->
+          <?php if($value['status'] == 'Actif'){ ?>
+            <td><a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
+          <?php }else { ?>
+            <td><a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-success bouge">Activer</button></a></td>
+          <?php } ?>
+          <td><a href="<?php echo $this->url('admin_webmaster_delete_mairie',['id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+
+        </tr>
+        <?php
+
+      }
+      echo '</table>';
+    }else{
+      echo $donnee;
+    }
+  }
 }
 echo '</div>';
 ?>

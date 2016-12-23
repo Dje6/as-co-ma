@@ -58,9 +58,11 @@ class UsersCustomModel extends UsersModel
     $app = getApp();
     $roleProperty = $_SESSION['user']['roles'];
     //si on es SUPERADMIN, on a automatiquement acces a tout
-    if(in_array('SuperAdmin',$roleProperty)){
-      return true;
-    }
+      foreach ($roleProperty as $key => $value) {
+        if(in_array('SuperAdmin',$value)){
+          return true;
+        }
+      }
 
     //récupère les données en session sur l'utilisateur
     $authentificationModel = new AuthentificationModel();
@@ -139,7 +141,7 @@ class UsersCustomModel extends UsersModel
           $foundUser['roles'][$key]['id_user'] = $value['Mid_user'];
 
         }elseif(!empty($value['id_site'])){
-          $foundUser['roles'][$key]['orga'] = 'Site';
+          $foundUser['roles'][$key]['orga'] = 'Webmaster';
           $foundUser['roles'][$key]['id'] = $value['id_site'];
           $foundUser['roles'][$key]['role'] = $value['role'];
           $foundUser['roles'][$key]['slug'] = '0';

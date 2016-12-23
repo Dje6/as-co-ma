@@ -19,7 +19,7 @@ class ActionController extends CustomController
         $leMessage = $contactModel->FindMessageById($id);
         //en premier on recupere le message en question par son id
 
-        if($orga == 'users' && $slug == 'users'){
+        if($orga == 'user' && $slug == 'user'){
         //on verifie si on veu supprimer un message de user ou d'organisque
           if($leMessage['emeteur_mailOrId'] == $_SESSION['user']['id'] && $leMessage['emeteur_orga'] == 'users'){
           //ensuite on veu savoir si on est l'emeteur de ce message
@@ -69,6 +69,8 @@ class ActionController extends CustomController
             //meme chose si nous somme une mairie
               $MairieModel = new MairieModel;
               $id_orga = $MairieModel->FindElementByElement('id','slug',$slug) ;
+            }elseif($orga == 'webmaster'){
+              $id_orga = 'webmaster@as-co-ma.fr' ;
             }
 
             if($leMessage['emeteur_mailOrId'] == $id_orga && $leMessage['emeteur_orga'] == $orga){
@@ -100,6 +102,8 @@ class ActionController extends CustomController
                   }
               }
               $this->redirectToRoute('admin_message_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug]);
+            }else {
+              echo 'probleme';
             }
           }
         }
@@ -116,7 +120,7 @@ class ActionController extends CustomController
         $leMessage = $contactModel->FindMessageById($id);
         //en premier on recupere le message en question par son id
 
-        if($orga == 'users' && $slug == 'users'){
+        if($orga == 'user' && $slug == 'user'){
         //on verifie si on veu supprimer un message de user ou d'organisque
           if($leMessage['destinataire_mailOrId'] == $_SESSION['user']['id'] && $leMessage['destinataire_orga'] == 'users'){
           //on verifie qu'on es bien le destinataire du message
@@ -139,6 +143,8 @@ class ActionController extends CustomController
             //meme chose si nous somme une mairie
               $MairieModel = new MairieModel;
               $id_orga = $MairieModel->FindElementByElement('id','slug',$slug) ;
+            }elseif($orga == 'webmaster'){
+              $id_orga = 'webmaster@as-co-ma.fr' ;
             }
 
             if ($leMessage['destinataire_mailOrId'] == $id_orga && $leMessage['destinataire_orga'] == $orga) {

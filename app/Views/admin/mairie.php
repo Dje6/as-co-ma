@@ -1,4 +1,9 @@
-<?php $this->layout('layout_back', ['title' => 'AdminMairie','slug' => $slug,'orga' => $orga]) ?>
+<?php
+if(isset($creation)){
+  $this->layout('layout_back', ['title' => 'AdminMairie','slug' => $slug,'orga' => $orga,'creation' => true]) ;
+}else {
+  $this->layout('layout_back', ['title' => 'AdminMairie','slug' => $slug,'orga' => $orga]);
+}  ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 <?php $this->start('main_head') ?>
@@ -27,48 +32,44 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
-                      <?php if(isset($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
-                      <input type="text" name="nom" value="<?php echo $donnee['nom']?>"><br>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="input-group"
-                      <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-road blue"></i></span>
-                      <?php if(isset($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
+                      <span class="input-group-addon">Adresse</span>
+                      <?php if(isset($error['adresse']) && !empty($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
                       <input type="text" name="adresse" value="<?php echo $donnee['adresse']?>"><br>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <div class="input-group"
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope blue"></i></span>
-                      <?php if(isset($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
+                    <div class="input-group">
+                      <span class="input-group-addon">Code Postal</span>
+                      <?php if(isset($error['code_postal']) && !empty($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
                       <input type="text" name="code_postal" value="<?php echo $donnee['code_postal']?>"><br>
                     </div>
                   </div>
 
+                  <?php if(isset($creation)){ ?>
                   <div class="form-group">
-                    <div class="input-group"
-                      <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-home blue"></i></span>
-                      <?php if(isset($error['ville'])){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
+                    <div class="input-group">
+                      <span class="input-group-addon">Ville</span>
+                      <?php if(isset($error['ville']) && !empty($error['ville']) ){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
                       <input type="text" name="ville" value="<?php echo $donnee['ville']?>"><br>
                     </div>
                   </div>
+                  <?php }else { ?>
+                          <input type="hidden" name="ville" value="<?php echo $donnee['ville']?>" readonly>
+                  <?php } ?>
 
                   <div class="form-group">
-                    <div class="input-group"
-                      <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-earphone blue"></i></span>
-                      <?php if(isset($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
+                    <div class="input-group">
+                      <span class="input-group-addon">Fix</span>
+                      <?php if(isset($error['fix']) && !empty($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
                       <input type="text" name="fix" value="<?php echo $donnee['fix']?>"><br>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <div class="input-group"
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope blue"></i></span>
-                      <?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mail</span>
+                      <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
                       <input type="text" name="mail" value="<?php echo $donnee['mail']?>"><br>
                     </div>
                   </div>
@@ -96,22 +97,19 @@ if(isset($donnee)){
 
       echo '</h3><br>';
       echo '<h3>Email : '.$donnee['mail'].'</h3><br/>';
-      echo '<h3>Statut : '.$donnee['status'].'</h3><br/>';
-      echo '<h3>Horaire d\'ouverture: ';
-      foreach (unserialize($donnee['horaire']) as $key => $value) {
-        echo '<div class="horaires"><h4>'.$key.' : '.$value.'</h4></div>';
+      if(is_array($donnee['horaire'])){
+        echo '<h3>Horaire d\'ouverture: ';
+        foreach (unserialize($donnee['horaire']) as $key => $value) {
+          echo '<div class="horaires"><h4>'.$key.' : '.$value.'</h4></div>';
+        }
+      }else {
+        echo '<h3>Horaire d\'ouverture: Non renseigné';
       }
+      echo '<h3>Statut : '.$donnee['status'].'</h3><br/>';
       if(!isset($acces)){
 
-        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'"><button class="btn btn-primary centerBut">Modifier</button></a>';
-
-
-        // echo '<div class="container ">
-        //         <div class="row">
-        //
-        //         </div>
-        //       </div>';
-
+        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
+        <button class="btn btn-primary centerBut">Modifier</button></a>';
 
      echo '</div">';
 
