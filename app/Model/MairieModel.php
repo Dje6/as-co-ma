@@ -18,9 +18,19 @@ class MairieModel extends customModel
       $this->setTable('mairie');
       $this->dbh = ConnectionModel::getDbh() ;
       if(strlen($search) == 2 || strlen($search) == 3){
-        return $this->search(['departement' => $search,'status' => 'Actif'],'AND', $stripTags = true);
+        $result = $this->search(['departement' => $search,'status' => 'Actif'],'AND', $stripTags = true);
+        if(!$result){
+          return 'Aucune Mairie enregister pour ce departement';
+        }else {
+          return $result;
+        }
       }elseif(strlen($search) == 5){
-        return $this->search(['code_postal' => $search,'status' => 'Actif'],'AND', $stripTags = true);
+        $result = $this->search(['code_postal' => $search,'status' => 'Actif'],'AND', $stripTags = true);
+        if(!$result){
+          return 'Aucune Mairie enregister pour ce code postal';
+        }else {
+          return $result;
+        }
       }else{
         return 'Votre saisie est invalide';
       }

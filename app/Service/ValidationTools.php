@@ -7,7 +7,6 @@ use \Model\MairieModel;
 
 class ValidationTools
 {
-
   public static function IsValid($errors)
   {
     foreach ($errors as $key => $value) {

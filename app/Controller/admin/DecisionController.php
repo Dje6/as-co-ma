@@ -33,6 +33,9 @@ class DecisionController extends ReponseController
 
           if(!is_numeric($leMessage['emeteur_mailOrId'])){// si c'est un id on repon en interne
             $maildestinataire = $this->FindMailDestinataire($leMessage['emeteur_orga'],$leMessage['emeteur_mailOrId']);
+            if(!$maildestinataire){
+              $maildestinataire = $leMessage['emeteur_mailOrId'];
+            }
           }else {//sinon en externe
             $maildestinataire = $leMessage['emeteur_mailOrId'];
           }
@@ -49,7 +52,9 @@ class DecisionController extends ReponseController
               $result = $MairieModel->insert(['status' =>'En attente','id_user' =>$maildestinataire,'nom' =>'',
               'slug' => StringUtils::randomString($length = 15),
               'token' => StringUtils::randomString($length = 80),'adresse' =>'','code_postal' => '','departement' => '','ville' => '',
-              'mail' => '','fix' =>'','created_at' => $dateEtHeure]);
+              'mail' => '','fix' =>'',
+              'horaire' => 'a:7:{s:5:"Lundi";s:0:"";s:5:"Mardi";s:0:"";s:8:"Mercredi";s:0:"";s:5:"Jeudi";s:0:"";s:8:"Vendredi";s:0:"";s:6:"Samedi";s:0:"";s:8:"Dimanche";s:0:"";}',
+              'created_at' => $dateEtHeure]);
 
               if($result){
                 $id_mairie = $MairieModel->FindElementByElement('id','created_at',$dateEtHeure);
