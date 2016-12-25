@@ -4,14 +4,15 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
+ 	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
+
 
 
 	<?= $this->section('main_head') ?>
 
 </head>
 <body>
-	
+
 	<div class="navbar-wrapper">
   	<div class="container-fluid">
 			<nav class="navbar navbar-inverse navbar-static-top">
