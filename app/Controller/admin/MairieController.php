@@ -168,13 +168,13 @@ class MairieController extends CustomController
             if($result3){
               $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
             }else {
-              echo 'probleme suppression contact';
+              $this->showErrors('probleme suppression contact');
             }
           }else {
-            echo 'probleme suppression role';
+            $this->showErrors('probleme suppression role');
           }
         }else {
-          echo 'probleme suppression assoc';
+          $this->showErrors('probleme suppression assoc');
         }
       }
     }else {

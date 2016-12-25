@@ -88,10 +88,10 @@ class DecisionController extends ReponseController
                     $_SESSION['user']['roles'][$nbr]['id_user'] = $maildestinataire;
                   }
                 }else {
-                  echo 'probleme lors de l\'atribution du role';
+                  $this->showErrors('probleme lors de l\'atribution du role');
                 }
               }else {
-                echo 'probleme lors de la creation'.$result;
+                $this->showErrors('probleme lors de la creation'.$result);
               }
               //////////////////////////////////////////////////////////////////
 
@@ -130,10 +130,10 @@ class DecisionController extends ReponseController
                     $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug;
                   }
                 }else{
-                  echo 'probleme lors de l\'atribution du role';
+                  $this->showErrors('probleme lors de l\'atribution du role');
                 }
               }else {
-                echo 'probleme lors de la creation'.$result;
+                $this->showErrors('probleme lors de la creation'.$result);
               }
 
               //////////////////////////////////////////////////////////////////
@@ -166,7 +166,7 @@ class DecisionController extends ReponseController
                   $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug_mairie;
                 }
               }else{
-                echo 'probleme lors de l\'atribution du role';
+                $this->showErrors('probleme lors de l\'atribution du role');
               }
             }
           }
@@ -197,8 +197,6 @@ class DecisionController extends ReponseController
         if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
           $contactModel = new ContactModel;
           $leMessage = $contactModel->FindMessageById($id);
-
-
         }
       }else{
         $this->redirectToRoute('racine_form');

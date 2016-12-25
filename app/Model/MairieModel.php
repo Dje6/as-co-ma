@@ -43,6 +43,7 @@ class MairieModel extends customModel
 // les info sont demander et retourner par le controleur de la mairie
   public function findListe($slug)
   {
+    
     $sql = 'SELECT * FROM assoc WHERE id_mairie = (SELECT id FROM ' . $this->table . ' WHERE slug = :slug)';
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
