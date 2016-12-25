@@ -7,6 +7,7 @@ use \Model\ContactModel;
 use \Model\AssocModel;
 use \Model\MairieModel;
 use \Model\UserModel;
+use \Model\RolesModel;
 
 class ContactController extends CustomController
 {
@@ -41,9 +42,19 @@ class ContactController extends CustomController
       unset($r_POST['capcha']);
 
       $UserModel = new UserModel;
-      if($UserModel->FindElementByElement('id','mail',$r_POST['emeteur_mailOrId'])){
+      $id_utilisateur_eventuel = $UserModel->FindElementByElement('id','mail',$r_POST['emeteur_mailOrId']);
+      if($id_utilisateur_eventuel){
+        if($orga == 'assoc'){
+          $AssociationModel = new AssocModel;
+          $id_ssociation = $AssociationModel->FindElementByElement('id','slug',$slug);
+          $RolesModel = new RolesModel;
+          $roleRetourner = $RolesModel->FindRole($id_ssociation,$id_utilisateur_eventuel);
+          if(!empty($roleRetourner)){
+            $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Vous faites deja partie de cette association']);
+          }
+        }
         $email = $r_POST['emeteur_mailOrId'];
-        $r_POST['emeteur_mailOrId'] = $UserModel->FindElementByElement('id','mail',$r_POST['emeteur_mailOrId']);
+        $r_POST['emeteur_mailOrId'] = $id_utilisateur_eventuel;
         $r_POST['emeteur_orga'] = 'users';
         $r_POST['emeteur_pseudo'] = $UserModel->FindElementByElement('pseudo','mail',$email);
       }else{

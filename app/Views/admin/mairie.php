@@ -36,7 +36,7 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Adresse</span>
                       <?php if(isset($error['adresse']) && !empty($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
-                      <input type="text" name="adresse" value="<?php echo $donnee['adresse']?>"><br>
+                      <input type="text" name="adresse" class="form-control" value="<?php echo $donnee['adresse']?>"><br>
                     </div>
                   </div>
 
@@ -44,7 +44,7 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Code Postal</span>
                       <?php if(isset($error['code_postal']) && !empty($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
-                      <input type="text" name="code_postal" value="<?php echo $donnee['code_postal']?>"><br>
+                      <input type="text" name="code_postal" class="form-control" value="<?php echo $donnee['code_postal']?>"><br>
                     </div>
                   </div>
 
@@ -53,7 +53,7 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Ville</span>
                       <?php if(isset($error['ville']) && !empty($error['ville']) ){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
-                      <input type="text" name="ville" value="<?php echo $donnee['ville']?>"><br>
+                      <input type="text" name="ville" class="form-control" value="<?php echo $donnee['ville']?>"><br>
                     </div>
                   </div>
                   <?php }?>
@@ -62,7 +62,7 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Fix</span>
                       <?php if(isset($error['fix']) && !empty($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
-                      <input type="text" name="fix" value="<?php echo $donnee['fix']?>"><br>
+                      <input type="text" name="fix" class="form-control" value="<?php echo $donnee['fix']?>"><br>
                     </div>
                   </div>
 
@@ -70,7 +70,7 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Mail</span>
                       <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
-                      <input type="text" name="mail" value="<?php echo $donnee['mail']?>"><br>
+                      <input type="text" name="mail" class="form-control" value="<?php echo $donnee['mail']?>"><br>
                     </div>
                   </div>
 
@@ -82,31 +82,31 @@ if(isset($donnee)){
 
                       <div class="input-group">
                         <span class="input-group-addon">Lundi</span>
-                          <input type="text" name="horaire[Lundi]" value="<?php echo $horaire['Lundi']?>">
+                          <input type="text" name="horaire[Lundi]" class="form-control" value="<?php echo $horaire['Lundi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Mardi</span>
-                          <input type="text" name="horaire[Mardi]" value="<?php echo $horaire['Mardi']?>">
+                          <input type="text" name="horaire[Mardi]" class="form-control" value="<?php echo $horaire['Mardi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Mercredi</span>
-                          <input type="text" name="horaire[Mercredi]" value="<?php echo $horaire['Mercredi']?>">
+                          <input type="text" name="horaire[Mercredi]" class="form-control" value="<?php echo $horaire['Mercredi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Jeudi</span>
-                          <input type="text" name="horaire[Jeudi]" value="<?php echo $horaire['Jeudi']?>">
+                          <input type="text" name="horaire[Jeudi]" class="form-control" value="<?php echo $horaire['Jeudi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Vendredi</span>
-                          <input type="text" name="horaire[Vendredi]" value="<?php echo $horaire['Vendredi']?>">
+                          <input type="text" name="horaire[Vendredi]" class="form-control" value="<?php echo $horaire['Vendredi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Samedi</span>
-                          <input type="text" name="horaire[Samedi]" value="<?php echo $horaire['Samedi']?>">
+                          <input type="text" name="horaire[Samedi]" class="form-control" value="<?php echo $horaire['Samedi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Dimanche</span>
-                          <input type="text" name="horaire[Dimanche]" value="<?php echo $horaire['Dimanche']?>">
+                          <input type="text" name="horaire[Dimanche]" class="form-control" value="<?php echo $horaire['Dimanche']?>">
                       </div>
                     </div>
                   </div>

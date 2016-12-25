@@ -95,7 +95,7 @@ class ContactModel extends customModel
       }
     }
   }
-  public function deleteByMairie($id,$type)
+  public function deleteByType($id,$type)
   {
     if (!is_numeric($id)){
       return false;

@@ -5,6 +5,7 @@ use \Controller\CustomController;
 use \Model\MairieModel;
 use \Service\ValidationTools;
 use \Model\AssocModel;
+use \Model\ContactModel;
 use \Model\RolesModel;
 use \Service\Slugify;
 
@@ -152,18 +153,30 @@ class MairieController extends CustomController
         $slug = $this->nettoyage($slug);
         $slugA = $this->nettoyage($slugA);
         $id = $assocModel->FindElementByElement('id','slug',$slugA);
+
         $result = $assocModel->delete($id);
         if($result){
           $rolesModel = new RolesModel;
           $result2 = $rolesModel->deleteRoles($id,'id_assoc');
+
+          $roleSession = $this->in_multi_array_return_array_and_key($slugA,$_SESSION['user']['roles']);
+          unset($_SESSION['user']['roles'][$roleSession['key']]);
+
           if($result2){
-            $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
+            $contactModel = new ContactModel;
+            $result3 = $contactModel->deleteByType($id,'assoc');
+            if($result3){
+              $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
+            }else {
+              echo 'probleme suppression contact';
+            }
+          }else {
+            echo 'probleme suppression role';
           }
         }else {
-
+          echo 'probleme suppression assoc';
         }
       }
-
     }else {
       $this->redirectToRoute('racine_form');
     }
