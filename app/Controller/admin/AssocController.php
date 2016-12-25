@@ -154,7 +154,7 @@ class AssocController extends CustomController
                  $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
                 }
             } else {
-              echo 'un soucis lors de la mise a jour du role';
+              $this->showErrors('un soucis lors de la mise a jour du role');
             }
       }
     }else {
@@ -193,7 +193,7 @@ class AssocController extends CustomController
                  $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
                }
             } else {
-              echo 'un soucis lors de la mise a jour du role';
+              $this->showErrors('un soucis lors de la suppresion du role');
             }
       }
     }else {

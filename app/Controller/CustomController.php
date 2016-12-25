@@ -66,6 +66,7 @@ class CustomController extends Controller
 
     $this->showForbidden();
   }
+  //permet dafficher une page derreur avec le message dereur souhaiter
   public function showErrors($error)
   {
     header('HTTP/1.0 409 Conflict');

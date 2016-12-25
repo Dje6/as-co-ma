@@ -9,7 +9,7 @@
 
 <?php $this->start('main_content'); ?>
   <div class="row">
-    <h2 class="text-center"><strong><i><?php echo $error ; ?></i></strong></h2>
+    <h2 class="text-center"><strong>Oups un petit probleme... Excusez nous : <?php echo $error ; ?></strong></h2>
   </div>
 <?php $this->stop('main_content'); ?>
 

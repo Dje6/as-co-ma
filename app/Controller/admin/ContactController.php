@@ -28,7 +28,7 @@ class ContactController extends CustomController
             $r_POST['emeteur_mailOrId'] = $mailEmeteur;
             $this->sendMessage('mairie','assoc',$slugEmeteur,$slugRecepteur,$r_POST);
           }else {
-            echo 'Aucune correspondance avec le slug.';
+            $this->showErrors('Aucune correspondance avec le slug.');
           }
         }else{
           $MairieModel = new MairieModel;
@@ -57,7 +57,7 @@ class ContactController extends CustomController
             $r_POST['emeteur_mailOrId'] = $mailEmeteur;
             $this->sendMessage('users','assoc',$slugEmeteur,$id,$r_POST);
           }else {
-            echo 'Aucune correspondance avec le slug.';
+            $this->showErrors('Aucune correspondance avec le slug.');
           }
         }else{
           $UserModel = new UserModel;
@@ -88,7 +88,7 @@ class ContactController extends CustomController
             $this->sendMessage('assoc','mairie',$slugEmeteur,$slugRecepteur,$r_POST);
           }
           else {
-            echo 'Aucune correspondance avec le slug.';
+            $this->showErrors('Aucune correspondance avec le slug.');
           }
         }else{
           $AssocModel = new AssocModel;
@@ -116,7 +116,7 @@ class ContactController extends CustomController
             $this->sendMessage('site','mairie',$slugEmeteur,'Webmaster',$r_POST);
           }
           else {
-            echo 'Aucune correspondance avec le slug.';
+            $this->showErrors('Aucune correspondance avec le slug.');
           }
         }else{
           $this->show('admin/Editmessage',['orga' => 'site','slug' => $slugEmeteur,'slugEmeteur' => $slugEmeteur,
