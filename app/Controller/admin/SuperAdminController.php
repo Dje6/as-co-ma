@@ -4,6 +4,7 @@ namespace Controller\admin;
 use \Controller\CustomController;
 use \Model\MairieModel;
 use \Model\RolesModel;
+use \Model\ContactModel;
 
 
 class SuperAdminController extends CustomController
@@ -55,15 +56,24 @@ class SuperAdminController extends CustomController
 
         $id = $this->nettoyage($id);
 
-        $result = $MairieModel->delete($id);
-        if($result){
+        if($MairieModel->delete($id)){
+
           $rolesModel = new RolesModel;
-          $result2 = $rolesModel->deleteRoles($id,'id_mairie');
-          if($result2){
-            $this->redirectToRoute('admin_webmaster_mairie',['page' => 1]);
+          if($rolesModel->deleteRoles($id,'id_mairie')){
+
+            $ContactModel = new ContactModel;
+            if($ContactModel->deleteByType($id,'mairie')){
+
+              $this->redirectToRoute('admin_webmaster_mairie',['page' => 1]);
+
+            }else {
+              echo 'probleme de suppression des message';
+            }
+          }else {
+            echo 'probleme pour supprimer les role';
           }
         }else {
-
+          echo 'probleme supprimer la mairie';
         }
       }
 

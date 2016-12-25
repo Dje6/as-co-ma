@@ -24,51 +24,151 @@ class DecisionController extends ReponseController
           $contactModel = new ContactModel;
           $leMessage = $contactModel->FindMessageById($id);
 
-          if(!is_numeric($leMessage['emeteur_mailOrId'])){ //si c'est ce n'est pas id on verifie si eventuelemt il exist en base
+          //on verifie si c'est un ID ou email qui nous ecrit , pour savoir si on doit repondre en interne ou en mail
+          if(!is_numeric($leMessage['emeteur_mailOrId'])){ //si c'est ce n'est pas id on verifie si eventuelemt il le mail
+            //exist en base en base de donnee
             $UserModel = new UserModel;
             if($UserModel->emailExists($leMessage['emeteur_mailOrId'])){ //si oui on recupere l'id
               $leMessage['emeteur_mailOrId'] = $UserModel->FindElementByElement('id','mail',$leMessage['emeteur_mailOrId']);
             }
           }
 
-          if(!is_numeric($leMessage['emeteur_mailOrId'])){// si c'est un id on repon en interne
+          //ici on verifie si c'est un ID (si c 'ete un email a lorgine mais quil exist en base de donne ,
+          //la ligne precedante le transform')
+          if(!is_numeric($leMessage['emeteur_mailOrId'])){
+            // si ce n'est pas un nombre , on cherche le mail de
+            // lutilisateur avec cette ID
             $maildestinataire = $this->FindMailDestinataire($leMessage['emeteur_orga'],$leMessage['emeteur_mailOrId']);
-          }else {//sinon en externe
+            if(!$maildestinataire){
+              //si pour une raison inconnu le mail retourne FALSE , on atribu l'ID
+              $maildestinataire = $leMessage['emeteur_mailOrId'];
+            }
+          }else {//sinon en interne
             $maildestinataire = $leMessage['emeteur_mailOrId'];
           }
-          $pseudoEmeteur = $this->FindPseudoEmeteur($leMessage['destinataire_orga'],$leMessage['destinataire_mailOrId']);
 
+          $pseudoEmeteur = $this->FindPseudoEmeteur($leMessage['destinataire_orga'],$leMessage['destinataire_mailOrId']);
           $orga_demande = $this->analiseObject($leMessage['objet']);
 
           if(is_numeric($maildestinataire)){
             $RolesModel = new RolesModel;
 
-            if($orga_demande = 'mairie'){
+            //////////////////////////////////////////////////////////////////
+
+            ///////////////////////      MAIRIE            ///////////////////
+
+            /////////////////////////////////////////////////////////////////
+
+            if($orga_demande == 'mairie'){
+
               $MairieModel = new MairieModel;
               $dateEtHeure = date('Y-m-d H:i:s');
+              $SlugTemporaire = StringUtils::randomString($length = 15);
               $result = $MairieModel->insert(['status' =>'En attente','id_user' =>$maildestinataire,'nom' =>'',
-              'slug' => StringUtils::randomString($length = 15),
+              'slug' => $SlugTemporaire,
               'token' => StringUtils::randomString($length = 80),'adresse' =>'','code_postal' => '','departement' => '','ville' => '',
-              'mail' => '','fix' =>'','created_at' => $dateEtHeure]);
+              'mail' => '','fix' =>'',
+              'horaire' => 'a:7:{s:5:"Lundi";s:0:"";s:5:"Mardi";s:0:"";s:8:"Mercredi";s:0:"";s:5:"Jeudi";s:0:"";s:8:"Vendredi";s:0:"";s:6:"Samedi";s:0:"";s:8:"Dimanche";s:0:"";}',
+              'created_at' => $dateEtHeure]);
 
-              if($result){
+              if($result){//si le premier insert c bien passer on avance
                 $id_mairie = $MairieModel->FindElementByElement('id','created_at',$dateEtHeure);
-
                 $result2 = $RolesModel->insert(['id_mairie' => $id_mairie,'id_user' => $maildestinataire,'role' => 'Admin']);
-                if(!$result2){
+
+                if($result2){//si le deuxieme c bien passer on avance
+                  if($_SESSION['user']['id'] == $maildestinataire){//si les modif nous concerne nous on met a jour la session
+
+                    $nbr = count($_SESSION['user']['roles']);// on compte combien de role il y a actuelement
+                    //pour savoir quel CLE mettre pour le nouveau role
+                    $_SESSION['user']['roles'][$nbr]['orga'] = 'Mairie';
+                    $_SESSION['user']['roles'][$nbr]['id'] = $id_mairie;
+                    $_SESSION['user']['roles'][$nbr]['role'] = 'Admin';
+                    $_SESSION['user']['roles'][$nbr]['nom'] = '';
+                    $_SESSION['user']['roles'][$nbr]['slug'] = $SlugTemporaire;
+                    $_SESSION['user']['roles'][$nbr]['id_user'] = $maildestinataire;
+                  }
+                }else {
+                  echo 'probleme lors de l\'atribution du role';
+                }
+              }else {
+                echo 'probleme lors de la creation'.$result;
+              }
+              //////////////////////////////////////////////////////////////////
+
+              ///////////////////////     ASSOC            ///////////////////
+
+              /////////////////////////////////////////////////////////////////
+
+            }elseif ($orga_demande == 'assoc') {
+              $AssocModel = new AssocModel;
+              $MairieModel = new MairieModel;
+              $dateEtHeure = date('Y-m-d H:i:s');
+              $id_mairie = $MairieModel->FindElementByElement('id','slug',$slug);
+              $SlugTemporaire = StringUtils::randomString($length = 15);
+
+              $result = $AssocModel->insert(['status' =>'En attente','id_user' =>$maildestinataire,'nom' =>'',
+              'slug' => $SlugTemporaire,'id_mairie' => $id_mairie,
+              'token' => StringUtils::randomString($length = 80),'adresse' =>'','code_postal' => '',
+              'ville' => '','mail' => '','created_at' => $dateEtHeure]);
+
+              if($result){ //si le premier insert c bien passer
+                $id_assoc = $AssocModel->FindElementByElement('id','created_at',$dateEtHeure);
+                $result2 = $RolesModel->insert(['id_assoc' => $id_assoc,'id_user' => $maildestinataire,'role' => 'Admin']);
+
+                if($result2){// si le deuxieme c bien passer
+                  if($_SESSION['user']['id'] == $maildestinataire){
+                    //si les mdofi concerne notre session on met a jour
+                    $nbr = count($_SESSION['user']['roles']);//on recupere le nombre de role actuel
+                    //pour ajouter un nouveau role a la suite
+                    $_SESSION['user']['roles'][$nbr]['orga'] = 'Assoc';
+                    $_SESSION['user']['roles'][$nbr]['id'] = $id_assoc;
+                    $_SESSION['user']['roles'][$nbr]['role'] = 'Admin';
+                    $_SESSION['user']['roles'][$nbr]['nom'] = '';
+                    $_SESSION['user']['roles'][$nbr]['slug'] = $SlugTemporaire;
+                    $_SESSION['user']['roles'][$nbr]['id_user'] = $maildestinataire;
+                    $_SESSION['user']['roles'][$nbr]['id_mairie'] = $id_mairie;
+                    $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug;
+                  }
+                }else{
                   echo 'probleme lors de l\'atribution du role';
                 }
               }else {
                 echo 'probleme lors de la creation'.$result;
               }
 
-            }//elseif ($orga_demande = 'assoc') {
-            //   $AssocModel = new AssocModel;
-            //   $AssocModel->insert()
-            //   $RolesModel->insert()
-            // }elseif ($orga_demande = 'membre') {
-            //   $RolesModel->insert()
-            // }
+              //////////////////////////////////////////////////////////////////
+
+              ///////////////////////     MEMBRE            ///////////////////
+
+              /////////////////////////////////////////////////////////////////
+            }elseif ($orga_demande = 'membre') {
+              $MairieModel = new MairieModel;
+              $AssocModel = new AssocModel;
+              $AssocComplete = $AssocModel->findSlug($slug,$status=['statusA' => 'En attente','statusB' => 'Actif']);
+
+              $id_assoc = $AssocComplete['id'];
+              $slug_mairie = $MairieModel->FindElementByElement('slug','id',$AssocComplete['id_mairie']) ;
+
+              $result = $RolesModel->insert(['id_assoc' => $id_assoc,'id_user' => $maildestinataire,'role' => 'User']);
+
+              if($result){// si ca c bien passer
+                if($_SESSION['user']['id'] == $maildestinataire){
+                  //si les mdofi concerne notre session on met a jour
+                  $nbr = count($_SESSION['user']['roles']);//on recupere le nombre de role actuel
+                  //pour ajouter un nouveau role a la suite
+                  $_SESSION['user']['roles'][$nbr]['orga'] = 'Assoc';
+                  $_SESSION['user']['roles'][$nbr]['id'] = $id_assoc;
+                  $_SESSION['user']['roles'][$nbr]['role'] = 'User';
+                  $_SESSION['user']['roles'][$nbr]['nom'] = $AssocComplete['nom'];
+                  $_SESSION['user']['roles'][$nbr]['slug'] = $slug;
+                  $_SESSION['user']['roles'][$nbr]['id_user'] = $AssocComplete['id_user'];
+                  $_SESSION['user']['roles'][$nbr]['id_mairie'] = $AssocComplete['id_maire'];
+                  $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug_mairie;
+                }
+              }else{
+                echo 'probleme lors de l\'atribution du role';
+              }
+            }
           }
 
           $GenerateDataController = new GenerateDataController;

@@ -14,9 +14,7 @@ if(isset($creation)){
 <?php $this->start('main_content') ?>
 <h1 class="titreback">Administration</h1>
 
-
 <?php
-
 
 if(isset($donnee)){
   if(is_array($donnee)){
@@ -28,13 +26,17 @@ if(isset($donnee)){
             <div class="panel panel-default">
 
               <form method="POST" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
-                <div class="panel-body">
+                <div class="panel-body"><?php
+                if(!isset($creation)){ //uniquement si la creation es deja faite ?>
+                  Si suite a un regroupement communal ou un renomement de la commune ,
+                  votre ville change , merci de nous contacter en cliquant sur 'Contacter Le webmaster' ci-dessu<?php
+                } ?>
 
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon">Adresse</span>
                       <?php if(isset($error['adresse']) && !empty($error['adresse'])){ echo '<span>'.$error['adresse'].'</span><br>' ;} ?>
-                      <input type="text" name="adresse" value="<?php echo $donnee['adresse']?>"><br>
+                      <input type="text" name="adresse" class="form-control" value="<?php echo $donnee['adresse']?>"><br>
                     </div>
                   </div>
 
@@ -42,27 +44,25 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Code Postal</span>
                       <?php if(isset($error['code_postal']) && !empty($error['code_postal'])){ echo '<span>'.$error['code_postal'].'</span><br>' ;} ?>
-                      <input type="text" name="code_postal" value="<?php echo $donnee['code_postal']?>"><br>
+                      <input type="text" name="code_postal" class="form-control" value="<?php echo $donnee['code_postal']?>"><br>
                     </div>
                   </div>
 
-                  <?php if(isset($creation)){ ?>
+                  <?php if(isset($creation)){//visible uniquement lors de la creation ?>
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon">Ville</span>
                       <?php if(isset($error['ville']) && !empty($error['ville']) ){ echo '<span>'.$error['ville'].'</span><br>' ;} ?>
-                      <input type="text" name="ville" value="<?php echo $donnee['ville']?>"><br>
+                      <input type="text" name="ville" class="form-control" value="<?php echo $donnee['ville']?>"><br>
                     </div>
                   </div>
-                  <?php }else { ?>
-                          <input type="hidden" name="ville" value="<?php echo $donnee['ville']?>" readonly>
-                  <?php } ?>
+                  <?php }?>
 
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon">Fix</span>
                       <?php if(isset($error['fix']) && !empty($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
-                      <input type="text" name="fix" value="<?php echo $donnee['fix']?>"><br>
+                      <input type="text" name="fix" class="form-control" value="<?php echo $donnee['fix']?>"><br>
                     </div>
                   </div>
 
@@ -70,11 +70,46 @@ if(isset($donnee)){
                     <div class="input-group">
                       <span class="input-group-addon">Mail</span>
                       <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
-                      <input type="text" name="mail" value="<?php echo $donnee['mail']?>"><br>
+                      <input type="text" name="mail" class="form-control" value="<?php echo $donnee['mail']?>"><br>
                     </div>
                   </div>
 
+                  <div class="form-group">Pencez a preciser 'Fermer' les jour de fermeture<br/>
+                    <div class="input-group">
+                      <span class="input-group-addon">Horaire</span>
+                      <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
+                      <?php $horaire = unserialize($donnee['horaire']); ?>
 
+                      <div class="input-group">
+                        <span class="input-group-addon">Lundi</span>
+                          <input type="text" name="horaire[Lundi]" class="form-control" value="<?php echo $horaire['Lundi']?>">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon" >Mardi</span>
+                          <input type="text" name="horaire[Mardi]" class="form-control" value="<?php echo $horaire['Mardi']?>">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon" >Mercredi</span>
+                          <input type="text" name="horaire[Mercredi]" class="form-control" value="<?php echo $horaire['Mercredi']?>">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon" >Jeudi</span>
+                          <input type="text" name="horaire[Jeudi]" class="form-control" value="<?php echo $horaire['Jeudi']?>">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon" >Vendredi</span>
+                          <input type="text" name="horaire[Vendredi]" class="form-control" value="<?php echo $horaire['Vendredi']?>">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon" >Samedi</span>
+                          <input type="text" name="horaire[Samedi]" class="form-control" value="<?php echo $horaire['Samedi']?>">
+                      </div>
+                      <div class="input-group">
+                        <span class="input-group-addon" >Dimanche</span>
+                          <input type="text" name="horaire[Dimanche]" class="form-control" value="<?php echo $horaire['Dimanche']?>">
+                      </div>
+                    </div>
+                  </div>
 
                   <input type="submit" name="submit" class="btn btn-info pull-right" value="Enregistrer"><br>
                 </div>
@@ -85,47 +120,50 @@ if(isset($donnee)){
       </div>
 
       <?php
-    }else {
-     echo '<div class="container affichageMairie">';
-      echo '<h3 class="centragetitre"> '.$donnee['nom'].'</h3><br/>';
+    }else { ?>
+      <div class="container affichageMairie"><?php
 
-      echo '<h3>Adresse : '.$donnee['adresse'].'</h3>';
-      echo '<h3>Code Postal : '.$donnee['code_postal'].'</h3>';
-      echo '<h3>ville : '.$donnee['ville'].'</h3>';
-      echo '<h3>Téléphone : '.$donnee['fix'].'</h3>';
-
-
-      echo '</h3><br>';
-      echo '<h3>Email : '.$donnee['mail'].'</h3><br/>';
-      if(is_array($donnee['horaire'])){
-        echo '<h3>Horaire d\'ouverture: ';
-        foreach (unserialize($donnee['horaire']) as $key => $value) {
-          echo '<div class="horaires"><h4>'.$key.' : '.$value.'</h4></div>';
+        if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
+         <h3 class="centragetitre"><?php echo $donnee['nom'] ; ?></h3><?php
         }
-      }else {
-        echo '<h3>Horaire d\'ouverture: Non renseigné';
-      }
-      echo '<h3>Statut : '.$donnee['status'].'</h3><br/>';
-      if(!isset($acces)){
+        if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseigner' ; } ?>
+        <h3>Adresse : <?php echo $donnee['adresse'] ; ?></h3><?php
 
-        echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
-        <button class="btn btn-primary centerBut">Modifier</button></a>';
+        if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigner' ; } ?>
+        <h3>Code Postal : <?php echo $donnee['code_postal'] ; ?></h3><?php
 
-     echo '</div">';
+        if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseigner' ; } ?>
+        <h3>ville : <?php echo $donnee['ville'] ; ?></h3><?php
 
-      }
+        if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigner' ; } ?>
+        <h3>Téléphone : <?php echo $donnee['fix'] ; ?></h3><?php
+
+        if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigner' ; } ?>
+        <h3>Email : <?php echo $donnee['mail'] ; ?></h3>
+
+        <h3>Horaire d'ouverture: </h3><?php
+
+          foreach (unserialize($donnee['horaire']) as $key => $value) {
+            if(empty($value)){ $value = 'Non Renseigner' ; } ?>
+              <div class="horaires">
+                <h4><?php echo $key.' : '.$value ; ?></h4>
+              </div><?php
+          } ?>
+
+        <h3>Statut : <?php echo $donnee['status'] ; ?></h3><br/><?php
+
+        if(!isset($acces)){
+          echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
+          <button class="btn btn-primary centerBut">Modifier</button></a>';
+        }?>
+      </div><?php
     }
-  }else{
-    echo '<p>'.$donnee.'</p>';
+  }else{ ?>
+    <div class="container affichageMairie">
+      <p><?php echo $donnee ; ?></p>
+    </div><?php
   }
-  echo '</div>';
-}
-?>
-
-
-
-
-
+} ?>
 <a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 

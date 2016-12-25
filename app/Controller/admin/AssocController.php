@@ -8,6 +8,7 @@ use \Service\ValidationTools;
 use \Model\RolesModel;
 use \Model\UserModel;
 use \W\Security\AuthentificationModel;
+use \Service\Slugify;
 
 
 class AssocController extends CustomController
@@ -20,7 +21,12 @@ class AssocController extends CustomController
       if($this->allowToTwo('Admin','Assoc',$slug)){
 
         $donnee = $this->infoBdd('Assoc',$slug,['statusA'=> 'Actif','statusB'=> 'En attente']);
-        $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee]);
+
+        if(empty($donnee['nom'])){
+          $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'creation' => true]);
+        }else {
+          $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee]);
+        }
       }
     }else{
       $this->redirectToRoute('racine_form');
@@ -48,7 +54,12 @@ class AssocController extends CustomController
       if($this->allowToTwo('Admin','Assoc',$slug)){
 
         $donnee = $this->infoBdd('Assoc',$slug,['statusA' => 'Actif','statusB' => 'En attente']);
-        $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'edition' => true]);
+
+        if(empty($donnee['nom'])){
+          $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'edition' => true,'creation' =>true]);
+        }else {
+          $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'edition' => true]);
+        }
       }
 
     }else{
@@ -66,28 +77,38 @@ class AssocController extends CustomController
       if(!empty($_POST))
       {
         $r_POST = $this->nettoyage($_POST);
-        $error['nom'] = ValidationTools::textValid($r_POST['nom'],'nom',3,100);
+        if(isset($r_POST['nom'])){
+          $error['nom'] = ValidationTools::textValid($r_POST['nom'],'nom',3,100);
+        }
         $error['adresse'] = ValidationTools::textValid($r_POST['adresse'],'adresse',3,50);
         $error['code_postal'] = ValidationTools::code_postalVerif($r_POST['code_postal']);
         $error['ville'] = ValidationTools::textValid($r_POST['ville'],'ville',3,50);
         $error['fix'] = ValidationTools::telVerif($r_POST['fix'],true);
         $error['description'] = ValidationTools::textValid($r_POST['description'],'description',10,500,true);
+        $error['mail'] = ValidationTools::emailValid($r_POST['mail']);
 
         if(ValidationTools::IsValid($error)){
-          if(empty($r_POST['fix'])){
-            unset($r_POST['fix']);
-          }
-          if(empty($r_POST['description'])){
-            unset($r_POST['description']);
-          }
+
           unset($r_POST['submit']);
+
+          if(isset($r_POST['nom'])){
+            $r_POST['slug'] = Slugify::slugify($r_POST['nom']);
+          }
 
           $id = $assocModel->FindElementByElement('id','slug',$slug);
           $result = $assocModel->update($r_POST,$id);
           if(!$result){
             $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
-            $this->redirectToRoute('admin_assoc', ['slug' => $slug]);
+            if(isset($r_POST['nom'])){
+              $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
+              $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
+              $_SESSION['user']['roles'][$roleSession['key']]['slug'] = $r_POST['slug'];
+
+              $this->redirectToRoute('admin_assoc', ['slug' => $r_POST['slug']]);
+            }else {
+              $this->redirectToRoute('admin_assoc', ['slug' => $slug]);
+            }
           }
 
         } else {

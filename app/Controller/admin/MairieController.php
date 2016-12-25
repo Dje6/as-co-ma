@@ -5,6 +5,7 @@ use \Controller\CustomController;
 use \Model\MairieModel;
 use \Service\ValidationTools;
 use \Model\AssocModel;
+use \Model\ContactModel;
 use \Model\RolesModel;
 use \Service\Slugify;
 
@@ -75,16 +76,23 @@ class MairieController extends CustomController
         $r_POST = $this->nettoyage($_POST);
         $error['adresse'] = ValidationTools::textValid($r_POST['adresse'],'adresse',3,50);
         $error['code_postal'] = ValidationTools::code_postalVerif($r_POST['code_postal']);
-        $error['ville'] = ValidationTools::textValid($r_POST['ville'],'ville',3,50);
+        if(isset($r_POST['ville'])){
+          $error['ville'] = ValidationTools::textValid($r_POST['ville'],'ville',3,50);
+        }
         $error['fix'] = ValidationTools::telVerif($r_POST['fix'],true);
         $error['mail'] = ValidationTools::emailValid($r_POST['mail']);
+
 
         if(ValidationTools::IsValid($error)){
 
           unset($r_POST['submit']);
+          $r_POST['horaire'] = serialize($r_POST['horaire']);
 
-          $r_POST['nom'] = 'Mairie de '.$r_POST['ville'];
-          $r_POST['slug'] = Slugify::slugify($r_POST['nom']);
+          if(isset($r_POST['ville'])){//uniquement lors de la creation
+            $r_POST['nom'] = 'Mairie de '.$r_POST['ville'];
+            $r_POST['slug'] = Slugify::slugify($r_POST['nom']);
+          }
+
           $r_POST['departement'] = substr($r_POST['code_postal'], -5, 2);
 
           $id = $mairieModel->FindElementByElement('id','slug',$slug);
@@ -92,13 +100,15 @@ class MairieController extends CustomController
           if(!$result){
             $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
-            $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
-            $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
-            $_SESSION['user']['roles'][$roleSession['key']]['slug'] = $r_POST['slug'];
-
-            $this->redirectToRoute('admin_mairie', ['slug' => $r_POST['slug']]);
+            if(isset($r_POST['ville'])){//uniquement lors de la creation
+              $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
+              $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
+              $_SESSION['user']['roles'][$roleSession['key']]['slug'] = $r_POST['slug'];
+              $this->redirectToRoute('admin_mairie', ['slug' => $r_POST['slug']]);
+            }else {
+              $this->redirectToRoute('admin_mairie', ['slug' => $slug]);
+            }
           }
-
         } else {
           $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'error' => $error, 'donnee' => $r_POST]);
         }
@@ -143,18 +153,30 @@ class MairieController extends CustomController
         $slug = $this->nettoyage($slug);
         $slugA = $this->nettoyage($slugA);
         $id = $assocModel->FindElementByElement('id','slug',$slugA);
+
         $result = $assocModel->delete($id);
         if($result){
           $rolesModel = new RolesModel;
           $result2 = $rolesModel->deleteRoles($id,'id_assoc');
+
+          $roleSession = $this->in_multi_array_return_array_and_key($slugA,$_SESSION['user']['roles']);
+          unset($_SESSION['user']['roles'][$roleSession['key']]);
+
           if($result2){
-            $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
+            $contactModel = new ContactModel;
+            $result3 = $contactModel->deleteByType($id,'assoc');
+            if($result3){
+              $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
+            }else {
+              echo 'probleme suppression contact';
+            }
+          }else {
+            echo 'probleme suppression role';
           }
         }else {
-
+          echo 'probleme suppression assoc';
         }
       }
-
     }else {
       $this->redirectToRoute('racine_form');
     }

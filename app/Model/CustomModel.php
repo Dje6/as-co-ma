@@ -67,6 +67,31 @@ class CustomModel extends Model
      }else{
        return false;
      }
-   }
+    }
+  }
+//verifie dans toute la base de donnee si l'email es deja atribuer , que se soi un utilisateur , une mairie , ou une assoc
+
+// sutilise avec nimporte quel model
+// $mairieModel->mailExistAllSite($r_POST['mail']);
+
+  public function mailExistAllSite($mail)
+  {
+   $sql = 'SELECT COUNT(mail) AS c FROM mairie WHERE mail = :mail UNION ALL
+   SELECT COUNT(mail) AS c FROM assoc WHERE mail = :mail UNION ALL
+   SELECT COUNT(mail) AS c FROM users WHERE mail = :mail';
+
+   $sth = $this->dbh->prepare($sql);
+   $sth->bindValue(':mail', $mail);
+   if($sth->execute()){
+     $foundUser = $sth->fetchAll();
+     $total = 0;
+     foreach ($foundUser as $key => $value) {
+       $total += $value['c'];
+     }
+     if($total > 0){
+       echo $total;
+       return 'Cet email existe deja sur le site';
+     }
+    }
   }
 }

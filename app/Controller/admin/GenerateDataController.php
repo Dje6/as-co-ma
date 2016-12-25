@@ -90,33 +90,6 @@ class GenerateDataController extends CustomController
     //
   }elseif($objet == 'inscript_membre'){//demande pour devenir membre
 
-
-
-
-
-
-
-
-
-//LE RESTE EST PAS ENCORE PRET JE TE DIRAIS QUAND JE SAURAIS QUOI METTRE XD
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       $array['objet'] = 'Devenir membre de l\'association';//objet du mail
 
       if(is_numeric($pseudo)){//si c'est un utilisateur du site
@@ -147,6 +120,8 @@ class GenerateDataController extends CustomController
     return $array;
   }
 
+
+//a partir de la c'est pas fait , pour le moment n'y touche pas ^^ merci x)
 
   public function generatePlusInfo($objet,$pseudo)
   {
