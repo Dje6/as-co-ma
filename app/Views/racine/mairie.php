@@ -92,7 +92,7 @@
 				</tr>
 				<tr>
 <?php		foreach (unserialize($donnees['horaire']) as $key => $value) {
-					echo '<td>' . $key.' : '.$value . '</td>';
+					echo '<td>' . $value . '</td>';
 				} ?>
 				</tr>
 			</table>

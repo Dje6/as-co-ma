@@ -9,7 +9,9 @@
   padding: 20px;
   box-shadow: 5px 5px 5px #888888;
 }
-
+.assocLien {
+  margin: 0px 0px 8px 5px;
+}
 /*////////////////////////////////////////*/
 /*STYLE TABLEAU INFO sur ASSOC*/
 /*////////////////////////////////////////*/

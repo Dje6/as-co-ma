@@ -26,9 +26,9 @@
 }
 .carousel-caption h2 {
   display: inline;
-  padding: 0 20px;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0 15px;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 /*Animation img*/
 .carousel img{
@@ -42,10 +42,12 @@
 /*Animation titre sur image*/
 .carousel-caption {
   transition: all .5s ease;
+  opacity: 0;
 }
 .carousel:hover .carousel-caption {
   transform: scale(1.1);
   margin-bottom: 30px;
+  opacity: 1;
 }
 
 /*////////////////////////////////////////*/
