@@ -47,7 +47,7 @@ hr {
 }
 .slogan {
 	font-weight: 900;
-	font-style: oblique;
+	/*font-style: oblique;*/
 }
 .menu_home {
 	display: flex;

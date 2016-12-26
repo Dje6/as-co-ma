@@ -60,10 +60,10 @@
   padding: 20px;
   box-shadow: 5px 5px 5px #888888;
 }
-.cgu h1 {
+.cgu h2 {
   font-weight: bolder;
   margin-bottom: 1em;
 }
-.cgu h2 {
+.cgu h3 {
   font-style: italic;
 }

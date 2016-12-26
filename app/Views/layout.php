@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?= $this->e($title) ?></title>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > -->
-	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/bootstrap.min.css') ?>">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css_front/bootstrap.min.css') ?>"> -->
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/slicknav.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style.css') ?>">
 
@@ -22,7 +22,7 @@
 					<a href="<?= $this->url('default_home'); ?>"><img class="img-responsive" src="<?= $this->assetUrl('img/logo-ascoma-transparent.png') ?>" alt="Logo ASCOMA"></a>
 				</div>
 				<div class="col-xs-offset-6 description_home">
-					<h1 class="slogan">Votre Gestion d'Associations</h1>
+					<h1 class="slogan">Votre Gestion de Mairies et d'Associations</h1>
 				</div>
 			<!-- </div> -->
 		</div>
@@ -34,7 +34,7 @@
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
 				<?php	if(isset($_SESSION['user'])){ ?>
 					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Administration</a></li>
-					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
+					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php
 				}else{ ?>
 					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li><?php
@@ -64,7 +64,7 @@
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
 				<?php	if(isset($_SESSION['user'])){ ?>
 					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Administration</a></li>
-					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
+					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php
 				}else{ ?>
 					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li><?php
@@ -93,21 +93,13 @@
 			<!-- Viré les boutons et remplacé par anim zoon -->
 			<div class="reseaux_sociaux">
 											<!-- Facebook -->
-				<!-- <button type="button" class="btn btn-sm"> -->
-					<a href="http://facebook.com"><img src="<?= $this->assetUrl('img/facebook.png'); ?>" alt="Facebook"></a>
-				<!-- </button> -->
+				<a href="http://facebook.com"><img src="<?= $this->assetUrl('img/facebook.png'); ?>" alt="Facebook"></a>
 											<!-- Twitter -->
-				<!-- <button type="button" class="btn btn-sm"> -->
-					<a href="http://twitter.com"><img src="<?= $this->assetUrl('img/twitter.png'); ?>" alt="Twitter"></a>
-				<!-- </button> -->
+				<a href="http://twitter.com"><img src="<?= $this->assetUrl('img/twitter.png'); ?>" alt="Twitter"></a>
 											<!-- Google -->
-				<!-- <button type="button" class="btn btn-sm"> -->
-					<a href="http://plus.google.com"><img src="<?= $this->assetUrl('img/google.png'); ?>" alt="Google"></a>
-				<!-- </button> -->
+				<a href="http://plus.google.com"><img src="<?= $this->assetUrl('img/google.png'); ?>" alt="Google"></a>
 											<!-- linkedin -->
-				<!-- <button type="button" class="btn btn-md"> -->
-					<a href="http://linkedin.com"><img src="<?= $this->assetUrl('img/linkedin.png'); ?>" alt="Linkedin"></a>
-				<!-- </button> -->
+				<a href="http://linkedin.com"><img src="<?= $this->assetUrl('img/linkedin.png'); ?>" alt="Linkedin"></a>
 			</div>
 		</div>
 
