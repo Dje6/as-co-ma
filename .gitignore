@@ -2,3 +2,6 @@
 app/config.php
 /phpDocumentor.phar
 *.log
+*.phar
+*.lock
+*.json
