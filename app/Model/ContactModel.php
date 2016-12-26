@@ -3,7 +3,7 @@ namespace Model;
 
 use \W\Model\ConnectionModel;
 
-class ContactModel extends customModel
+class ContactModel extends CustomModel
 {
   public function __construct()
   {

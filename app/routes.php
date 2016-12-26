@@ -64,6 +64,12 @@
 		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\contact#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
 		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message recu de lassociation
 		['GET', '/Admin/messageSend/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orgaSend', 'admin_message_send_assoc'],//affiche les message envoyer par lassociation
+		// News Assoc
+		['GET|POST', '/Admin/Assoc/EditNew/[:slug]/[:orga]', 'admin\News#edit', 'admin_assoc_edit_news'],
+		['GET|POST', '/Admin/Assoc/UpdateNew/[:slug]/[:orga]/[:id]', 'admin\News#update', 'admin_assoc_update_news'],
+		['GET', '/Admin/Assoc/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_assoc_news'],
+		['GET', '/Admin/Assoc/DeleteNews/[:slug]/[:orga]/[:id]', 'admin\News#delete', 'admin_assoc_delete_news'],
+		['GET', '/Admin/Assoc/StatusNews/[:slug]/[:orga]/[:id]', 'admin\News#status', 'admin_assoc_status_news'],
 		//
 		//administration mairie
 		//
@@ -78,7 +84,12 @@
 		['GET|POST', '/Admin/ContactWebmaster/[:slugE]', 'admin\contact#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
 		['GET', '/Admin/message/mairie/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_mairie'],//affiche les message recu de la mairie
 		['GET', '/Admin/messageSend/mairie/[:slug]/[:orga]/[:page]', 'admin\Message#orgaSend', 'admin_message_send_mairie'],//affiche les message envoyer par la mairie
-
+		// News Mairie
+		['GET|POST', '/Admin/Mairie/EditNew/[:slug]/[:orga]', 'admin\News#edit', 'admin_mairie_edit_news'],
+		['GET|POST', '/Admin/Mairie/UpdateNew/[:slug]/[:orga]/[:id]', 'admin\News#update', 'admin_mairie_update_news'],
+		['GET', '/Admin/Mairie/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_mairie_news'],
+		['GET', '/Admin/Mairie/DeleteNews/[:slug]/[:orga]/[:id]', 'admin\News#delete', 'admin_mairie_delete_news'],
+		['GET', '/Admin/Mairie/StatusNews/[:slug]/[:orga]/[:id]', 'admin\News#status', 'admin_mairie_status_news'],
 		//
 		//administration user
 		//

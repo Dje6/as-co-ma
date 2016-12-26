@@ -3,6 +3,8 @@ namespace Controller\racine;
 
 use \Controller\CustomController;
 use \Model\MairieModel;
+use \Model\NewsModel;
+
 
 class MairieController extends CustomController
 {
@@ -14,7 +16,12 @@ class MairieController extends CustomController
     }else{
 
       $donnees = $this->infoBdd($orga,$slug,['statusA' => 'Actif']);
-      $this->show('racine/mairie',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees ]);
+      $mairieModel = new MairieModel;
+      $id_orga = $mairieModel->FindElementByElement('id','slug',$slug);
+
+      $NewsModel = new NewsModel;
+      $news = $NewsModel->FindAllNews($id_orga,$orga,$limit = 1, $offset = 0,true);
+      $this->show('racine/mairie',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees,'news'=>$news ]);
     }
   }
   //recherche en base donnee si une mairie correspon a la recherche

@@ -104,6 +104,22 @@
 			echo $donnees;
 		}
 	}
+
+	if(isset($news)){
+		if(is_array($news)){
+			foreach ($news as $key => $value) { ?>
+
+				<abc>Titre : <?php echo $value['title']; ?></abc><br>
+				<abc>Contenu : <?php echo $value['content']; ?></abc><br>
+				<abc>Creer le : <?php echo $value['created_at']; ?></abc><br>
+				<abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br>
+
+				<?php
+			}
+		}else {
+			echo $news;
+		}
+	}
 } ?>
 
 <!-- Lien vers contact d'inscription de mairie -->

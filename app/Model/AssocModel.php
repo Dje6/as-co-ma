@@ -3,7 +3,7 @@ namespace Model;
 
 use \W\Model\ConnectionModel;
 
-class AssocModel extends customModel
+class AssocModel extends CustomModel
 {
   //on precise a quel table on se connecte
   public function __construct()
