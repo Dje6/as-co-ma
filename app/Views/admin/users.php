@@ -33,6 +33,10 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                     <img alt="User Pic" src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png"
                     class="img-circle img-responsive col-md-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
+                      <form method="POST" enctype="multipart/form-data">
+                        <input type="file" name="foo" value=""/><br>
+                        <input type="submit" value="Upload File"/>
+                      </form>
                       <?php
                         if(isset($edition) && !isset($acces)){ ?>
                           <form method="POST" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
