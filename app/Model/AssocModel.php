@@ -63,7 +63,8 @@ class AssocModel extends customModel
       return false;
     }
     $donnee = $sth->fetchAll();
-    if(!is_array($donnee)){
+
+    if(empty($donnee)){
       return 'Aucune association trouvée';
     }
         return $donnee;

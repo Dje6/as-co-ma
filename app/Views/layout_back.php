@@ -7,10 +7,12 @@
  	<link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
 
+
 	<?= $this->section('main_head') ?>
 
 </head>
 <body>
+
 	<div class="navbar-wrapper">
   	<div class="container-fluid">
 			<nav class="navbar navbar-inverse navbar-static-top">
@@ -33,17 +35,23 @@
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
 					<br/>
 					<?php
+
 					if((isset($_SESSION['user']['roles']) && !empty($_SESSION['user']['roles'])))
 					{
 						if($this->in_multi_array('Assoc',$_SESSION['user']['roles'])){
 							echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Association <span class="caret"></span></a><ul class="dropdown-menu">';
 							foreach ($_SESSION['user']['roles'] as $key => $value) {
 								if(isset($value['orga']) && $value['orga'] == 'Assoc'){
-									if($value['role'] == 'Admin'){ ?>
-										<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
-										<?php echo $value['nom']; ?></a></li>
-										<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
-										<?php echo $value['nom']; ?></a></li><?php
+									if($value['role'] == 'Admin'){
+										if($value['nom'] != ''){ ?>
+											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
+											<?php echo $value['nom']; ?></a></li>
+											<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
+											<?php echo $value['nom']; ?></a></li><?php
+										}else { ?>
+											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Creer
+											une Association</a></li><?php
+										}
 									}elseif($value['role'] == 'User'){?>
 										<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
 										<?php echo $value['nom']; ?></a></li><?php
@@ -87,7 +95,7 @@
 
 					}else { ?>
 						<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Trouvez une association</a></li>
-						<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Fonder une association</a></li><?php
+						<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Fonder une Mairie</a></li><?php
 					} ?>
 				</ul>
 			</div>
@@ -132,9 +140,11 @@
 							<li><a href="<?php echo $this->url('admin_assoc',['orga' => $orga,'slug' => $slug]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
 							</li>
-							<li><a href="<?php echo $this->url('admin_assoc_membres',['slug' => $slug,'page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
-							</li>
+							<?php if(!isset($creation)){ ?>
+								<li><a href="<?php echo $this->url('admin_assoc_membres',['slug' => $slug,'page' => 1]); ?>">
+									<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
+								</li><?php
+							} ?>
 						</ul>
 					</div><?php
 				}elseif($orga == 'webmaster'){ ?>

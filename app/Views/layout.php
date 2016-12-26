@@ -90,23 +90,24 @@
 			</div>
 
 			<!-- Reseaux sociaux -->
+			<!-- Viré les boutons et remplacé par anim zoon -->
 			<div class="reseaux_sociaux">
-				<!-- Facebook -->
-				<button type="button" class="btn btn-sm">
+											<!-- Facebook -->
+				<!-- <button type="button" class="btn btn-sm"> -->
 					<a href="http://facebook.com"><img src="<?= $this->assetUrl('img/facebook.png'); ?>" alt="Facebook"></a>
-				</button>
-				<!-- Twitter -->
-				<button type="button" class="btn btn-sm">
+				<!-- </button> -->
+											<!-- Twitter -->
+				<!-- <button type="button" class="btn btn-sm"> -->
 					<a href="http://twitter.com"><img src="<?= $this->assetUrl('img/twitter.png'); ?>" alt="Twitter"></a>
-				</button>
-				<!-- Google -->
-				<button type="button" class="btn btn-sm">
+				<!-- </button> -->
+											<!-- Google -->
+				<!-- <button type="button" class="btn btn-sm"> -->
 					<a href="http://plus.google.com"><img src="<?= $this->assetUrl('img/google.png'); ?>" alt="Google"></a>
-				</button>
-				<!-- linkedin -->
-				<button type="button" class="btn btn-md">
+				<!-- </button> -->
+											<!-- linkedin -->
+				<!-- <button type="button" class="btn btn-md"> -->
 					<a href="http://linkedin.com"><img src="<?= $this->assetUrl('img/linkedin.png'); ?>" alt="Linkedin"></a>
-				</button>
+				<!-- </button> -->
 			</div>
 		</div>
 

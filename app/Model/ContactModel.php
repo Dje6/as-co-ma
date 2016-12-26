@@ -95,5 +95,18 @@ class ContactModel extends customModel
       }
     }
   }
+  public function deleteByType($id,$type)
+  {
+    if (!is_numeric($id)){
+      return false;
+    }
+
+    $sql = 'DELETE FROM ' . $this->table . ' WHERE (emeteur_orga = :type AND emeteur_mailOrId = :id) OR
+    (destinataire_orga = :type AND destinataire_mailOrId = :id) ';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':type', $type);
+    $sth->bindValue(':id', $id);
+    return $sth->execute();
+  }
 
 }

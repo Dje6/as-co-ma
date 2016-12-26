@@ -50,7 +50,7 @@
 		if(is_array($donnees)) { ?>
 		<div class="row">
 
-			<h2 class="text-center"><strong>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></strong></h2>
+			<h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2>
 			<br>
 
 			<!-- Tableau infos assoc -->
@@ -89,7 +89,7 @@
 <div class="row">
 	<blockquote class="quoteAssoc blockquote-reverse">
 		<p>
-			Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter la Mairie dont elle dépend.
+			Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter votre Mairie.
 		</p>
 		<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 	</blockquote>

@@ -15,7 +15,7 @@
 if(!isset($confirmation)){
 
 	if($slug == 'All'){
-		echo '<h2 class="text-center" >Contacter les Administrateurs du site</h2>';
+		echo '<h2 class="text-center" >Contacter les Administrateurs d\'AS-CO-MA</h2>';
 	}else{
 		if($orga == 'mairie'){
 			echo '<h2 class="text-center" >Contacter la '.$this->unslug($slug).'</h2>'; //unslug du slug de la mairie à contacter
