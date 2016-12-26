@@ -13,8 +13,8 @@
 
 <?php if($slug == 'All') { ?>
 
+	<!-- Formulaire pour rechercher mairie -->
 	<div class="row">
-		<!-- Formulaire pour rechercher mairie -->
 		<form class="formFront form-inline" action="<?php echo $this->url('racine_mairie_search',['orga'=>'Mairie','slug' => $slug]) ; ?>" method="post">
 			<!-- Recherche par CP -->
 			<div class="form-group">
@@ -56,6 +56,7 @@
 			<h2 class="text-center">Vous êtes sur la page de la <strong><?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
 			<br>
 
+			<!-- Premiere ligne tableau info mairie -->
 			<table class="table table-striped table-bordered">
 				<tr>
 					<th>Nom</th>
