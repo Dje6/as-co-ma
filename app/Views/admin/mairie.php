@@ -27,9 +27,11 @@ if(isset($donnee)){
 
               <form method="POST" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
                 <div class="panel-body"><?php
-                if(!isset($creation)){ //uniquement si la creation es deja faite ?>
-                  Si suite a un regroupement communal ou un renomement de la commune ,
-                  votre ville change , merci de nous contacter en cliquant sur 'Contacter Le webmaster' ci-dessu<?php
+                if(!isset($creation)){ //uniquement si la creation est deja faite ?>
+                  <p class="couleur_bleue">Si votre ville est concernée par un regroupement communal,</p>
+                  <p class="couleur_bleue">Si votre ville procéde à une modification de nom,</p>
+                  <p class="couleur_bleue">Merci de nous en informer en cliquant sur "contacter le webmaster".</p>
+                  <?php
                 } ?>
 
                   <div class="form-group">
@@ -74,9 +76,9 @@ if(isset($donnee)){
                     </div>
                   </div>
 
-                  <div class="form-group">Pencez a preciser 'Fermer' les jour de fermeture<br/>
+                  <div class="form-group couleur_bleue">Pensez a préciser 'Fermé' les jours de fermeture<br/>
                     <div class="input-group">
-                      <span class="input-group-addon">Horaire</span>
+                      <span class="input-group-addon">Horaires</span>
                       <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
                       <?php $horaire = unserialize($donnee['horaire']); ?>
 
@@ -141,7 +143,7 @@ if(isset($donnee)){
         if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigner' ; } ?>
         <h3>Email : <?php echo $donnee['mail'] ; ?></h3>
 
-        <h3>Horaire d'ouverture: </h3><?php
+        <h3>Horaires d'ouverture: </h3><?php
 
           foreach (unserialize($donnee['horaire']) as $key => $value) {
             if(empty($value)){ $value = 'Non Renseigner' ; } ?>
@@ -149,6 +151,7 @@ if(isset($donnee)){
                 <h4><?php echo $key.' : '.$value ; ?></h4>
               </div><?php
           } ?>
+
 
         <h3>Statut : <?php echo $donnee['status'] ; ?></h3><br/><?php
 
