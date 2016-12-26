@@ -65,7 +65,7 @@ class AssocModel extends customModel
     $donnee = $sth->fetchAll();
 
     if(empty($donnee)){
-      return 'Aucune association trouvée';
+      return 'Aucune Association trouvée.';
     }
         return $donnee;
   }
@@ -92,7 +92,7 @@ class AssocModel extends customModel
     $sth->execute();
     $donnee = $sth->fetchAll();
     if(!is_array($donnee)){
-      return 'Aucun membre présent dans l\'association';
+      return 'Aucun membre présent dans l\'Association.';
     }else{
       return $donnee;
     }

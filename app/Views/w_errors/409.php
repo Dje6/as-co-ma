@@ -8,9 +8,10 @@
 
 
 <?php $this->start('main_content'); ?>
-  <div class="row">
-    <h2 class="text-center"><strong>Oups un petit probleme... Excusez nous : <?php echo $error ; ?></strong></h2>
-  </div>
+<div class="row errorPage">
+  <h2><b><i>Un problème est survenu... Toutes nos excuses : <?php echo $error; ?></i></b></h2>
+  <img src="<?= $this->assetUrl('img/loading.gif'); ?>" alt="409" class="img-responsive">
+</div>
 <?php $this->stop('main_content'); ?>
 
 

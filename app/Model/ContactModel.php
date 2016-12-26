@@ -76,7 +76,7 @@ class ContactModel extends customModel
     }
 
     if(!is_array($donnee)){
-      return 'Aucun message';
+      return 'Aucuns messages.';
     }else {
       return $donnee;
     }

@@ -9,7 +9,10 @@
 
 
 <?php $this->start('main_content'); ?>
-<h1>403. Vous n'êtes pas autorisé à accéder à ce contenu.</h1>
+<div class="row errorPage">
+  <h2><b><i>Vous n'êtes pas autorisé à afficher cette page !</i></b></h2>
+  <img src="<?= $this->assetUrl('img/403.jpg'); ?>" alt="403" class="img-responsive" width="100%">
+</div>
 <?php $this->stop('main_content'); ?>
 
 
