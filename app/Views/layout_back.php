@@ -121,6 +121,9 @@
 							<li><a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Voir Association</button></a>
 							</li>
+							<li><a href="<?php echo $this->url('admin_mairie_news',['slug' => $slug,'orga'=>'mairie' ,'page' => 1]); ?>">
+								<button type="button" class="btn btn-info btn-lg">News</button></a>
+							</li>
 							<?php } ?>
 						</ul>
 					</div> <?php
@@ -143,6 +146,9 @@
 							<?php if(!isset($creation)){ ?>
 								<li><a href="<?php echo $this->url('admin_assoc_membres',['slug' => $slug,'page' => 1]); ?>">
 									<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
+								</li>
+								<li><a href="<?php echo $this->url('admin_assoc_news',['slug' => $slug,'orga'=>'assoc' ,'page' => 1]); ?>">
+									<button type="button" class="btn btn-info btn-lg">News</button></a>
 								</li><?php
 							} ?>
 						</ul>

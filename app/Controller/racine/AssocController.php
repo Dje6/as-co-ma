@@ -3,6 +3,7 @@ namespace Controller\racine;
 
 use \Controller\CustomController;
 use \model\AssocModel;
+use \model\NewsModel;
 
 class AssocController extends CustomController
 {
@@ -13,7 +14,12 @@ class AssocController extends CustomController
       $this->show('racine/assoc',['orga' => $orga,'slug' => $slug]);
     }else{
       $donnees = $this->info($slug,['statusA'=> 'Actif']);
-      $this->show('racine/assoc',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees ]);
+      $assocModel = new AssocModel;
+      $id_orga = $assocModel->FindElementByElement('id','slug',$slug);
+
+      $NewsModel = new NewsModel;
+      $news = $NewsModel->FindAllNews($id_orga,$orga,$limit = 1, $offset = 0,true);
+      $this->show('racine/assoc',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees,'news'=>$news ]);
     }
   }
   //recherche en base de donnee les organisation correspondan au critere saisi par lutilisateur
