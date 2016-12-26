@@ -42,9 +42,9 @@
 		      </div>
 		    </div>
 				<div class="item">
-		      <img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider">
+		      <a href="<?= $this->url('racine_inscriptForm'); ?>"><img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider"></a>
 		      <div class="carousel-caption">
-						<!-- <h2>Tentez l'expérience AS-CO-MA !<br><span class="glyphicon glyphicon-hand-down"></span></h2> -->
+						<h2>Tentez l'expérience !</h2>
 		      </div>
 		    </div>
 		  </div>

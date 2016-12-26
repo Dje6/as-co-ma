@@ -13,8 +13,8 @@
 <?php $this->start('main_content') ?>
 <?php if($slug == 'All'){ ?>
 
+	<!-- Form recherche d'assoc -->
 	<div class="row">
-		<!-- Form recherche d'assoc -->
 		<form class="formFront form-inline" action="<?php echo $this->url('racine_assoc_search',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
 
 			<div class="form-group">
@@ -97,15 +97,15 @@
 		}
 	}?>
 	</div>
-	<!-- fin du display des contenus de l'association -->
 <?php } ?>
+<!-- fin du display des contenus de l'association -->
 
 <!-- Lien vers contact d'inscription d'assoc -->
 <br>
 <div class="row">
 	<blockquote class="quoteAssoc blockquote-reverse">
 		<p>
-			Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter votre Mairie.
+			Vous souhaitez inscrire votre Association ? <a href='<?php echo $this->url('racine_mairie',['orga' => 'All', 'slug' => 'All']) ;?>'>Cliquez ici</a> pour contacter la Mairie dont elle dépend.
 		</p>
 		<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 	</blockquote>

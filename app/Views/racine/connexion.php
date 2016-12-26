@@ -15,7 +15,7 @@
   <form class="formFront" action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
 
     <fieldset>
-      <legend><h2 class="text-center">Connectez-vous à votre compte sur AS-CO-MA : </h2></legend>
+      <legend><h2 class="text-center"><b>Connectez-vous à votre compte sur AS-CO-MA :</b></h2></legend>
 
       <!-- PSEUDO CONNEXION -->
       <div class="form-group">

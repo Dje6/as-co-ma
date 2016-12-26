@@ -20,19 +20,19 @@ class MairieModel extends customModel
       if(strlen($search) == 2 || strlen($search) == 3){
         $result = $this->search(['departement' => $search,'status' => 'Actif'],'AND', $stripTags = true);
         if(!$result){
-          return 'Aucune Mairie enregister pour ce departement';
+          return 'Aucune Mairie enregistrée dans ce département.';
         }else {
           return $result;
         }
       }elseif(strlen($search) == 5){
         $result = $this->search(['code_postal' => $search,'status' => 'Actif'],'AND', $stripTags = true);
         if(!$result){
-          return 'Aucune Mairie enregister pour ce code postal';
+          return 'Aucune Mairie enregistrée avec ce code postal.';
         }else {
           return $result;
         }
       }else{
-        return 'Votre saisie est invalide';
+        return 'Votre saisie est invalide.';
       }
     }else{
       return 'Merci de saisir un numéro de département ou un code postal';
@@ -43,14 +43,14 @@ class MairieModel extends customModel
 // les info sont demander et retourner par le controleur de la mairie
   public function findListe($slug)
   {
-    
+
     $sql = 'SELECT * FROM assoc WHERE id_mairie = (SELECT id FROM ' . $this->table . ' WHERE slug = :slug)';
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
     $sth->execute();
     $donnee = $sth->fetchAll();
     if(!is_array($donnee)){
-      return 'Aucune association n\'est enregistrée auprès de cette mairie';
+      return 'Aucune association n\'est enregistrée auprès de cette mairie.';
     }else{
       return $donnee;
     }
@@ -63,7 +63,7 @@ class MairieModel extends customModel
     $sth->execute();
     $donnee = $sth->fetchAll();
     if(!is_array($donnee)){
-      return 'Aucune mairie sur le site';
+      return 'Aucune Mairie n\'est encore enregistrée sur le site.';
     }else{
       return $donnee;
     }

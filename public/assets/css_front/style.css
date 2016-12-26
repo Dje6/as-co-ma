@@ -47,7 +47,7 @@ hr {
 }
 .slogan {
 	font-weight: 900;
-	font-style: oblique;
+	/*font-style: oblique;*/
 }
 .menu_home {
 	display: flex;
@@ -70,6 +70,17 @@ hr {
 blockquote footer {
 	color: black;
 }
+/*Pages d'erreur (404, 409)*/
+.errorPage {
+	display: flex;
+	flex-direction: column;
+}
+.errorPage > * {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
 
 /*////////////////////////////////////////*/
 /*STYLE FORMS DANS VIEWS FRONT*/

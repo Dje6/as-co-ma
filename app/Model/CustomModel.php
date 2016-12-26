@@ -36,7 +36,7 @@ class CustomModel extends Model
     if(!empty($info)){
       return $info;
     }else {
-      return 'Aucune '.$this->table.' correspondante ';
+      return 'Aucune '.$this->table.' correspondante.';
     }
   }
 
@@ -90,7 +90,7 @@ class CustomModel extends Model
      }
      if($total > 0){
        echo $total;
-       return 'Cet email existe deja sur le site';
+       return 'Cet e-mail est déjà enregistré sur le site.';
      }
     }
   }

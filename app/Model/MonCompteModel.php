@@ -25,7 +25,7 @@ class MonCompteModel extends CustomModel
     $sth->execute();
     $info = $sth->fetch();
     if(!$info){
-      return 'Aucun membre ne correspond à cet identifiant';
+      return 'Aucun membre ne correspond à cet identifiant.';
     }else {
       return $info ;
     }
