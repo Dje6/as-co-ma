@@ -17,7 +17,7 @@ $this->layout('layout_back', ['title' => 'News','slug' => $slug,'orga' => $orga]
     <div class="row messageall">
       <div class="bouton_env">
         <a href="<?php echo $this->url('admin_'.$orga.'_edit_news',['slug'=>$slug,'orga'=>$orga]); ?>">
-          <button  class="btn btn-default ">Creer une news</button>
+          <button  class="btn btn-default ">Créer une news</button>
         </a>
       </div>
     </div>
@@ -48,7 +48,7 @@ if(isset($donnees)){
           <?php
           if($value['status'] == 'Activer'){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-              <button class="btn btn-warning">Desactiver</button>
+              <button class="btn btn-warning">Désactiver</button>
             </a><?php
           }else {  ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">

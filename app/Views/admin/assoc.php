@@ -4,7 +4,7 @@ if(isset($creation)){
 }else {
   $this->layout('layout_back', ['title' => 'AdminAssoc','slug' => $slug,'orga' => $orga]);
 }  ?>
-<!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
+<!-- //tableau de donnee que l'on peut faire afficher au travers du layout -->
 
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
