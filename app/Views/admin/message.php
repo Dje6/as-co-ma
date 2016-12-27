@@ -3,7 +3,7 @@ if(!isset($slug)){ $slug = 'user' ;}
 if(!isset($orga)){ $orga = 'user' ;}
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
  ?>
-<!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
+<!-- //tableau de données que l'on peut faire afficher au travers du layout -->
 
 
 <?php $this->start('main_head') ?>
@@ -50,9 +50,9 @@ if(isset($donnees)){
         //              homeSend (message envoyer)
         //orga :        orga(message recu)
         //              orgaSend (message envoyer)
-        //tout le systeme de message fonctionne ormi les bouton accepter refuser et plus info , lu suppr et rep c ok
-        //donc si besoin tu peut ecrire des message pour remplir les messagerie
-        // pence a faire la mise a jour de la table contact si tu l'avais pas fait
+        //tout le systeme de message fonctionne ormi les boutons accepter refuser et plus info , lu suppr et rep c ok
+        //donc si besoin tu peut ecrire des messages pour remplir les messageries
+        // pense a faire la mise a jour de la table contact si tu l'avais pas fait
 
 				echo '<div id="page">' .$pagination. '</div>' ;
 

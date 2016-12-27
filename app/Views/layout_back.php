@@ -32,7 +32,7 @@
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
 					<li><a href="<?php echo $this->url('admin_message',['page' => 1]); ?>">Message</a></li>
 					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon compte</a></li>
-					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Deconnexion</a></li>
+					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<br/>
 					<?php
 
@@ -44,12 +44,12 @@
 								if(isset($value['orga']) && $value['orga'] == 'Assoc'){
 									if($value['role'] == 'Admin'){
 										if($value['nom'] != ''){ ?>
-											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
+											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gérer
 											<?php echo $value['nom']; ?></a></li>
 											<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
 											<?php echo $value['nom']; ?></a></li><?php
 										}else { ?>
-											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Creer
+											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Créer
 											une Association</a></li><?php
 										}
 									}elseif($value['role'] == 'User'){?>
@@ -67,12 +67,12 @@
 								if(isset($value['orga']) && $value['orga'] == 'Mairie'){
 									if($value['role'] == 'Admin'){
 										if($value['nom'] != ''){ ?>
-											<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gerer
+											<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gérer
 											<?php echo $value['nom']; ?></a></li>
 											<li><a href="<?php echo $this->url('racine_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
 											<?php echo $value['nom']; ?></a></li><?php
 										}else { ?>
-											<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Creer
+											<li><a href="<?php echo $this->url('admin_mairie',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Créer
 											une Mairie</a></li><?php
 										}
 									}

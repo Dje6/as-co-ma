@@ -37,7 +37,7 @@
 if(!isset($confirmation)){
 
 	if($slug == 'All'){
-		echo '<p>Contacter les administrateur du site</p>';
+		echo '<p>Contacter les administrateurs du site</p>';
 	}else{
 		if($orga == 'mairie'){
 			echo '<p>Contacter la '.$slug.'</p>';
@@ -64,20 +64,20 @@ if(!isset($confirmation)){
 
         <option value="inscript_mairie">Inscrire ma Mairie*</option>
         <option value="probleme_site">Signaler un probleme sur le site</option>
-        <option value="info_site">Obtenir des information sur le site</option><?php
+        <option value="info_site">Obtenir des informations sur le site</option><?php
 
       }else{
         if($orga =='mairie'){ ?>
 
           <option value="inscript_assoc">Inscrire mon Association</option>
           <option value="probleme_mairie">Signaler un probleme sur la page de la Mairie</option>
-					<option value="info_mairie">Obtenir des information sur la mairie</option><?php
+					<option value="info_mairie">Obtenir des informations sur la mairie</option><?php
 
         }elseif($orga == 'assoc'){ ?>
 
-          <option value="inscript_menbre">Devenir Menbre</option>
+          <option value="inscript_menbre">Devenir Membre</option>
           <option value="probleme_assoc">Signaler un probleme sur la page de l'association</option>
-          <option value="info_assoc">Obtenir des information sur l'association</option><?php
+          <option value="info_assoc">Obtenir des informations sur l'association</option><?php
         }
       } ?>
     </select><br/>

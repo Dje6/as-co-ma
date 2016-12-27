@@ -3,10 +3,10 @@
 
 if($w_current_route == 'admin_repondre_User'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id']]);
-  $quiContacter = 'Répondre à '.$leMessage['emeteur_pseudo'];
+  $quiContacter = ' Répondre à '.$leMessage['emeteur_pseudo'];
 }elseif($w_current_route == 'admin_repondre'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id'],'slug' => $slug,'orga' => $orga]);
-  $quiContacter = 'Répondre à '.$leMessage['emeteur_pseudo'];
+  $quiContacter = ' Répondre à '.$leMessage['emeteur_pseudo'];
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
@@ -65,7 +65,7 @@ if(!isset($confirmation)){ ?>
 
             <div class="form-group">
               <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
-                Votre reponse : <br/>
+                Votre réponse : <br/>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
                 <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>

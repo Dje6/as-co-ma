@@ -17,7 +17,7 @@ $this->layout('layout_back', ['title' => 'News','slug' => $slug,'orga' => $orga]
     <div class="row messageall">
       <div class="bouton_env">
         <a href="<?php echo $this->url('admin_'.$orga.'_edit_news',['slug'=>$slug,'orga'=>$orga]); ?>">
-          <button  class="btn btn-default ">Creer une news</button>
+          <button  class="btn btn-default ">Créer une news</button>
         </a>
       </div>
     </div>

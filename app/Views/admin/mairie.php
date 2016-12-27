@@ -4,7 +4,7 @@ if(isset($creation)){
 }else {
   $this->layout('layout_back', ['title' => 'AdminMairie','slug' => $slug,'orga' => $orga]);
 }  ?>
-<!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
+<!-- //tableau de données que l'on peut faire afficher au travers du layout -->
 
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
@@ -50,7 +50,7 @@ if(isset($donnee)){
                     </div>
                   </div>
 
-                  <?php if(isset($creation)){//visible uniquement lors de la creation ?>
+                  <?php if(isset($creation)){//visible uniquement lors de la création ?>
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon">Ville</span>
@@ -70,7 +70,7 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">Mail</span>
+                      <span class="input-group-addon">Email</span>
                       <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
                       <input type="text" name="mail" class="form-control" value="<?php echo $donnee['mail']?>"><br>
                     </div>
@@ -128,25 +128,25 @@ if(isset($donnee)){
         if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
          <h3 class="centragetitre"><?php echo $donnee['nom'] ; ?></h3><?php
         }
-        if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseigner' ; } ?>
+        if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseignée' ; } ?>
         <h3>Adresse : <?php echo $donnee['adresse'] ; ?></h3><?php
 
-        if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigner' ; } ?>
+        if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigné' ; } ?>
         <h3>Code Postal : <?php echo $donnee['code_postal'] ; ?></h3><?php
 
-        if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseigner' ; } ?>
+        if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseignée' ; } ?>
         <h3>ville : <?php echo $donnee['ville'] ; ?></h3><?php
 
-        if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigner' ; } ?>
+        if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigné' ; } ?>
         <h3>Téléphone : <?php echo $donnee['fix'] ; ?></h3><?php
 
-        if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigner' ; } ?>
+        if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigné' ; } ?>
         <h3>Email : <?php echo $donnee['mail'] ; ?></h3>
 
         <h3>Horaires d'ouverture: </h3><?php
 
           foreach (unserialize($donnee['horaire']) as $key => $value) {
-            if(empty($value)){ $value = 'Non Renseigner' ; } ?>
+            if(empty($value)){ $value = 'Non Renseignés' ; } ?>
               <div class="horaires">
                 <h4><?php echo $key.' : '.$value ; ?></h4>
               </div><?php
