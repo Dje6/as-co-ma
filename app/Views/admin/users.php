@@ -78,12 +78,13 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                               <input type="submit" name="submit" class="btn btn-success" value="Enregistrer">
                         </form>
                     </div> <?php
-                          }else{ ?>
-
-                            <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
-                              <input type="file" name="image" value="image"/>
-                              <input type="submit" value="Changer d'avatar"/>
-                            </form>
+                          }else{
+                            if(!isset($acces)){ ?>
+                              <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
+                                <input type="file" name="image" value="image"/>
+                                <input type="submit" value="Changer d'avatar"/>
+                              </form><?php
+                            } ?>
 
                             <table class="table table-user-information">
                               <tbody>
