@@ -28,6 +28,8 @@
 		</form>
 	</div>
 
+<!-- ////////////////////////////////////////////////////////////////////// -->
+
 	<!-- Quand recherche soumise, affiche un lien vers Mairie concernée -->
 <br>
 <div class="row text-center">
@@ -45,6 +47,9 @@
 </div>
 
 <?php } else {
+
+////////////////////////////////////////////////////////////////////////////////
+
 	//affichage des contenus de l'association cliquée
 	if(isset($donnees)) {
 		if(is_array($donnees)) { ?>
@@ -75,30 +80,63 @@
 					</td>
 				</tr>
 			</table>
-			<!-- Fin tableau infos assoc -->
 <?php	} else {
 			echo $donnees;
 		}
-	}
+	} ?>
+		</div>
+		<!-- Fin tableau infos assoc -->
 
-	if(isset($news)){
+<!-- ///////////////////////////////////////////////////////////////// -->
+
+	<!-- Display des articles/news des assoc -->
+	<!-- Style thumbnail -->
+	<hr>
+<?php if(isset($news)){
 		if(is_array($news)){
-			foreach ($news as $key => $value) { ?>
+			foreach ($news as $key => $value) {
+				// Format de date
+				$dateCreaNews = date("d M Y à H:i", strtotime($value['created_at']));
+				$dateModifNews = date("d M Y à H:i", strtotime($value['updated_at']));?>
 
-				<abc>Titre : <?php echo $value['title']; ?></abc><br>
-				<abc>Contenu : <?php echo $value['content']; ?></abc><br>
-				<abc>Creer le : <?php echo $value['created_at']; ?></abc><br>
-				<abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br>
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1">
+			    <div class="thumbnail">
+
+			      <img src="http://placehold.it/350x150" alt="IMG">
+			      <div class="caption">
+							<!-- Titre de la news -->
+							<h3><b><?php echo $value['title']; ?></b></h3>
+
+							<!-- Contenu de la news -->
+							<h4><?php echo $value['content']; ?></h4>
+
+							<!-- Dates (Creation et modif (si y'en a une sinon 'Pas encore de modif')) -->
+							<ul>
+								<li>Rédigé le : <?php echo $dateCreaNews; ?></li>
+								<li>Dernière modification : <?php if(!empty($value['updated_at'])) { echo $dateModifNews; } else { echo 'Pas encore de modification.'; }?></li>
+							</ul>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- end row -->
 
 				<?php
 			}
 		}else {
-			echo $news;
+			//Sinon "Pas encore de news"
+			echo '<div class="row">';
+			echo '<h3 class="text-center"><b>' . $news . '</b></h3>';
+			echo '</div>';
 		}
 	}?>
-	</div>
 <?php } ?>
 <!-- fin du display des contenus de l'association -->
+
+
+<!-- /////////////////////////////////////////////////////// -->
+
 
 <!-- Lien vers contact d'inscription d'assoc -->
 <br>
