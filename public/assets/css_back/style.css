@@ -293,7 +293,7 @@ font-size: 20px;
 	flex-direction: row;
 	justify-content: space-around;
 }
-
+/*Messages*/
 .bouton_env {
 	margin-top: 2%;
 	justify-content: center;
@@ -301,3 +301,23 @@ font-size: 20px;
 .bouton_rec {
 	margin-top: 2%;
 }
+/*pagination*/
+.pagin{
+	margin-left: 45%;
+	margin-right: 45%;
+	background-color: white;
+	border-radius: 35%;
+	color: #108fcc;
+	font-weight: bolder;
+}
+.voisin{
+	color: #108fcc;
+}
+.actuel{
+	color: #108fcc;
+}
+/*//////////////////////////////////////////////////////*/
+span.input-group-addon {
+		color :#108fcc;
+}
+/*//////////////////////////////////////////////////////////*/

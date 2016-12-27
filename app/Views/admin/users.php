@@ -33,6 +33,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                     <img alt="User Pic" src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png"
                     class="img-circle img-responsive col-md-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
+
                       <?php
                         if(isset($edition) && !isset($acces)){ ?>
                           <form method="POST" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
@@ -78,6 +79,11 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                         </form>
                     </div> <?php
                           }else{ ?>
+
+                            <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
+                              <input type="file" name="image" value="image"/>
+                              <input type="submit" value="Changer d'avatar"/>
+                            </form>
 
                             <table class="table table-user-information">
                               <tbody>

@@ -32,6 +32,7 @@
         "league/url": "^3.3",
         "phpmailer/phpmailer": "^5.2",
         "Upload-master/Upload-master": "^5.2"
+
     },
     "autoload": {
         "psr-4": {

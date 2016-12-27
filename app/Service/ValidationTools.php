@@ -35,7 +35,7 @@ class ValidationTools
     }
     if($exist){
       if(!$model->emailExists($email)){
-        return "Cet email n'existe pas";
+        return "Cet e-mail n'existe pas";
       }
     }
   }
@@ -51,7 +51,7 @@ class ValidationTools
     }
     if($exist){
       if(!$model->emailExistsOrga($email)){
-        return "Cet email n'existe pas";
+        return "Cet e-mail n'existe pas";
       }
     }
   }
@@ -67,7 +67,7 @@ class ValidationTools
     }
     if($exist){
       if(!$model->emailExistsOrga($email)){
-        return "Cet email n'existe pas";
+        return "Cet e-mail n'existe pas";
       }
     }
   }
@@ -75,7 +75,7 @@ class ValidationTools
   public static function code_postalVerif($valeur)
   {
     if(empty($valeur)) {
-      return 'Merci de saisir un code postal';
+      return 'Merci de saisir un code postal.';
     }elseif(strlen($valeur) > 5) {
       return 'Votre code postal est trop long.';
     }elseif(strlen($valeur) < 5) {
@@ -89,7 +89,7 @@ class ValidationTools
   {
     if(!$empty) {
       if(empty($valeur)){
-        return 'Merci de saisir un numéro';
+        return 'Merci de saisir un numéro.';
       }
     }
       if(!empty($valeur)){
@@ -98,7 +98,7 @@ class ValidationTools
         }elseif(strlen($valeur) < 10) {
           return 'Votre numéro est trop court.';
         }elseif(!is_numeric($valeur)) {
-          return 'Votre numéro doit être un nombre entier.';
+          return 'Votre numéro doit être un nombre.';
         }
       }
   }
@@ -122,7 +122,7 @@ class ValidationTools
       if($strtext > $max) {
         $error = 'Votre ' . $title . ' est trop long.';
       } elseif($strtext < $min) {
-        $error = 'Votre ' . $title . ' trop court.';
+        $error = 'Votre ' . $title . ' est trop court.';
       }
     } else {
       if(!$empty) {
@@ -144,10 +144,10 @@ class ValidationTools
       }
       if(!empty($r_password)) {
         if($r_password != $password){
-          return 'Vos mots de passe ne sont pas identiques';
+          return 'Vos mots de passe ne correspondent pas.';
         }
       }else {
-        return 'Veuillez répéter votre mot de passe ' ;
+        return 'Veuillez répéter votre mot de passe.' ;
       }
     }else{
       return 'Veuillez saisir un mot de passe.';

@@ -1,11 +1,12 @@
+
 <?php
 
 if($w_current_route == 'admin_repondre_User'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id']]);
-  $quiContacter = 'Repondre a '.$leMessage['emeteur_pseudo'];
+  $quiContacter = 'Répondre à '.$leMessage['emeteur_pseudo'];
 }elseif($w_current_route == 'admin_repondre'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id'],'slug' => $slug,'orga' => $orga]);
-  $quiContacter = 'Repondre a '.$leMessage['emeteur_pseudo'];
+  $quiContacter = 'Répondre à '.$leMessage['emeteur_pseudo'];
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);

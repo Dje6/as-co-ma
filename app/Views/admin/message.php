@@ -35,9 +35,10 @@ if(isset($orga) && ($orga == 'mairie' || $orga == 'assoc' || $orga == 'webmaster
       </div>
     </div>
   </div>
-  <?php
-  // ensuite on affiche les données retournées par sql
 
+  <?php
+
+  // ensuite on affiche les données retournées par sql
 if(isset($donnees)){
 	if(!empty($donnees)){
 		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message qu'il contient
@@ -52,9 +53,12 @@ if(isset($donnees)){
         //tout le systeme de message fonctionne ormi les bouton accepter refuser et plus info , lu suppr et rep c ok
         //donc si besoin tu peut ecrire des message pour remplir les messagerie
         // pence a faire la mise a jour de la table contact si tu l'avais pas fait
-				echo $pagination;
+
+				echo '<div id="page">' .$pagination. '</div>' ;
+
       }
       ?>
+
 
       <div class="container affichageMairie"><?php
   			foreach ($donnees as $key => $value) {

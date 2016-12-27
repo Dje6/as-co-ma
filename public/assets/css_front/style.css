@@ -4,7 +4,7 @@
 html, body {
 	font-size: 17px;
 	/*font-family: Consolas, monaco, monospace;*/
-	font-family: sans-serif;
+	font-family: serif;
 	background-image: url('../img/background-accueil.jpg');
 	background-attachment: fixed;
 }
@@ -47,7 +47,7 @@ hr {
 }
 .slogan {
 	font-weight: 900;
-	font-style: oblique;
+	/*font-style: oblique;*/
 }
 .menu_home {
 	display: flex;
@@ -65,11 +65,22 @@ hr {
 /*////////////////////////////////////////*/
 .main_content {
 	min-height: 520px;
-	margin-top: 3em;
+	margin-top: 2em;
 }
 blockquote footer {
 	color: black;
 }
+/*Pages d'erreur (404, 409)*/
+.errorPage {
+	display: flex;
+	flex-direction: column;
+}
+.errorPage > * {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
 
 /*////////////////////////////////////////*/
 /*STYLE FORMS DANS VIEWS FRONT*/
@@ -132,6 +143,15 @@ footer {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+}
+/*Boutons media anim zoom*/
+.reseaux_sociaux a {
+	margin-left: 20px;
+	/*width: 120%;*/
+	transition: all .4s ease;
+}
+.reseaux_sociaux a:hover {
+	transform: scale(1.5);
 }
 
 /*//////////////////////////////////////*/

@@ -13,8 +13,8 @@
 
 <?php if($slug == 'All') { ?>
 
+	<!-- Formulaire pour rechercher mairie -->
 	<div class="row">
-		<!-- Formulaire pour rechercher mairie -->
 		<form class="formFront form-inline" action="<?php echo $this->url('racine_mairie_search',['orga'=>'Mairie','slug' => $slug]) ; ?>" method="post">
 			<!-- Recherche par CP -->
 			<div class="form-group">
@@ -53,9 +53,10 @@
 		if(is_array($donnees)){ ?>
 		<div class="row table-responsive">
 
-			<h2 class="text-center"><strong>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
+			<h2 class="text-center">Vous êtes sur la page de la <strong><?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
 			<br>
 
+			<!-- Premiere ligne tableau info mairie -->
 			<table class="table table-striped table-bordered">
 				<tr>
 					<th>Nom</th>
@@ -92,7 +93,7 @@
 				</tr>
 				<tr>
 <?php		foreach (unserialize($donnees['horaire']) as $key => $value) {
-					echo '<td>' . $key.' : '.$value . '</td>';
+					echo '<td>' . $value . '</td>';
 				} ?>
 				</tr>
 			</table>
@@ -126,9 +127,9 @@
 <br>
 <div class="row">
 	<blockquote class="quoteMairie blockquote-reverse">
-		<p><i>
+		<p>
 			Vous souhaitez inscrire votre Mairie et pouvoir remplir vos informations ?
-			<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a></i>
+			<a href='<?php echo $this->url('racine_contact',['orga' => 'All', 'slug' => 'All']) ;?>'>Contactez-nous !</a>
 		</p>
 		<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 	</blockquote>

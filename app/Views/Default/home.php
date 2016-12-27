@@ -42,9 +42,9 @@
 		      </div>
 		    </div>
 				<div class="item">
-		      <img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider">
+		      <a href="<?= $this->url('racine_inscriptForm'); ?>"><img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider"></a>
 		      <div class="carousel-caption">
-						<!-- <h2>Tentez l'expérience AS-CO-MA !<br><span class="glyphicon glyphicon-hand-down"></span></h2> -->
+						<h2>Tentez l'expérience !</h2>
 		      </div>
 		    </div>
 		  </div>
@@ -66,11 +66,11 @@
 	<br><br>
 	<div class="row">
 		<blockquote class="presentSite blockquote-reverse">
-		  <p class="text-justify"><i>
-				AS-CO-MA a été créé dans le but d'aider les communes qui le souhaitent à recenser sur un site Internet les associations qui dépendent d'elles. Il laisse également la possibilité aux présidents d'associations de l'inscrire auprès de la mairie dont ils dépendent.<br>
-				Aux personnes appartenant à ces associations, nous leur laissons la possibilité de consulter les derniers articles postés par les mairies, les associations, mais aussi d'avoir accès à un système de contact simple d'utilisation.<br>
-				Toutes les informations (adresses, horaires d'ouverture, articles) sont libres d'accès, mais dès lors que vous souhaitez participer à la vie active du site, une inscription vous sera demandée avec vos informations personnelles, permettant ainsi à tout autre utilisateur (ainsi que l'équipe du site) de vous contacter rapidement.
-			</i></p>
+		  <p class="text-justify">
+				<strong>AS-CO-MA</strong> offre la possibilité à l'utilisateur (Maire, Conseil municipal...) d'enregistrer la mairie qu'il administre. Il laisse également la possibilité aux présidents d'associations de les inscrire auprès des mairies dont ils dépendent.<br>
+				Aux utilisateurs du site appartenant à ces associations, nous leur laissons la possibilité de consulter les derniers articles postés par les mairies, les associations, mais aussi d'avoir accès à un système de contact simple d'utilisation.<br>
+				Toutes les informations (adresses, contacts, horaires d'ouverture, articles...) sont libres d'accès, mais dès lors que vous souhaitez participer à la vie active du site, une inscription vous sera demandée avec vos informations personnelles, permettant ainsi à tout utilisateur (ainsi qu'à l'équipe du site) de vous contacter rapidement.
+			</p>
 		  <footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 		</blockquote>
 	</div>

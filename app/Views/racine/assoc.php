@@ -13,8 +13,8 @@
 <?php $this->start('main_content') ?>
 <?php if($slug == 'All'){ ?>
 
+	<!-- Form recherche d'assoc -->
 	<div class="row">
-		<!-- Form recherche d'assoc -->
 		<form class="formFront form-inline" action="<?php echo $this->url('racine_assoc_search',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
 
 			<div class="form-group">
@@ -50,7 +50,7 @@
 		if(is_array($donnees)) { ?>
 		<div class="row">
 
-			<h2 class="text-center"><strong>Vous êtes sur la page de l'association <?php echo $this->unslug($slug); // unslug du slug assoc ?></strong></h2>
+			<h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2>
 			<br>
 
 			<!-- Tableau infos assoc -->
@@ -97,8 +97,8 @@
 		}
 	}?>
 	</div>
-	<!-- fin du display des contenus de l'association -->
 <?php } ?>
+<!-- fin du display des contenus de l'association -->
 
 <!-- Lien vers contact d'inscription d'assoc -->
 <br>

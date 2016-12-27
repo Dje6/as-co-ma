@@ -117,11 +117,11 @@ class ReponseController extends CustomController
         if(is_numeric($r_POST['destinataire_mailOrId'])){
           if($contactModel->insert($r_POST,false)){
             $this->show('admin/EditReponse',['orga' => $orgaEmeteur ,'slug' => $r_POST['emeteur_pseudo']
-            ,'mailRecepteur' => $maildestinataire,'confirmation'=> 'Votre message a bien été envoyé.',
+            ,'mailRecepteur' => $maildestinataire,'confirmation'=> '<h3 class="titrecontact glyphicon-envelope blue"> Votre message a bien été envoyé.</h3>',
           'leMessage' => $leMessage]);
           }else{
             $this->show('admin/EditReponse',['orga' => $orgaEmeteur ,'slug' => $r_POST['emeteur_pseudo'],
-            'mailRecepteur' => $maildestinataire,'confirmation'=> 'Une erreur est survenue.',
+            'mailRecepteur' => $maildestinataire,'confirmation'=> '<h3 class="titrecontact glyphicon-envelope red"> Une erreur est survenue.</h3>',
           'leMessage' => $leMessage]);
           }
         }else{ //sinon on envoi une copi interne + le mail externe
@@ -152,7 +152,7 @@ class ReponseController extends CustomController
           'leMessage' => $leMessage]);
           } else {
             $this->show('admin/EditReponse',['orga' => $orgaEmeteur ,'slug' => $r_POST['emeteur_pseudo']
-            ,'mailRecepteur' => $maildestinataire,'confirmation'=> 'Votre message a bien été envoyé.',
+            ,'mailRecepteur' => $maildestinataire,'confirmation'=> '<h3 class="titrecontact glyphicon-envelope blue"> Votre message a bien été envoyé.</h3>',
           'leMessage' => $leMessage]);
           }
         }
