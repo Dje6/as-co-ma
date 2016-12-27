@@ -35,14 +35,23 @@ hr {
 /*////////////////////////////////////////*/
 /*STYLE CONTENU DU HEADER*/
 /*////////////////////////////////////////*/
+
+/*Le header dégage pour les < 768px et on laisse la slicknav*/
+@media screen and (max-width: 768px) {
+	header > .row {
+		display: none;
+	}
+}
+/*viré img-responsive du logo, marche mieux comme ça*/
 .logo {
 	margin-top: 6em;
+	margin-left: .3em;
 }
 .description_home {
 	/*display: flex;
 	justify-content: flex-end;*/
 	/*color: #52C9FF;*/
-	margin-top: 8em;
+	margin-top: 9em;
 	/*margin-right: 3em;*/
 }
 .slogan {
@@ -148,12 +157,18 @@ footer {
 .reseaux_sociaux a {
 	margin-left: 20px;
 	/*width: 120%;*/
-	transition: all .4s ease;
+	transition: all .3s ease;
 }
 .reseaux_sociaux a:hover {
 	transform: scale(1.5);
 }
 
+/*Max width du contenu quand site en responsive (à voir si on laisse)*/
+@media screen and (max-width: 1024px) {
+	.container {
+		max-width: 940px;
+	}
+}
 /*//////////////////////////////////////*/
 /*responsive menu_top layout front*/
 /*////////////////////////////////////////*/

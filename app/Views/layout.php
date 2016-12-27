@@ -19,10 +19,10 @@
 			<!-- <div class="container"> -->
 				<!-- Partie haute logo phrase -->
 				<div class="col-xs-3 col-xs-offset-1 logo">
-					<a href="<?= $this->url('default_home'); ?>"><img class="img-responsive" src="<?= $this->assetUrl('img/logo-ascoma-transparent.png') ?>" alt="Logo ASCOMA"></a>
+					<a href="<?= $this->url('default_home'); ?>"><img src="<?= $this->assetUrl('img/logo-ascoma-transparent.png') ?>" alt="Logo ASCOMA"></a>
 				</div>
 				<div class="col-xs-offset-6 description_home">
-					<h1 class="slogan">Votre Gestion de Mairies et d'Associations</h1>
+					<h1 class="slogan">Votre gestion de Mairies et d'Associations</h1>
 				</div>
 			<!-- </div> -->
 		</div>
@@ -39,8 +39,8 @@
 				}else{ ?>
 					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li><?php
 				} ?>
-					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairie</a></li>
-					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Association</a></li>
+					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
+					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
 					<li><a href="<?php echo $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']); ?>">Contact</a></li>
 					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>">Nous Rejoindre</a></li>
 				</ul>
@@ -69,8 +69,8 @@
 				}else{ ?>
 					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li><?php
 				} ?>
-					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairie</a></li>
-					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Association</a></li>
+					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
+					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
 					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>">Nous Rejoindre</a></li>
 				</ul>
 			<!-- </div> -->

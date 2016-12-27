@@ -104,24 +104,33 @@
 		} else {
 			echo $donnees;
 		}
-	}
+	} ?>
 
-	if(isset($news)){
-		if(is_array($news)){
-			foreach ($news as $key => $value) { ?>
+	<!-- Display des articles/news des mairies -->
+	<hr>
+	<div class="row">
+<?php if(isset($news)){
+			if(is_array($news)){
+				foreach ($news as $key => $value) {
+					$dateCreaNews = strftime("%J/%F/%Y à %H:%i:%s", strtotime($value['created_at'])); ?>
 
-				<abc>Titre : <?php echo $value['title']; ?></abc><br>
-				<abc>Contenu : <?php echo $value['content']; ?></abc><br>
-				<abc>Creer le : <?php echo $value['created_at']; ?></abc><br>
-				<abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br>
+					<abc>Titre : <?php echo $value['title']; ?></abc><br>
 
-				<?php
+					<abc>Contenu : <?php echo $value['content']; ?></abc><br>
+
+					<abc>Rédigé le : <?php echo $dateCreaNews; ?></abc><br>
+
+					<abc>Dernière modification : <?php if(!empty($value['updated_at'])) { echo $value['updated_at']; } else { echo 'Pas encore de modification.'; }?></abc><br>
+
+					<?php
+				}
+			}else {
+				//Sinon "Pas encore de news"
+				echo '<h3 class="text-center"><b>' . $news . '</b></h3>';
 			}
-		}else {
-			echo $news;
 		}
-	}
-} ?>
+	} ?>
+	</div>
 
 <!-- Lien vers contact d'inscription de mairie -->
 <br>
