@@ -20,7 +20,7 @@ class MairieController extends CustomController
       $id_orga = $mairieModel->FindElementByElement('id','slug',$slug);
 
       $NewsModel = new NewsModel;
-      $news = $NewsModel->FindAllNews($id_orga,$orga,$limit = 1, $offset = 0,true);
+      $news = $NewsModel->FindAllNews($id_orga,$orga,6,0,true);
       $this->show('racine/mairie',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees,'news'=>$news ]);
     }
   }

@@ -39,23 +39,28 @@ if(isset($donnees)){
 
           <abc>Titre : <?php echo $value['title']; ?></abc><br>
           <abc>Contenu : <?php echo $value['content']; ?></abc><br>
-          <abc>Creer le : <?php echo $value['created_at']; ?></abc><br>
-          <abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br>
+          <abc>Creer le : <?php echo $value['created_at']; ?></abc><br><?php
+          if(!empty($value['updated_at'])){ ?>
+            <abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br><?php
+          } ?>
 
           <a href="<?php echo $this->url('admin_'.$orga.'_update_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
             <button class="btn btn-success">Modifier</button>
           </a>
           <?php
           if($value['status'] == 'Activer'){ ?>
-            <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+            <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
+            'orga' => $orga,'slug' => $slug ,'page' => $page]); ?> ">
               <button class="btn btn-warning">Desactiver</button>
             </a><?php
           }else {  ?>
-            <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+            <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
+            'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
               <button class="btn btn-warning">Activer</button>
             </a><?php
           }?>
-          <a href="<?php echo $this->url('admin_'.$orga.'_delete_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+          <a href="<?php echo $this->url('admin_'.$orga.'_delete_news',['id' => $value['id'],
+          'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
           <button class="btn btn-danger">Supprimer</button>
         </a><?php
         }?>

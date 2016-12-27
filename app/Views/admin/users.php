@@ -3,6 +3,9 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+
+<link rel="stylesheet" href="<?= $this->assetUrl('css_back/upload.css') ?>">
+
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
@@ -83,7 +86,13 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                               <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
                                 <input type="file" name="image" value="image"/>
                                 <input type="submit" value="Changer d'avatar"/>
-                              </form><?php
+                              </form>
+                              <!-- <div class="input-file-container">
+                                <input type="hidden" class="urlRoute" name="route" value="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
+                                <input class="input-file" name="image" id="my-file" type="file">
+                                <label for="my-file" class="input-file-trigger" tabindex="0">Changer d'avatar</label>
+                              </div> -->
+                              <?php
                             } ?>
 
                             <table class="table table-user-information">
@@ -125,6 +134,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('main_script') ?>
+	<script type="text/javascript" src="<?= $this->assetUrl('js/upload.js'); ?>"></script>
 	<!-- //ici les script js de la Page courante UNIQUEMENT
   //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_script') ?>

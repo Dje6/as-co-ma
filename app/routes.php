@@ -68,8 +68,8 @@
 		['GET|POST', '/Admin/Assoc/EditNew/[:slug]/[:orga]', 'admin\News#edit', 'admin_assoc_edit_news'],
 		['GET|POST', '/Admin/Assoc/UpdateNew/[:slug]/[:orga]/[:id]', 'admin\News#update', 'admin_assoc_update_news'],
 		['GET', '/Admin/Assoc/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_assoc_news'],
-		['GET', '/Admin/Assoc/DeleteNews/[:slug]/[:orga]/[:id]', 'admin\News#delete', 'admin_assoc_delete_news'],
-		['GET', '/Admin/Assoc/StatusNews/[:slug]/[:orga]/[:id]', 'admin\News#status', 'admin_assoc_status_news'],
+		['GET', '/Admin/Assoc/DeleteNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#delete', 'admin_assoc_delete_news'],
+		['GET', '/Admin/Assoc/StatusNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#status', 'admin_assoc_status_news'],
 		//
 		//administration mairie
 		//
@@ -88,8 +88,8 @@
 		['GET|POST', '/Admin/Mairie/EditNew/[:slug]/[:orga]', 'admin\News#edit', 'admin_mairie_edit_news'],
 		['GET|POST', '/Admin/Mairie/UpdateNew/[:slug]/[:orga]/[:id]', 'admin\News#update', 'admin_mairie_update_news'],
 		['GET', '/Admin/Mairie/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_mairie_news'],
-		['GET', '/Admin/Mairie/DeleteNews/[:slug]/[:orga]/[:id]', 'admin\News#delete', 'admin_mairie_delete_news'],
-		['GET', '/Admin/Mairie/StatusNews/[:slug]/[:orga]/[:id]', 'admin\News#status', 'admin_mairie_status_news'],
+		['GET', '/Admin/Mairie/DeleteNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#delete', 'admin_mairie_delete_news'],
+		['GET', '/Admin/Mairie/StatusNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#status', 'admin_mairie_status_news'],
 		//
 		//administration user
 		//

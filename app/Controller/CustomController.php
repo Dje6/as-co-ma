@@ -54,6 +54,8 @@ class CustomController extends Controller
 
   public function allowToTwo($roles,$organisation,$slug_orga)
   {
+    $organisation = $this->nettoyage($organisation);
+    $slug_orga = $this->nettoyage($slug_orga);
     if (!is_array($roles)){
       $roles = [$roles];
     }
