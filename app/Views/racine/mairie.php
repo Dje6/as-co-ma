@@ -53,7 +53,7 @@
 		if(is_array($donnees)){ ?>
 		<div class="row table-responsive">
 
-			<h2 class="text-center">Vous êtes sur la page de la <strong><?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
+			<h2 class="text-center"><strong>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
 			<br>
 
 			<!-- Premiere ligne tableau info mairie -->
@@ -112,21 +112,60 @@
 <?php if(isset($news)){
 			if(is_array($news)){
 				foreach ($news as $key => $value) {
-					$dateCreaNews = strftime("%J/%F/%Y à %H:%i:%s", strtotime($value['created_at'])); ?>
+					// Format de date
+					$dateCreaNews = date("d M Y à H:i", strtotime($value['created_at']));
+					$dateModifNews = date("d M Y à H:i", strtotime($value['updated_at']));?>
 
-					<abc>Titre : <?php echo $value['title']; ?></abc><br>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="thumbnail" style="background-image: url('<?= $this->assetUrl('img/bourneville.png'); ?>')">
+							<!-- Pour l'instant Bourneville est un test
+							Mettre le background avec l'image de la mairie -->
+							<!-- php : chercher la picture de l'assoc en bdd -->
 
-					<abc>Contenu : <?php echo $value['content']; ?></abc><br>
+							<div class="caption text-center">
+								<!-- Titre de la news -->
+								<h2 class=""><b><?php echo $value['title']; ?></b></h2>
 
-					<abc>Rédigé le : <?php echo $dateCreaNews; ?></abc><br>
+								<img id="newsImg" src="http://placehold.it/550x300" alt="<?= $value['title']; ?>" width="550" height="300">
+								<!-- Fenetre modale (pop up qui zoom) -->
+									<div id="myModal" class="modal">
 
-					<abc>Dernière modification : <?php if(!empty($value['updated_at'])) { echo $value['updated_at']; } else { echo 'Pas encore de modification.'; }?></abc><br>
+									  <!-- Close Button -->
+									  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+									  <!-- Modal Content (The Image) -->
+									  <img class="modal-content" id="img01">
+
+									  <!-- Modal Caption (Image Text) -->
+									  <div id="caption"></div>
+									</div>
+
+								<!-- Contenu de la news -->
+								<h3 class="text-justify">
+									<?php echo $value['content']; ?>
+									<!-- effet de flou pour masquer le reste du texte -->
+									<div class="blank"></div>
+								</h3>
+
+								<!-- Dates (Creation et modif (si y'en a une sinon 'Pas encore de modif')) -->
+								<p>
+									- <b>Rédigé le :</b> <?php echo $dateCreaNews; ?><br>
+									- <b>Dernière modification :</b> <?php if(!empty($value['updated_at'])) { echo $dateModifNews; } else { echo 'Pas encore de modification.'; }?>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end row -->
 
 					<?php
 				}
 			}else {
 				//Sinon "Pas encore de news"
-				echo '<h3 class="text-center"><b>' . $news . '</b></h3>';
+				echo '<div class="row">';
+				echo '<h3 class="text-center"><b>' . $news . '. N\'hésitez pas à contacter votre Maire pour suggérer un article !</b></h3>';
+				echo '</div>';
 			}
 		}
 	} ?>
