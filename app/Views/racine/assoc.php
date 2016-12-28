@@ -30,7 +30,7 @@
 
 <!-- ////////////////////////////////////////////////////////////////////// -->
 
-	<!-- Quand recherche soumise, affiche un lien vers Mairie concernée -->
+	<!-- Quand recherche soumise, affiche les liens vers Mairies concernées -->
 <br>
 <div class="row text-center">
 <?php if(isset($donnees)) {
@@ -100,22 +100,38 @@
 				$dateModifNews = date("d M Y à H:i", strtotime($value['updated_at']));?>
 
 			<div class="row">
-				<div class="col-xs-10 col-xs-offset-1">
-			    <div class="thumbnail">
+				<div class="col-xs-12">
+			    <div class="thumbnail" style="background-image: url('<?= $this->assetUrl('img/flokkr.png'); ?>')">
+						<!-- Pour l'instant Flokkr est un test
+						Mettre le background avec l'image de l'association -->
+						<!-- php : chercher la picture de l'assoc en bdd -->
 
-			      <img src="http://placehold.it/350x150" alt="IMG">
-			      <div class="caption">
+			      <div class="caption text-center">
 							<!-- Titre de la news -->
-							<h3><b><?php echo $value['title']; ?></b></h3>
+							<h2 class=""><b><?= $value['title']; ?></b></h2>
+
+							<img id="newsImg" src="http://placehold.it/550x300" alt="<?= $value['title']; ?>" width="550" height="300">
+							<!-- Fenetre modale (pop up qui zoom) -->
+								<div id="myModal" class="modal">
+
+								  <!-- Close Button -->
+								  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+								  <!-- Modal Content (The Image) -->
+								  <img class="modal-content" id="img01">
+
+								  <!-- Modal Caption (Image Text) -->
+								  <div id="caption"></div>
+								</div>
 
 							<!-- Contenu de la news -->
-							<h4><?php echo $value['content']; ?></h4>
+							<h3 class="text-justify"><?= $value['content']; ?></h3>
 
 							<!-- Dates (Creation et modif (si y'en a une sinon 'Pas encore de modif')) -->
-							<ul>
-								<li>Rédigé le : <?php echo $dateCreaNews; ?></li>
-								<li>Dernière modification : <?php if(!empty($value['updated_at'])) { echo $dateModifNews; } else { echo 'Pas encore de modification.'; }?></li>
-							</ul>
+							<p>
+								- <b>Rédigé le :</b> <?= $dateCreaNews; ?><br>
+								- <b>Dernière modification :</b> <?php if(!empty($value['updated_at'])) { echo $dateModifNews; } else { echo 'Pas encore de modification.'; }?>
+							</p>
 			      </div>
 			    </div>
 			  </div>
@@ -127,7 +143,7 @@
 		}else {
 			//Sinon "Pas encore de news"
 			echo '<div class="row">';
-			echo '<h3 class="text-center"><b>' . $news . '</b></h3>';
+			echo '<h3 class="text-center"><b>' . $news . '. N\'hésitez pas à contacter votre président d\'Association pour suggérer un article !</b></h3>';
 			echo '</div>';
 		}
 	}?>
