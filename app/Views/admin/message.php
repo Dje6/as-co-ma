@@ -87,6 +87,8 @@ if(isset($donnees)){
 
           preg_match_all('/inscript/', $value['objet'], $matches);
           // on detect si il s'agit dune demande d'inscription
+          preg_match_all('/Invitation/', $value['objet'], $matches2);
+          //ou si il s'agit dune invitation
 
           if(!empty($matches[0]) && $value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){
           //si oui on affiche les bouton de decision ?>
@@ -104,9 +106,17 @@ if(isset($donnees)){
               <button class="btn btn-danger">Refuser</button>
             </a><?php
 
+          }elseif ((!empty($matches2[0]) && $value['status'] == 'non-lu' && $orga == 'user')) {
+            ?>
+             <a href="<?php echo $this->url('admin_invitation_decision',['id' => $value['id'],'decision'=>'Accepter']); ?> ">
+               <button class="btn btn-success">Accepter</button>
+             </a>
+             <a href="<?php echo $this->url('admin_invitation_decision',['id' => $value['id'],'decision'=>'Refuser']); ?> ">
+               <button class="btn btn-danger">Refuser</button>
+             </a><?php
           }else{
           //sinon j'affiche les autre bouton
-            if($orga == 'user'){
+            if($orga == 'user' && empty($matches2[0])){
             //si on es un user , on ne peu que repondre , declarer Lu ou le supprimer
               if(!isset($value['destinataire_pseudo'])){ ?>
                 <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">

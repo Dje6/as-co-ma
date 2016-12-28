@@ -9,6 +9,8 @@ use \Model\RolesModel;
 use \Model\UserModel;
 use \W\Security\AuthentificationModel;
 use \Service\Slugify;
+use \Model\ContactModel;
+use \PHPMailer;
 
 
 class AssocController extends CustomController
@@ -46,6 +48,7 @@ class AssocController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+
 
   public function homeEditForm($slug)
   {
@@ -137,8 +140,10 @@ class AssocController extends CustomController
          $id_roles =  $resultat['id'];
          $role = $resultat['role'];
          if($role == 'Admin'){
+           $newRole = 'User';
            $result = $rolesModel->update(['role' => 'User'],$id_roles);
          }else {
+            $newRole = 'Admin';
            $result = $rolesModel->update(['role' => 'Admin'],$id_roles);
          }
             if($result){
@@ -150,9 +155,13 @@ class AssocController extends CustomController
                  $user = $get_user->getUserByUsernameOrEmail($pseudo);
 
                  $authent->logUserIn($user);
-                 echo 'hello';
-                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-                }
+                 if($newRole == 'User'){
+                   $this->redirectToRoute('racine_assoc',['orga'=>'Assoc','slug' => $slug]);
+                 }elseif($newRole == 'Admin') {
+                   $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+                 }
+               }
+               $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
             } else {
               $this->showErrors('un soucis lors de la mise a jour du role');
             }
@@ -176,9 +185,10 @@ class AssocController extends CustomController
          $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
          $id_roles =  $resultat['id'];
          $role = $resultat['role'];
-         $result = $rolesModel->deleteRoles($id_membre,'id_user');
+         $result = $rolesModel->deleteRoles($id_roles,'id');
             if($result){
-              // debug($id_membre);
+              $confirm = 'Le membre a bien ete supprimer';
+
               if($id_membre == $_SESSION['user']['id']){
                  $pseudo = $_SESSION['user']['pseudo'];
                  $authent = new AuthentificationModel();
@@ -187,10 +197,10 @@ class AssocController extends CustomController
                  $user = $get_user->getUserByUsernameOrEmail($pseudo);
 
                  $authent->logUserIn($user);
-                //  echo 'hello';
-                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+
+                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1,'confirmation'=>$confirm]);
                } else {
-                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1,'confirmation'=>$confirm]);
                }
             } else {
               $this->showErrors('un soucis lors de la suppresion du role');

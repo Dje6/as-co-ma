@@ -8,6 +8,9 @@
 
 <?php $this->start('main_content') ?>
 <h1 class="titreback">Administration</h1><br/><?php
+if(isset($confirmation) && !empty($confirmation)){
+  echo $confirmation.'<br/>';
+}
 // liste s'occupe d'afficher les boutons dans liste menbre et liste association , sur le back
 echo '<div class="container affichage">';
 if($orga == 'mairie'){
@@ -33,7 +36,15 @@ if($orga == 'mairie'){
       echo $donnee;
     }
   }
-}elseif ($orga == 'assoc') {
+}elseif ($orga == 'assoc') { ?>
+
+  <form class="" action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="post">
+    <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;} ?>
+    <label for="mail">Inviter quelqun a nous rejoindre? <br/>entrez son adresse email :
+    <input type="text" name="mail" value=""></label>
+    <input type="submit" name="submit" value="Inviter!">
+  </form> <?php
+
   if(isset($donnee)){
     if(is_array($donnee)){
       echo '<table>';

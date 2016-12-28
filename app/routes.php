@@ -47,16 +47,20 @@
 		['GET', '/Admin/contact/decision/[:id]/[:orga]/[:slug]/[:decision]', 'admin\Decision#decision', 'admin_decide'],//accepte la demande d'inscritpion
 		['GET|POST', '/Admin/contact/repondre/[:id]/[:orga]/[:slug]/', 'admin\Reponse#repondre', 'admin_repondre'],//permet denvoyer une reponse en tant qu'organisme
 		['GET|POST', '/Admin/contact/repondreUser/[:id]/', 'admin\Reponse#repondreUser', 'admin_repondre_User'],//permet de repondre en tant qu'utilisateur
+		//Invitation
+		['GET', '/Admin/Invitation/[:id]/[:decision]', 'admin\Invitation#decision', 'admin_invitation_decision'],//permet daccepter ou refuser une Invitation a entrer dan une assoc
 		//
 		//administration Assoc
 		//
 		['GET', '/Admin/Assoc/[:slug]/', 'admin\Assoc#home', 'admin_assoc'],//page d'administration des association,affichage des info
 		['GET', '/Admin/Assoc/role/[:slug]/[:id]', 'admin\Assoc#homeEditUserRole', 'admin_assoc_edit_user_role'],
 		['GET', '/Admin/Assoc/delete/[:slug]/[:id]', 'admin\Assoc#homeDeleteUserAssoc', 'admin_assoc_delete_user'],
-		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
 		['GET', '/Admin/infoMembres/[:slug]/[:id]', 'admin\Users#ficheMembre', 'admin_assoc_membre'],//affiche la fiche personnel des menbre de lassoc
 		['GET', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditForm', 'admin_assoc_edit_form'],//edition des données assoc
 		['POST', '/Admin/EditAssoc/[:slug]/', 'admin\Assoc#homeEditPost', 'admin_assoc_edit_post'],//edition des données assoc
+		//Membre
+		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
+		['POST', '/Admin/InvitMembres/[:slug]', 'admin\Invitation#invitMembre', 'admin_assoc_invit'],//envoi une invitation a rejoindre lassocation
 		// messagerie Assoc
 		['GET|POST', '/Admin/ContactMembres/[:slugE]/[:id]', 'admin\contact#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
 		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\contact#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente

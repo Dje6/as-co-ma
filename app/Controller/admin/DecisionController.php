@@ -154,7 +154,7 @@ class DecisionController extends ReponseController
                   $_SESSION['user']['roles'][$nbr]['nom'] = $AssocComplete['nom'];
                   $_SESSION['user']['roles'][$nbr]['slug'] = $slug;
                   $_SESSION['user']['roles'][$nbr]['id_user'] = $AssocComplete['id_user'];
-                  $_SESSION['user']['roles'][$nbr]['id_mairie'] = $AssocComplete['id_maire'];
+                  $_SESSION['user']['roles'][$nbr]['id_mairie'] = $AssocComplete['id_mairie'];
                   $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug_mairie;
                 }
               }else{

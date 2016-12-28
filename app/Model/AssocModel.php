@@ -78,23 +78,30 @@ class AssocModel extends CustomModel
     $sth->execute();
     $users_id = $sth->fetchAll();
 
-    $where='(';
-    foreach ($users_id as $key => $value) {
-      $where .= 'u.id = '.$value['id_user'].' OR ';
-    }
-    $where = substr($where,0,-3);
-    $where .= ") AND r.id_assoc = (SELECT id FROM assoc WHERE slug = :slug)";
+    if(!empty($users_id)){
+      $where='(';
+      foreach ($users_id as $key => $value) {
+        $where .= 'u.id = '.$value['id_user'].' OR ';
+      }
+      $where = substr($where,0,-3);
+      $where .= ") AND r.id_assoc = (SELECT id FROM assoc WHERE slug = :slug)";
 
-    $sql = 'SELECT DISTINCT u.id,u.pseudo,u.mail,u.prenom,u.nom,r.role FROM users AS u LEFT JOIN roles AS r ON
-    u.id = r.id_user WHERE '.$where ;
-    $sth = $this->dbh->prepare($sql);
-    $sth->bindValue(':slug', $slug);
-    $sth->execute();
-    $donnee = $sth->fetchAll();
-    if(!is_array($donnee)){
+      $sql = 'SELECT DISTINCT u.id,u.pseudo,u.mail,u.prenom,u.nom,r.role FROM users AS u LEFT JOIN roles AS r ON
+      u.id = r.id_user WHERE '.$where ;
+      $sth = $this->dbh->prepare($sql);
+      $sth->bindValue(':slug', $slug);
+      $sth->execute();
+      $donnee = $sth->fetchAll();
+    }
+
+    if(isset($donnee)){
+      if(!is_array($donnee)){
+        return 'Aucun membre présent dans l\'Association.';
+      }else{
+        return $donnee;
+      }
+    }else {
       return 'Aucun membre présent dans l\'Association.';
-    }else{
-      return $donnee;
     }
   }
 }
