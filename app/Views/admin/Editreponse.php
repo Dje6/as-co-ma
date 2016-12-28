@@ -3,10 +3,10 @@
 
 if($w_current_route == 'admin_repondre_User'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id']]);
-  $quiContacter = ' Répondre à '.$leMessage['emeteur_pseudo'];
+  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à </div><br/>'.$leMessage['emeteur_pseudo'];
 }elseif($w_current_route == 'admin_repondre'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id'],'slug' => $slug,'orga' => $orga]);
-  $quiContacter = ' Répondre à '.$leMessage['emeteur_pseudo'];
+  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à </div><br/>'.$leMessage['emeteur_pseudo'];
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
@@ -30,7 +30,7 @@ if(!isset($confirmation)){ ?>
 
 <div class="container fichecontact">
   <div class="row">
-    <div class="col-sm-6 col-centered ">
+    <div class="col-sm-8 col-sm-offset-2 col-centered ">
       <div class="panel panel-default">
         <form class="" action="<?php echo $urldePost; ?>" method="post">
           <div class="panel-body">
@@ -56,7 +56,7 @@ if(!isset($confirmation)){ ?>
             </div>
 
             <div class="form-group">
-              Message recu le : <?php echo $leMessage['date_envoi']; ?><br/>
+              <p class="couleur_bleue">Message reçu le : </p><?php echo $leMessage['date_envoi']; ?><br/>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
                 <p rows="6" class="form-control"><?php if(isset($leMessage['contenu'])){ echo $leMessage['contenu'] ; } ?></p>
@@ -65,7 +65,7 @@ if(!isset($confirmation)){ ?>
 
             <div class="form-group">
               <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
-                Votre réponse : <br/>
+                <p class="couleur_bleue">Votre réponse : </p>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
                 <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
@@ -74,8 +74,8 @@ if(!isset($confirmation)){ ?>
 
             <div class="">
               <input type="hidden" name="capcha" value="">
-              <input type="submit" name="submit" class="btn btn-info pull-right" value="envoyer">
-              <button type="reset" value="Reset" name="reset" class="btn">Effacer <span class="glyphicon glyphicon-refresh"></span></button>
+              <input type="submit" name="submit" class="btn btn-info pull-right" value="Envoyer">
+              <button type="reset" value="Reset" name="reset" class="btn couleur_bleue">Effacer <span class="glyphicon glyphicon-refresh"></span></button>
             </div>
           </div>
         </form>

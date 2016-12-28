@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
- 	<!-- <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>"> -->
+  <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>"
 
 
 
@@ -106,6 +106,9 @@
 					if(isset($slug) && !empty($slug) && !isset($creation)){ echo '<h1 class="titreback">'.$this->unslug($slug).'</h1>' ; }
 
 					if($orga == 'mairie'){ ?>
+
+
+
 						<div id="navbar" class="navbar-collapse collapse ">
 							<ul class="nav navbar-nav navbar_organisation">
 							<li><a href="<?php echo $this->url('admin_mairie_contact_Webmaster',['slugE' => $slug]); ?>">
