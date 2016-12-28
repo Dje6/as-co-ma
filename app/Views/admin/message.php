@@ -74,7 +74,7 @@ if(isset($donnees)){
           }
   				echo 'Objet : '.$value['objet'].'<br/>';
   				echo 'Message : '.$value['contenu'].'<br/>';
-  				echo 'Envoye le : '.$value['date_envoi'].'<br/><br/>';
+  				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
           if($value['status'] == 'lu'){
           //si le statu est a lu , on affiche la date de lecture
             echo 'Lu le : '.$value['date_lecture'].'<br/>';
@@ -83,7 +83,7 @@ if(isset($donnees)){
           //qui es la meme date que pour la lecture mais mise a jour
             echo 'Repondu le : '.$value['date_lecture'].'<br/>';
           }
-          echo 'Status : '.$value['status'].'<br/>';
+          echo 'Status : '.$value['status'].'<br/><br>';
 
           preg_match_all('/inscript/', $value['objet'], $matches);
           // on detect si il s'agit dune demande d'inscription
@@ -91,13 +91,16 @@ if(isset($donnees)){
           if(!empty($matches[0]) && $value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){
           //si oui on affiche les bouton de decision ?>
 
-            <a href="<?php echo $this->url('admin_accepte',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+            <a href="<?php echo $this->url('admin_decide',['id' => $value['id'],'orga' => $orga,
+            'slug' => $slug,'decision'=>'Accepter']); ?> ">
               <button class="btn btn-success">Accepter</button>
             </a>
-            <a href="<?php echo $this->url('admin_plus_info',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+            <a href="<?php echo $this->url('admin_decide',['id' => $value['id'],'orga' => $orga,
+            'slug' => $slug,'decision'=>'Plus-Info']); ?> ">
               <button class="btn btn-warning">Manque d'informations</button>
             </a>
-            <a href="<?php echo $this->url('admin_refuse',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
+            <a href="<?php echo $this->url('admin_decide',['id' => $value['id'],'orga' => $orga,
+            'slug' => $slug,'decision'=>'Refuser']); ?> ">
               <button class="btn btn-danger">Refuser</button>
             </a><?php
 

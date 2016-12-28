@@ -15,7 +15,7 @@ use \W\Security\StringUtils;
  */
 class DecisionController extends ReponseController
 {
-    public function accepte($id,$orga,$slug)
+    public function decision($id,$orga,$slug,$decision)
     {
       if(isset($_SESSION['user']))
       {
@@ -50,15 +50,12 @@ class DecisionController extends ReponseController
           $pseudoEmeteur = $this->FindPseudoEmeteur($leMessage['destinataire_orga'],$leMessage['destinataire_mailOrId']);
           $orga_demande = $this->analiseObject($leMessage['objet']);
 
-          if(is_numeric($maildestinataire)){
+          if(is_numeric($maildestinataire) && $decision == 'Accepter'){
             $RolesModel = new RolesModel;
 
             //////////////////////////////////////////////////////////////////
-
             ///////////////////////      MAIRIE            ///////////////////
-
             /////////////////////////////////////////////////////////////////
-
             if($orga_demande == 'mairie'){
 
               $MairieModel = new MairieModel;
@@ -94,11 +91,8 @@ class DecisionController extends ReponseController
                 $this->showErrors('probleme lors de la creation'.$result);
               }
               //////////////////////////////////////////////////////////////////
-
               ///////////////////////     ASSOC            ///////////////////
-
               /////////////////////////////////////////////////////////////////
-
             }elseif ($orga_demande == 'assoc') {
               $AssocModel = new AssocModel;
               $MairieModel = new MairieModel;
@@ -137,9 +131,7 @@ class DecisionController extends ReponseController
               }
 
               //////////////////////////////////////////////////////////////////
-
               ///////////////////////     MEMBRE            ///////////////////
-
               /////////////////////////////////////////////////////////////////
             }elseif ($orga_demande = 'membre') {
               $MairieModel = new MairieModel;
@@ -172,51 +164,29 @@ class DecisionController extends ReponseController
           }
 
           $GenerateDataController = new GenerateDataController;
-          $donnee = $GenerateDataController->generateAccept($leMessage['objet'],$maildestinataire);
+          if($decision == 'Accepter'){
+            $donnee = $GenerateDataController->generateAccept($leMessage['objet'],$maildestinataire);
+          }elseif ($decision == 'Plus-Info') {
+            $donnee = $GenerateDataController->generatePlusInfo($leMessage['objet'],$maildestinataire);
+          }elseif ($decision == 'Refuser') {
+            $donnee = $GenerateDataController->generateRefus($leMessage['objet'],$maildestinataire);
+          }
 
           $r_POST['emeteur_pseudo'] = $pseudoEmeteur;
           $r_POST['objet'] = 'Re:'.$donnee['objet'] ;
           $r_POST['contenu'] = $donnee['contenu'];
-          $r_POST['laDecision'] = 'Accepter';
+          $r_POST['laDecision'] = $decision;
 
           $this->sendDecision($orgaDestinataire = $leMessage['emeteur_orga'],$orgaEmeteur = $leMessage['destinataire_orga'],
           $idDestinaire = $maildestinataire,$idEmeteur = $leMessage['destinataire_mailOrId'],
           $maildestinataire,$leMessage,$r_POST);
-
         }
       }else{
         $this->redirectToRoute('racine_form');
       }
     }
 
-    //refuse la demande mais pourrai accepter si une nouvelle demande es faite avec davantage dinformation
-    public function plusInfo($id,$orga,$slug)
-    {
-      if(isset($_SESSION['user']))
-      {
-        if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
-          $contactModel = new ContactModel;
-          $leMessage = $contactModel->FindMessageById($id);
-        }
-      }else{
-        $this->redirectToRoute('racine_form');
-      }
-    }
-
-    //refuse la demande
-    public function refuse($id,$orga,$slug)
-    {
-      if(isset($_SESSION['user']))
-      {
-        if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
-          $contactModel = new ContactModel;
-          $leMessage = $contactModel->FindMessageById($id);
-
-        }
-      }else{
-        $this->redirectToRoute('racine_form');
-      }
-    }
+//systeme d'envoi
     public function sendDecision($orgaDestinataire,$orgaEmeteur,$idDestinaire,$idEmeteur,$maildestinataire,$leMessage,$r_POST)
     {
       if(isset($_SESSION['user']))

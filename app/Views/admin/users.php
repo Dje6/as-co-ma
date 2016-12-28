@@ -36,12 +36,6 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                     <img alt="User Pic" src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png"
                     class="img-circle img-responsive col-md-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
-                      <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
-                        <br/>
-                        <input type="file" name="image" class="couleur_bleue" value="image"/>
-                        <br/>
-                        <input type="submit" class="couleur_bleue" value="Changer d'avatar"/>
-                      </form>
                       <?php
                         if(isset($edition) && !isset($acces)){ ?>
                           <form method="POST" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">

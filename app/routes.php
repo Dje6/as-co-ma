@@ -44,9 +44,7 @@
 		//
 		['GET', '/Admin/contact/delete/[:id]/[:orga]/[:slug]/[:page]', 'admin\Action#delete', 'admin_message_delete'],//permet de supprimer un message
 		['GET', '/Admin/contact/asSeen/[:id]/[:orga]/[:slug]/[:page]', 'admin\Action#asSeen', 'admin_message_asSeen'],//marque comme lu un message avec la date de lecture
-		['GET', '/Admin/contact/accepte/[:id]/[:orga]/[:slug]/', 'admin\Decision#accepte', 'admin_accepte'],//accepte la demande d'inscritpion
-		['GET', '/Admin/contact/plusInfo/[:id]/[:orga]/[:slug]/', 'admin\Decision#plusInfo', 'admin_plus_info'],//refuse linscritpion manque d'info
-		['GET', '/Admin/contact/refuse/[:id]/[:orga]/[:slug]/', 'admin\Decision#refuse', 'admin_refuse'],//refuse la demande d'inscritpion
+		['GET', '/Admin/contact/decision/[:id]/[:orga]/[:slug]/[:decision]', 'admin\Decision#decision', 'admin_decide'],//accepte la demande d'inscritpion
 		['GET|POST', '/Admin/contact/repondre/[:id]/[:orga]/[:slug]/', 'admin\Reponse#repondre', 'admin_repondre'],//permet denvoyer une reponse en tant qu'organisme
 		['GET|POST', '/Admin/contact/repondreUser/[:id]/', 'admin\Reponse#repondreUser', 'admin_repondre_User'],//permet de repondre en tant qu'utilisateur
 		//
