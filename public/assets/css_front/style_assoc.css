@@ -30,17 +30,21 @@
   text-align: center;
   font-weight: 400;
 }
+.table-responsive {
+  border: 0;
+  padding: 5px;
+}
 
 /*////////////////////////////////////////*/
 /*STYLE NEWS sur ASSOC*/
 /*////////////////////////////////////////*/
 .thumbnail {
-  /*background-image: url('../img/flokkr.png');*/
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   /*Avoir une couche d'une couleur un peu transparente par
   dessus l'image de fond : */
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.65);
   margin: 2em auto;
   max-width: 940px;
 }
@@ -48,8 +52,35 @@
   color: white;
   text-shadow: 3px 2px 5px #000000;
 }
+/*Titre news*/
 .thumbnail h2 {
   text-transform: uppercase;
+}
+/*Content news*/
+.thumbnail h3 {
+  border-bottom: .5px solid white;
+  padding: 0px 15px 10px 15px;
+  position: relative;
+  max-height: 100px;
+  overflow: hidden;
+  transition: all 1s ease;
+}
+.thumbnail h3:hover {
+  max-height: 500px;
+}
+/*Flou en bas du content overflow*/
+.thumbnail .blank {
+  transition: all 1s ease;
+  opacity: 1;
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  width: 100%;
+  filter: blur(3px);
+  background: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,1));
+}
+.thumbnail h3:hover .blank {
+  opacity: 0;
 }
 
 #newsImg {

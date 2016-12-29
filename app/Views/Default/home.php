@@ -30,13 +30,13 @@
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
 		    <div class="item active">
-		      <a href="<?= $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>"><img src="<?= $this->assetUrl('img/bourneville.png'); ?>" alt="Première image slider"></a>
+		      <a href="<?= $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>"><img src="<?= $this->assetUrl('img/rouen.jpg'); ?>" alt="Première image slider"></a>
 		      <div class="carousel-caption">
 						<h2>Consultez les Mairies</h2>
 		      </div>
 		    </div>
 		    <div class="item">
-		      <a href="<?= $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>"><img src="<?= $this->assetUrl('img/flokkr.png'); ?>" alt="Deuxième image slider"></a>
+		      <a href="<?= $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>"><img src="<?= $this->assetUrl('img/flokkr.jpg'); ?>" alt="Deuxième image slider"></a>
 		      <div class="carousel-caption">
 						<h2>Consultez les Associations</h2>
 		      </div>

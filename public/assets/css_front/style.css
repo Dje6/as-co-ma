@@ -45,12 +45,9 @@ hr {
 /*viré img-responsive du logo, marche mieux comme ça*/
 .logo {
 	margin-top: 6em;
-	margin-left: .3em;
+	margin-left: 1em;
 }
 .description_home {
-	/*display: flex;
-	justify-content: flex-end;*/
-	/*color: #52C9FF;*/
 	margin-top: 9em;
 	/*margin-right: 3em;*/
 }
@@ -75,6 +72,13 @@ hr {
 .main_content {
 	min-height: 520px;
 	margin-top: 2em;
+}
+/*min-height du container plus grande en mobile portrait*/
+@media screen and (max-width: 768px) {
+	.main_content {
+		width: 650px;
+		min-height: 610px;
+	}
 }
 blockquote footer {
 	color: black;
