@@ -65,7 +65,7 @@
   overflow: hidden;
   transition: all 1s ease;
 }
-.thumbnail h3:hover {
+.thumbnail:hover h3 {
   max-height: 500px;
 }
 /*Flou en bas du content overflow*/
@@ -76,10 +76,10 @@
   bottom: 0;
   height: 20px;
   width: 100%;
-  filter: blur(3px);
+  /*filter: blur(3px);*/
   background: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,1));
 }
-.thumbnail h3:hover .blank {
+.thumbnail:hover .blank {
   opacity: 0;
 }
 
