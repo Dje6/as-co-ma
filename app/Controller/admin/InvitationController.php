@@ -98,11 +98,6 @@ class InvitationController extends CustomController
 
               $r_POST['emeteur_pseudo'] = $nom_assoc;
               $r_POST['objet'] = 'Invitation a rejoindre '.$nom_assoc ;
-              $r_POST['contenu'] = 'Bonjour ,<br/>
-               nous serions tres heureux de pouvoir vous compter parmi nos membre et vous
-              inviton donc a rejoindre notre association! Pour en savoir plus sur nous venez visiter
-              <a href="'.$this->generateUrl('racine_assoc',['orga'=>'assoc','slug'=>$slug],true).'">notre page!</a><br/>
-              A bientot!';
               $r_POST['emeteur_mailOrId'] = $id_assoc;
               $r_POST['destinataire_mailOrId'] = $r_POST['mail'];
               $r_POST['emeteur_orga'] = 'assoc';
@@ -115,11 +110,28 @@ class InvitationController extends CustomController
                 //on envoi en interne une invite
                 $contactModel = new ContactModel;
                 unset($r_POST['mail']);
+
+                $r_POST['contenu'] = 'Bonjour ,<br/>
+                 nous serions tres heureux de pouvoir vous compter parmi nos membre et vous
+                inviton donc a rejoindre notre association! Pour en savoir plus sur nous venez visiter
+                <a href="'.$this->generateUrl('racine_assoc',['orga'=>'assoc','slug'=>$slug],true).'">notre page!</a><br/>
+                A bientot!';
+
                 if($contactModel->insert($r_POST,false)){
                   $ok = true;
                 }
               }else {
                 unset($r_POST['mail']);
+
+                $r_POST['contenu'] = 'Bonjour ,<br/>
+                 nous serions tres heureux de pouvoir vous compter parmi nos membre et vous
+                inviton donc a rejoindre notre association! Pour en savoir plus sur nous venez visiter
+                <a href="'.$this->generateUrl('racine_assoc',['orga'=>'assoc','slug'=>$slug],true).'">notre page!</a><br/>
+                Pour devenir membre vous devez etre inscrit , l\'inscription est gratuite! <br/>
+                <a href="'.$this->generateUrl('racine_inscriptForm',[],true).'">Cliquez ici</a> pour vous inscrire
+                et devenir aussitot un de nos membres!<br/>
+                A bientot!';
+
                 $contactModel = new ContactModel;
                 $contactModel->insert($r_POST,false);
                 $mail = new PHPMailer();
