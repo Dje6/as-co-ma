@@ -79,16 +79,29 @@ class InvitationController extends CustomController
               if(!is_numeric($r_POST['mail'])){ //si c'est ce n'est pas id on verifie si eventuelemt il le mail
                 //exist en base en base de donnee
                 $UserModel = new UserModel;
+                $contactModel = new ContactModel;
+
                 if($UserModel->emailExists($r_POST['mail'])){ //si oui on recupere l'id
                   $r_POST['mail'] = $UserModel->FindElementByElement('id','mail',$r_POST['mail']);
                   $r_POST['destinataire_orga'] = 'users';
                   $RolesModel = new RolesModel;
                   $roleRetourner = $RolesModel->FindRole($id_assoc,$r_POST['mail']);
+
                   if(!empty($roleRetourner)){
                     $confirmation ='Cet utilisateur fais deja partie de \'association';
                     $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
                   }
+                  $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
+                  if(!empty($invitation)){
+                    $confirmation ='Une invitation a deja ete envoyer a cette personne';
+                    $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
+                  }
                 }else {
+                  $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
+                  if(!empty($invitation)){
+                    $confirmation ='Une invitation a deja ete envoyer a cette personne';
+                    $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
+                  }
                   $r_POST['destinataire_orga'] = 'public';
                   $r_POST['destinataire_status'] = 'del';
                 }
@@ -108,7 +121,7 @@ class InvitationController extends CustomController
 
               if(is_numeric($r_POST['mail'])){
                 //on envoi en interne une invite
-                $contactModel = new ContactModel;
+
                 unset($r_POST['mail']);
 
                 $r_POST['contenu'] = 'Bonjour ,<br/>
@@ -128,8 +141,9 @@ class InvitationController extends CustomController
                 inviton donc a rejoindre notre association! Pour en savoir plus sur nous venez visiter
                 <a href="'.$this->generateUrl('racine_assoc',['orga'=>'assoc','slug'=>$slug],true).'">notre page!</a><br/>
                 Pour devenir membre vous devez etre inscrit , l\'inscription est gratuite! <br/>
-                <a href="'.$this->generateUrl('racine_inscriptForm',[],true).'">Cliquez ici</a> pour vous inscrire
-                et devenir aussitot un de nos membres!<br/>
+                <a href="'.$this->generateUrl('racine_inscriptForm',[],true).'">Cliquez ici</a> pour vous inscrire,
+                Une fois votre compte activer , rendez vous dans l\'onglet "Message", afin de retrouver toute vos invitations
+                en attente! <br/>
                 A bientot!';
 
                 $contactModel = new ContactModel;
