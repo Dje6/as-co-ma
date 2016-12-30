@@ -27,17 +27,20 @@
   text-align: center;
   font-weight: 400;
 }
+.table-responsive {
+  border: 0;
+}
 
 /*////////////////////////////////////////*/
 /*STYLE NEWS sur MAIRIE*/
 /*////////////////////////////////////////*/
 .thumbnail {
-  /*background-image: url('../img/flokkr.png');*/
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
   /*Avoir une couche d'une couleur un peu transparente par
   dessus l'image de fond : */
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.65);
   margin: 2em auto;
   max-width: 940px;
 }
@@ -51,30 +54,28 @@
 }
 /*Content news*/
 .thumbnail h3 {
-  border: 1px solid white;
-  padding-left: 5px;
-  padding-right: 5px;
+  border-bottom: .5px solid white;
+  padding: 0px 15px 10px 15px;
   position: relative;
-  max-height: 180px;
+  max-height: 100px;
   overflow: hidden;
   transition: all 1s ease;
 }
-.thumbnail h3:hover {
+.thumbnail:hover h3 {
   max-height: 500px;
 }
 /*Flou en bas du content overflow*/
 .thumbnail .blank {
   transition: all 1s ease;
-  opacity: .7;
+  opacity: 1;
   position: absolute;
   bottom: 0;
   height: 20px;
   width: 100%;
-  background: rgba(0,0,0,.7);
-  /*filter: blur(2px);*/
-  background: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,1));
+  /*filter: blur(3px);*/
+  background: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,1));
 }
-.thumbnail h3:hover .blank {
+.thumbnail:hover .blank {
   opacity: 0;
 }
 

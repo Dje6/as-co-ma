@@ -3,8 +3,22 @@
 
 
 <?php $this->start('main_head') ?>
-<!-- //ici les css de la page courante UNIQUEMENT
-//si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+<!-- ici le style de l'img en background des articles suivant le slug de l'assoc -->
+<style media="screen">
+	<?php if($slug == 'les-rois-du-volant') { ?>
+		.thumbnail {
+			background-image: url('<?= $this->assetUrl('img/volants.jpg'); ?>');
+		}
+	<?php } elseif ($slug == 'les-seconds') { ?>
+		.thumbnail {
+			background-image: url('<?= $this->assetUrl('img/seconds.jpg'); ?>');
+		}
+	<?php } else { ?>
+		.thumbnail {
+			background-image: url('<?= $this->assetUrl('img/flokkr.jpg'); ?>');
+		}
+<?php } ?>
+</style>
 <link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_assoc.css'); ?>">
 <?php $this->stop('main_head') ?>
 
@@ -58,33 +72,37 @@
 			<h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2>
 			<br>
 
-			<!-- Tableau infos assoc -->
-			<table class="table table-striped table-bordered">
-				<tr>
-					<th>Nom</th>
-					<th>Adresse</th>
-					<th>Code Postal</th>
-					<th>Ville</th>
-					<th>Téléphone</th>
-					<th>Contact</th>
-				</tr>
-				<tr>
+			<div class="table-responsive">
+				<!-- Tableau infos assoc -->
+				<table class="table table-striped table-bordered">
+					<tr>
+						<th>Nom</th>
+						<th>Adresse</th>
+						<th>Code Postal</th>
+						<th>Ville</th>
+						<th>Téléphone</th>
+						<th>Contact</th>
+					</tr>
+					<tr>
 
-	<?php	echo '<td>' . $donnees['nom'] . '</td>';
-				echo '<td>' . $donnees['adresse'] . '</td>';
-				echo '<td>' . $donnees['code_postal'] . '</td>';
-				echo '<td>' . $donnees['ville'] . '</td>';
-				echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>'; ?>
-					<td>
-						<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter l'association</button></a>
-					</td>
-				</tr>
-			</table>
+		<?php	echo '<td>' . $donnees['nom'] . '</td>';
+					echo '<td>' . $donnees['adresse'] . '</td>';
+					echo '<td>' . $donnees['code_postal'] . '</td>';
+					echo '<td>' . $donnees['ville'] . '</td>';
+					echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>'; ?>
+						<td>
+							<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter l'association</button></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+
 <?php	} else {
 			echo $donnees;
 		}
 	} ?>
 		</div>
+		<!-- end row -->
 		<!-- Fin tableau infos assoc -->
 
 <!-- ///////////////////////////////////////////////////////////////// -->
@@ -92,6 +110,7 @@
 	<!-- Display des articles/news des assoc -->
 	<!-- Style thumbnail -->
 	<hr>
+	<!-- Row se crée dans le foreach -->
 <?php if(isset($news)){
 		if(is_array($news)){
 			foreach ($news as $key => $value) {
@@ -101,7 +120,7 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-			    <div class="thumbnail" style="background-image: url('<?= $this->assetUrl('img/flokkr.png'); ?>')">
+			    <div class="thumbnail">
 						<!-- Pour l'instant Flokkr est un test
 						Mettre le background avec l'image de l'association -->
 						<!-- php : chercher la picture de l'assoc en bdd -->
@@ -125,7 +144,11 @@
 								</div>
 
 							<!-- Contenu de la news -->
-							<h3 class="text-justify"><?= $value['content']; ?></h3>
+							<h3 class="text-justify">
+								<?= $value['content']; ?>
+								<!-- effet de flou pour masquer le reste du texte -->
+								<div class="blank"></div>
+							</h3>
 
 							<!-- Dates (Creation et modif (si y'en a une sinon 'Pas encore de modif')) -->
 							<p>

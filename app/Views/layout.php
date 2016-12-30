@@ -18,7 +18,7 @@
 		<div class="row">
 			<!-- <div class="container"> -->
 				<!-- Partie haute logo phrase -->
-				<div class="col-xs-3 col-xs-offset-1 logo">
+				<div class="col-xs-3 logo">
 					<a href="<?= $this->url('default_home'); ?>"><img src="<?= $this->assetUrl('img/logo-ascoma-transparent.png') ?>" alt="Logo ASCOMA"></a>
 				</div>
 				<div class="col-xs-offset-6 description_home">

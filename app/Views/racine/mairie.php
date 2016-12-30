@@ -3,8 +3,22 @@
 
 
 <?php $this->start('main_head') ?>
-<!-- //ici les css de la page courante UNIQUEMENT
-//si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
+<!-- ici le style de l'img en background des articles suivant le slug de la mairie -->
+<style media="screen">
+	<?php if($slug == 'mairie-de-rouen') { ?>
+		.thumbnail {
+			background-image: url('<?= $this->assetUrl('img/rouen.jpg'); ?>');
+		}
+	<?php } elseif ($slug == 'mairie-de-bourneville') { ?>
+		.thumbnail {
+			background-image: url('<?= $this->assetUrl('img/bourneville.jpg'); ?>');
+		}
+	<?php } else { ?>
+		.thumbnail {
+			background-image: url('<?= $this->assetUrl('img/epaignes.jpg'); ?>');
+		}
+<?php } ?>
+</style>
 <link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_mairie.css'); ?>">
 <?php $this->stop('main_head') ?>
 
@@ -51,55 +65,69 @@
 
 	if(isset($donnees)){
 		if(is_array($donnees)){ ?>
-		<div class="row table-responsive">
+		<div class="row">
 
 			<h2 class="text-center"><strong>Vous êtes sur la page de la <?php echo $this->unslug($slug); //unslug du slug mairie ?></strong></h2>
 			<br>
 
-			<!-- Premiere ligne tableau info mairie -->
-			<table class="table table-striped table-bordered">
-				<tr>
-					<th>Nom</th>
-					<th>Adresse</th>
-					<th>Code Postal</th>
-					<th>Ville</th>
-					<th>Téléphone</th>
-					<th>Mail</th>
-					<th>Contact</th>
-				</tr>
-				<tr>
+			<div class="table-responsive">
+				<!-- Premiere ligne tableau info mairie -->
+				<table class="table table-striped table-bordered">
+					<tr>
+						<th>Nom</th>
+						<th>Adresse</th>
+						<th>Code Postal</th>
+						<th>Ville</th>
+						<th>Téléphone</th>
+						<th>Mail</th>
+						<th>Contact</th>
+					</tr>
+					<tr>
 
-<?php			echo '<td>' . $donnees['nom'] . '</td>';
-					echo '<td>' . $donnees['adresse'] . '</td>';
-					echo '<td>' . $donnees['code_postal'] . '</td>';
-					echo '<td>' . $donnees['ville'] . '</td>';
-					echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>';
-					echo '<td><a href="mailto:'.$donnees['mail'].'">'.$donnees['mail'] . '</a></td>'; ?>
-					<td>
-						<a href="<?php echo $this->url('racine_contact',['orga' => 'mairie' ,'slug' => $slug]); ?>">
-							<button class="btn btn-success btn-xs">Contacter la Mairie</button>
-						</a>
-					</td>
-				</tr>
-<!-- Deuxieme ligne tableau info mairie -->
-				<tr>
-					<th>Lundi</th>
-					<th>Mardi</th>
-					<th>Mercredi</th>
-					<th>Jeudi</th>
-					<th>Vendredi</th>
-					<th>Samedi</th>
-					<th>Dimanche</th>
-				</tr>
-				<tr>
-<?php		foreach (unserialize($donnees['horaire']) as $key => $value) {
-					echo '<td>' . $value . '</td>';
-				} ?>
-				</tr>
-			</table>
+	<?php			echo '<td>' . $donnees['nom'] . '</td>';
+						echo '<td>' . $donnees['adresse'] . '</td>';
+						echo '<td>' . $donnees['code_postal'] . '</td>';
+						echo '<td>' . $donnees['ville'] . '</td>';
+						echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>';
+						echo '<td><a href="mailto:'.$donnees['mail'].'">'.$donnees['mail'] . '</a></td>'; ?>
+						<td>
+							<a href="<?php echo $this->url('racine_contact',['orga' => 'mairie' ,'slug' => $slug]); ?>">
+								<button class="btn btn-success btn-xs">Contacter la Mairie</button>
+							</a>
+						</td>
+					</tr>
+	<!-- Deuxieme ligne tableau info mairie -->
+					<tr>
+						<th>Lundi</th>
+						<th>Mardi</th>
+						<th>Mercredi</th>
+						<th>Jeudi</th>
+						<th>Vendredi</th>
+						<th>Samedi</th>
+						<th>Dimanche</th>
+					</tr>
+					<tr>
+	<?php		foreach (unserialize($donnees['horaire']) as $key => $value) {
+						echo '<td>' . $value . '</td>';
+					} ?>
+					</tr>
+				</table>
+			</div>
 
 		</div>
 		<!-- Fin div infos mairie -->
+
+		<!-- Google maps de la mairie -->
+		<div class="row text-center">
+			<?php if($slug == 'mairie-de-rouen') { ?>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1297.0962810775059!2d1.098189548172286!3d49.44307742382861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e0ddd5c7e15663%3A0x6bc2b11371fda7d8!2s2+Place+du+G%C3%A9n%C3%A9ral+de+Gaulle%2C+76000+Rouen!5e0!3m2!1sfr!2sfr!4v1483022647507" width="600" height="250" style="border:0" allowfullscreen></iframe>
+			<?php } elseif ($slug == 'mairie-de-bourneville') { ?>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5193.9894418604845!2d0.6184841296266613!3d49.390091859464555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e0549bb805dc1f%3A0x22ac955b307c448a!2s1+Place+de+la+Mairie%2C+27500+Bourneville!5e0!3m2!1sfr!2sfr!4v1483023852000" width="600" height="250" style="border:0" allowfullscreen></iframe>
+			<?php } else { ?>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.8388259038547!2d0.43869151379403665!3d49.27945117336963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf6c2f6bfa27f06f5!2sMairie!5e0!3m2!1sfr!2sfr!4v1483023362144" width="600" height="250" style="border:0" allowfullscreen></iframe>
+			<?php } ?>
+		</div>
+
 <?php
 		} else {
 			echo $donnees;
@@ -108,7 +136,7 @@
 
 	<!-- Display des articles/news des mairies -->
 	<hr>
-	<div class="row">
+	<!-- Row se crée dans le foreach -->
 <?php if(isset($news)){
 			if(is_array($news)){
 				foreach ($news as $key => $value) {
@@ -118,7 +146,7 @@
 
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="thumbnail" style="background-image: url('<?= $this->assetUrl('img/bourneville.png'); ?>')">
+						<div class="thumbnail">
 							<!-- Pour l'instant Bourneville est un test
 							Mettre le background avec l'image de la mairie -->
 							<!-- php : chercher la picture de l'assoc en bdd -->
@@ -169,7 +197,6 @@
 			}
 		}
 	} ?>
-	</div>
 
 <!-- Lien vers contact d'inscription de mairie -->
 <br>

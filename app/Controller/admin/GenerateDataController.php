@@ -4,6 +4,10 @@ use \Controller\CustomController ;
 
 class GenerateDataController extends CustomController
 {
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////
+  //ACCEPTER LA DEMANDE RECUE
+  ///////////////////////////////////////////////////////////////////////////////////////////////
   public function generateAccept($objet,$pseudo)
   {
     $urlConnection = $this->generateUrl('racine_form',[],true);
@@ -19,7 +23,7 @@ class GenerateDataController extends CustomController
     $piedpageEmail = '<br/><br/>Merci de nous accorder votre confiance. A bientôt sur AS-CO-MA !<br/>
     Cet e-mail est envoyé automatiquement, merci de ne pas y répondre. Pour nous contacter, <a href="'.$urlContact.'">Cliquez ici</a>.';
 
-    $piedpageMessagePriver = '<br/><br/>Merci de nous accorder votre confiance.';
+    $piedpageMessagePriver = '<br/><br/>Merci de nous accorder votre confiance. A bientôt sur AS-CO-MA !';
     //
     //
     // Mairie
@@ -31,24 +35,15 @@ class GenerateDataController extends CustomController
 
       if(is_numeric($pseudo)){// si on accepte et la demande vien d'un membre deja inscrit
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et sommes très heureux de pouvoir
-        vous compter parmi nos nouveaux membres !
+        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et sommes très heureux de pouvoir vous compter parmi nous.<br/>
         Nous venons par cet e-mail vous confirmer l\'acceptation de votre demande. Vous pouvez dès à présent
         <a href="'.$urlConnection.'">cliquez ici</a> pour vous connecter. <br/>
-        Rendez-vous dans l\'onglet "Mairie" de votre l\'administration sur le site pour y trouver un lien qui vous
-         mènera au formulaire pour compléter les informations de votre Mairie.
-        Une fois vos informations enregistrées, un temps de modération nous sera nécessaire pour nous assurer
-        de la validité des donnée saisies, après quoi votre Mairie sera visible sur AS-CO-MA. <br/>
-        Dès que votre mairie sera en ligne, vous pourrez recevoir des demandes d\'inscriptions provenant
-        d\'associations ou envoyer vous-mêmes ces invitations.';
+        Rendez-vous dans l\'onglet "Mairie" de votre administration sur le site pour y trouver un lien qui vous mènera au formulaire pour compléter les informations de votre Mairie. Une fois vos informations enregistrées, un temps de modération nous sera nécessaire pour nous assurer de la validité des donnée saisies, après quoi votre Mairie sera visible sur AS-CO-MA. <br/>
+        Dès que votre mairie sera en ligne, vous pourrez recevoir des demandes d\'inscriptions provenant d\'associations ou en envoyer vous-même.';
 
       }else {//si on accepte mais que la demande vien d'un email non enregistrer
-        $array['contenu'] = 'Nous serions ravis de compter votre Mairie parmi nous.
-        Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous
-        inscrire comme utilisateur. Nous vous attribuerons alors les droits pour créer votre
-         Mairie au travers d\'une nouvelle demande via l\'adresse e-mail renseignée lors de votre inscription.<br/>
-        Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel.
-        Les informations de la Mairie seront à saisir lors de l\'étape suivante.';
+        $array['contenu'] = 'Nous serions ravis de compter votre Mairie parmi nous. Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur du site. Nous vous attribuerons alors les droits pour créer votre Mairie au travers d\'une nouvelle demande via l\'adresse e-mail renseignée lors de votre inscription.<br/>
+        Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel. Les informations de la Mairie seront à saisir lors de l\'étape suivante.';
       }
     //
     //
@@ -57,30 +52,18 @@ class GenerateDataController extends CustomController
     //
   }elseif($objet == 'inscript_assoc'){//inscription d'une association
 
-      $array['objet'] = 'AS-CO-MA - Inscrire mon Association';//objet du mail
+      $array['objet'] = 'AS-CO-MA - Inscription d\'Association';//objet du mail
 
       if(is_numeric($pseudo)){//si la demande vien d'un utilisateur
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association
-        auprès de notre Mairie et sommes très heureux de pouvoir vous compter parmi nous.<br/>
-        Nous venons par cet e-mail vous confirmer l\'acceptation de votre demande. Vous
-        pouvez dès à présent <a href="'.$urlConnection.'">cliquez ici</a> afin de vous connecter.<br/>
-        Rendez-vous dans votre onglet d\'administration, rubrique "Association". Vous y
-        trouverez un lien pour remplir les informations de votre Association. Une fois vos
-        informations enregistrées, un temps de modération nous sera nécessaire afin de nous
-        assurer de la validité des données saisies. Votre association sera alors visible
-        sur AS-CO-MA et vous pourrez ainsi recevoir des demandes d\'inscription de membres
-         ou envoyer vous-mêmes ces invitations.';
+        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association auprès de cette Mairie et sommes très heureux de pouvoir vous compter parmi nous.<br/>
+        Nous venons par cet e-mail vous confirmer l\'acceptation de votre demande. Vous pouvez dès à présent <a href="'.$urlConnection.'">cliquez ici</a> afin de vous connecter.<br/>
+        Rendez-vous dans votre onglet d\'administration, rubrique "Association". Vous y trouverez un lien pour remplir les informations de votre Association. Une fois vos informations enregistrées, un temps de modération nous sera nécessaire afin de nous assurer de la validité des données saisies. Votre Association sera alors visible sur AS-CO-MA et vous pourrez ainsi recevoir des demandes d\'inscription de membres ou en envoyer vous-même.';
 
       }else {//sinon on dit ok mais inscrivez vous
 
-        $array['contenu'] = 'Nous serions ravis d\'enregistrer votre Association auprès de
-        votre Mairie. Pour cela, rendez-vous <a href="'.$urlInscription.'">à cette adresse</a>
-         afin de vous inscrire comme utilisateur. Nous vous attribuerons alors les droits pour
-          créer votre Association au travers d\'une nouvelle demande via l\'adresse e-mail
-           renseignée lors de votre inscription.<br/>
-        Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel.
-         Les informations de l\'Association seront à saisir lors de l\'étape suivante.';
+        $array['contenu'] = 'Nous serions ravis d\'enregistrer votre Association auprès de cette Mairie. Pour cela, rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur du site. Nous vous attribuerons alors les droits pour créer votre Association au travers d\'une nouvelle demande via l\'adresse e-mail renseignée lors de votre inscription.<br/>
+        Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel. Les informations de l\'Association seront à saisir lors de l\'étape suivante.';
       }
     //
     //
@@ -93,21 +76,13 @@ class GenerateDataController extends CustomController
 
       if(is_numeric($pseudo)){//si c'est un utilisateur du site
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre
-         de notre Association et sommes très heureux de pouvoir vous compter parmi
-         nous. Nous venons par cet e-mail vous confirmer l\'acceptation de votre demande.<br/>
-        Vous faites dès à présent partie de l\'Association en tant qu\'utilisateur.
-        Vous pouvez nous contacter par message privé au travers de votre espace
-        personnel et vous recevrez les informations désirées via l\'adresse e-mail
-         reseignée lors de votre inscription.';
+        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de cette Association et sommes très heureux de pouvoir vous compter parmi nous. Nous venons par cet e-mail vous confirmer l\'acceptation de votre demande.<br/>
+        Vous faites dès à présent partie de l\'Association en tant qu\'utilisateur. Vous pouvez utiliser le formulaire de contact mis à disposition dans votre espace personnel et vous recevrez les informations désirées via l\'adresse e-mail reseignée lors de votre inscription.';
 
       }else {//si il ne fais pas parti du site
 
-        $array['contenu'] = 'Nous serions ravis de vous compter parmi les membres de notre Association.<br/>
-        Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a>
-        afin de vous inscrire comme utilisateur. Nous vous attribuerons alors les
-        droits d\'accès à votre Association au travers d\'une nouvelle demande via
-         l\'adresse e-mail renseignée lors de votre inscription.';
+        $array['contenu'] = 'Nous serions ravis de vous compter parmi les membres de cette Association.<br/>
+        Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur du site. Nous vous attribuerons alors les droits d\'accès à votre Association au travers d\'une nouvelle demande via l\'adresse e-mail renseignée lors de votre inscription.';
       }
 
     }
@@ -122,6 +97,9 @@ class GenerateDataController extends CustomController
   }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
+  // DEMANDER PLUS D'INFOS A LA DEMANDE RECUE
+  /////////////////////////////////////////////////////////////////////////////////////
   public function generatePlusInfo($objet,$pseudo)
   {
     $urlConnection = $this->generateUrl('racine_form',[],true);
@@ -137,7 +115,7 @@ class GenerateDataController extends CustomController
     $piedpageEmail = '<br/><br/>Merci de nous accorder votre confiance. A bientôt sur AS-CO-MA !<br/>
     Cet e-mail est envoyé automatiquement, merci de ne pas y répondre. Pour nous contacter, <a href="'.$urlContact.'">Cliquez ici</a>.';
 
-    $piedpageMessagePriver = '<br/><br/>Merci de nous accorder votre confiance.';//en message priver il peu nous repondre ^^
+    $piedpageMessagePriver = '<br/><br/>Merci de nous accorder votre confiance. A bientôt sur AS-CO-MA !';//en message priver il peu nous repondre ^^
     //
     //
     // Mairie
@@ -149,34 +127,26 @@ class GenerateDataController extends CustomController
 
     if(is_numeric($pseudo)){// si on accepte et la demande vien d'un membre deja inscrit
 
-      $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et nous serion très heureux de pouvoir
-      vous compter parmi nos nouveaux membres !
-      Nous ne pouvons cependant pas accepter votre demande en l\'etat. Nous souhaiterion plus d\'information sur votre mairie
-      ainsi que sur vous meme. <br/>
-      Les information utile sont :<br/>
-      votre role a la mairie<br/>
-      La commune de la mairie<br/>
-      Le numeros de telephone de la mairie<br/>
-      C\'est information nous sont nessessaire pour des raison de securiter et pour nous assurer
-      de la legitimiter de votre demande
-      Rendez-vous sur notre <a href="'.$urlContact.'">formulaire de contact</a> afin
-      de nous soumettre une nouvelle demande.';
+      $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et sommes très heureux de pouvoir vous compter parmi nous. <br/>
+      Nous ne pouvons cependant pas accepter votre demande en l\'état. Nous souhaiterions avoir plus d\'informations au sujet de votre Mairie ainsi que sur vous-même. <br/>
+      Les informations utile sont notamment : <br/>
+      - Votre rôle au sein de la Mairie, <br/>
+      - Le nom de votre Commune, <br/>
+      - Le numéro de téléphone de la Mairie. <br/>
+      Ces informations nous sont nécessaires pour des raisons de sécurité et pour nous assurer de la légitimité de votre demande. <br/>
+      Rendez-vous sur notre <a href="'.$urlContact.'">formulaire de contact</a> afin de soumettre une demande plus complète.';
 
     }else {//si on accepte mais que la demande vien d'un email non enregistrer
-      $array['contenu'] = 'Nous serions ravis de compter votre Mairie parmi nous.
-      Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur.<br/>
-      Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel.
-      Les informations de la Mairie seront à saisir lors de l\'étape suivante.
+      $array['contenu'] = 'Nous serions ravis de compter votre Mairie parmi nous. Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur du site.<br/>
+      Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel. Les informations de la Mairie seront à saisir lors de l\'étape suivante. <br/><br/>
 
-      Une fois votre compte creer, rendez vous de nouveau sur notre <a href="'.$urlContact.'">formulaire de contact</a>
-      afin de nous refaire une demande plus complete, car nous manquon actuelemen d\'information<br/>
-      Les information utile sont :<br/>
-      Votre nom et prenom<br/>
-      votre role a la mairie<br/>
-      La commune de la mairie<br/>
-      Le numeros de telephone de la mairie<br/>
-      C\'est information nous sont nessessaire pour des raison de securiter et pour nous assurer
-      de la legitimiter de votre demande<br/>';
+      Une fois votre compte créé, rendez-vous de nouveau sur notre <a href="'.$urlContact.'">formulaire de contact</a> afin de soumettre une demande plus complète, car nous manquons actuellement d\'informations.<br/>
+      Les informations utiles sont notamment :<br/>
+      - Votre NOM et Prénom, <br/>
+      - Votre rôle au sein de la Mairie, <br/>
+      - Le nom de votre Commune, <br/>
+      - Le numéro de téléphone de votre Mairie.<br/>
+      Ces informations nous sont nécessaires pour des raisons de sécurité et pour nous assurer de la légitimité de votre demande. <br/>';
     }
     //
     //
@@ -185,33 +155,31 @@ class GenerateDataController extends CustomController
     //
   }elseif($objet == 'inscript_assoc'){//inscription d'une association
 
-      $array['objet'] = 'AS-CO-MA - Inscrire mon Association';//objet du mail
+      $array['objet'] = 'AS-CO-MA - Inscription d\'Association';//objet du mail
 
       if(is_numeric($pseudo)){//si la demande vien d'un utilisateur
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association auprès de notre Mairie et
-        serions très heureux de pouvoir vous compter parmi nous.<br/>
-        Malheureusement nous manquon d\information sur votre association pour pouvoir accepter actuelement<br/>
-        Les information utlil sont <br/>
-        Le nom de votre association<br/>
-        Une description explicativ <br/>
-        Une estimation du nombre de membre actuel ou futur estimer<br/>
-        Rendez-vous sur notre formulaire de contact afin
-        de nous soumettre une nouvelle demande.';
+        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association auprès de cette Mairie et sommes très heureux de pouvoir vous compter parmi nous.<br/>
+        Nous ne pouvons cependant pas accepter votre demande en l\'état. Nous souhaiterions avoir plus d\'informations au sujet de votre Association ainsi que sur vous-même.<br/>
+        Les informations utiles sont notamment : <br/>
+        - Le nom de votre Association, <br/>
+        - Une description de votre activité, <br/>
+        - Votre rôle au sein de l\'Associtation, <br/>
+        - Une estimation du nombre de membres attendus.<br/>
+        Ces informations nous sont nécessaires pour des raisons de sécurité et pour nous assurer de la légitimité de votre demande. Rendez-vous sur notre <a href="'.$urlContact.'">formulaire de contact</a> afin de nous soumettre une demande plus complète.';
 
       }else {//sinon on dit ok mais inscrivez vous
 
-        $array['contenu'] = 'Nous serions très heureux de pouvoir vous compter parmi nous.<br/>
-        Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur.<br/>
-        Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel.
-        Les informations de l\association seront à saisir lors de l\'étape suivante.
+        $array['contenu'] = 'Nous serions très heureux de pouvoir vous compter parmi nous. Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur du site.<br/>
+        Il est important d\'utiliser votre e-mail personnel ! Votre compte sera personnel. Les informations de l\'Association seront à saisir lors de l\'étape suivante.<br/>
 
-        Et nous manquon actuelement d\information sur votre association pour pouvoir accepter votre demande<br/>
-        Les information utile sont :<br/>
-        Le nom de votre association<br/>
-        Une description explicativ <br/>
-        Une estimation du nombre de membre actuel ou futur estimer<br/>
-        C\'est information nous sont nessessaire pour savoir si votre association correspond au bon esprit commun de notre ville';
+        Nous ne pouvons cependant pas accepter votre demande d\'inscription en l\'état. Nous souhaiterions avoir plus d\'informations au sujet de votre Association ainsi que sur vous-même.<br/>
+        Les informations utiles sont notamment : <br/>
+        - Le nom de votre Association, <br/>
+        - Une description de votre activité, <br/>
+        - Votre rôle au sein de l\'Associtation, <br/>
+        - Une estimation du nombre de membres attendus.<br/>
+        Ces informations nous sont nécessaires pour des raisons de sécurité et pour nous assurer de la légitimité de votre demande. Rendez-vous sur notre <a href="'.$urlContact.'">formulaire de contact</a> afin de nous soumettre une demande plus complète.';
       }
     //
     //
@@ -224,22 +192,16 @@ class GenerateDataController extends CustomController
 
       if(is_numeric($pseudo)){//si c'est un utilisateur du site
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de notre Association et
-        serion très heureux de pouvoir vous compter parmi nous.
-        cependant nous manquons d\'information pour pouvoir accepter votre demande en l\'etat.
-        Je vous invite donc a nous refaire une nouvelle demande sur notre
-         en devrivant vos motivations
-        et dans quel but souhaiter vous faire partie de notre communauté.';
+        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de cette Association et sommes très heureux de pouvoir vous compter parmi nous.<br/>
+        Nous ne pouvons cependant pas accepter votre demande en l\'état. Nous souhaiterions avoir plus d\'informations à votre sujet.<br/>
+        Nous vous invitons donc à soumettre une nouvelle demande en décrivant les motivations qui vous poussent à vouloir faire partie de cette communauté.';
 
       }else {//si il ne fais pas parti du site
 
-        $array['contenu'] = 'Nous serions ravis de vous compter parmi les membres de cette Association.<br/>
-        Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur.
-        Nous manquon d\'information pour pouvoir accepter votre demande en l\'etat.
-        Je vous invite donc a nous refaire une demande une fois inscrit en devrivant vos motivations
-        et dans quel but souhaiter vous faire partie de notre communauté.
-        Apres acceptation nous vous attribuerons alors les droits d\'accès à notre Association au travers d\'une nouvelle
-        demande via l\'adresse e-mail renseignée lors de votre inscription.';
+        $array['contenu'] = 'Nous serions ravis de vous compter parmi les membres de cette Association. Pour cela rendez-vous <a href="'.$urlInscription.'">à cette adresse</a> afin de vous inscrire comme utilisateur du site.<br/>
+        Nous ne pouvons cependant pas accepter votre demande en l\'état. Nous souhaiterions avoir plus d\'informations à votre sujet.<br/>
+        Nous vous invitons donc à soumettre une nouvelle demande en décrivant les motivations qui vous poussent à vouloir faire partie de cette communauté.<br/>
+        Apres acceptation, nous vous attribuerons les droits d\'accès à cette Association au travers d\'une nouvelle demande via l\'adresse e-mail renseignée lors de votre inscription.';
       }
 
     }
@@ -254,7 +216,9 @@ class GenerateDataController extends CustomController
   }
 
 
-// on refuse
+  ///////////////////////////////////////////////////////////////////////////////////////////
+    // REFUS DE LA DEMANDE RECUE
+    /////////////////////////////////////////////////////////////////////////////////////
   public function generateRefus($objet,$pseudo)
   {
     $urlConnection = $this->generateUrl('racine_form',[],true);
@@ -270,7 +234,7 @@ class GenerateDataController extends CustomController
     $piedpageEmail = '<br/><br/>Merci de nous accorder votre confiance. A bientôt sur AS-CO-MA !<br/>
     Cet e-mail est envoyé automatiquement, merci de ne pas y répondre. Pour nous contacter, <a href="'.$urlContact.'">Cliquez ici</a>.';
 
-    $piedpageMessagePriver = '<br/><br/>Merci de nous accorder votre confiance.';//en message priver il peu nous repondre ^^
+    $piedpageMessagePriver = '<br/><br/>Merci de nous accorder votre confiance. A bientôt sur AS-CO-MA !';//en message priver il peu nous repondre ^^
     //
     //
     // Mairie
@@ -282,18 +246,12 @@ class GenerateDataController extends CustomController
 
     if(is_numeric($pseudo)){// si on accepte et la demande vien d'un membre deja inscrit
 
-      $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et somme
-      desoler de ne pas pouvoir donnee suite a cette derniere.
-      Vous pourez si vous le souhaiter nous reformuler une demande ulterieurement
-      via notre <a href="'.$urlContact.'">formulaire de contact</a> .';
+      $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et sommes au regret de ne pas pouvoir donner suite à votre demande.<br/>
+      Vous pourrez, si vous le souhaitez, effectuer ultérieurement une nouvelle demande via notre <a href="'.$urlContact.'">formulaire de contact</a>.';
 
     }else {//si on accepte mais que la demande vien d'un email non enregistrer
-      $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et somme
-      desoler de ne pas pouvoir donnee suite a cette derniere.
-      Vous pourez si vous le souhaiter nous reformuler une demande ulterieurement
-      via notre <a href="'.$urlContact.'">formulaire de contact</a> apres vous etes inscrit sur notre
-      site a <a href="'.$urlInscription.'">à cette adresse</a> afin de pouvoir donnee suite a votre prochaine
-      demande si nous le pouvons .';
+      $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription de Mairie et sommes au regret de ne pas pouvoir donner suite à votre demande.<br/>
+      Vous pourrez, si vous le souhaitez, effectuer une nouvelle demande via notre <a href="'.$urlContact.'">formulaire de contact</a> après vous être inscrit sur notre site <a href="'.$urlInscription.'">à cette adresse</a>.';
     }
     //
     //
@@ -302,23 +260,17 @@ class GenerateDataController extends CustomController
     //
   }elseif($objet == 'inscript_assoc'){//inscription d'une association
 
-      $array['objet'] = 'AS-CO-MA - Inscrire mon Association';//objet du mail
+      $array['objet'] = 'AS-CO-MA - Inscription d\'Association';//objet du mail
 
       if(is_numeric($pseudo)){//si la demande vien d'un utilisateur
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association auprès de notre Mairie et
-        somme desoler de ne pas pouvoir donnee suite a cette derniere.<br/>
-        Vous pourez si vous le souhaiter nous reformuler une demande ulterieurement
-        via notre formulaire de contact .';
+        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association auprès de cette Mairie et sommes au regret de ne pas pouvoir donner suite à votre demande.<br/>
+        Vous pourrez, si vous le souhaitez, effectuer ultérieurement une nouvelle demande via notre <a href="'.$urlContact.'">formulaire de contact</a>.';
 
       }else {//sinon on dit ok mais inscrivez vous
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\association et somme
-        desoler de ne pas pouvoir donnee suite a cette derniere.
-        Vous pourez si vous le souhaiter nous reformuler une demande ulterieurement
-        via notre formulaire de contact apres vous etes inscrit sur le
-        site a <a href="'.$urlInscription.'">à cette adresse</a> afin de pouvoir donnee suite a votre prochaine
-        demande si nous le pouvons .';
+        $array['contenu'] = 'Nous avons bien reçu votre demande d\'inscription d\'Association et sommes au regret de ne pas pouvoir donner suite à votre demande.<br/>
+        Vous pourrez, si vous le souhaitez, effectuer une nouvelle demande via notre <a href="'.$urlContact.'">formulaire de contact</a> après vous être inscrit sur le site <a href="'.$urlInscription.'">à cette adresse</a>.';
       }
     //
     //
@@ -331,19 +283,15 @@ class GenerateDataController extends CustomController
 
       if(is_numeric($pseudo)){//si c'est un utilisateur du site
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de notre Association et
-        somme desoler de ne pouvoir donnee suite a cette derniere.
-        Vous pourez si vous le souhaiter nous reformuler une demande ulterieurement
-        via notre formulaire de contact';
+        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de cette Association et
+        sommes au regret de ne pas pouvoir donner suite à votre demande.<br/>
+        Vous pourrez, si vous le souhaitez, effectuer ultérieurement une nouvelle demande via notre <a href="'.$urlContact.'">formulaire de contact</a>.';
 
       }else {//si il ne fais pas parti du site
 
-        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de notre Association et
-        somme desoler de ne pouvoir donnee suite a cette derniere.
-        Vous pourez si vous le souhaiter nous reformuler une demande ulterieurement
-        via notre formulaire de contact apres vous etes inscrit sur le
-        site a <a href="'.$urlInscription.'">à cette adresse</a> afin que nous puission donnee suite a votre prochaine
-        demande si nous le pouvons .';
+        $array['contenu'] = 'Nous avons bien reçu votre demande pour devenir membre de cette Association et
+        sommes au regret de ne pas pouvoir donner suite à votre demande.<br/>
+        Vous pourrez, si vous le souhaitez, effectuer une nouvelle demande via notre <a href="'.$urlContact.'">formulaire de contact</a> après vous être inscrit sur le site <a href="'.$urlInscription.'">à cette adresse</a>.';
       }
 
     }
