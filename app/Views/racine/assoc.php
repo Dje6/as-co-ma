@@ -69,8 +69,8 @@
 		if(is_array($donnees)) { ?>
 		<div class="row">
 
-			<h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2>
-			<br>
+			<!-- <h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2> -->
+			<!-- <br> -->
 
 			<div class="table-responsive">
 				<!-- Tableau infos assoc -->

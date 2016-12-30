@@ -51,7 +51,6 @@
 		<section class="container main_content">
 			<?= $this->section('main_content') ?>
 		</section>
-		<br><br>
 
 
 		<!-- FOOTER LAYOUT FRONT -->

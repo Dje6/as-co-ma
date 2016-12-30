@@ -71,7 +71,8 @@ hr {
 /*////////////////////////////////////////*/
 .main_content {
 	min-height: 520px;
-	margin-top: 2em;
+	margin-top: 3em;
+	margin-bottom: 3em;
 }
 /*min-height du container plus grande en mobile portrait*/
 @media screen and (max-width: 768px) {
