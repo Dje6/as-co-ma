@@ -40,7 +40,7 @@ if($orga == 'mairie'){
 
   <form class="" action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="post">
     <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;} ?>
-    <label for="mail">Inviter quelqun a nous rejoindre? <br/>entrez son adresse email :
+    <label for="mail">Inviter quelqu'un à nous rejoindre? <br/>Entrez son adresse email :
     <input type="text" name="mail" value=""></label>
     <input type="submit" name="submit" value="Inviter!">
   </form> <?php

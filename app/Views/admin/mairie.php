@@ -62,7 +62,7 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">Fix</span>
+                      <span class="input-group-addon">Téléphone</span>
                       <?php if(isset($error['fix']) && !empty($error['fix'])){ echo '<span>'.$error['fix'].'</span><br>' ;} ?>
                       <input type="text" name="fix" class="form-control" value="<?php echo $donnee['fix']?>"><br>
                     </div>
@@ -83,11 +83,11 @@ if(isset($donnee)){
                       <?php $horaire = unserialize($donnee['horaire']); ?>
 
                       <div class="input-group">
-                        <span class="input-group-addon">Lundi</span>
+                        <span class="input-group-addon">Lundi   </span>
                           <input type="text" name="horaire[Lundi]" class="form-control" value="<?php echo $horaire['Lundi']?>">
                       </div>
                       <div class="input-group">
-                        <span class="input-group-addon" >Mardi</span>
+                        <span class="input-group-addon" >Mardi   </span>
                           <input type="text" name="horaire[Mardi]" class="form-control" value="<?php echo $horaire['Mardi']?>">
                       </div>
                       <div class="input-group">
@@ -95,7 +95,7 @@ if(isset($donnee)){
                           <input type="text" name="horaire[Mercredi]" class="form-control" value="<?php echo $horaire['Mercredi']?>">
                       </div>
                       <div class="input-group">
-                        <span class="input-group-addon" >Jeudi</span>
+                        <span class="input-group-addon" >Jeudi   </span>
                           <input type="text" name="horaire[Jeudi]" class="form-control" value="<?php echo $horaire['Jeudi']?>">
                       </div>
                       <div class="input-group">
@@ -103,7 +103,7 @@ if(isset($donnee)){
                           <input type="text" name="horaire[Vendredi]" class="form-control" value="<?php echo $horaire['Vendredi']?>">
                       </div>
                       <div class="input-group">
-                        <span class="input-group-addon" >Samedi</span>
+                        <span class="input-group-addon" >Samedi  </span>
                           <input type="text" name="horaire[Samedi]" class="form-control" value="<?php echo $horaire['Samedi']?>">
                       </div>
                       <div class="input-group">

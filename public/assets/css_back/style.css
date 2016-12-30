@@ -139,7 +139,7 @@ input.form-control {
 	font-size: 1.5em;
 }
 
-
+/*////////////////////////////////////////////////////////*/
 
 /*user.php*/
 .titreusers {
@@ -148,9 +148,7 @@ input.form-control {
 	font-weight: bold;
 	font-size: 30px;
 	border : 3px solid ##337ab7;
-	/*margin-left: 30%;
-	margin-right: 30%;
-	margin-top: 6%;*/
+
 }
 .userpseudo {
 	font-size: 20px;
@@ -180,6 +178,7 @@ tbody {
     margin: 0 auto;
     padding-top:5px;
 }*/
+
 /*property for the bootstrap panel*/
 .panel  {
 -webkit-box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
@@ -286,8 +285,6 @@ button[type="reset"]    {
 color: #108fcc;
 font-size: 20px;
 }
-
-
 .messageall {
 	display: flex;
 	flex-direction: row;

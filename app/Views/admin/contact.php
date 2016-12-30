@@ -52,7 +52,7 @@ if(!isset($confirmation)){
 		}else{
 		 echo '<input type="text" name="emeteur_pseudo" value=""><br/>';
 	 	} ?>
-    <label for="mail">Mail</label><?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?><br/>
+    <label for="mail">Email</label><?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?><br/>
 		<?php if($_SESSION['user']){
 			echo '<input type="text" name="mail" value="'.$_SESSION['user']['mail'].'" readonly><br/>';
 		}else{
@@ -89,7 +89,7 @@ if(!isset($confirmation)){
 
   </form>
 	<?php if($slug == 'All'){
-		echo '<br/>* : Pour toute inscription de mairie , <br/>nous vous recontacterons pour confirmer votre identité';
+		echo '<br/>* : Pour toute inscription de mairie, <br/>nous vous recontacterons pour confirmation de votre identité';
 	}
 }else {
 	echo $confirmation;

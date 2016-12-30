@@ -70,7 +70,7 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">Mail</span>
+                      <span class="input-group-addon">Email</span>
                       <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
                       <input type="text" name="mail" class="form-control" value="<?php echo $donnee['mail'] ; ?>">
                     </div>

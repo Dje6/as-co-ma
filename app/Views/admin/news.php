@@ -39,9 +39,9 @@ if(isset($donnees)){
 
           <abc>Titre : <?php echo $value['title']; ?></abc><br>
           <abc>Contenu : <?php echo $value['content']; ?></abc><br>
-          <abc>Creer le : <?php echo $value['created_at']; ?></abc><br><?php
+          <abc>Crée le : <?php echo $value['created_at']; ?></abc><br><?php
           if(!empty($value['updated_at'])){ ?>
-            <abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br><?php
+            <abc>Modifié le : <?php echo $value['updated_at']; ?></abc><br><?php
           } ?>
 
           <a href="<?php echo $this->url('admin_'.$orga.'_update_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
