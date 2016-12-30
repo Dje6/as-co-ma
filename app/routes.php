@@ -98,7 +98,7 @@
 		['GET', '/profile/', 'admin\Users#home', 'admin_monCompte'],//affiche les info du user connecter
 		['GET', '/EditProfile/', 'admin\Users#homeEditionForm', 'admin_monCompte_edition'],//affiche le formulaire de modification des données
 		['POST', '/SaveProfile/', 'admin\Users#homeEditionPost', 'admin_monCompte_edition_post'],//modifie les données
-		['POST', '/SaveAvatar/', 'admin\Users#homeEditionAvatarPost', 'admin_monCompte_edition_avatar_post'],//traite l'upload d'avatar
+		['POST', '/SaveAvatar/', 'admin\Pictures#homeEditionAvatarPost', 'admin_monCompte_edition_avatar_post'],//traite l'upload d'avatar
 		//messagerie
 		['GET', '/Admin/message/[:page]', 'admin\Message#home', 'admin_message'],//affiche les message du user connecter
 		['GET', '/Admin/messageSend/[:page]', 'admin\Message#homeSend', 'admin_message_send'],//affiche les message du user connecter
