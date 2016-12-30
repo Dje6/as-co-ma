@@ -42,7 +42,7 @@ class CustomModel extends Model
 
   public function FindElementByElement($search,$colone,$where)
   {
-    $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where ';
+    $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':where', $where);
     if($sth->execute()){
@@ -94,4 +94,89 @@ class CustomModel extends Model
      }
     }
   }
+
+  //////////////////////////////////////////////////////:
+  ///////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  ///////////////SURCHARGE
+
+// les surcharge son identique au originaux , la seul difference es qu'ils gere le NULL , on peu donc inserer et mettre a jour
+// une value NULL en base de donnee
+
+//ATTENTION !! pour que ca fonctionne , la valeur doit etre 'NULL' , une chaine de caractere avec ecrit NULL , pas un NULL reel
+  public function insert(array $data, $stripTags = true)
+	{
+
+		$colNames = array_keys($data);
+		$colNamesEscapes = $this->escapeKeys($colNames);
+		$colNamesString = implode(', ', $colNamesEscapes);
+
+		$sql = 'INSERT INTO ' . $this->table . ' (' . $colNamesString . ') VALUES (';
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+        $sql .= "NULL, ";
+      }else {
+        $sql .= ":$key, ";
+      }
+		}
+		// Supprime les caractères superflus en fin de requète
+		$sql = substr($sql, 0, -2);
+		$sql .= ')';
+
+		$sth = $this->dbh->prepare($sql);
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+      }else {
+  			$value = ($stripTags) ? strip_tags($value) : $value;
+  			$sth->bindValue(':'.$key, $value);
+      }
+		}
+
+		if (!$sth->execute()){
+			return false;
+		}
+		return $this->find($this->lastInsertId());
+	}
+
+	public function update(array $data, $id, $stripTags = true)
+	{
+		if (!is_numeric($id)){
+			return false;
+		}
+
+		$sql = 'UPDATE ' . $this->table . ' SET ';
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+        $sql .= "`$key` = NULL, ";
+      }else {
+        $sql .= "`$key` = :$key, ";
+      }
+
+		}
+		// Supprime les caractères superflus en fin de requète
+		$sql = substr($sql, 0, -2);
+		$sql .= ' WHERE ' . $this->primaryKey .' = :id';
+
+		$sth = $this->dbh->prepare($sql);
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+      }else {
+        $value = ($stripTags) ? strip_tags($value) : $value;
+        $sth->bindValue(':'.$key, $value);
+      }
+		}
+		$sth->bindValue(':id', $id);
+
+		if(!$sth->execute()){
+			return false;
+		}
+		return $this->find($id);
+	}
+  public function escapeKeys($datas)
+  {
+    return array_map(function($val){
+      return '`'.$val.'`';
+    }, $datas);
+  }
+
 }
