@@ -109,4 +109,19 @@ class ContactModel extends CustomModel
     return $sth->execute();
   }
 
+  public function findInvitation($where)
+  {
+    $sql = 'SELECT * FROM '.$this->table.' WHERE destinataire_mailOrId = :where AND objet LIKE \'%Invitation%\' LIMIT 1';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':where', $where);
+    if($sth->execute()){
+      $foundUser = $sth->fetch();
+      if(!empty($foundUser)){
+        return $foundUser ;
+      }else{
+        return false;
+      }
+    }
+  }
+
 }

@@ -5,6 +5,8 @@ use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
 use \Controller\CustomController ;
 use \Model\UsersCustomModel;
+use \Model\ContactModel;
+use \Model\RolesModel;
 use \Service\ValidationTools;
 use \W\Security\StringUtils;
 use \PHPMailer;
@@ -162,6 +164,18 @@ class ConnexionController extends CustomController
       if(!empty($id) && is_numeric($id)){
         $newToken = StringUtils::randomString(50);
         if($usersModel->update(['status' => 'Actived','token' => $newToken], $id)){
+
+          $contactModel = new ContactModel;
+          $eventuelInvitation = $contactModel->findInvitation($mail);
+          if($eventuelInvitation){
+            $RolesModel = new RolesModel;
+            $RolesModel->insert(['id_assoc' => $eventuelInvitation['emeteur_mailOrId'],
+            'role' => 'User','id_user' => $id]);
+            $contactModel->update(['destinataire_mailOrId' => $id,
+            'destinataire_status'=> 'NULL','status'=>'Accepter','destinataire_orga'=>'users',
+          'date_lecture'=> date('Y-m-d H:i:s')],$eventuelInvitation['id']);
+          }
+
           $this->show('racine/inscription',['confirmation'=> 'Votre compte est activé !
           <a href="'.$this->generateUrl('racine_form').'">Connectez-vous !</a>']);
         }
