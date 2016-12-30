@@ -42,6 +42,9 @@
 		</form>
 	</div>
 
+	<!-- ///////////////////////////////////////////////////////////////// -->
+	
+
 <!-- Quand recherche soumise, affiche liens vers Mairie concernée -->
 <br>
 <div class="row text-center">
@@ -58,6 +61,9 @@
 		}
 	} ?>
 </div>
+
+<!-- ///////////////////////////////////////////////////////////////// -->
+
 
 <?php
 // Quand lien cliqué, affiche les infos de la mairie
@@ -115,7 +121,10 @@
 			</div>
 
 		</div>
-		<!-- Fin div infos mairie -->
+		<!-- Fin tableau infos mairie -->
+
+		<!-- ///////////////////////////////////////////////////////////////// -->
+
 
 		<!-- Google maps de la mairie -->
 		<div class="row text-center">
@@ -147,8 +156,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="thumbnail">
-							<!-- Pour l'instant Bourneville est un test
-							Mettre le background avec l'image de la mairie -->
+							<!-- Mettre le background du thumbnail avec l'image de la mairie -->
 							<!-- php : chercher la picture de l'assoc en bdd -->
 
 							<div class="caption text-center">

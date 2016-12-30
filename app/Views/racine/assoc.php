@@ -121,8 +121,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 			    <div class="thumbnail">
-						<!-- Pour l'instant Flokkr est un test
-						Mettre le background avec l'image de l'association -->
+						<!-- Mettre le background du thumbnail avec l'image de l'association -->
 						<!-- php : chercher la picture de l'assoc en bdd -->
 
 			      <div class="caption text-center">

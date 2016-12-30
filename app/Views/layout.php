@@ -48,9 +48,9 @@
 		</div>
 	</header>
 
-		<section class="container main_content">
-			<?= $this->section('main_content') ?>
-		</section>
+	<section class="container main_content">
+		<?= $this->section('main_content') ?>
+	</section>
 
 
 		<!-- FOOTER LAYOUT FRONT -->
