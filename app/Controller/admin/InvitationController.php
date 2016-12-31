@@ -184,14 +184,11 @@ class InvitationController extends CustomController
             }
 
           }else {
-<<<<<<< HEAD
-            $error['mail']= 'Merci de saisir une adresse mail.';
-            $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'error'=>$error]);
-=======
+
             $error['mail']= 'Merci de saisir un mail';
             $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc',
             'page'=>1,'donnee' => $donnee,'error'=>$error]);
->>>>>>> simon
+
           }
 
         }
