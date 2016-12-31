@@ -131,6 +131,9 @@
 					}elseif($orga == 'assoc'){ ?>
 						<div id="navbar" class="navbar-collapse collapse ">
 							<ul class="nav navbar-nav navbar_organisation">
+								<li><a href="<?php echo $this->url('admin_assoc_contact_tout_membres',['slugE' => $slug]); ?>">
+									<button type="button" class="btn btn-info btn-lg">Message aux Membres</button></a>
+								</li>
 							<?php $array_retourner = $this->in_multi_array_return_array($slug,$_SESSION['user']['roles']);
 							if(is_array($array_retourner)){ ?>
 								<li><a href="<?php echo $this->url('admin_assoc_contact_mairie',['slugE' => $slug,'slugR' => $array_retourner['slug_mairie']]); ?>">

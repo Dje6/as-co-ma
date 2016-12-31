@@ -61,7 +61,8 @@
 		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
 		['POST', '/Admin/InvitMembres/[:slug]', 'admin\Invitation#invitMembre', 'admin_assoc_invit'],//envoi une invitation a rejoindre lassocation
 		// messagerie Assoc
-		['GET|POST', '/Admin/ContactMembres/[:slugE]/[:id]', 'admin\contact#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactMembre/[:slugE]/[:id]', 'admin\contact#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactToutMembres/[:slugE]', 'admin\contact#contactToutMembres', 'admin_assoc_contact_tout_membres'],//permet d'envoyer un message a tout les menbre de lassoc
 		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\contact#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
 		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message recu de lassociation
 		['GET', '/Admin/messageSend/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orgaSend', 'admin_message_send_assoc'],//affiche les message envoyer par lassociation

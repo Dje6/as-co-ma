@@ -1,5 +1,6 @@
 <?php
 if(is_numeric($slugRecepteur)){ $id = $slugRecepteur ;}
+
 if($w_current_route == 'admin_assoc_contact_mairie' || ($orga == 'assoc' && !isset($id))){
   $quiContacter = '<h3 class="titrecontact">Contacter la '.$slugRecepteur.'</h3>';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
@@ -16,6 +17,11 @@ if($w_current_route == 'admin_assoc_contact_mairie' || ($orga == 'assoc' && !iss
   $quiContacter = '<h3 class="titrecontact">Contacter le Webmaster</h3>';
   $orga = 'mairie';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
+
+}elseif($w_current_route == 'admin_assoc_contact_tout_membres' || $mailRecepteur == 'Tous les membres') {
+  $quiContacter = '<h3 class="titrecontact">Message a tous les membres</h3>';
+  $orga = 'assoc';
+  $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur]);
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
@@ -39,47 +45,47 @@ if(!isset($confirmation)){ ?>
 <!-- // debut du formulaire intégré -->
 
 <div class="container fichecontact">
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 col-centered ">
-                    <div class="panel panel-default ">
-                    <form class="" action="<?php echo $urlDePost; ?>" method="post">
-                    <div class="panel-body">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 col-centered ">
+      <div class="panel panel-default ">
+        <form class="" action="<?php echo $urlDePost; ?>" method="post">
+          <div class="panel-body">
 
-                        <div class="form-group">
-                          <?php if(isset($error['destinataire_mailOrId'])){ echo '<span style="color:red;">'.$error['destinataire_mailOrId'].'</span>' ;} ?><br/>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope blue"></i></span>
-                                <input type="text" name="destinataire_mailOrId" placeholder="Destinataire" class="form-control" value="<?php echo $mailRecepteur ;?>" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                          <?php if(isset($error['objet'])){ echo '<span style="color:red;">'.$error['objet'].'</span>' ;} ?><br/>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
-                                <input type="text" name="objet" placeholder="Objet" class="form-control" autofocus="autofocus" value="<?php if(isset($donnee['objet'])){ echo $donnee['objet'] ; } ?>">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                          <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
-                                <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
-                            </div>
-                        </div>
-                        <div class="">
-                          <input type="hidden" name="capcha" value="">
-                          <input type="submit" name="submit" class="btn btn-info pull-right" value="envoyer">
-                          <button type="reset" value="Reset" name="reset" class="btn">Effacer <span class="glyphicon glyphicon-refresh"></span></button>
-                        </div>
-                    </div>
-                    </form>
-                </div>
+            <div class="form-group">
+              <?php if(isset($error['destinataire_mailOrId'])){ echo '<span style="color:red;">'.$error['destinataire_mailOrId'].'</span>' ;} ?><br/>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope blue"></i></span>
+                <input type="text" name="destinataire_mailOrId" placeholder="Destinataire" class="form-control" value="<?php echo $mailRecepteur ;?>" readonly>
+              </div>
             </div>
-        </div>
+
+            <div class="form-group">
+              <?php if(isset($error['objet'])){ echo '<span style="color:red;">'.$error['objet'].'</span>' ;} ?><br/>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
+                <input type="text" name="objet" placeholder="Objet" class="form-control" autofocus="autofocus" value="<?php if(isset($donnee['objet'])){ echo $donnee['objet'] ; } ?>">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
+                <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
+              </div>
+            </div>
+
+            <div class="">
+              <input type="hidden" name="capcha" value="">
+              <input type="submit" name="submit" class="btn btn-info pull-right" value="envoyer">
+              <button type="reset" value="Reset" name="reset" class="btn">Effacer <span class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
 
 <!-- // fin du formulaire intégré -->
 
