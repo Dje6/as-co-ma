@@ -69,8 +69,8 @@
 		if(is_array($donnees)) { ?>
 		<div class="row">
 
-			<h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2>
-			<br>
+			<!-- <h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2> -->
+			<!-- <br> -->
 
 			<div class="table-responsive">
 				<!-- Tableau infos assoc -->
@@ -121,8 +121,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 			    <div class="thumbnail">
-						<!-- Pour l'instant Flokkr est un test
-						Mettre le background avec l'image de l'association -->
+						<!-- Mettre le background du thumbnail avec l'image de l'association -->
 						<!-- php : chercher la picture de l'assoc en bdd -->
 
 			      <div class="caption text-center">
