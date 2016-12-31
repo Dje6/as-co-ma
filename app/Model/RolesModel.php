@@ -25,6 +25,15 @@ class RolesModel extends CustomModel
     $sth->execute();
     $result = $sth->fetch();
     return $result;
+  }
 
+  public function AllMembre($id_assoc)
+  {
+    $sql = "SELECT id_user FROM $this->table WHERE id_assoc = :id_assoc ";
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindvalue(':id_assoc',$id_assoc);
+    $sth->execute();
+    $result = $sth->fetchAll();
+    return $result;
   }
 }

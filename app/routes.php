@@ -6,12 +6,11 @@
 		//
 		['GET', '/', 'Default#home', 'default_home'],//page d'acceuil
 		['GET', '/cgu/', 'Default#cgu', 'default_cgu'],//page CGU redirigé depuis footer layout front
+		['GET|POST', '/DesinscritpionNewsletter/[:orga]/[:slug]', 'racine\newsletter#home', 'default_desinscription'],//desinscription news letter
 
-		['GET', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
-		['POST', '/a/[:orga]/[:slug]', 'racine\Assoc#search', 'racine_assoc_search'],//retourne le resultat de la recherche d'association
+		['GET|POST', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
 
-		['GET', '/m/[:orga]/[:slug]', 'racine\Mairie#home', 'racine_mairie'],//page de recherche et affichage de mairie
-		['POST', '/m/[:orga]/[:slug]', 'racine\Mairie#search', 'racine_mairie_search'],//retourne le resultat de la recherche de mairie
+		['GET|POST', '/m/[:orga]/[:slug]', 'racine\Mairie#home', 'racine_mairie'],//page de recherche et affichage de mairie
 
 		['GET', '/contact/[:orga]/[:slug]/', 'racine\Contact#home', 'racine_contact'],//affiche le formulaire de contact
 		['POST', '/contact/[:orga]/[:slug]/', 'racine\Contact#sendMessage', 'racine_contact_send'],//traite lenvoi du formulaire de contact
@@ -62,7 +61,8 @@
 		['GET', '/Admin/ListeMembres/[:slug]/[:page]', 'admin\Assoc#listeMembres', 'admin_assoc_membres'],//affiche le listing des menbre de lassoc
 		['POST', '/Admin/InvitMembres/[:slug]', 'admin\Invitation#invitMembre', 'admin_assoc_invit'],//envoi une invitation a rejoindre lassocation
 		// messagerie Assoc
-		['GET|POST', '/Admin/ContactMembres/[:slugE]/[:id]', 'admin\contact#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactMembre/[:slugE]/[:id]', 'admin\contact#contactMembre', 'admin_assoc_contact_membre'],//permet d'envoyer un message personnel a un menbre de lassoc
+		['GET|POST', '/Admin/ContactToutMembres/[:slugE]', 'admin\contact#contactToutMembres', 'admin_assoc_contact_tout_membres'],//permet d'envoyer un message a tout les menbre de lassoc
 		['GET|POST', '/Admin/ContactMairie/[:slugE]/[:slugR]', 'admin\contact#contactMairie', 'admin_assoc_contact_mairie'],//permet d'envoyer un message personnel a la mairie referente
 		['GET', '/Admin/message/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orga', 'admin_message_assoc'],//affiche les message recu de lassociation
 		['GET', '/Admin/messageSend/assoc/[:slug]/[:orga]/[:page]', 'admin\Message#orgaSend', 'admin_message_send_assoc'],//affiche les message envoyer par lassociation
@@ -72,6 +72,7 @@
 		['GET', '/Admin/Assoc/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_assoc_news'],
 		['GET', '/Admin/Assoc/DeleteNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#delete', 'admin_assoc_delete_news'],
 		['GET', '/Admin/Assoc/StatusNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#status', 'admin_assoc_status_news'],
+		['GET', '/Admin/Assoc/NewsLetter/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#newsletter', 'admin_assoc_newsletter'],//declenche la newsletter
 		//
 		//administration mairie
 		//
@@ -92,6 +93,7 @@
 		['GET', '/Admin/Mairie/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_mairie_news'],
 		['GET', '/Admin/Mairie/DeleteNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#delete', 'admin_mairie_delete_news'],
 		['GET', '/Admin/Mairie/StatusNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#status', 'admin_mairie_status_news'],
+		['GET', '/Admin/Mairie/NewsLetter/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#newsletter', 'admin_mairie_newsletter'],//declenche la newsletter
 		//
 		//administration user
 		//

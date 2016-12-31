@@ -175,6 +175,17 @@ class ConnexionController extends CustomController
             'emeteur_status'=> 'NULL','emeteur_pseudo'=>$LePseudo,
             'emeteur_orga'=>'users',],$mail);
 
+            $demande = $contactModel->findDemandeValider($id);
+          if($demande){
+            $RolesModel = new RolesModel;
+            $result = $RolesModel->insert(['id_assoc' => $demande['destinataire_mailOrId'],
+            'id_user' => $id,'role' => 'User']);
+
+            if(!$result){// si ca c bien passer
+              $this->showErrors('probleme lors de l\'atribution du role');
+            }
+          }
+
           $this->show('racine/inscription',['confirmation'=> 'Votre compte est activé !
           <a href="'.$this->generateUrl('racine_form').'">Connectez-vous !</a>']);
         }

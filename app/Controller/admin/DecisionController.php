@@ -141,6 +141,13 @@ class DecisionController extends ReponseController
               $id_assoc = $AssocComplete['id'];
               $slug_mairie = $MairieModel->FindElementByElement('slug','id',$AssocComplete['id_mairie']) ;
 
+              if(!empty($RolesModel->FindRole($id_assoc,$maildestinataire))){
+                //si le membre fais deja partie de lassociation on detruit la demande
+                $contactModel->delete($id);
+                $this->redirectToRoute('admin_message_assoc',['orga' => 'assoc',
+                'slug' => $AssocComplete['slug'] ,'page'=>1]);
+              }
+
               $result = $RolesModel->insert(['id_assoc' => $id_assoc,'id_user' => $maildestinataire,'role' => 'User']);
 
               if($result){// si ca c bien passer
