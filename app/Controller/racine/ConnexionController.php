@@ -4,7 +4,7 @@ namespace Controller\Racine;
 use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
 use \Controller\CustomController ;
-use \Model\UsersCustomModel;
+use \Model\UserModel;
 use \Model\ContactModel;
 use \Model\RolesModel;
 use \Service\ValidationTools;
@@ -24,7 +24,7 @@ class ConnexionController extends CustomController
         $r_POST = $this->nettoyage($_POST);
 
         $Authent = new AuthentificationModel();
-        $get_user = new UsersCustomModel;
+        $get_user = new UserModel;
         $user_id = $get_user->isValidLoginInfo($_POST['pseudo'], $_POST['password']);
 
         if($user_id == 0){  //si ya un soucis on retourne sur le formulaire avec les erreur
@@ -73,7 +73,7 @@ class ConnexionController extends CustomController
   public function inscriptPost()
   {
     $error = array();
-    $usersModel = new UsersCustomModel;
+    $usersModel = new UserModel;
     if($_POST){
       $r_POST = $this->nettoyage($_POST);
 
@@ -159,22 +159,21 @@ class ConnexionController extends CustomController
       $mail = urldecode(trim(strip_tags($mail)));
       $token =  urldecode(trim(strip_tags($token)));
       $array = array();
-      $usersModel = new UsersCustomModel;
+      $usersModel = new UserModel;
       $id = $usersModel->tokenOK($mail,$token);
+      $LePseudo = $usersModel->FindElementByElement('pseudo','id',$id);
       if(!empty($id) && is_numeric($id)){
         $newToken = StringUtils::randomString(50);
         if($usersModel->update(['status' => 'Actived','token' => $newToken], $id)){
 
           $contactModel = new ContactModel;
-          $eventuelInvitation = $contactModel->findInvitation($mail);
-          if($eventuelInvitation){
-            $RolesModel = new RolesModel;
-            $RolesModel->insert(['id_assoc' => $eventuelInvitation['emeteur_mailOrId'],
-            'role' => 'User','id_user' => $id]);
-            $contactModel->update(['destinataire_mailOrId' => $id,
-            'destinataire_status'=> 'NULL','status'=>'Accepter','destinataire_orga'=>'users',
-          'date_lecture'=> date('Y-m-d H:i:s')],$eventuelInvitation['id']);
-          }
+
+          $contactModel->updateMessageDestinataire(['destinataire_mailOrId' => $id,
+            'destinataire_status'=> 'NULL','destinataire_orga'=>'users',],$mail);
+
+          $contactModel->updateMessageEmeteur(['emeteur_mailOrId' => $id,
+            'emeteur_status'=> 'NULL','emeteur_pseudo'=>$LePseudo,
+            'emeteur_orga'=>'users',],$mail);
 
           $this->show('racine/inscription',['confirmation'=> 'Votre compte est activé !
           <a href="'.$this->generateUrl('racine_form').'">Connectez-vous !</a>']);
@@ -252,7 +251,7 @@ class ConnexionController extends CustomController
   {
     // debug($_POST);
     if($_POST){
-      $usersModel = new UsersCustomModel;
+      $usersModel = new UserModel;
       $r_POST = $this->nettoyage($_POST);
 
       if(!$usersModel->emailExists($r_POST['mail'])){ $error['mail'] = 'Cet e-mail n\'existe pas.' ; }

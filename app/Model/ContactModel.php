@@ -109,11 +109,14 @@ class ContactModel extends CustomModel
     return $sth->execute();
   }
 
-  public function findInvitation($where)
+  public function findInvitation($mail,$id_assoc)
   {
-    $sql = 'SELECT * FROM '.$this->table.' WHERE destinataire_mailOrId = :where AND objet LIKE \'%Invitation%\' LIMIT 1';
+    $sql = 'SELECT * FROM '.$this->table.' WHERE destinataire_mailOrId = :mail
+     AND objet LIKE \'%Invitation%\' AND objet LIKE \'%a%\' AND objet LIKE \'%rejoindre%\'
+     AND emeteur_orga = \'assoc\' AND emeteur_mailOrId = :id_assoc AND status = \'non-lu\' LIMIT 1';
     $sth = $this->dbh->prepare($sql);
-    $sth->bindValue(':where', $where);
+    $sth->bindValue(':mail', $mail);
+    $sth->bindValue(':id_assoc', $id_assoc);
     if($sth->execute()){
       $foundUser = $sth->fetch();
       if(!empty($foundUser)){
@@ -123,5 +126,66 @@ class ContactModel extends CustomModel
       }
     }
   }
+  public function updateMessageDestinataire(array $data, $mail)
+	{
+
+		$sql = 'UPDATE ' . $this->table . ' SET ';
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+        $sql .= "`$key` = NULL, ";
+      }else {
+        $sql .= "`$key` = :$key, ";
+      }
+
+		}
+		// Supprime les caractères superflus en fin de requète
+		$sql = substr($sql, 0, -2);
+		$sql .= ' WHERE destinataire_mailOrId = :mail ';
+
+		$sth = $this->dbh->prepare($sql);
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+      }else {
+        $sth->bindValue(':'.$key, $value);
+      }
+		}
+		$sth->bindValue(':mail', $mail);
+
+		if(!$sth->execute()){
+			return false;
+		}
+		return true;
+	}
+  public function updateMessageEmeteur(array $data, $mail)
+	{
+
+		$sql = 'UPDATE ' . $this->table . ' SET ';
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+        $sql .= "`$key` = NULL, ";
+      }else {
+        $sql .= "`$key` = :$key, ";
+      }
+
+		}
+		// Supprime les caractères superflus en fin de requète
+		$sql = substr($sql, 0, -2);
+		$sql .= ' WHERE emeteur_mailOrId = :mail ';
+
+		$sth = $this->dbh->prepare($sql);
+		foreach($data as $key => $value){
+      if($value == 'NULL'){
+      }else {
+        $sth->bindValue(':'.$key, $value);
+      }
+		}
+		$sth->bindValue(':mail', $mail);
+
+		if(!$sth->execute()){
+			return false;
+		}
+		return true;
+	}
+
 
 }
