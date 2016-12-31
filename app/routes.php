@@ -9,10 +9,8 @@
 		['GET|POST', '/DesinscritpionNewsletter/[:orga]/[:slug]', 'racine\newsletter#home', 'default_desinscription'],//desinscription news letter
 
 		['GET|POST', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
-		['POST', '/a/[:orga]/[:slug]', 'racine\Assoc#search', 'racine_assoc_search'],//retourne le resultat de la recherche d'association
 
 		['GET|POST', '/m/[:orga]/[:slug]', 'racine\Mairie#home', 'racine_mairie'],//page de recherche et affichage de mairie
-		['POST', '/m/[:orga]/[:slug]', 'racine\Mairie#search', 'racine_mairie_search'],//retourne le resultat de la recherche de mairie
 
 		['GET', '/contact/[:orga]/[:slug]/', 'racine\Contact#home', 'racine_contact'],//affiche le formulaire de contact
 		['POST', '/contact/[:orga]/[:slug]/', 'racine\Contact#sendMessage', 'racine_contact_send'],//traite lenvoi du formulaire de contact

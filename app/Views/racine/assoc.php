@@ -15,7 +15,7 @@
 
 	<!-- Form recherche d'assoc -->
 	<div class="row">
-		<form class="formFront form-inline" action="<?php echo $this->url('racine_assoc_search',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
+		<form class="formFront form-inline" action="<?php echo $this->url('racine_assoc',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
 
 			<div class="form-group">
 				<label for="cp">Saisissez le code postal ou le nom de l'Association recherchée : </label>
@@ -94,10 +94,10 @@
 	<hr>
 	<form class="" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
 		<?php if(isset($confirmation)){ echo $confirmation.'<br/>' ;} ?>
-		<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$erro['mail'].'</span><br/>' ; } ?>
+		<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br/>' ; } ?>
 		<label for="mail">Recevoir par mail les futur articles? Inscrivez-vous a la newsletter!
 			 <input type="text" name="mail" value="">
-			 <input type="submit" name="submit" value="S'inscrire">
+			 <input type="submit" name="submit_news" value="S'inscrire">
 		</label>
 	</form>
 <?php if(isset($news)){

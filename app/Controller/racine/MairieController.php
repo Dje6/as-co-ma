@@ -14,7 +14,12 @@ class MairieController extends CustomController
   public function home($orga,$slug)
   {
     if($slug == 'All'){
-      $this->show('racine/mairie',['orga' => $orga,'slug' => $slug]);
+      if(isset($_POST['submit'])){
+        $donnees = $this->searchOrga($orga,$slug,$_POST);
+        $this->show('racine/mairie',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees ]);
+      }else {
+        $this->show('racine/mairie',['orga' => $orga,'slug' => $slug]);
+      }
     }else{
       $donnees = $this->infoBdd($orga,$slug,['statusA' => 'Actif']);
       $mairieModel = new MairieModel;
@@ -23,7 +28,7 @@ class MairieController extends CustomController
       $NewsModel = new NewsModel;
       $news = $NewsModel->FindAllNews($id_orga,$orga,6,0,true);
 
-      if($_POST){
+      if(isset($_POST['submit_news'])){
         $r_POST = $this->nettoyage($_POST);
         if(empty($r_POST['capcha'])){
           $error['mail'] = ValidationTools::emailValid($r_POST['mail']);
@@ -50,11 +55,5 @@ class MairieController extends CustomController
         $this->show('racine/mairie',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees,'news'=>$news ]);
       }
     }
-  }
-  //recherche en base donnee si une mairie correspon a la recherche
-  public function search($orga,$slug)
-  {
-    $donnees = $this->searchOrga($orga,$slug,$_POST);
-    $this->show('racine/mairie',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees ]);
   }
 }

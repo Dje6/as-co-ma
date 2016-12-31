@@ -13,16 +13,21 @@ class AssocController extends CustomController
   public function home($orga,$slug)
   {
     if($slug == 'All'){
-      $this->show('racine/assoc',['orga' => $orga,'slug' => $slug]);
+      if(isset($_POST['submit'])){
+        $donnees = $this->searchOrga($orga,$slug,$_POST);
+        $this->show('racine/assoc',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees ]);
+      }else {
+        $this->show('racine/assoc',['orga' => $orga,'slug' => $slug]);
+      }
     }else{
-      $donnees = $this->info($slug,['statusA'=> 'Actif']);
+      $donnees = $this->infoBdd($orga,$slug,['statusA' => 'Actif']);
       $assocModel = new AssocModel;
       $id_orga = $assocModel->FindElementByElement('id','slug',$slug);
 
       $NewsModel = new NewsModel;
       $news = $NewsModel->FindAllNews($id_orga,$orga,6,0,true);
 
-      if($_POST){
+      if(isset($_POST['submit_news'])){
         $r_POST = $this->nettoyage($_POST);
         if(empty($r_POST['capcha'])){
           $error['mail'] = ValidationTools::emailValid($r_POST['mail']);
@@ -49,18 +54,5 @@ class AssocController extends CustomController
         $this->show('racine/assoc',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees,'news'=>$news ]);
       }
     }
-  }
-  //recherche en base de donnee les organisation correspondan au critere saisi par lutilisateur
-  public function search($orga,$slug)
-  {
-    $donnees = $this->searchOrga($orga,$slug,$_POST);
-    $this->show('racine/assoc',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees ]);
-  }
-  //recupere les info d'une association en base de donnee
-  public function info($slug,$status)
-  {
-    $assocModel = new AssocModel;
-    $donnees = $assocModel->findSlug($slug,$status);
-    return $donnees;
   }
 }
