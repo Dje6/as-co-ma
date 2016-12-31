@@ -5,9 +5,27 @@ use \W\Controller\Controller;
 use \Model\UsersCustomModel;
 use \Model\MairieModel;
 use \Model\AssocModel;
+use \Model\AbonnesModel;
 
 class CustomController extends Controller
 {
+  //retourne les information des mairie ou association
+  public function addAbonne($mail,$orga,$slug)
+  {
+    $AbonnesModel = new AbonnesModel;
+    if(ucfirst($orga) == 'Mairie'){
+      $MairieModel = new MairieModel;
+      $id_orga = $MairieModel->FindElementByElement('id','slug',$slug);
+    }elseif (ucfirst($orga) == 'Assoc') {
+      $AssocModel = new AssocModel;
+      $id_orga = $AssocModel->FindElementByElement('id','slug',$slug);
+    }
+    if($AbonnesModel->insert(['mail' => $mail,'id_'.$orga => $id_orga])){
+      return 'Votre inscritpion a la newsletter a bien ete prise en compte';
+    }else {
+      return 'Une erreur est survenu , votre inscription n\' a pas ete prise en compte';
+    }
+  }
   //retourne les information des mairie ou association
   public function infoBdd($orga,$slug,$status)
   {

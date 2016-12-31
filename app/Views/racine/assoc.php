@@ -92,6 +92,14 @@
 	<!-- Display des articles/news des assoc -->
 	<!-- Style thumbnail -->
 	<hr>
+	<form class="" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
+		<?php if(isset($confirmation)){ echo $confirmation.'<br/>' ;} ?>
+		<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$erro['mail'].'</span><br/>' ; } ?>
+		<label for="mail">Recevoir par mail les futur articles? Inscrivez-vous a la newsletter!
+			 <input type="text" name="mail" value="">
+			 <input type="submit" name="submit" value="S'inscrire">
+		</label>
+	</form>
 <?php if(isset($news)){
 		if(is_array($news)){
 			foreach ($news as $key => $value) {

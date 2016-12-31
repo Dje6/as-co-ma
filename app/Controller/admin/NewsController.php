@@ -4,9 +4,11 @@ namespace Controller\admin;
 use \Controller\CustomController;
 use \Model\NewsModel;
 use \Model\AssocModel;
+use \Model\AbonnesModel;
 use \Model\MairieModel;
 use \Service\Pagination;
 use \Service\validationTools;
+use \PHPMailer;
 
 /**
  *
@@ -219,6 +221,66 @@ class NewsController extends CustomController
             $this->showErrors('Un soucis lors de la mise a jour du status');
           }
         }
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+  public function newsletter($slug,$orga,$id,$page=1)
+  {
+    if(isset($_SESSION['user']))
+    {
+      if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
+          $orga = $this->nettoyage($orga);
+          $slug = $this->nettoyage($slug);
+          $id = $this->nettoyage($id);
+          $page = $this->nettoyage($page);
+
+          $NewsModel = new NewsModel;
+          $laNews = $NewsModel->Find($id);
+
+          if(empty($laNews['newsletter'])){
+
+            $mail = new PHPMailer();
+            //$mail->SMTPDebug = 3;                              // Enable verbose debug output
+            $mail->isMail();
+            $mail->setFrom('Assaucisse@as-co-ma.fr', 'Mailer');
+
+            $AbonnesModel = new AbonnesModel;
+
+            if($orga == 'assoc'){
+              $AssocModel = new AssocModel;
+              $nom_Orga = $AssocModel-> FindElementByElement('nom','slug',$slug);
+              $id_Orga = $AssocModel-> FindElementByElement('id','slug',$slug);
+            }elseif ($orga == 'mairie') {
+              $MairieModel = new MairieModel;
+              $nom_Orga = $MairieModel-> FindElementByElement('nom','slug',$slug);
+              $id_Orga = $MairieModel-> FindElementByElement('id','slug',$slug);
+            }
+            $listeAbonnes = $AbonnesModel->abonnes($id_Orga,$orga);
+
+            foreach($listeAbonnes as $key => $value)
+            {
+              $mail->addAddress($value['mail']);
+            }
+            $mail->addReplyTo('do-no-reply@as-co-ma', 'Information');
+            $mail->isHTML(true);    // Set email format to HTML
+            $mail->Subject = 'NewsLetter '.$nom_Orga;
+            $mail->Body    = $laNews['title'].'<br/><br/>'.$laNews['content'].'<br/><br/>
+            Pour vous desinscrire de la newsletter <a href="'.$this->generateUrl('default_desinscription',[
+            'orga' => $orga,'slug' => $slug],true).'">Cliquer ici</a>';
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            if($mail->send()) {
+              $NewsModel->update(['newsletter'=> date('Y-m-d H:i:s')],$id);
+              $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
+            }else {
+              $this->showErrors('la news letter n\' a pas ete envoyer');
+            }
+          }else{
+            $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
+          }
+      }
     }else{
       $this->redirectToRoute('racine_form');
     }

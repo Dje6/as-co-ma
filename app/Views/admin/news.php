@@ -42,6 +42,9 @@ if(isset($donnees)){
           <abc>Creer le : <?php echo $value['created_at']; ?></abc><br><?php
           if(!empty($value['updated_at'])){ ?>
             <abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br><?php
+          }
+          if(!empty($value['newsletter'])){ ?>
+            <abc>NewsLetter envoyer : <?php echo $value['newsletter']; ?></abc><br><?php
           } ?>
 
           <a href="<?php echo $this->url('admin_'.$orga.'_update_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
@@ -63,6 +66,12 @@ if(isset($donnees)){
           'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
           <button class="btn btn-danger">Supprimer</button>
         </a><?php
+          if(empty($value['newsletter'])){ ?>
+            <a href="<?php echo $this->url('admin_'.$orga.'_newsletter',['id' => $value['id'],
+            'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
+            <button class="btn btn-success">Declencher la NewsLetter</button>
+          </a><?php
+          }
         }?>
       </div><?php
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul

@@ -6,11 +6,12 @@
 		//
 		['GET', '/', 'Default#home', 'default_home'],//page d'acceuil
 		['GET', '/cgu/', 'Default#cgu', 'default_cgu'],//page CGU redirigé depuis footer layout front
+		['GET|POST', '/DesinscritpionNewsletter/[:orga]/[:slug]', 'racine\newsletter#home', 'default_desinscription'],//desinscription news letter
 
-		['GET', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
+		['GET|POST', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
 		['POST', '/a/[:orga]/[:slug]', 'racine\Assoc#search', 'racine_assoc_search'],//retourne le resultat de la recherche d'association
 
-		['GET', '/m/[:orga]/[:slug]', 'racine\Mairie#home', 'racine_mairie'],//page de recherche et affichage de mairie
+		['GET|POST', '/m/[:orga]/[:slug]', 'racine\Mairie#home', 'racine_mairie'],//page de recherche et affichage de mairie
 		['POST', '/m/[:orga]/[:slug]', 'racine\Mairie#search', 'racine_mairie_search'],//retourne le resultat de la recherche de mairie
 
 		['GET', '/contact/[:orga]/[:slug]/', 'racine\Contact#home', 'racine_contact'],//affiche le formulaire de contact
@@ -72,6 +73,7 @@
 		['GET', '/Admin/Assoc/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_assoc_news'],
 		['GET', '/Admin/Assoc/DeleteNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#delete', 'admin_assoc_delete_news'],
 		['GET', '/Admin/Assoc/StatusNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#status', 'admin_assoc_status_news'],
+		['GET', '/Admin/Assoc/NewsLetter/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#newsletter', 'admin_assoc_newsletter'],//declenche la newsletter
 		//
 		//administration mairie
 		//
@@ -92,6 +94,7 @@
 		['GET', '/Admin/Mairie/News/[:slug]/[:orga]/[:page]', 'admin\News#home', 'admin_mairie_news'],
 		['GET', '/Admin/Mairie/DeleteNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#delete', 'admin_mairie_delete_news'],
 		['GET', '/Admin/Mairie/StatusNews/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#status', 'admin_mairie_status_news'],
+		['GET', '/Admin/Mairie/NewsLetter/[:slug]/[:orga]/[:id]/[:page]', 'admin\News#newsletter', 'admin_mairie_newsletter'],//declenche la newsletter
 		//
 		//administration user
 		//

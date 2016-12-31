@@ -19,17 +19,22 @@ class InvitationController extends CustomController
       {
           $contactModel = new ContactModel;
           $leMessage = $contactModel->FindMessageById($id);
+          $RolesModel = new RolesModel;
+
+          $AssocModel = new AssocModel;
+          $slug = $AssocModel->FindElementByElement('slug','id',$leMessage['emeteur_mailOrId']);
+          $AssocComplete = $AssocModel->findSlug($slug,$status=['statusA' => 'En attente','statusB' => 'Actif']);
+          $id_assoc = $AssocComplete['id'];
+
+          if(!empty($RolesModel->FindRole($id_assoc,$_SESSION['user']['id']))){
+            //si on fais deja partie de lassociation on detruit la demande
+            $contactModel->delete($id);
+            $this->redirectToRoute('admin_message',['page'=>1]);
+          }
 
           if($decision == 'Accepter'){
-            $RolesModel = new RolesModel;
             $MairieModel = new MairieModel;
-            $AssocModel = new AssocModel;
 
-            $slug = $AssocModel->FindElementByElement('slug','id',$leMessage['emeteur_mailOrId']);
-
-            $AssocComplete = $AssocModel->findSlug($slug,$status=['statusA' => 'En attente','statusB' => 'Actif']);
-
-            $id_assoc = $AssocComplete['id'];
             $slug_mairie = $MairieModel->FindElementByElement('slug','id',$AssocComplete['id_mairie']) ;
 
             $result = $RolesModel->insert(['id_assoc' => $id_assoc,'id_user' => $_SESSION['user']['id'],'role' => 'User']);
@@ -89,21 +94,28 @@ class InvitationController extends CustomController
 
                   if(!empty($roleRetourner)){
                     $confirmation ='Cet utilisateur fais deja partie de \'association';
-                    $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
+                    $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
+                    'page'=>1,'confirmation'=>$confirmation]);
                   }
-                  $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
-                  if(!empty($invitation)){
-                    $confirmation ='Une invitation a deja ete envoyer a cette personne';
-                    $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
-                  }
+
                 }else {
-                  $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
-                  if(!empty($invitation)){
-                    $confirmation ='Une invitation a deja ete envoyer a cette personne';
-                    $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
-                  }
                   $r_POST['destinataire_orga'] = 'public';
                   $r_POST['destinataire_status'] = 'del';
+                }
+
+                $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
+                if(!empty($invitation)){
+                  $confirmation ='Une invitation a deja ete envoyer a cette personne';
+                  $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
+                  'page'=>1,'confirmation'=>$confirmation]);
+                }
+
+                if($contactModel->findDemande($r_POST['mail'],$id_assoc)){
+                  $confirmation ='Une demande pour rejoindre l\'association a deja ete faite par ce membre , merci de consulter
+                  les message recu de l\'association pour pouvoir y repondre';
+
+                  $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
+                  'page'=>1,'confirmation'=>$confirmation]);
                 }
               }
 
@@ -167,14 +179,17 @@ class InvitationController extends CustomController
               }else {
                 $confirmation = 'L\'invitation n\'a pas pu etre envoyer suite a un probleme technique';
               }
-              $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'confirmation'=>$confirmation]);
+              $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc',
+              'page'=>1,'donnee' => $donnee,'confirmation'=>$confirmation]);
             }else {
-              $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'error'=>$error]);
+              $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc',
+              'page'=>1,'donnee' => $donnee,'error'=>$error]);
             }
 
           }else {
             $error['mail']= 'Merci de saisir un mail';
-            $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,'error'=>$error]);
+            $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc',
+            'page'=>1,'donnee' => $donnee,'error'=>$error]);
           }
 
         }

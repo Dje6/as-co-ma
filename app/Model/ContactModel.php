@@ -126,6 +126,39 @@ class ContactModel extends CustomModel
       }
     }
   }
+  public function findDemande($mail,$id_assoc)
+  {
+    $sql = 'SELECT * FROM '.$this->table.' WHERE emeteur_mailOrId = :mail
+     AND objet = \'inscript_membre\' AND destinataire_mailOrId = :id_assoc AND destinataire_orga = \'assoc\'
+     AND status = \'non-lu\' LIMIT 1';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':mail', $mail);
+    $sth->bindValue(':id_assoc', $id_assoc);
+    if($sth->execute()){
+      $foundUser = $sth->fetch();
+      if(!empty($foundUser)){
+        return $foundUser ;
+      }else{
+        return false;
+      }
+    }
+  }
+  public function findDemandeValider($mail)
+  {
+    $sql = 'SELECT * FROM '.$this->table.' WHERE emeteur_mailOrId = :mail
+     AND objet = \'inscript_membre\'
+     AND destinataire_orga = \'assoc\' AND status = \'Accepter\' LIMIT 1';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':mail', $mail);
+    if($sth->execute()){
+      $foundUser = $sth->fetch();
+      if(!empty($foundUser)){
+        return $foundUser ;
+      }else{
+        return false;
+      }
+    }
+  }
   public function updateMessageDestinataire(array $data, $mail)
 	{
 
