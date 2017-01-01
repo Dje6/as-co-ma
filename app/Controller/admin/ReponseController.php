@@ -133,14 +133,14 @@ class ReponseController extends CustomController
           $mail = new PHPMailer();
           //$mail->SMTPDebug = 3;                              // Enable verbose debug output
           $mail->isMail();
-          $mail->setFrom('Assaucisse@as-co-ma.fr', 'Mailer');
+          $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');
           $mail->addAddress($r_POST['destinataire_mailOrId'], 'exemple@example.com');
-          $mail->addReplyTo('do-no-reply@as-co-ma', 'Information');
+          $mail->addReplyTo('no-reply@as-co-ma', 'Information');
           $mail->isHTML(true);    // Set email format to HTML
 
           $messagedumail = 'Bonjour ,<br/>';
           $messagedumail .= $r_POST['contenu'].'<br/>';
-          $messagedumail .= 'N\'esitez pas a venir vous inscrire sur notre site! c\'est gratuit!';
+          $messagedumail .= 'N\'hésitez pas à venir vous inscrire sur notre site !';
 
           $mail->Subject = $r_POST['objet'];
           $mail->Body    = $messagedumail ;

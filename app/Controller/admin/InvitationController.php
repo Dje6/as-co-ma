@@ -54,7 +54,7 @@ class InvitationController extends CustomController
               $contactModel->update(['status'=>'Accepter','date_lecture'=>date('Y-m-d H:i:s')],$id);
 
             }else{
-              $this->showErrors('Problème lors de l\'attribution du rôle');
+              $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
             }
           }elseif ($decision == 'Refuser') {
               $contactModel->update(['status'=>'Refuser','date_lecture'=>date('Y-m-d H:i:s')],$id);
@@ -107,14 +107,13 @@ class InvitationController extends CustomController
 
                 $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
                 if(!empty($invitation)){
-                  $confirmation ='Une invitation a deja ete envoyer a cette personne';
+                  $confirmation ='Une invitation a déjà été envoyée à cette personne !';
                   $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
                   'page'=>1,'confirmation'=>$confirmation]);
                 }
 
                 if($contactModel->findDemande($r_POST['mail'],$id_assoc)){
-                  $confirmation ='Une demande pour rejoindre l\'association a deja ete faite par ce membre , merci de consulter
-                  les message recu de l\'association pour pouvoir y repondre';
+                  $confirmation ='Une demande pour rejoindre l\'Association a déjà faite par ce membre, merci de consulter les messages reçus de l\'Association pour pouvoir y répondre.';
 
                   $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
                   'page'=>1,'confirmation'=>$confirmation]);
@@ -152,7 +151,7 @@ class InvitationController extends CustomController
                 $r_POST['contenu'] = 'Bonjour, <br/>
                 Nous serions très heureux de pouvoir vous compter parmi nous ! Pour en savoir plus sur nos activités n\'hésitez pas à visiter <a href="'.$this->generateUrl('racine_assoc',['orga'=>'assoc','slug'=>$slug],true).'">notre page</a> !<br/>
                 Cependant, vous devez au préalable être inscrit sur le site.<br/>
-                <a href="'.$this->generateUrl('racine_inscriptForm',[],true).'">Cliquez ici</a> pour vous inscrire et devenir aussitôt un de nos membres!<br/>
+                <a href="'.$this->generateUrl('racine_inscriptForm',[],true).'">Cliquez ici</a> pour vous inscrire et devenir aussitôt un de nos membres !<br/>
                 A bientôt !';
 
                 $contactModel = new ContactModel;
@@ -160,7 +159,7 @@ class InvitationController extends CustomController
                 $mail = new PHPMailer();
                 //$mail->SMTPDebug = 3;                              // Enable verbose debug output
                 $mail->isMail();
-                $mail->setFrom('admin@as-co-ma.fr', 'Mailer');
+                $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');
                 $mail->addAddress($r_POST['destinataire_mailOrId'], 'exemple@example.com');
                 $mail->addReplyTo('no-reply@as-co-ma', 'Information');
                 $mail->isHTML(true);    // Set email format to HTML

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'AS-CO-MA - Desinscription']) ?>
+<?php $this->layout('layout', ['title' => 'AS-CO-MA - Se désinscrire de la newsletter']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
@@ -17,17 +17,21 @@ if(isset($confirmation)){
 
   <form class="formFront" action="<?php echo $this->url('default_desinscription',['orga'=>$orga,'slug'=>$slug]); ?>" method="POST">
 
-    <legend><h2>Vous desinscrire de la newsletter</h2></legend>
+      <fieldset>
+        <legend>
+          <h2 class="text-center"><b>Vous désinscrire de la newsletter</b></h2>
+        </legend>
 
-    <div class="form-group">
-      <label for="mail">Adresse email :</label>
-      <input type="text" class="form-control" name="mail" value="
-      <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br/>' ; } ?>"><br/>
-    </div>
+        <div class="form-group">
+          <label for="mail">Adresse e-mail :</label>
+          <input type="text" class="form-control" name="mail" value="
+          <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br/>' ; } ?>"><br/>
+        </div>
 
-    <input type="hidden" name="capcha" value="">
+        <input type="hidden" name="capcha" value="">
+        <button class="btn btn-success btn-sm" type="submit" name="submit">Se désinscrire</button>
 
-    <button type="submit" name="submit">Desinscrire</button>
+      </fieldset>
   </form>
   <?php
 } ?>

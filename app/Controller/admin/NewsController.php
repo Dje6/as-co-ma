@@ -190,7 +190,7 @@ class NewsController extends CustomController
         if($NewsModel->delete($id)){
           $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
         }else {
-          $this->showErrors('Un soucis lors de la suppression de l article');
+          $this->showErrors('Un problème est survenu lors de la suppression de l\'article.');
         }
       }
     }else{
@@ -218,7 +218,7 @@ class NewsController extends CustomController
           if($NewsModel->update(['status'=> $newStatus],$id)){
             $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
           }else {
-            $this->showErrors('Un soucis lors de la mise a jour du status');
+            $this->showErrors('Un problème est survenu lors de la mise à jour du status.');
           }
         }
     }else{
@@ -244,7 +244,7 @@ class NewsController extends CustomController
             $mail = new PHPMailer();
             //$mail->SMTPDebug = 3;                              // Enable verbose debug output
             $mail->isMail();
-            $mail->setFrom('Assaucisse@as-co-ma.fr', 'Mailer');
+            $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');
 
             $AbonnesModel = new AbonnesModel;
 
@@ -263,19 +263,19 @@ class NewsController extends CustomController
             {
               $mail->addAddress($value['mail']);
             }
-            $mail->addReplyTo('do-no-reply@as-co-ma', 'Information');
+            $mail->addReplyTo('no-reply@as-co-ma', 'Information');
             $mail->isHTML(true);    // Set email format to HTML
             $mail->Subject = 'NewsLetter '.$nom_Orga;
             $mail->Body    = $laNews['title'].'<br/><br/>'.$laNews['content'].'<br/><br/>
-            Pour vous desinscrire de la newsletter <a href="'.$this->generateUrl('default_desinscription',[
-            'orga' => $orga,'slug' => $slug],true).'">Cliquer ici</a>';
+            Pour vous désinscrire de la newsletter <a href="'.$this->generateUrl('default_desinscription',[
+            'orga' => $orga,'slug' => $slug],true).'">Cliquez ici</a>';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             if($mail->send()) {
               $NewsModel->update(['newsletter'=> date('Y-m-d H:i:s')],$id);
               $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
             }else {
-              $this->showErrors('la news letter n\' a pas ete envoyer');
+              $this->showErrors('La newsletter n\'a pas pu être envoyée.');
             }
           }else{
             $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
