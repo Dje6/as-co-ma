@@ -25,7 +25,7 @@ if(isset($donnee)){
           <div class="col-sm-8 col-sm-offset-2 col-centered ">
             <div class="panel panel-default">
 
-              <form method="POST" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
+              <form method="POST" enctype="multipart/form-data" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
                 <div class="panel-body"><?php
                 if(!isset($creation)){ //uniquement si la creation est deja faite ?>
                   <p class="couleur_bleue">Si votre ville est concernée par un regroupement communal,</p>
@@ -113,6 +113,22 @@ if(isset($donnee)){
                     </div>
                   </div>
 
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Avatar</span>
+                      <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
+                      <input type="file" name="avatar" value=""/>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon">Background</span>
+                      <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
+                      <input type="file" name="background" value=""/>
+                    </div>
+                  </div>
+
                   <input type="submit" name="submit" class="btn btn-info pull-right" value="Enregistrer"><br>
                 </div>
               </form>
@@ -124,6 +140,17 @@ if(isset($donnee)){
       <?php
     }else { ?>
       <div class="container affichageMairie"><?php
+      //affichage de lavatar de la mairie
+      //si il ny en pas on affiche une image neutre
+        if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
+        <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
+        class="img-circle img-responsive col-md-3 col-lg-3"><br/>
+        <!-- //formulaire d'envoi d'image -->
+        <?php
+        if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
+        <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
+        class="img-responsive col-md-3 col-lg-3"><br/>
+       <?php
 
         if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
          <h3 class="centragetitre"><?php echo $donnee['nom'] ; ?></h3><?php

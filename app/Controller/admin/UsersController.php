@@ -67,6 +67,11 @@ class UsersController extends CustomController
           if(!$result){
             $this->show('admin/users', ['edition' => true, 'donnee' => $r_POST]);
             } else {
+              if(!empty($_FILES['image']['name'])){
+                $PicturesController = new PicturesController;
+                $PicturesController->picturesPost('users','users','avatar');
+              }
+
               $pseudo = $_SESSION['user']['pseudo'];
               $Authent = new AuthentificationModel();
               $Authent -> logUserOut();

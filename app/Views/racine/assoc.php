@@ -5,19 +5,11 @@
 <?php $this->start('main_head') ?>
 <!-- ici le style de l'img en background des articles suivant le slug de l'assoc -->
 <style media="screen">
-	<?php if($slug == 'les-rois-du-volant') { ?>
-		.thumbnail {
-			background-image: url('<?= $this->assetUrl('img/volants.jpg'); ?>');
-		}
-	<?php } elseif ($slug == 'les-seconds') { ?>
-		.thumbnail {
-			background-image: url('<?= $this->assetUrl('img/seconds.jpg'); ?>');
-		}
-	<?php } else { ?>
-		.thumbnail {
-			background-image: url('<?= $this->assetUrl('img/flokkr.jpg'); ?>');
-		}
-<?php } ?>
+<?php if(is_array($donnees) && !empty($donnees['background'])){  ?>
+				.thumbnail {
+					background-image: url('<?= $this->assetUrl($donnees['background']); ?>');
+				}		<?php
+			} ?>
 </style>
 <link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_assoc.css'); ?>">
 <?php $this->stop('main_head') ?>
@@ -136,7 +128,10 @@
 							<!-- Titre de la news -->
 							<h2 class=""><b><?= $value['title']; ?></b></h2>
 
-							<img id="newsImg" src="http://placehold.it/550x300" alt="<?= $value['title']; ?>" width="550" height="300">
+							<?php if(!empty($value['picture'])){  ?>
+								<img id="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
+								width="550" height="300">
+							<?php } ?>
 							<!-- Fenetre modale (pop up qui zoom) -->
 								<div id="myModal" class="modal">
 

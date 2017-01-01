@@ -17,8 +17,6 @@ if(isset($acces)){
 echo '<h1 class="titreusers">Vos informations personnelles</h1><br/>';
 }
 
-
-
 if(isset($donnee)){//si la base de donnee retourne des information , array comme string
   if(is_array($donnee)){ //si la base de donnee retourne un array
     ?>
@@ -31,14 +29,13 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
               </div>
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-md-12 col-lg-12 " align="center">
-                    <!-- <img alt="User Pic" src="<?php //echo $donnee['avatar'] ; ?>" class="img-circle img-responsive"> -->
-                    <img alt="User Pic" src="https://cdn.pixabay.com/photo/2012/04/13/21/07/user-33638_960_720.png"
-                    class="img-circle img-responsive col-md-3">
+                  <div class="col-md-12 col-lg-12 " align="center"><?php
+                    if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
+                    <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>" class="img-circle img-responsive col-md-3 col-lg-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
                       <?php
                         if(isset($edition) && !isset($acces)){ ?>
-                          <form method="POST" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
+                          <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
                             <table class="table table-user-information">
                               <tbody>
 
@@ -75,25 +72,16 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                               <tr><td><label class ="couleur_bleue" for="fix">fix</label></td>
                               <td><input type="text" name="fix" value="<?php echo $donnee['fix'] ; ?>"><td/></tr>
 
+
+                              <tr><td><label class ="couleur_bleue" for="avatar">Avatar</label></td>
+                              <td><input type="file" name="image" value="image"/><td/></tr>
+
                               </tbody>
                             </table>
                               <input type="submit" name="submit" class="btn btn-success" value="Enregistrer">
                         </form>
                     </div> <?php
-                          }else{
-                            if(!isset($acces)){ ?>
-                              <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
-                                <input type="file" name="image" value="image"/>
-                                <input type="submit" value="Changer d'avatar"/>
-                              </form>
-                              <!-- <div class="input-file-container">
-                                <input type="hidden" class="urlRoute" name="route" value="<?php echo $this->url('admin_monCompte_edition_avatar_post') ; ?>">
-                                <input class="input-file" name="image" id="my-file" type="file">
-                                <label for="my-file" class="input-file-trigger" tabindex="0">Changer d'avatar</label>
-                              </div> -->
-                              <?php
-                            } ?>
-
+                  }else{ ?>
                             <table class="table table-user-information">
                               <tbody>
 

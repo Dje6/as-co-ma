@@ -9,6 +9,7 @@ use \Model\MairieModel;
 use \Service\Pagination;
 use \Service\validationTools;
 use \PHPMailer;
+use \Controller\admin\PicturesController;
 
 /**
  *
@@ -73,9 +74,6 @@ class NewsController extends CustomController
           if($r_POST['status'] != 'Activer' && $r_POST['status'] != 'Desactiver'){
             $error['status'] = 'Choix impossible';
           }
-          if(!empty($r_POST['picture'])){
-            //$error['picture'] = ;
-          }
 
           if(!ValidationTools::IsValid($error)){
             $this->show('admin/EditNews',['donnee' => $r_POST,'error' => $error,
@@ -90,18 +88,31 @@ class NewsController extends CustomController
               $id_orga = $MairieModel-> FindElementByElement('id','slug',$slug);
             }
             $NewsModel = new NewsModel;
-            if(empty($r_POST['picture'])){
-              unset($r_POST['picture']);//en attendan que Jessy est terminer ses preparatif
-            }
+
             unset($r_POST['submit']);
             unset($r_POST['capcha']);
 
             $r_POST['id_orga'] = $id_orga;
             $r_POST['orga'] = $orga;
-            $r_POST['created_at'] = date('Y-m-d H:i:s');
+            $dateDeCreation = date('Y-m-d H:i:s');
+            $r_POST['created_at'] = $dateDeCreation;
+
 
             if($NewsModel->insert($r_POST,false)){
-              $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => 1]);
+              if(!empty($_FILES['image']['name'])){
+                $id_news = $NewsModel->FindElementByElement('id','created_at',$dateDeCreation);
+
+                $PicturesController = new PicturesController;
+                if($PicturesController->picturesPost($orga,$slug,'news',$id_news)){
+                  $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => 1]);
+                }else {
+                  $this->show('admin/EditNews',['orga' => $orga ,'slug' => $slug,
+                  'confirmation'=> '<h3 class="titrecontact glyphicon-envelope red"> Une erreur est
+                  survenue lors du telechargement de l\'image .</h3>']);
+                }
+              }else {
+                $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => 1]);
+              }
             }else{
               $this->show('admin/EditNews',['orga' => $orga ,'slug' => $slug,
               'confirmation'=> '<h3 class="titrecontact glyphicon-envelope red"> Une erreur est survenue.</h3>']);
@@ -159,7 +170,19 @@ class NewsController extends CustomController
             $r_POST['updated_at'] = date('Y-m-d H:i:s');
 
             if($NewsModel->update($r_POST,$id)){
-              $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => 1]);
+
+              if(!empty($_FILES['image']['name'])){
+                $PicturesController = new PicturesController;
+                if($PicturesController->picturesPost($orga,$slug,'news',$id)){
+                  $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => 1]);
+                }else {
+                  $this->show('admin/EditNews',['orga' => $orga ,'slug' => $slug,'id'=>$id,
+                  'confirmation'=> '<h3 class="titrecontact glyphicon-envelope red"> Une erreur est
+                  survenue lors du telechargement de l\'image .</h3>']);
+                }
+              }else {
+                $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => 1]);
+              }
             }else{
               $this->show('admin/EditNews',['orga' => $orga ,'slug' => $slug,'id'=>$id,
               'confirmation'=> '<h3 class="titrecontact glyphicon-envelope red"> Une erreur est survenue.</h3>']);

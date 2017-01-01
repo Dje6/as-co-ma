@@ -38,6 +38,12 @@ if(isset($donnees)){
   			foreach ($donnees as $key => $value) { ?>
 
           <abc>Titre : <?php echo $value['title']; ?></abc><br>
+          <?php if(!empty($value['picture'])){ ?>
+            <img alt="User Pic" src="<?= $this->assetUrl($value['picture']) ?>"
+            class="img-responsive "><?php
+          }else { ?>
+            <abc>Image : pas d'image</abc><br><?php
+          } ?>
           <abc>Contenu : <?php echo $value['content']; ?></abc><br>
           <abc>Crée le : <?php echo $value['created_at']; ?></abc><br><?php
           if(!empty($value['updated_at'])){ ?>
@@ -74,6 +80,7 @@ if(isset($donnees)){
             <button class="btn btn-success">Declencher la NewsLetter</button>
           </a><?php
           }
+          echo '<br/>';
         }?>
       </div><?php
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul

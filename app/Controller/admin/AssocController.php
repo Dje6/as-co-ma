@@ -103,6 +103,24 @@ class AssocController extends CustomController
           if(!$result){
             $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
+            $ArrayAvatar = $_FILES['avatar'];
+            $ArrayBackground = $_FILES['background'];
+            unset($_FILES['avatar']);
+            unset($_FILES['background']);
+
+            if(!empty($ArrayAvatar['name'])){
+              $_FILES['image'] = $ArrayAvatar;
+              $PicturesController = new PicturesController;
+              $PicturesController->picturesPost('assoc',$slug,'avatar');
+              unset($_FILES['avatar']);
+            }
+            if(!empty($ArrayBackground['name'])){
+              $_FILES['image'] = $ArrayBackground;
+              $PicturesController = new PicturesController;
+              $PicturesController->picturesPost('assoc',$slug,'background');
+              unset($_FILES['background']);
+            }
+
             if(isset($r_POST['nom'])){
               $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
               $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
@@ -113,7 +131,6 @@ class AssocController extends CustomController
               $this->redirectToRoute('admin_assoc', ['slug' => $slug]);
             }
           }
-
         } else {
           $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'error' => $error, 'donnee' => $r_POST]);
         }

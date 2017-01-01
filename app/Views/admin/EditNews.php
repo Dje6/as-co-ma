@@ -12,7 +12,7 @@ $this->layout('layout_back', ['title' => 'News','slug' => $slug,'orga' => $orga]
 
 <?php
 if(isset($id) && !empty($id)){
-  $urlPost = $this->url($w_current_route,['slug' => $slug,'orga' => $orga,'id' => $id]);  
+  $urlPost = $this->url($w_current_route,['slug' => $slug,'orga' => $orga,'id' => $id]);
 }else {
   $urlPost = $this->url($w_current_route,['slug' => $slug,'orga' => $orga]);
 }
@@ -24,7 +24,7 @@ if(!isset($confirmation)){ ?>
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2 col-centered ">
       <div class="panel panel-default ">
-        <form class="" action="<?php echo $urlPost; ?>" method="post">
+        <form class="" enctype="multipart/form-data"  action="<?php echo $urlPost; ?>" method="post">
           <div class="panel-body">
 
             <div class="form-group">
@@ -62,8 +62,8 @@ if(!isset($confirmation)){ ?>
             <div class="form-group">
               <?php if(isset($error['picture'])){ echo '<span style="color:red;">'.$error['picture'].'</span>' ;} ?><br/>
               <div class="input-group">
-                <span class="input-group-addon">Image !!! NE FONCTIONNE PAS NE PAS TOUCHER !!!</NE></span>
-                <input type="file" name="picture" class="form-control" value="picture"/>
+                <span class="input-group-addon">Image</span>
+                <input type="file" name="image" class="form-control" value=""/>
               </div>
             </div>
 

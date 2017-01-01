@@ -30,12 +30,13 @@ class NewsModel extends customModel
   public function FindAllNews($id_orga,$orga,$limit = 1, $offset = 0,$activer = false)
   {
     if($activer){
-      $status = 'AND status = \'Activer\' ';
+      $status = 'AND t.status = \'Activer\' ';
     }else {
-      $status ='AND (status = \'Activer\' OR status = \'Desactiver\') ';
+      $status ='AND (t.status = \'Activer\' OR t.status = \'Desactiver\') ';
     }
-    $sql = 'SELECT * FROM '.$this->table.' WHERE id_orga = :id_orga AND orga = :orga '.$status.'
-    ORDER BY created_at DESC LIMIT ' . $limit.' OFFSET ' . $offset;
+    $sql = 'SELECT t.*,p.relatif AS picture FROM '.$this->table.' AS t LEFT JOIN pictures AS p
+    ON t.picture = p.id WHERE t.id_orga = :id_orga AND t.orga = :orga '.$status.'
+    ORDER BY t.created_at DESC LIMIT ' . $limit.' OFFSET ' . $offset;
 
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':id_orga', $id_orga);

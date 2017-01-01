@@ -106,9 +106,9 @@ class UsersCustomModel extends UsersModel
 
 		$app = getApp();
 
-		$sql = 'SELECT * FROM ' . $this->table .'
-			  WHERE '.$app->getConfig('security_username_property').' = :username' .
-			   ' OR ' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
+		$sql = 'SELECT u.*,p.relatif AS avatar FROM ' . $this->table .' AS u LEFT JOIN pictures AS p ON u.avatar = p.id
+			  WHERE u.'.$app->getConfig('security_username_property').' = :username' .
+			   ' OR u.' . $app->getConfig('security_email_property') . ' = :email LIMIT 1';
 
 		$dbh = ConnectionModel::getDbh();
 		$sth = $dbh->prepare($sql);

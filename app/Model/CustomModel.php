@@ -21,13 +21,14 @@ class CustomModel extends Model
     }
       $status_Full='(';
     foreach ($status as $key => $value) {
-      $status_Full .= substr($key,0,-1).' = "'.$value.'"';
+      $status_Full .= 't.'.substr($key,0,-1).' = "'.$value.'"';
       $status_Full .= ' OR ';
     }
     $status_Full = substr($status_Full , 0, -4);
     $status_Full .= ')';
 
-    $sql = 'SELECT * FROM ' . $this->table . ' WHERE slug = :slug AND '.$status_Full.' LIMIT 1';
+    $sql = 'SELECT t.*,p.relatif AS avatar,p2.relatif AS background FROM ' . $this->table . ' AS t LEFT JOIN pictures AS p
+    ON t.avatar = p.id LEFT JOIN pictures AS p2 ON t.background = p2.id WHERE t.slug = :slug AND '.$status_Full.'';
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':slug', $slug);
     $sth->execute();
