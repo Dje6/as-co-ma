@@ -22,13 +22,13 @@ class ReponseController extends CustomController
         $contactModel = new ContactModel;
         $leMessage = $contactModel->FindMessageById($id);
 
-        if(!is_numeric($leMessage['emeteur_mailOrId'])){ //si c'est ce n'est pas id on verifie si eventuelemt il exist en base
+        if(!is_numeric($leMessage['emeteur_mailOrId']) || $leMessage['emeteur_mailOrId'] == 'webmaster@as-co-ma.fr'){ //si c'est ce n'est pas id on verifie si eventuelemt il exist en base
           $UserModel = new UserModel;
           if($UserModel->emailExists($leMessage['emeteur_mailOrId'])){ //si oui on recupere l'id
             $leMessage['emeteur_mailOrId'] = $UserModel->FindElementByElement('id','mail',$leMessage['emeteur_mailOrId']);
           }
         }
-        if(is_numeric($leMessage['emeteur_mailOrId'])){// si c'est un id on repon en interne
+        if(is_numeric($leMessage['emeteur_mailOrId']) || $leMessage['emeteur_mailOrId'] == 'webmaster@as-co-ma.fr'){// si c'est un id on repon en interne
           $maildestinataire = $this->FindMailDestinataire($leMessage['emeteur_orga'],$leMessage['emeteur_mailOrId']);
         }else {//sinon en externe
           $maildestinataire = $leMessage['emeteur_mailOrId'];
@@ -114,7 +114,7 @@ class ReponseController extends CustomController
         $r_POST['status'] = 'non-lu';
         //si c'est un utilisateur enregister on repon en interne
         $contactModel = new ContactModel;
-        if(is_numeric($r_POST['destinataire_mailOrId'])){
+        if(is_numeric($r_POST['destinataire_mailOrId']) || $r_POST['destinataire_mailOrId'] == 'webmaster@as-co-ma.fr'){
           if($contactModel->insert($r_POST,false)){
             $this->show('admin/EditReponse',['orga' => $orgaEmeteur ,'slug' => $r_POST['emeteur_pseudo']
             ,'mailRecepteur' => $maildestinataire,'confirmation'=> '<h3 class="titrecontact glyphicon-envelope blue"> Votre message a bien été envoyé.</h3>',

@@ -54,12 +54,7 @@ class UsersController extends CustomController
 
 
         if(ValidationTools::IsValid($error)){
-          if(empty($r_POST['mobile'])){
-            unset($r_POST['mobile']);
-          }
-          if(empty($r_POST['fix'])){
-            unset($r_POST['fix']);
-          }
+        
           unset($r_POST['submit']);
 
           $id = $_SESSION['user']['id'];

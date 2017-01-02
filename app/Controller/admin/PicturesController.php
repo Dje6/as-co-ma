@@ -68,17 +68,12 @@ class PicturesController extends CustomController
 
       $file->addValidations(array(
         new \Upload\Validation\Mimetype(array('image/png', 'image/jpg', 'image/jpeg')),
-        // Ensure file is no larger than 5M (use "B", "K", M", or "G")
         //RAPPEL !!  1 Byte = 1 octet = 8 bits
-        //        'b' => 1, byte/octet
-        //        'k' => 1024,
-        //        'm' => 1048576,
-        //        'g' => 1073741824
         new \Upload\Validation\Size('2M')
       ));
 
-      $upload = $file->upload();
       try{
+        $upload = $file->upload();
         if($upload){
 
           $element = $file->getNameWithExtension();
@@ -115,7 +110,7 @@ class PicturesController extends CustomController
             }else {
               $result = $tableModel->update([$type => $id_picture],$id);
             }
-            
+
             if($result){
               if($orga == 'users' && $id == $_SESSION['user']['id']){
                 $_SESSION['user']['avatar'] = 'img/'.$orga.'/'.$type.'/'.$new_filename.'.jpg';
@@ -133,7 +128,7 @@ class PicturesController extends CustomController
         }
       } catch (\Exception $e) {
           // Fail!
-          $errors = $file->getErrors();
+          $this->showErrors($file->getErrors());
       }
     }else{
       $this->redirectToRoute('racine_form');
@@ -150,7 +145,7 @@ class PicturesController extends CustomController
 
   public function convertImage($chemin,$element,$orga,$type,$largeurMaximum,$hauteurMaximum)
   {
-    //on trouve limage a travailler
+    //on trouve l'image a travailler
     $originalImage = $chemin.'\\'.$element;
     // on detecte lextension
     // jpg,jpeg,png,gif,bmp
@@ -218,4 +213,5 @@ class PicturesController extends CustomController
     }
 
   }
+
 }

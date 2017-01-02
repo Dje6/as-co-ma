@@ -9,7 +9,13 @@
 
 <?php $this->start('main_content'); ?>
 <div class="row errorPage">
-  <h2><b><i>Un problème est survenu... Toutes nos excuses : <?php echo $error; ?></i></b></h2>
+  <?php if(is_array($error)){ ?>
+    <h2><b><i>Un problème est survenu... Toutes nos excuses : <br><?php foreach ($error as $key => $value) {
+      echo $value.' <br>';
+    } ?></i></b></h2><?php
+  }else { ?>
+    <h2><b><i>Un problème est survenu... Toutes nos excuses : <?php echo $error; ?></i></b></h2><?php
+  } ?>
   <img src="<?= $this->assetUrl('img/loading.gif'); ?>" alt="409" class="img-responsive">
 </div>
 <?php $this->stop('main_content'); ?>
