@@ -88,7 +88,7 @@ class UsersController extends CustomController
         // debug($_SESSION['user']['id']);
         // $this->show('admin/users',['donnee' => 'Moulinette en cours']);
       } else {
-        $error['donnee'] = "données manquante";
+        $error['donnee'] = 'Donnée(s) manquante(s)';
       }
 
     }else{

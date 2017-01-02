@@ -103,7 +103,7 @@ class ActionController extends CustomController
               }
               $this->redirectToRoute('admin_message_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug]);
             }else {
-              $this->showErrors('Une erreur est survenu');
+              $this->showErrors('Une erreur est survenue');
             }
           }
         }

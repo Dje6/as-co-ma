@@ -180,7 +180,7 @@ class AssocController extends CustomController
                }
                $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
             } else {
-              $this->showErrors('un soucis lors de la mise a jour du role');
+              $this->showErrors('Un poblème est survenu lors de la mise à jour du rôle');
             }
       }
     }else {
@@ -204,7 +204,7 @@ class AssocController extends CustomController
          $role = $resultat['role'];
          $result = $rolesModel->deleteRoles($id_roles,'id');
             if($result){
-              $confirm = 'Le membre a bien ete supprimer';
+              $confirm = 'Le membre a bien été supprimé';
 
               if($id_membre == $_SESSION['user']['id']){
                  $pseudo = $_SESSION['user']['pseudo'];
@@ -220,7 +220,7 @@ class AssocController extends CustomController
                  $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1,'confirmation'=>$confirm]);
                }
             } else {
-              $this->showErrors('un soucis lors de la suppresion du role');
+              $this->showErrors('Un problème est survenu lors de la suppression du rôle');
             }
       }
     }else {

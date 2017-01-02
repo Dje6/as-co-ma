@@ -21,9 +21,9 @@ class CustomController extends Controller
       $id_orga = $AssocModel->FindElementByElement('id','slug',$slug);
     }
     if($AbonnesModel->insert(['mail' => $mail,'id_'.$orga => $id_orga])){
-      return 'Votre inscritpion a la newsletter a bien ete prise en compte';
+      return 'Votre inscription à la newsletter a bien été prise en compte.';
     }else {
-      return 'Une erreur est survenu , votre inscription n\' a pas ete prise en compte';
+      return 'Une erreur est survenue. Votre désinscription à la newsletter n\'a pas pu aboutir.';
     }
   }
   //retourne les information des mairie ou association

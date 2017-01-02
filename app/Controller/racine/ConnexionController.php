@@ -37,10 +37,9 @@ class ConnexionController extends CustomController
             $this->redirectToRoute('admin_monCompte');
           }else {// sinon on rappel que le compte n'est pas actif et on propose de renvoyer de nouveau le mail
 
-            $this->show('racine/inscription',['confirmation'=> 'Votre compte n\'est pas activé ,
-            vérifiez votre boîte Mail afin d\'activer votre compte.<br/>Si vous souhaitez recevoir
+            $this->show('racine/inscription',['confirmation'=> 'Votre compte n\'est pas activé. Vérifiez votre boîte mail afin d\'activer votre compte.<br/>Si vous souhaitez recevoir
             un nouveau mail : <a href="'.$this->generateUrl('racine_send_valide',['mail' => urlencode($user['mail']),
-            'token' =>urlencode($user['token'])]).'">Cliquez ici</a>']);
+            'token' =>urlencode($user['token'])]).'">Cliquez ici.</a>']);
           }
         }
       }else{//sinon on affiche le formulaire de connection
@@ -95,7 +94,7 @@ class ConnexionController extends CustomController
         $error['capcha'] = 'Hello ROBOT';
       }
     }else{
-      $error['donnee'] = 'Donnée manquante.';
+      $error['donnee'] = 'Donnée(s) manquante(s).';
     }
     if(!ValidationTools::IsValid($error)){
       $this->show('racine/inscription',array('saisi' => $r_POST,'error' => $error));
@@ -134,9 +133,9 @@ class ConnexionController extends CustomController
     $mail = new PHPMailer();
     //$mail->SMTPDebug = 3;                              // Enable verbose debug output
     $mail->isMail();
-    $mail->setFrom('Assaucisse@xamp.com', 'Mailer');
+    $mail->setFrom('Webmaster@as-co-ma.com', 'Mailer');
     $mail->addAddress(urldecode($email), 'exemple@example.com');
-    $mail->addReplyTo('do-no-reply@xamp.com', 'Information');
+    $mail->addReplyTo('no-reply@xamp.com', 'Information');
     $mail->isHTML(true);                                  // Set email format to HTML
 
     $mail->Subject = 'Bienvenue sur AS-CO-MA ';
@@ -149,7 +148,7 @@ class ConnexionController extends CustomController
       $this->show('racine/inscription',['confirmation'=> $mail->ErrorInfo]);
     } else {
         $this->show('racine/inscription',['confirmation'=> 'Un e-mail de confirmation
-        vous a été adressé à l\' adresse : '.urldecode(trim(strip_tags($email))).', consultez ce mail et cliquez sur le lien fourni pour activer votre compte.']);
+        vous a été adressé à l\'adresse : '.urldecode(trim(strip_tags($email))).'. Consultez ce mail et cliquez sur le lien fourni pour activer votre compte.']);
     }
   }
   //traite la requete d 'activation du compte
@@ -182,7 +181,7 @@ class ConnexionController extends CustomController
             'id_user' => $id,'role' => 'User']);
 
             if(!$result){// si ca c bien passer
-              $this->showErrors('probleme lors de l\'atribution du role');
+              $this->showErrors('Un problème est survenu lors de l\'attribution du rôle.');
             }
           }
 
@@ -219,7 +218,7 @@ class ConnexionController extends CustomController
 
             $message = '<a href="'.$urlLink.'">cliquez ici</a>';
             $mail-> isMail();
-            $mail->setFrom('ascoma@ascoma.com', 'Mailer');
+            $mail->setFrom('Webmaster@ascoma.com', 'Mailer');
             $mail->addAddress($r_POST['email'], 'Joe User');     // Add a recipient
 
             $mail->isHTML(true);                                  // Set email format to HTML
@@ -228,7 +227,7 @@ class ConnexionController extends CustomController
             $mail->Body    = $message;
 
             if(!$mail->send()) {
-              $this->showErrors('Le message n\'a pas pu etre envoyer ' . $mail->ErrorInfo);
+              $this->showErrors('Le message n\'a pas pu être envoyé ' . $mail->ErrorInfo);
             } else {
 
               $this->redirectToRoute('default_home');
@@ -244,7 +243,7 @@ class ConnexionController extends CustomController
 
 
     }else{
-      $error['donnee'] = 'Donnée manquante.';
+      $error['donnee'] = 'Donnée(s) manquante(s).';
     }
     if(!empty($error)){
       $this->show('racine/rescu',array('error' => $error));

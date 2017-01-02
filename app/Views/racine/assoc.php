@@ -68,22 +68,34 @@
 				<!-- Tableau infos assoc -->
 				<table class="table table-striped table-bordered">
 					<tr>
-						<th>Nom</th>
 						<th>Adresse</th>
 						<th>Code Postal</th>
 						<th>Ville</th>
 						<th>Téléphone</th>
 						<th>Contact</th>
+						<th>S'inscrire à la newsletter</th>
 					</tr>
 					<tr>
 
-		<?php	echo '<td>' . $donnees['nom'] . '</td>';
-					echo '<td>' . $donnees['adresse'] . '</td>';
+		<?php echo '<td>' . $donnees['adresse'] . '</td>';
 					echo '<td>' . $donnees['code_postal'] . '</td>';
 					echo '<td>' . $donnees['ville'] . '</td>';
 					echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>'; ?>
 						<td>
 							<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter l'association</button></a>
+						</td>
+						<td>
+						<!-- Form abonnement newsletter des articles mairie -->
+							<form class="form-inline" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
+								<?php if(isset($confirmation)){ echo $confirmation; } ?>
+								<div class="form-group">
+									<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span class="errorForm">'.$error['mail'].'</span>' ; } ?>
+
+									<input type="text" name="mail" class="form-control" placeholder="exemple@mail.com">
+								</div>
+
+								<button class="btn btn-success btn-xs" type="submit" name="submit">Envoyer</button>
+							</form>
 						</td>
 					</tr>
 				</table>
@@ -102,15 +114,7 @@
 	<!-- Display des articles/news des assoc -->
 	<!-- Style thumbnail -->
 	<hr>
-
-	<form class="" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
-		<?php if(isset($confirmation)){ echo $confirmation.'<br/>' ;} ?>
-		<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br/>' ; } ?>
-		<label for="mail">Recevoir par mail les futur articles? Inscrivez-vous a la newsletter!
-			 <input type="text" name="mail" value="">
-			 <input type="submit" name="submit_news" value="S'inscrire">
-		</label>
-	</form>
+	
 <?php if(isset($news)){
 		if(is_array($news)){
 			foreach ($news as $key => $value) {

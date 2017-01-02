@@ -100,16 +100,16 @@ class SuperAdminController extends CustomController
                 $this->redirectToRoute('admin_webmaster_mairie',['page' => 1]);
 
               }else {
-                $this->showErrors('probleme pour supprimer les role');
+                $this->showErrors('Un problème est survenu lors de la suppression des rôles.');
               }
             }else {
-              $this->showErrors('probleme supprimer la mairie');
+              $this->showErrors('Un problème est survenu lors de la suppression de la Mairie.');
             }
           }else {
-            $this->showErrors('problemen lors de la suppression des '.$erreur.' association affilier');
+            $this->showErrors('Un problème est survenu lors de la suppression des '.$erreur.' associations affiliées.');
           }
         }else {
-          $this->showErrors('probleme de suppression des message');
+          $this->showErrors('Un problème est survenu lors de la suppression des messages.');
         }
       }
     }else {

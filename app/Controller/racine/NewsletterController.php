@@ -21,7 +21,7 @@ class NewsletterController extends CustomController
           $this->show('racine/newsletter',['orga' => $orga,'slug' => $slug,'error' => ['mail'=> 'merci de saisir un email']]);
         }
       }else {
-        $this->showErrors('vous etes un bots');
+        $this->showErrors('Hello ROBOT');
       }
     }else {
       $this->show('racine/newsletter',['orga' => $orga,'slug' => $slug]);
@@ -39,9 +39,9 @@ class NewsletterController extends CustomController
     }
     $id_abonement = $AbonnesModel->findAbonne($mail,$id_orga,$orga);
     if($AbonnesModel->delete($id_abonement)){
-      return 'Votre desinscription a la newsletter a bien ete prise en compte';
+      return 'Votre désinscription à la newsletter a bien été prise en compte.';
     }else {
-      return 'Une erreur est survenu , votre desinscription n\' a pas ete prise en compte';
+      return 'Une erreur est survenue. Votre désinscription à la newsletter n\'a pas pu aboutir.';
     }
   }
 }

@@ -39,14 +39,14 @@ class AssocController extends CustomController
             $AbonnesModel = new AbonnesModel;
             $id_eventuel = $AbonnesModel->findAbonne($r_POST['mail'],$id_orga,'assoc');
             if(!empty($id_eventuel)){
-              $confirmation = 'Vous etes deja inscrits a cette newsletter';
+              $confirmation = 'Vous êtes déjà inscrit à cette newsletter !';
             }else {
               $AbonnesModel->insert(['id_assoc'=> $id_orga,'mail'=> $r_POST['mail']]);
-              $confirmation = 'Votre inscription a bien ete prise en compte';
+              $confirmation = 'Votre inscription a bien été prise en compte.';
             }
           }
         }else {
-          $this->showErrors('vous etes un bots');
+          $this->showErrors('Hello ROBOT');
         }
         $this->show('racine/assoc',['orga' => $orga,'slug' => $slug,'donnees' =>$donnees,'news'=>$news,
         'confirmation'=> $confirmation]);

@@ -85,10 +85,10 @@ class DecisionController extends ReponseController
                     $_SESSION['user']['roles'][$nbr]['id_user'] = $maildestinataire;
                   }
                 }else {
-                  $this->showErrors('probleme lors de l\'atribution du role');
+                  $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
                 }
               }else {
-                $this->showErrors('probleme lors de la creation'.$result);
+                $this->showErrors('Un problème est survenu lors de la création'.$result);
               }
               //////////////////////////////////////////////////////////////////
               ///////////////////////     ASSOC            ///////////////////
@@ -124,10 +124,10 @@ class DecisionController extends ReponseController
                     $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug;
                   }
                 }else{
-                  $this->showErrors('probleme lors de l\'atribution du role');
+                  $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
                 }
               }else {
-                $this->showErrors('probleme lors de la creation'.$result);
+                $this->showErrors('Un problème est survenu lors de la création'.$result);
               }
 
               //////////////////////////////////////////////////////////////////
@@ -165,7 +165,7 @@ class DecisionController extends ReponseController
                   $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug_mairie;
                 }
               }else{
-                $this->showErrors('probleme lors de l\'atribution du role');
+                $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
               }
             }
           }
@@ -215,7 +215,7 @@ class DecisionController extends ReponseController
               $contactModel->update(['status' => $laDecision,'date_lecture' => date('Y-m-d H:i:s')],$leMessage['id']);
               $this->redirectToRoute('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1]);
             }else{
-              $this->showErrors('L\'envoi du message a echoué');
+              $this->showErrors('L\'envoi du message a échoué');
             }
           }else{ //sinon on envoi une copi interne + le mail externe
             $r_POST['destinataire_status'] = 'del';
@@ -224,9 +224,9 @@ class DecisionController extends ReponseController
             $mail = new PHPMailer();
             //$mail->SMTPDebug = 3;                              // Enable verbose debug output
             $mail->isMail();
-            $mail->setFrom('Assaucisse@as-co-ma.fr', 'Mailer');
+            $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');
             $mail->addAddress($r_POST['destinataire_mailOrId'], 'exemple@example.com');
-            $mail->addReplyTo('do-no-reply@as-co-ma', 'Information');
+            $mail->addReplyTo('no-reply@as-co-ma', 'Information');
             $mail->isHTML(true);    // Set email format to HTML
 
 
@@ -235,7 +235,7 @@ class DecisionController extends ReponseController
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             if(!$mail->send()) {
-              $this->showErrors('L\'envoi du message a echoué '.$mail->ErrorInfo);
+              $this->showErrors('L\'envoi du message a échoué '.$mail->ErrorInfo);
             } else {
               $contactModel->update(['status' => $laDecision,'date_lecture' => date('Y-m-d H:i:s')],$leMessage['id']);
               $this->redirectToRoute('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1]);

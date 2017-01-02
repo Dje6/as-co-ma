@@ -32,7 +32,7 @@ class ContactController extends CustomController
         $error['capcha'] = 'Hello ROBOT';
       }
     }else{
-      $error['donnee'] = 'Donnée manquante.';
+      $error['donnee'] = 'Donnée(s) manquante(s).';
     }
     if(!ValidationTools::IsValid($error)){
       $this->show('racine/contact',array('orga' => $orga ,'slug' => $slug,'saisi' => $r_POST,'error' => $error));
@@ -53,7 +53,7 @@ class ContactController extends CustomController
           $RolesModel = new RolesModel;
           $roleRetourner = $RolesModel->FindRole($id_ssociation,$id_utilisateur_eventuel);
           if(!empty($roleRetourner)){
-            $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Vous faites deja partie de cette association']);
+            $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Vous faites déjà partie de cette Association']);
           }
         }
         $email = $r_POST['emeteur_mailOrId'];
@@ -74,19 +74,16 @@ class ContactController extends CustomController
         if($contactModel->findInvitation($r_POST['emeteur_mailOrId'],$r_POST['destinataire_mailOrId'])){
           if(is_numeric($r_POST['emeteur_mailOrId'])){
             $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,
-            'confirmation'=> 'Une invitation a rejoindre cette association est deja en attente dans votre messagerie']);
+            'confirmation'=> 'Une invitation à rejoindre cette Association est déjà en attente dans votre messagerie.']);
           }else {
             $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,
-            'confirmation'=> 'Une invitation a rejoindre cette association vous a deja ete envoyer par email, si vous ne l\'avez
-            plu, inscrivez vous en cliquant sur \'Nous rejoindre\' , et rendez vous dans l\'onglet message , vos invitations
-          vous y attendes!']);            
+            'confirmation'=> 'Une invitation à rejoindre cette Association vous a déjà été envoyée par mail. Si vous l\'avez perdu, inscrivez-vous en cliquant sur "Nous rejoindre", et rendez-vous dans l\'onglet "Messages", vos invitations vous y attendent !']);
           }
 
         }
         if($contactModel->findDemande($r_POST['emeteur_mailOrId'],$r_POST['destinataire_mailOrId'])){
           $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,
-          'confirmation'=> 'Vous avez deja effectuer une demande pour devenir membre, merci de patienter ou de nous contacter
-          avec l\'objet Obtenir des information']);
+          'confirmation'=> 'Vous avez déjà effectué une demande pour devenir membre. Merci de patienter ou de nous contacter avec l\'objet "Obtenir des informations".']);
         }
 
       }elseif($orga == 'mairie'){
@@ -103,7 +100,7 @@ class ContactController extends CustomController
 
 
       if($contactModel->insert($r_POST,false)){
-        $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Votre message a bien été envoyé']);
+        $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Votre message a bien été envoyé.']);
       }else{
         $this->show('racine/contact',['orga' => $orga ,'slug' => $slug,'confirmation'=> 'Une erreur est survenue.']);
       }
