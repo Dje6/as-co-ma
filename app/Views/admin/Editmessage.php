@@ -71,7 +71,7 @@ if(!isset($confirmation)){ ?>
               <?php if(isset($error['contenu'])){ echo '<span style="color:red;">'.$error['contenu'].'</span>' ;} ?><br/>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
-                <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
+                <textarea name="contenu" rows="6" cols="80" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
               </div>
             </div>
 

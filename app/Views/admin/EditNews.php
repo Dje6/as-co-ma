@@ -40,7 +40,7 @@ if(!isset($confirmation)){ ?>
               <?php if(isset($error['content'])){ echo '<span style="color:red;">'.$error['content'].'</span>' ;} ?><br/>
               <div class="input-group">
                 <span class="input-group-addon">Contenu</span>
-                <textarea name="content" rows="6" class="form-control" placeholder="Contenu"
+                <textarea name="content" rows="6" cols="80" class="form-control" placeholder="Contenu"
                 type="text"><?php if(isset($donnee['content'])){ echo $donnee['content'] ; } ?></textarea>
               </div>
             </div>

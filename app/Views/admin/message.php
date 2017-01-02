@@ -65,15 +65,15 @@ if(isset($donnees)){
 
           if(isset($value['destinataire_pseudo'])){
           // si on est dans les message envoyer il affiche ca
-            echo 'Destinataire : '.$value['destinataire_pseudo'].'<br/>';
+            echo '<h3>Destinataire : '.$value['destinataire_pseudo'].'</h3>';
             echo 'Email : '.$value['destinataire_mail'].'<br/>';
           }else {
           //sinon c'est ca
-            echo 'Emeteur : '.$value['emeteur_pseudo'].'<br/>';
+            echo '<h3>Emetteur : '.$value['emeteur_pseudo'].'</h3>';
             echo 'Email : '.$value['emeteur_mail'].'<br/>';
           }
-  				echo 'Objet : '.$value['objet'].'<br/>';
-  				echo 'Message : '.$value['contenu'].'<br/>';
+  				echo '<p>Objet : '.$value['objet'].'</p>';
+  				echo '<p>Message : '.$value['contenu'].'</p>';
   				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
           if($value['status'] == 'lu'){
           //si le statu est a lu , on affiche la date de lecture

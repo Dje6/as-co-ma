@@ -5,13 +5,14 @@
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
   <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
-
+	<link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 
 
 	<?= $this->section('main_head') ?>
 
 </head>
 <body>
+	<div class="wrapper">
 
 	<div class="navbar-wrapper">
   	<div class="container-fluid">
@@ -93,7 +94,7 @@
 						}
 
 					}else { ?>
-						<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Trouvez une association</a></li>
+						<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Trouver une association</a></li>
 						<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Fonder une Mairie</a></li><?php
 					} ?>
 				</ul>
@@ -180,8 +181,8 @@
 			<?= $this->section('main_content') ?>
 		</section>
 
-		<footer>
-		</footer>
+	</div>
+	<!-- fin wrapper global -->
 
 
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.1.min.js'); ?>"></script>

@@ -59,7 +59,7 @@ if(!isset($confirmation)){ ?>
               <p class="couleur_bleue">Message reçu le : </p><?php echo $leMessage['date_envoi']; ?><br/>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
-                <p rows="6" class="form-control"><?php if(isset($leMessage['contenu'])){ echo $leMessage['contenu'] ; } ?></p>
+                <textarea name="contenu" rows="6" cols="80" class="form-control"><?php if(isset($leMessage['contenu'])){ echo $leMessage['contenu'] ; } ?></textarea>
               </div>
             </div>
 
@@ -68,7 +68,7 @@ if(!isset($confirmation)){ ?>
                 <p class="couleur_bleue">Votre réponse : </p>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-comment blue"></i></span>
-                <textarea name="contenu" rows="6" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
+                <textarea name="contenu" rows="6" cols="80" class="form-control" type="text" required><?php if(isset($donnee['contenu'])){ echo $donnee['contenu'] ; } ?></textarea>
               </div>
             </div>
 
@@ -89,7 +89,7 @@ if(!isset($confirmation)){ ?>
 }else {
 	echo $confirmation;
 } ?>
-
+<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 
