@@ -146,12 +146,12 @@ if(isset($donnee)){
       //si il ny en pas on affiche une image neutre
         if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
         <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
-        class="img-circle img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3"><br/>
+        class="img-circle img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3 pad padd"><br/>
         <!-- //formulaire d'envoi d'image -->
         <?php
         if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
         <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
-        class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3"><br/>
+        class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3 pad"><br/>
         </div>
        <?php
 
@@ -171,9 +171,9 @@ if(isset($donnee)){
         <h3>Téléphone : <?php echo $donnee['fix'] ; ?></h3><?php
 
         if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigné' ; } ?>
-        <h3>Email : <?php echo $donnee['mail'] ; ?></h3>
+        <h3>Email : <?php echo $donnee['mail'] ; ?></h3><br/>
 
-        <h3>Horaires d'ouverture: </h3><?php
+        <h3 class="souligne">Horaires d'ouverture: </h3><?php
 
           foreach (unserialize($donnee['horaire']) as $key => $value) {
             if(empty($value)){ $value = 'Non Renseignés' ; } ?>

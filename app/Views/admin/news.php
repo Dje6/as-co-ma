@@ -37,47 +37,47 @@ if(isset($donnees)){
       <div class="container affichageMairie"><?php
   			foreach ($donnees as $key => $value) { ?>
 
-          <abc>Titre : <?php echo $value['title']; ?></abc><br>
+          <h3>TITRE : <?php echo $value['title']; ?></h3><br/>
           <?php if(!empty($value['picture'])){ ?>
             <img alt="User Pic" src="<?= $this->assetUrl($value['picture']) ?>"
             class="img-responsive "><?php
           }else { ?>
-            <abc>Image : pas d'image</abc><br><?php
+            <p>Image : pas d'image</p><br/><?php
           } ?>
-          <abc>Contenu : <?php echo $value['content']; ?></abc><br>
-          <abc>Crée le : <?php echo $value['created_at']; ?></abc><br><?php
+          <br/><p>Contenu :<br> <?php echo $value['content']; ?></p><br/>
+          <p>Crée le : <?php echo $value['created_at']; ?></p><?php
           if(!empty($value['updated_at'])){ ?>
 
-            <abc>Modifier le : <?php echo $value['updated_at']; ?></abc><br><?php
+            <p>Modifié le : <?php echo $value['updated_at']; ?></p><br/><?php
           }
           if(!empty($value['newsletter'])){ ?>
-            <abc>NewsLetter envoyer : <?php echo $value['newsletter']; ?></abc><br><?php
+            <p>NewsLetter Envoyer : <?php echo $value['newsletter']; ?></p><br/><?php
 
           } ?>
 
           <a href="<?php echo $this->url('admin_'.$orga.'_update_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-            <button class="btn btn-success">Modifier</button>
+            <button class="btn btn-success padd">Modifier</button>
           </a>
           <?php
           if($value['status'] == 'Activer'){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug ,'page' => $page]); ?> ">
-              <button class="btn btn-warning">Desactiver</button>
+              <button class="btn btn-warning padd">Désactiver</button>
             </a><?php
           }else {  ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-              <button class="btn btn-warning">Activer</button>
+              <button class="btn btn-warning padd">Activer</button>
             </a><?php
           }?>
           <a href="<?php echo $this->url('admin_'.$orga.'_delete_news',['id' => $value['id'],
           'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-          <button class="btn btn-danger">Supprimer</button>
+          <button class="btn btn-danger padd">Supprimer</button>
         </a><?php
           if(empty($value['newsletter'])){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_newsletter',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-            <button class="btn btn-success">Declencher la NewsLetter</button>
+            <button class="btn btn-success">Déclencher la NewsLetter</button>
           </a><?php
           }
           echo '<br/>';

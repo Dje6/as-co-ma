@@ -1,5 +1,6 @@
 html, body {
-	font-family: Consolas, monaco, monospace;
+	font-family: 'Arvo', serif;
+	/*font-family: Consolas, monaco, monospace;*/
 	/*background-image: url('../img/backblanc.png');*/
 	background-image: url('../img/imagefondtest.jpg');
 	/*background-repeat: no-repeat;*/
@@ -7,10 +8,15 @@ html, body {
 	width: 100%;*/
 	background-attachment: fixed;
 }
-
+.wrapper {
+	width: 100%;
+	max-width: 1920px;
+	margin-left: auto;
+	margin-right: auto;
+}
 /*MAIN CONTENT*/
 .main_content {
-	margin-top: 17em;
+	margin-top: 5em;
 	margin-bottom: 3em;
 }
 
@@ -48,13 +54,13 @@ padding: 0;
 
 }
 
-.navbar-wrapper {
+/*.navbar-wrapper {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   z-index: 20;
-}
+}*/
 
 button.btn.btn-success.btn-xs.return{
 	background-color: : #108fcc;
@@ -242,10 +248,16 @@ button[type="reset"]    {
 .blue   {
     color: #80bfff;
 }
+.red {
+	color: red;
+}
 
 .fichecontact{
     margin-left: auto;
 		margin-right: auto;
+}
+.fichecontact .input-group {
+	display: flex;
 }
 /*/////////////////////////////////////////////////////////////////////////////*/
 /*css page asso.php*/
@@ -339,5 +351,16 @@ font-size: 20px;
 /*//////////////////////////////////////////////////////*/
 span.input-group-addon {
 		color :#108fcc;
+		width: 150px;
 }
+
 /*//////////////////////////////////////////////////////////*/
+.padd{
+	margin: 1em;
+}
+.pad{
+	padding: 2em;
+}
+.souligne {
+	text-decoration: underline;
+}

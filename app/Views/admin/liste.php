@@ -8,9 +8,7 @@
 
 <?php $this->start('main_content') ?>
 <h1 class="titreback">Administration</h1><br/><?php
-if(isset($confirmation) && !empty($confirmation)){
-  echo $confirmation.'<br/>';
-}
+
 // liste s'occupe d'afficher les boutons dans liste menbre et liste association , sur le back
 echo '<div class="container affichage">';
 if($orga == 'mairie'){
@@ -39,7 +37,10 @@ if($orga == 'mairie'){
 }elseif ($orga == 'assoc') { ?>
 
   <form class="" action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="post">
-    <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;} ?>
+    <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;}
+      if(isset($confirmation) && !empty($confirmation)){
+        echo $confirmation.'<br/><br/>';
+      }?>
     <label for="mail">Inviter quelqu'un à nous rejoindre? <br/>Entrez son adresse email :
     <input type="text" name="mail" value=""></label>
     <input type="submit" name="submit" value="Inviter!">
@@ -57,9 +58,9 @@ if($orga == 'mairie'){
           <td><a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info bouge">Consulter</button></a></td>
           <td><a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
           <?php if($value['role'] == 'Admin'){ ?>
-            <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Faire passer User</button></a></td>
+            <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Passer en mode User</button></a></td>
           <?php }else{ ?>
-            <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Faire passer Admin</button></a></td>
+            <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Passer en mode Admin</button></a></td>
           <?php } ?>
           <td><a href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
         </tr>
