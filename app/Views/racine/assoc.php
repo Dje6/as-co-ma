@@ -85,16 +85,16 @@
 							<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter l'association</button></a>
 						</td>
 						<td>
-						<!-- Form abonnement newsletter des articles mairie -->
+						<!-- Form abonnement newsletter des articles assoc -->
 							<form class="form-inline" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
 								<?php if(isset($confirmation)){ echo $confirmation; } ?>
 								<div class="form-group">
 									<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span class="errorForm">'.$error['mail'].'</span>' ; } ?>
 
-									<input type="text" name="mail" class="form-control" placeholder="exemple@mail.com">
+									<input type="text" name="mail" class="form-control" placeholder="exemple@mail.com" value="">
 								</div>
 
-								<button class="btn btn-success btn-xs" type="submit" name="submit">Envoyer</button>
+								<button class="btn btn-success btn-xs" type="submit" name="submit_news">Envoyer</button>
 							</form>
 						</td>
 					</tr>
@@ -114,7 +114,7 @@
 	<!-- Display des articles/news des assoc -->
 	<!-- Style thumbnail -->
 	<hr>
-	
+
 <?php if(isset($news)){
 		if(is_array($news)){
 			foreach ($news as $key => $value) {
@@ -133,7 +133,7 @@
 							<h2 class=""><b><?= $value['title']; ?></b></h2>
 
 							<?php if(!empty($value['picture'])){  ?>
-								<img id="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
+								<img class="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
 								width="550" height="300">
 							<?php } ?>
 							<!-- Fenetre modale (pop up qui zoom) -->
@@ -200,4 +200,5 @@
 <?php $this->start('main_script') ?>
 	<!-- //ici les script js de la Page courante UNIQUEMENT -->
   <!-- //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
+	<script type="text/javascript" src="<?= $this->assetUrl('js/app-news.js'); ?>"></script>
 <?php $this->stop('main_script') ?>

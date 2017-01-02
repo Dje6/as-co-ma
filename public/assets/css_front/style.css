@@ -7,6 +7,8 @@ html, body {
 	font-family: serif;
 	background-image: url('../img/background-accueil.jpg');
 	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 .btn {
 	box-shadow: 2px 2px 5px #888888;
@@ -69,6 +71,13 @@ hr {
 /*////////////////////////////////////////*/
 /*DISPLAY CONTENT DES VIEWS*/
 /*////////////////////////////////////////*/
+.wrapper {
+	width: 100%;
+	max-width: 1920px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
 .main_content {
 	min-height: 520px;
 	margin-top: 3em;

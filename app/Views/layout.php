@@ -13,6 +13,8 @@
 
 </head>
 <body>
+	<div class="wrapper">
+
 	<!-- HEADER LAYOUT FRONT -->
 	<header class="container-fluid">
 		<div class="row">
@@ -111,6 +113,7 @@
 			</span>
 		</div>
 	</footer>
+</div>
 
 	<!-- Scripts globaux du layout -->
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.1.min.js'); ?>"></script>
