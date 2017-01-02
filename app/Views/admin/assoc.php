@@ -112,17 +112,19 @@ if(isset($donnee)){
       </div>
       <?php
     }else { ?>
-      <div class="container affichageAsso"><?php
-      //affichage de lavatar de la mairie
-      //si il ny en pas on affiche une image neutre
-        if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
-        <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
-        class="img-circle img-responsive col-md-3 col-lg-3"><br/>
-        <!-- //formulaire d'envoi d'image -->
-        <?php
-        if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
-        <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
-        class="img-responsive col-md-3 col-lg-3"><br/>
+      <div class="container affichageAsso">
+        <div class="col-md-12 col-lg-12"><?php
+          //affichage de lavatar de la mairie
+          //si il ny en pas on affiche une image neutre
+          if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
+          <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
+          class="img-circle img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3"><br/>
+          <!-- //formulaire d'envoi d'image -->
+          <?php
+          if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
+          <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
+          class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3"><br/>
+        </div>
 
         <?php if(empty($donnee['nom'])){ $donnee['nom'] = 'Non Renseigner' ;} ?>
           <h3>Nom : <?php echo $donnee['nom'] ; ?></h3>

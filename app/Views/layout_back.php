@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-  <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>"
+
+  <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
 
 
 
@@ -16,6 +17,7 @@
 	<div class="navbar-wrapper">
   	<div class="container-fluid">
 			<nav class="navbar navbar-inverse navbar-static-top">
+				<h1 class="texte_3D col-sm-2">As-Co-Ma</h1>
 				<div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -23,7 +25,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo $this->url('default_home'); ?>"><h1 class="texte_3D">As-Co-Ma</h1></a>
       	</div>
 
 			<div id="navbar" class="col-xs-offset-3 navbar-collapse collapse">
@@ -33,7 +34,6 @@
 					<li><a href="<?php echo $this->url('admin_message',['page' => 1]); ?>">Message</a></li>
 					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon compte</a></li>
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
-					<br/>
 					<?php
 
 					if((isset($_SESSION['user']['roles']) && !empty($_SESSION['user']['roles'])))
@@ -109,8 +109,8 @@
 
 
 
-						<div id="navbar" class="navbar-collapse collapse ">
-							<ul class="nav navbar-nav navbar_organisation">
+						<div id="navbar" class="navbar-collapse collapse container-fluid">
+							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
 							<li><a href="<?php echo $this->url('admin_mairie_contact_Webmaster',['slugE' => $slug]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Contacter le Webmaster</button></a>
 							</li>
@@ -132,8 +132,8 @@
 					</div> <?php
 
 					}elseif($orga == 'assoc'){ ?>
-						<div id="navbar" class="navbar-collapse collapse ">
-							<ul class="nav navbar-nav navbar_organisation">
+						<div id="navbar" class="navbar-collapse collapse container-fluid">
+							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
 								<li><a href="<?php echo $this->url('admin_assoc_contact_tout_membres',['slugE' => $slug]); ?>">
 									<button type="button" class="btn btn-info btn-lg">Message aux Membres</button></a>
 								</li>
@@ -160,8 +160,8 @@
 						</ul>
 					</div><?php
 				}elseif($orga == 'webmaster'){ ?>
-						<div id="navbar" class="navbar-collapse collapse ">
-							<ul class="nav navbar-nav navbar_organisation">
+						<div id="navbar" class="navbar-collapse collapse container-fluid">
+							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
 
 							<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => 'webmaster','orga' => 'webmaster','page' => 1]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
@@ -174,13 +174,16 @@
 					}
 				}
 				 ?>
+	 </div>
+ </div>
 
-		<section>
+		<section class="main_content">
 			<?= $this->section('main_content') ?>
 		</section>
 
-		</div>
-	</div>
+		<footer>
+		</footer>
+
 
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.1.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js'); ?>"></script>

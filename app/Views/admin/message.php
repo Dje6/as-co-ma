@@ -159,7 +159,7 @@ if(isset($donnees)){
   }
 }
 ?>
- <a href="#" class="btn btn-info return">Retour Menu</a>
+ <a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 
