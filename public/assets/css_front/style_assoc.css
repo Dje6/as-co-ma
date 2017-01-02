@@ -71,7 +71,7 @@
 /*Flou en bas du content overflow*/
 .thumbnail .blank {
   transition: all 1s ease;
-  opacity: 1;
+  opacity: .7;
   position: absolute;
   bottom: 0;
   height: 20px;

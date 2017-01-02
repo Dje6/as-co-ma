@@ -12,7 +12,7 @@
 <?php $this->start('main_content') ?>
 
 <?php if(isset($confirmation)) {
-        echo $confirmation;
+        echo '<span class="confirmForm">' . $confirmation . '</span>';
 
       } else { ?>
 

@@ -197,6 +197,7 @@
 
 
 
+
 						<?php $this->start('main_script') ?>
 						<!-- //ici les script js de la Page courante UNIQUEMENT -->
 						<!-- //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->

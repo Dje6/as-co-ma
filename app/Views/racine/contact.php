@@ -95,7 +95,7 @@
 	<?php	}
 	//end if(!isset($confirmation))
 } else {
-	echo '<h2 class="text-center"><b>' . $confirmation . ' !</b></h2>';
+	echo '<h2 class="text-center confirmForm"><b>' . $confirmation . ' !</b></h2>';
 } ?>
 
 <?php $this->stop('main_content') ?>
