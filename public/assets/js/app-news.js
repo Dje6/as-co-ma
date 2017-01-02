@@ -18,6 +18,7 @@ for (var i = 0; i < img.length; i++) {
 // get le span qui ferme la modale
 var span = document.getElementsByClassName("close")[0];
 
+//si le span pour fermer la modale est présent sur la page
 //cliquer sur la X en haut a droite de l'ecran pour fermer la modale
 if (modal) {
   span.onclick = function() {
