@@ -3,10 +3,10 @@
 
 if($w_current_route == 'admin_repondre_User'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id']]);
-  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à </div><br/>'.$leMessage['emeteur_pseudo'];
+  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à '.$leMessage['emeteur_pseudo'].'</div>';
 }elseif($w_current_route == 'admin_repondre'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id'],'slug' => $slug,'orga' => $orga]);
-  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à </div><br/>'.$leMessage['emeteur_pseudo'];
+  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à '.$leMessage['emeteur_pseudo'].'</div>';
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);

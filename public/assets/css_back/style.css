@@ -8,11 +8,18 @@ html, body {
 	background-attachment: fixed;
 }
 
+/*MAIN CONTENT*/
+.main_content {
+	margin-top: 17em;
+	margin-bottom: 3em;
+}
+
 a:link {
  text-decoration:none;
 }
 
 .texte_3D{
+	margin-bottom: 20px;
     text-shadow:
         1px 1px 1px #108fcc,
         1px 2px 1px #108fcc,
@@ -28,6 +35,19 @@ a:link {
         0 30px 10px rgba(68,68,68,.1);
 }
 
+.barredyna {
+	left: 0;
+	margin-left: 0;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.barredyna li a{
+margin: 0;
+padding: 0;
+
+}
+
 .navbar-wrapper {
   position: absolute;
   top: 0;
@@ -39,11 +59,20 @@ a:link {
 button.btn.btn-success.btn-xs.return{
 	background-color: : #108fcc;
 }
-a.navbar-brand {
+
+h1.navbar-brand {
+	display: block;
+		float: none;
 	font-weight: bold;
 	font-style: italic;
 	font-family: cursive;
 }
+.navbar-nav {
+	margin-top: 5px;
+}
+/*navbar-brand h1{
+	display: inline;
+}*/
 
 .navbar-wrapper > .container {
   padding-right: 0;
@@ -58,7 +87,7 @@ a.navbar-brand {
 }
 
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   /* Navbar positioning foo */
   .navbar-wrapper {
     margin-top: 20px;
@@ -87,7 +116,7 @@ a.navbar-brand {
 	color: white;
 }
 .navbar-inverse .navbar-nav>li>a {
-    color: #108fcc;
+    color: white;
 }
 .navbar-inverse .navbar-brand {
     color: #108fcc;
@@ -95,8 +124,8 @@ a.navbar-brand {
 		font-size: 40px;
 }
 a {
-	font-size: 20px;
-	margin: 10px;
+	font-size: 18px;
+	margin: 10px 5px;
 }
 .titreback {
 	text-align: center;
@@ -113,7 +142,6 @@ a {
 	list-style-type: none;
 	padding: 0px;
 	margin: 0px;
-	left: 15%;
 	position: relative;
 }
 .navbar_organisation ,.nav>li>a:focus, .nav>li>a:hover
@@ -225,11 +253,13 @@ button[type="reset"]    {
 .affichageAsso {
 		font-size: 2px;
 		background-image: url('../img/backblanc.png');
+		background-repeat: no-repeat;
+		background-size: cover;
 	  margin-left: auto;
 		margin-right: auto;
 		border: 3px solid #99ccff;
 		color: #108fcc;
-		border-radius: 2%;
+		border-radius: 10px;
 }
 .centerBut {
 	margin-left: auto;
@@ -242,7 +272,7 @@ button[type="reset"]    {
 	margin-right: auto;
 	border: 3px solid #99ccff;
 	color: #108fcc;
-	border-radius: 2%;
+	border-radius: 10px;
 	padding: 1em;
 }
 .bouge {
@@ -259,7 +289,7 @@ button[type="reset"]    {
 	margin-right: auto;
 	border: 3px solid #99ccff;
 	color: #108fcc;
-	border-radius: 2%;
+	border-radius: 10px;
 }
 .centragetitre{
 	text-align: center;
@@ -290,20 +320,13 @@ font-size: 20px;
 	flex-direction: row;
 	justify-content: space-around;
 }
-/*Messages*/
-.bouton_env {
-	margin-top: 2%;
-	justify-content: center;
-}
-.bouton_rec {
-	margin-top: 2%;
-}
+
 /*pagination*/
 .pagin{
 	margin-left: 45%;
 	margin-right: 45%;
 	background-color: white;
-	border-radius: 35%;
+	border-radius: 20px;
 	color: #108fcc;
 	font-weight: bolder;
 }

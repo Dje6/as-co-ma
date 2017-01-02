@@ -83,11 +83,11 @@ if(isset($donnee)){
                       <?php $horaire = unserialize($donnee['horaire']); ?>
 
                       <div class="input-group">
-                        <span class="input-group-addon">Lundi   </span>
+                        <span class="input-group-addon">Lundi</span>
                           <input type="text" name="horaire[Lundi]" class="form-control" value="<?php echo $horaire['Lundi']?>">
                       </div>
                       <div class="input-group">
-                        <span class="input-group-addon" >Mardi   </span>
+                        <span class="input-group-addon" >Mardi</span>
                           <input type="text" name="horaire[Mardi]" class="form-control" value="<?php echo $horaire['Mardi']?>">
                       </div>
                       <div class="input-group">
@@ -95,7 +95,7 @@ if(isset($donnee)){
                           <input type="text" name="horaire[Mercredi]" class="form-control" value="<?php echo $horaire['Mercredi']?>">
                       </div>
                       <div class="input-group">
-                        <span class="input-group-addon" >Jeudi   </span>
+                        <span class="input-group-addon" >Jeudi</span>
                           <input type="text" name="horaire[Jeudi]" class="form-control" value="<?php echo $horaire['Jeudi']?>">
                       </div>
                       <div class="input-group">
@@ -103,7 +103,7 @@ if(isset($donnee)){
                           <input type="text" name="horaire[Vendredi]" class="form-control" value="<?php echo $horaire['Vendredi']?>">
                       </div>
                       <div class="input-group">
-                        <span class="input-group-addon" >Samedi  </span>
+                        <span class="input-group-addon" >Samedi</span>
                           <input type="text" name="horaire[Samedi]" class="form-control" value="<?php echo $horaire['Samedi']?>">
                       </div>
                       <div class="input-group">
@@ -139,17 +139,20 @@ if(isset($donnee)){
 
       <?php
     }else { ?>
-      <div class="container affichageMairie"><?php
+      <div class="container affichageMairie">
+        <div class="col-md-12 col-lg-12">
+        <?php
       //affichage de lavatar de la mairie
       //si il ny en pas on affiche une image neutre
         if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
         <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
-        class="img-circle img-responsive col-md-3 col-lg-3"><br/>
+        class="img-circle img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3"><br/>
         <!-- //formulaire d'envoi d'image -->
         <?php
         if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
         <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
-        class="img-responsive col-md-3 col-lg-3"><br/>
+        class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3"><br/>
+        </div>
        <?php
 
         if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
