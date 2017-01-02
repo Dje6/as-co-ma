@@ -102,7 +102,7 @@
 									<input type="text" name="mail" class="form-control" placeholder="exemple@mail.com">
 								</div>
 
-								<button class="btn btn-success btn-xs" type="submit" name="submit">Envoyer</button>
+								<button class="btn btn-success btn-xs" type="submit" name="submit_news">Envoyer</button>
 							</form>
 						</td>
 					</tr>
@@ -166,7 +166,7 @@
 								<!-- Titre de la news -->
 								<h2 class=""><b><?php echo $value['title']; ?></b></h2>
 								<?php if(!empty($value['picture'])){  ?>
-									<img id="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
+									<img class="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
 									width="550" height="300">
 								<?php } ?>
 								<!-- Fenetre modale (pop up qui zoom) -->
@@ -229,4 +229,5 @@
 <?php $this->start('main_script') ?>
 	<!-- //ici les script js de la Page courante UNIQUEMENT
   //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
+	<script type="text/javascript" src="<?= $this->assetUrl('js/app-news.js'); ?>"></script>
 <?php $this->stop('main_script') ?>

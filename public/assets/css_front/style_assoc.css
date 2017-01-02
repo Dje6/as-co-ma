@@ -83,12 +83,12 @@
   opacity: 0;
 }
 
-#newsImg {
+.newsImg {
   cursor: pointer;
   display: inline;
   transition: all 0.3s ease;
 }
-#newsImg:hover {
+.newsImg:hover {
   opacity: .7;
 }
 

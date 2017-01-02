@@ -68,8 +68,8 @@ class NewsController extends CustomController
         if($_POST){
           $r_POST = $this->nettoyage($_POST);
 
-          $error['title'] = ValidationTools::textValid($r_POST['title'], 'titre',3,50);
-          $error['content'] = ValidationTools::textValid($r_POST['content'], 'contenu',3,500);
+          $error['title'] = ValidationTools::textValid($r_POST['title'], 'titre',3,255);
+          $error['content'] = ValidationTools::textValid($r_POST['content'], 'contenu',3,2000);
           $error['status'] = '';
           if($r_POST['status'] != 'Activer' && $r_POST['status'] != 'Desactiver'){
             $error['status'] = 'Choix impossible';
@@ -139,8 +139,8 @@ class NewsController extends CustomController
         if($_POST){
           $r_POST = $this->nettoyage($_POST);
 
-          $error['title'] = ValidationTools::textValid($r_POST['title'], 'titre',3,50);
-          $error['content'] = ValidationTools::textValid($r_POST['content'], 'contenu',3,500);
+          $error['title'] = ValidationTools::textValid($r_POST['title'], 'titre',3,255);
+          $error['content'] = ValidationTools::textValid($r_POST['content'], 'contenu',3,2000);
           $error['status'] = '';
           if($r_POST['status'] != 'Activer' && $r_POST['status'] != 'Desactiver'){
             $error['status'] = 'Choix impossible';
