@@ -87,7 +87,7 @@
 						<td>
 						<!-- Form abonnement newsletter des articles assoc -->
 							<form class="form-inline" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
-								<?php if(isset($confirmation)){ echo $confirmation; } ?>
+								<?php if(isset($confirmation)){ echo '<span class="confirmForm">'.$confirmation.'</span>'; } ?>
 								<div class="form-group">
 									<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span class="errorForm">'.$error['mail'].'</span>' ; } ?>
 

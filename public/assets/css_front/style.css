@@ -1,10 +1,11 @@
 /*////////////////////////////////////////*/
 /*GLOBAL*/
 /*////////////////////////////////////////*/
+@import url('https://fonts.googleapis.com/css?family=Acme|Francois+One|Berkshire+Swash');
 html, body {
 	font-size: 17px;
 	/*font-family: Consolas, monaco, monospace;*/
-	font-family: serif;
+	font-family: 'Acme', sans-serif;
 	background-image: url('../img/background-accueil.jpg');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -47,7 +48,7 @@ hr {
 /*viré img-responsive du logo, marche mieux comme ça*/
 .logo {
 	margin-top: 6em;
-	margin-left: 1em;
+	margin-left: 2em;
 }
 .description_home {
 	margin-top: 9em;
@@ -65,7 +66,7 @@ hr {
 	list-style: none;
 	display: inline-block;
 	/*margin: auto 5px;*/
-	font-size: 1.2em;
+	font-size: larger;
 }
 
 /*////////////////////////////////////////*/
@@ -115,6 +116,7 @@ blockquote footer {
 	padding: 20px;
 	box-shadow: 5px 5px 5px #888888;
 }
+/*Les span d'error des form*/
 .errorForm {
 	font-weight: 900;
 	color: firebrick;
@@ -122,6 +124,13 @@ blockquote footer {
 	border-radius: 2px;
 	/*padding: 2px;*/
 	margin-left: 5px;
+}
+/*Les span confirmation de form*/
+.confirmForm {
+	font-weight: 900;
+	color: green;
+	background-color: rgba(239, 232, 232, 0.54);
+	border-radius: 2px;
 }
 textarea {
 	min-width: 100%;
@@ -147,9 +156,12 @@ footer {
 	display: flex;
 	flex-direction: column;
 	margin: 0;
-	font-size: 14px;
-	/*margin-top: 1%;*/
+	font-size: 17px;
+	margin-top: 10px;
 	padding-left: 0;
+}
+.menu_footer li {
+	margin-bottom: 1px;
 }
 .bouton_contact {
 	display: flex;

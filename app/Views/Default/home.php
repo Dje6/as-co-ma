@@ -24,7 +24,9 @@
 		  <ol class="carousel-indicators">
 		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<?php if(!isset($_SESSION['user'])){ ?>
 		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			<?php } ?>
 		  </ol>
 
 		  <!-- Wrapper for slides -->
@@ -41,12 +43,15 @@
 						<h2>Consultez les Associations</h2>
 		      </div>
 		    </div>
-				<div class="item">
-		      <a href="<?= $this->url('racine_inscriptForm'); ?>"><img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider"></a>
-		      <div class="carousel-caption">
-						<h2>Tentez l'expérience !</h2>
-		      </div>
-		    </div>
+				<?php if(!isset($_SESSION['user'])){ ?>
+					<div class="item">
+						<a href="<?= $this->url('racine_inscriptForm'); ?>"><img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider"></a>
+						<div class="carousel-caption">
+							<h2>Tentez l'expérience !</h2>
+						</div>
+					</div>
+				<?php } ?>
+
 		  </div>
 
 		  <!-- Controls -->
@@ -76,13 +81,16 @@
 	</div>
 
 	<!-- Bouton vers INSCRIPTION -->
-	<hr><br>
-	<div class="row">
+	<?php if(!isset($_SESSION['user'])) { ?>
+
+		<hr><br>
+		<div class="row">
 		<a href="<?= $this->url('racine_inscriptForm'); ?>">
-			<button type="button" class="btn btn-success btn-lg btn-block">Rejoignez-nous !</button>
+		<button type="button" class="btn btn-success btn-lg btn-block">Rejoignez-nous !</button>
 		</a>
-	</div>
-	<br>
+		</div>
+		<br>
+	<?php } ?>
 
 
 <?php $this->stop('main_content') ?>

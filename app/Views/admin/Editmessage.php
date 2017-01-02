@@ -19,7 +19,7 @@ if($w_current_route == 'admin_assoc_contact_mairie' || ($orga == 'assoc' && !iss
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur,'slugR' => $slugRecepteur]);
 
 }elseif($w_current_route == 'admin_assoc_contact_tout_membres' || $mailRecepteur == 'Tous les membres') {
-  $quiContacter = '<h3 class="titrecontact">Message a tous les membres</h3>';
+  $quiContacter = '<h3 class="titrecontact">Message à tous les membres</h3>';
   $orga = 'assoc';
   $urlDePost = $this->url($w_current_route,['slugE' => $slugEmeteur]);
 }

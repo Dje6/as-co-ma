@@ -94,7 +94,7 @@ class InvitationController extends CustomController
 
                   if(!empty($roleRetourner)){
 
-                    $confirmation ='Cet utilisateur fait déjà partie de l\'Association !';
+                    $confirmation ='Cet utilisateur fait déjà partie de l\'Association';
                     $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
                     'page'=>1,'confirmation'=>$confirmation]);
 
@@ -107,13 +107,13 @@ class InvitationController extends CustomController
 
                 $invitation = $contactModel->findInvitation($r_POST['mail'],$id_assoc);
                 if(!empty($invitation)){
-                  $confirmation ='Une invitation a déjà été envoyée à cette personne !';
+                  $confirmation ='Une invitation a déjà été envoyée à cette personne';
                   $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
                   'page'=>1,'confirmation'=>$confirmation]);
                 }
 
                 if($contactModel->findDemande($r_POST['mail'],$id_assoc)){
-                  $confirmation ='Une demande pour rejoindre l\'Association a déjà faite par ce membre, merci de consulter les messages reçus de l\'Association pour pouvoir y répondre.';
+                  $confirmation ='Une demande pour rejoindre l\'Association a déjà faite par ce membre, merci de consulter les messages reçus de l\'Association pour pouvoir y répondre';
 
                   $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc','donnee' => $donnee,
                   'page'=>1,'confirmation'=>$confirmation]);
@@ -173,7 +173,7 @@ class InvitationController extends CustomController
               if($ok){
                 $confirmation = 'L\'invitation a bien été envoyée';
               }else {
-                $confirmation = 'L\'invitation n\'a pas pu être envoyée suite à un problème technique.';
+                $confirmation = 'L\'invitation n\'a pas pu être envoyée suite à un problème technique';
               }
               $this->show('admin/liste',['slug' => $slug,'orga' => 'assoc',
               'page'=>1,'donnee' => $donnee,'confirmation'=>$confirmation]);
