@@ -30,7 +30,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
               <div class="panel-body">
                 <div class="row">
                   <div class="col-md-12 col-lg-12 " align="center"><?php
-                    if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
+                    if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';}?>
                     <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>" class="img-circle img-responsive col-md-3 col-lg-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
                       <?php
@@ -38,7 +38,6 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                           <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
                             <table class="table table-user-information">
                               <tbody>
-
 
                               <?php if(isset($error['nom']) && !empty($error['nom'])){ echo '<tr><td>Erreur </td><td>'.$error['nom'].'</td></tr>'; } ?>
                               <tr><td><label class ="couleur_bleue"for="nom">Nom</label></td>

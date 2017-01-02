@@ -16,9 +16,9 @@ class MonCompteModel extends CustomModel
   public function membre($slug,$id)
   {
     $sql = 'SELECT u.id,u.pseudo,u.mail,u.prenom,u.nom,u.adresse,u.code_postal,
-    u.ville,u.fix,u.mobile,u.created_at,u.lost_connect,r.role
+    u.ville,u.fix,u.mobile,u.created_at,u.lost_connect,r.role,p.relatif AS avatar
     FROM users AS u LEFT JOIN roles AS r ON
-    u.id = r.id_user WHERE u.id = :id AND r.id_assoc = (SELECT id FROM assoc WHERE slug = :slug) ' ;
+    u.id = r.id_user LEFT JOIN pictures AS p ON u.avatar = p.id WHERE u.id = :id AND r.id_assoc = (SELECT id FROM assoc WHERE slug = :slug) ' ;
     $sth = $this->dbh->prepare($sql);
     $sth->bindValue(':id', $id);
     $sth->bindValue(':slug', $slug);
