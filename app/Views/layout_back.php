@@ -109,7 +109,7 @@
 
 
 
-						<div id="navbar" class="navbar-collapse collapse container-fluid">
+						<div id="navbar" class=" container-fluid ">
 							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
 							<li><a href="<?php echo $this->url('admin_mairie_contact_Webmaster',['slugE' => $slug]); ?>">
 								<button type="button" class="btn btn-info btn-lg">Contacter le Webmaster</button></a>
@@ -121,18 +121,18 @@
 								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
 							</li>
 							<?php if(!isset($creation)){ ?>
-							<li><a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Voir Association</button></a>
-							</li>
-							<li><a href="<?php echo $this->url('admin_mairie_news',['slug' => $slug,'orga'=>'mairie' ,'page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">News</button></a>
-							</li>
+								<li><a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>">
+									<button type="button" class="btn btn-info btn-lg">Voir Association</button></a>
+								</li>
+								<li><a href="<?php echo $this->url('admin_mairie_news',['slug' => $slug,'orga'=>'mairie' ,'page' => 1]); ?>">
+									<button type="button" class="btn btn-info btn-lg">News</button></a>
+								</li>
 							<?php } ?>
 						</ul>
 					</div> <?php
 
 					}elseif($orga == 'assoc'){ ?>
-						<div id="navbar" class="navbar-collapse collapse container-fluid">
+						<div id="navbar" class=" container-fluid">
 							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
 								<li><a href="<?php echo $this->url('admin_assoc_contact_tout_membres',['slugE' => $slug]); ?>">
 									<button type="button" class="btn btn-info btn-lg">Message aux Membres</button></a>
@@ -160,7 +160,7 @@
 						</ul>
 					</div><?php
 				}elseif($orga == 'webmaster'){ ?>
-						<div id="navbar" class="navbar-collapse collapse container-fluid">
+						<div id="navbar" class=" container-fluid">
 							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
 
 							<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => 'webmaster','orga' => 'webmaster','page' => 1]); ?>">

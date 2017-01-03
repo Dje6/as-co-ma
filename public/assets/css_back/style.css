@@ -94,7 +94,6 @@ h1.navbar-brand {
 
 
 @media screen and (min-width: 768px) {
-  /* Navbar positioning foo */
   .navbar-wrapper {
     margin-top: 20px;
   }
@@ -182,7 +181,7 @@ input.form-control {
 	font-weight: bold;
 	font-size: 30px;
 	border : 3px solid ##337ab7;
-
+	font-family: 'Arvo', serif;
 }
 .userpseudo {
 	font-size: 20px;
@@ -287,9 +286,25 @@ button[type="reset"]    {
 	border-radius: 10px;
 	padding: 1em;
 }
+/*.affichage table tr {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}*/
+/*@media screen and (min-width: 768px) {
+	.affichage {
+		background-image: url('../img/backblanc.png');
+		margin-left: auto;
+		margin-right: auto;
+		border: 3px solid #99ccff;
+		color: #108fcc;
+		border-radius: 10px;
+		padding: 1em;
+	}
+}*/
 .bouge {
-	padding: 1em;
-	margin: 2em;
+	padding: 15px;
+	margin:  25px ;
 }
 /*///////////////////////////////////////////////////////////////////////////////*/
 /*css page mairie.php*/
@@ -341,6 +356,7 @@ font-size: 20px;
 	border-radius: 20px;
 	color: #108fcc;
 	font-weight: bolder;
+	text-align: center;
 }
 .voisin{
 	color: #108fcc;
@@ -356,11 +372,47 @@ span.input-group-addon {
 
 /*//////////////////////////////////////////////////////////*/
 .padd{
-	margin: 1em;
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 .pad{
-	padding: 2em;
+	padding-top: 2em;
+	padding-bottom: 2em;
 }
+.padleft{
+	padding-left: 20px;
+}
+.padleft2{
+	padding-left: 400px;
+}
+.padleft3{
+	padding-left: 200px;
+}
+
 .souligne {
 	text-decoration: underline;
+}
+/*///////////////////////////////////////////////////////////////*/
+.thumbnail {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  box-shadow: inset 0 0 0 1000px white;
+  margin: 2em auto;
+  max-width: 940px;
+}
+.thumbnail h2 {
+	font-size: 22px;
+  text-transform: uppercase;
+	text-align: center;
+}
+.textnews {
+	font-size: 16px;
+}
+.listing abc {
+	text-align: center;
+}
+.centerBut2 {
+	margin-bottom: 2em;
+
 }

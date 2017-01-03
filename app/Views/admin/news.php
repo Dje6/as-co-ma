@@ -36,15 +36,15 @@ if(isset($donnees)){
 
       <div class="container affichageMairie"><?php
   			foreach ($donnees as $key => $value) { ?>
-
-          <h3>TITRE : <?php echo $value['title']; ?></h3><br/>
+          <div class="thumbnail">
+          <h2> <?php echo $value['title']; ?></h2><br/>
           <?php if(!empty($value['picture'])){ ?>
             <img alt="User Pic" src="<?= $this->assetUrl($value['picture']) ?>"
             class="img-responsive "><?php
           }else { ?>
             <p>Image : pas d'image</p><br/><?php
           } ?>
-          <br/><p>Contenu :<br> <?php echo $value['content']; ?></p><br/>
+          <br/><p class="textnews"><br> <?php echo $value['content']; ?></p><br/>
           <p>Crée le : <?php echo $value['created_at']; ?></p><?php
           if(!empty($value['updated_at'])){ ?>
 
@@ -92,7 +92,8 @@ if(isset($donnees)){
 	}
 }
 ?>
- <a href="#" class="btn btn-info return">Retour Menu</a>
+  </div>
+ <a href="#" class="btn btn-info return">Retour en Haut</a>
 <?php $this->stop('main_content') ?>
 
 

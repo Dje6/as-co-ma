@@ -144,29 +144,32 @@ if(isset($donnee)){
           <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
           class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3 pad "><br/>
         </div>
+        <div class="row">
+          <div class='colxs-12 col-md-5 col-md-offset-2'>
+            <?php if(empty($donnee['nom'])){ $donnee['nom'] = 'Non Renseigné' ;} ?>
+              <h3 >Nom : <?php echo $donnee['nom'] ; ?></h3>
+            <?php if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseignée' ;} ?>
+              <h3 >Adresse : <?php echo $donnee['adresse'] ;?></h3>
+            <?php if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigné' ;} ?>
+              <h3 >Code postal : <?php echo $donnee['code_postal']; ?></h3>
+            <?php if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseignée' ;} ?>
+              <h3 >Ville : <?php echo $donnee['ville'] ; ?></h3>
+            <?php if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigné' ;} ?>
+              <h3 >Téléphone : <?php echo $donnee['fix'] ; ?></h3>
+            <?php if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigné' ;} ?>
+              <h3 >Email : <?php echo $donnee['mail'] ; ?></h3>
+            <?php if(empty($donnee['description'])){ $donnee['description'] = 'Non Renseignée' ;} ?>
+              <h3 >statut : <?php echo $donnee['status'] ; ?></h3>
+              <h3 >Description : <?php echo $donnee['description'] ; ?></h3>
+            <?php
 
-        <?php if(empty($donnee['nom'])){ $donnee['nom'] = 'Non Renseigner' ;} ?>
-          <h3>Nom : <?php echo $donnee['nom'] ; ?></h3>
-        <?php if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseigner' ;} ?>
-          <h3>Adresse : <?php echo $donnee['adresse'] ;?></h3>
-        <?php if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigner' ;} ?>
-          <h3>Code postal : <?php echo $donnee['code_postal']; ?></h3>
-        <?php if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseigner' ;} ?>
-          <h3>Ville : <?php echo $donnee['ville'] ; ?></h3>
-        <?php if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigner' ;} ?>
-          <h3>Fixe : <?php echo $donnee['fix'] ; ?></h3>
-        <?php if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigner' ;} ?>
-          <h3>Mail : <?php echo $donnee['mail'] ; ?></h3>
-        <?php if(empty($donnee['description'])){ $donnee['description'] = 'Non Renseigner' ;} ?>
-          <h3>Description : <?php echo $donnee['description'] ; ?></h3>
-        <h3>statut : <?php echo $donnee['status'] ; ?></h3><?php
-
-        if(!isset($acces)){ ?>
-          <a href="<?php echo $this->url('admin_assoc_edit_form', ['slug' => $slug]) ; ?>">
-            <button class="btn btn-primary centerBut">Modifier</button>
-          </a><?php
-        } ?>
-
+            if(!isset($acces)){ ?>
+              <a href="<?php echo $this->url('admin_assoc_edit_form', ['slug' => $slug]) ; ?>">
+                <button class="btn btn-primary centerBut2">Modifier</button>
+              </a><?php
+            } ?>
+          </div>
+        </div>
       </div><?php
     }
   }else{ ?>

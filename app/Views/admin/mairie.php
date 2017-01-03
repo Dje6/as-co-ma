@@ -174,42 +174,44 @@ if(isset($donnee)){
         <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
         class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3 pad"><br/>
         </div>
-       <?php
 
-        if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
-         <h3 class="centragetitre"><?php echo $donnee['nom'] ; ?></h3><?php
-        }
-        if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseignée' ; } ?>
-        <h3>Adresse : <?php echo $donnee['adresse'] ; ?></h3><?php
+        <div class="row">
+          <div class='colxs-12 col-md-5 col-md-offset-1'><?php
+            if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
+             <h3 class=""><?php echo $donnee['nom'] ; ?></h3><?php
+            }
+            if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseignée' ; } ?>
+            <h3 class="">Adresse : <?php echo $donnee['adresse'] ; ?></h3><?php
 
-        if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigné' ; } ?>
-        <h3>Code Postal : <?php echo $donnee['code_postal'] ; ?></h3><?php
+            if(empty($donnee['code_postal'])){ $donnee['code_postal'] = 'Non Renseigné' ; } ?>
+            <h3 class="">Code Postal : <?php echo $donnee['code_postal'] ; ?></h3><?php
 
-        if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseignée' ; } ?>
-        <h3>ville : <?php echo $donnee['ville'] ; ?></h3><?php
+            if(empty($donnee['ville'])){ $donnee['ville'] = 'Non Renseignée' ; } ?>
+            <h3 class="">ville : <?php echo $donnee['ville'] ; ?></h3><?php
 
-        if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigné' ; } ?>
-        <h3>Téléphone : <?php echo $donnee['fix'] ; ?></h3><?php
+            if(empty($donnee['fix'])){ $donnee['fix'] = 'Non Renseigné' ; } ?>
+            <h3 class="">Téléphone : <?php echo $donnee['fix'] ; ?></h3><?php
 
-        if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigné' ; } ?>
-        <h3>Email : <?php echo $donnee['mail'] ; ?></h3><br/>
+            if(empty($donnee['mail'])){ $donnee['mail'] = 'Non Renseigné' ; } ?>
+            <h3 class="">Email : <?php echo $donnee['mail'] ; ?></h3>
 
-        <h3 class="souligne">Horaires d'ouverture: </h3><?php
+            <h3 class="">Statut : <?php echo $donnee['status'] ; ?></h3>
+          </div>
+          <div class='colxs-12 col-md-5 col-md-offset-1'>
+            <h3 class="souligne ">Horaires d'ouverture: </h3><?php
 
-          foreach (unserialize($donnee['horaire']) as $key => $value) {
-            if(empty($value)){ $value = 'Non Renseignés' ; } ?>
-              <div class="horaires">
-                <h4><?php echo $key.' : '.$value ; ?></h4>
-              </div><?php
-          } ?>
-
-
-        <h3>Statut : <?php echo $donnee['status'] ; ?></h3><br/><?php
-
-        if(!isset($acces)){
-          echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
-          <button class="btn btn-primary centerBut">Modifier</button></a>';
-        }?>
+            foreach (unserialize($donnee['horaire']) as $key => $value) {
+              if(empty($value)){ $value = 'Non Renseignés' ; } ?>
+                <div class="horaires">
+                  <h4 class=""><?php echo $key.' : '.$value ; ?></h4>
+                </div><?php
+            }
+            if(!isset($acces)){
+              echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
+                <button class="btn btn-primary">Modifier</button></a>';
+            }?>
+          </div>
+        </div>
       </div><?php
     }
   }else{ ?>
