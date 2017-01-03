@@ -47,15 +47,16 @@ if($orga == 'mairie'){
   }
 }elseif ($orga == 'assoc') { ?>
 
-  <form class="" action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="post">
+  <form action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="POST">
     <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;}
       if(isset($confirmation) && !empty($confirmation)){
         echo $confirmation.'<br/><br/>';
       }?>
     <label for="mail"><p class="padleft">Inviter quelqu'un à nous rejoindre? </p><p class="padleft">Entrez son adresse email :
-    <input type="text" name="mail" value=""></label>
-    <input type="submit" name="submit" value="Inviter!"></p>
-  </form> <?php
+    <input type="text" name="mail" value=""></p></label>
+    <input type="submit" name="submit" value="Inviter!">
+  </form>
+  <?php
 
   if(isset($donnee)){
     if(is_array($donnee)){
