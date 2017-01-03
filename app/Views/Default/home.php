@@ -5,29 +5,29 @@
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
-	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_home.css'); ?>">
+<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_home.css'); ?>">
 <?php $this->stop('main_head') ?>
 
 
 
 <?php $this->start('main_content') ?>
-	<!-- Titre page d'accueil -->
-	<!-- <div class="row">
-		<h2 class="text-center titre_home">Bienvenue sur AS-CO-MA</h2>
-	</div>
-	<br> -->
+<!-- Titre page d'accueil -->
+<!-- <div class="row">
+<h2 class="text-center titre_home">Bienvenue sur AS-CO-MA</h2>
+</div>
+<br> -->
 
-	<!-- CAROUSEL -->
-	<div class="row">
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
-		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<?php if(!isset($_SESSION['user'])){ ?>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+<!-- CAROUSEL -->
+<div class="row">
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			<?php if(!isset($_SESSION['user'])){ ?>
+			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 			<?php } ?>
-		  </ol>
+		</ol>
 
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
@@ -86,24 +86,26 @@
 		</blockquote>
 	</div>
 
-	<!-- Bouton vers INSCRIPTION -->
-	<?php if(!isset($_SESSION['user'])) { ?>
-
-		<hr><br>
-		<div class="row">
-		<a href="<?= $this->url('racine_inscriptForm'); ?>">
-		<button type="button" class="btn btn-success btn-lg btn-block">Rejoignez-nous !</button>
-		</a>
-		</div>
-		<br>
-	<?php } ?>
 
 
-<?php $this->stop('main_content') ?>
+		<!-- Bouton vers INSCRIPTION -->
+		<?php if(!isset($_SESSION['user'])) { ?>
+
+			<hr><br>
+			<div class="row">
+				<a href="<?= $this->url('racine_inscriptForm'); ?>">
+					<button type="button" class="btn btn-success btn-lg btn-block">Rejoignez-nous !</button>
+				</a>
+			</div>
+			<br>
+			<?php } ?>
+
+
+			<?php $this->stop('main_content') ?>
 
 
 
-<?php $this->start('main_script') ?>
-	<!-- //ici les script js de la Page courante UNIQUEMENT
-  //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
-<?php $this->stop('main_script') ?>
+			<?php $this->start('main_script') ?>
+			<!-- //ici les script js de la Page courante UNIQUEMENT
+			//si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
+			<?php $this->stop('main_script') ?>

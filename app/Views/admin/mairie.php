@@ -206,10 +206,10 @@ if(isset($donnee)){
                   <h4 class=""><?php echo $key.' : '.$value ; ?></h4>
                 </div><?php
             }
-            if(!isset($acces)){
-              echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
-                <button class="btn btn-primary">Modifier</button></a>';
-            }?>
+            if(!isset($acces)){ ?>
+              <a href="<?= $this->url('admin_mairie_edit_form', ['slug' => $slug]); ?>">
+              <button class="btn btn-primary centerBut">Modifier</button></a>';
+            <?php } ?>
           </div>
         </div>
       </div><?php

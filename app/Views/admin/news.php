@@ -51,7 +51,7 @@ if(isset($donnees)){
             <p>Modifié le : <?php echo $value['updated_at']; ?></p><br/><?php
           }
           if(!empty($value['newsletter'])){ ?>
-            <p>NewsLetter Envoyer : <?php echo $value['newsletter']; ?></p><br/><?php
+            <p>NewsLetter Envoyée : <?php echo $value['newsletter']; ?></p><br/><?php
 
           } ?>
 
@@ -78,16 +78,16 @@ if(isset($donnees)){
             <a href="<?php echo $this->url('admin_'.$orga.'_newsletter',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
             <button class="btn btn-success">Déclencher la NewsLetter</button>
-          </a><?php
+          </a><br><?php
           }
-          echo '<br/>';
         }?>
       </div><?php
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
 				echo $pagination;
 			}
-    }else{
-      echo '<h3 class="titreback">'.$donnees.'</h3>';
+    }else{ ?>
+      <h3 class="titreback"><?= $donnees; ?></h3>
+<?php
     }
 	}
 }

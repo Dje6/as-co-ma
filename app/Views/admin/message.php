@@ -43,7 +43,7 @@ if(isset($donnees)){
 	if(!empty($donnees)){
 		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message qu'il contient
 
-			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
+			if(isset($pagination)){  //si il y a assez d'element , la pagination s'active toute seul
         //si tu a besoin de diminuer le nombre d'affichage c'est dan le MessageController
         //les ligne avec '$limit', si tu es sur la messagerie :
         //user : methode home (message recu)
@@ -52,11 +52,11 @@ if(isset($donnees)){
         //              orgaSend (message envoyer)
         //tout le systeme de message fonctionne ormi les boutons accepter refuser et plus info , lu suppr et rep c ok
         //donc si besoin tu peut ecrire des messages pour remplir les messageries
-        // pense a faire la mise a jour de la table contact si tu l'avais pas fait
+        // pense a faire la mise a jour de la table contact si tu l'avais pas fait ?>
 
-				echo '<div id="page">' .$pagination. '</div>' ;
+				<div id="page"><?= $pagination ?></div>
 
-      }
+      <?php }
       ?>
 
 
@@ -64,27 +64,27 @@ if(isset($donnees)){
   			foreach ($donnees as $key => $value) {
 
           if(isset($value['destinataire_pseudo'])){
-          // si on est dans les message envoyer il affiche ca
-            echo '<h3>Destinataire : '.$value['destinataire_pseudo'].'</h3>';
-            echo 'Email : '.$value['destinataire_mail'].'<br/>';
-          }else {
-          //sinon c'est ca
-            echo '<h3>Emetteur : '.$value['emeteur_pseudo'].'</h3>';
-            echo 'Email : '.$value['emeteur_mail'].'<br/>';
-          }
-  				echo '<p>Objet : '.$value['objet'].'</p>';
-  				echo '<p>Message : '.$value['contenu'].'</p>';
-  				echo 'Envoye le : '.$value['date_envoi'].'<br/>';
-          if($value['status'] == 'lu'){
-          //si le statu est a lu , on affiche la date de lecture
-            echo 'Lu le : '.$value['date_lecture'].'<br/>';
-          }elseif ($value['status'] != 'lu' && $value['status'] != 'non-lu') {
+          // si on est dans les message envoyer il affiche ca ?>
+            <h3>Destinataire : <?= $value['destinataire_pseudo']; ?></h3>
+            <p>Email : <?= $value['destinataire_mail']; ?></p><br/>
+          <?php }else {
+          //sinon c'est ca ?>
+            <h3>Emetteur : <?= $value['emeteur_pseudo']; ?></h3>
+            <p>Email : <?= $value['emeteur_mail']; ?></p><br/>
+          <?php } ?>
+    				<p>Objet : <?= $value['objet']; ?></p>
+    				<p>Message : <?= $value['contenu']; ?></p>
+    				<p>Envoye le : <?= $value['date_envoi']; ?></p><br/>
+        <?php if($value['status'] == 'lu'){
+          //si le statu est a lu , on affiche la date de lecture ?>
+            <p>Lu le : <?= $value['date_lecture']; ?></p><br/>
+        <?php }elseif ($value['status'] != 'lu' && $value['status'] != 'non-lu') {
           //si une reponse a ete faite a ce message on indique la date de reponse
-          //qui es la meme date que pour la lecture mais mise a jour
-            echo 'Repondu le : '.$value['date_lecture'].'<br/>';
-          }
-          echo 'Status : '.$value['status'].'<br/><br>';
-
+          //qui es la meme date que pour la lecture mais mise a jour ?>
+            <p>Repondu le : <?= $value['date_lecture']; ?></p><br/>
+          <?php } ?>
+          <p>Status : <?= $value['status']; ?></p><br/><br>
+          <?php
           preg_match_all('/inscript/', $value['objet'], $matches);
           // on detect si il s'agit dune demande d'inscription
           preg_match_all('/Invitation/', $value['objet'], $matches2);
@@ -154,9 +154,9 @@ if(isset($donnees)){
 				echo $pagination;
 			}
 		}
-	}else{
-    echo '<h3 class="titreback">Aucun messages</h3>';
-  }
+	}else{ ?>
+    <h3 class="titreback">Aucun messages</h3>
+  <?php }
 }
 ?>
  <a href="#" class="btn btn-info return">Retour en haut</a>
