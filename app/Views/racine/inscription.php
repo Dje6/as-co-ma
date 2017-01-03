@@ -11,10 +11,10 @@
 
 <?php $this->start('main_content') ?>
 
-<?php if(isset($confirmation)) {
-        echo '<span class="confirmForm">' . $confirmation . '</span>';
+<?php if(isset($confirmation)) { ?>
+  <span class="confirmForm"><?= $confirmation ?></span>
 
-      } else { ?>
+<?php } else { ?>
 
   <form class="formFront" action="<?php echo $this->url('racine_inscriptPost'); ?>" method="POST">
     <legend><h2 class="text-center"><strong>Créez votre compte sur AS-CO-MA : </strong></h2></legend>
@@ -100,29 +100,28 @@
         <input type="text" class="form-control" name="fix" value="<?php if(isset($saisi['fix'])){ echo $saisi['fix'] ;} ?>">
       </div>
 
-      <!-- MOBILE -->
-      <div class="form-group col-xs-6">
-        <label for="mobile">Mobile : </label>
-        <span class="errorForm"><?php if(isset($error['mobile'])){ echo $error['mobile']; } ?>
-        <input type="text" class="form-control" name="mobile" value="<?php if(isset($saisi['mobile'])){ echo $saisi['mobile'] ;} ?>">
-      </div>
-      <br>
+        <!-- MOBILE -->
+        <div class="form-group col-xs-6">
+          <label for="mobile">Mobile : </label>
+          <span class="errorForm"><?php if(isset($error['mobile'])){ echo $error['mobile']; } ?>
+          <input type="text" class="form-control" name="mobile" value="<?php if(isset($saisi['mobile'])){ echo $saisi['mobile'] ;} ?>">
+        </div>
+        <br>
 
     </fieldset>
 
-    <input type="hidden" name="capcha" value=""><br/>
-
-    <button type="submit" name="submit" class="btn btn-success btn-lg col-xs-offset-5">Créer mon compte</button>
+        <input type="hidden" name="capcha" value=""><br/>
+        <button type="submit" name="submit" class="btn btn-success btn-lg col-xs-offset-5">Créer mon compte</button>
 
   </form>
-  <?php
-} ?>
+      <?php
+    } ?>
 
-<?php $this->stop('main_content') ?>
+    <?php $this->stop('main_content') ?>
 
 
 
-<?php $this->start('main_script') ?>
-	<!-- //ici les script js de la Page courante UNIQUEMENT
-  //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
-<?php $this->stop('main_script') ?>
+    <?php $this->start('main_script') ?>
+    <!-- //ici les script js de la Page courante UNIQUEMENT
+    //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
+    <?php $this->stop('main_script') ?>

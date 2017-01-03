@@ -22,93 +22,93 @@ if($orga == 'mairie'){
           <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
           <?php if($value['status'] == 'Actif'){ ?>
             <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
-          <?php }else { ?>
-            <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button class="btn btn-success bouge">Activer</button></a></td>
-          <?php } ?>
-          <td><a href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+            <?php }else { ?>
+              <td><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button class="btn btn-success bouge">Activer</button></a></td>
+              <?php } ?>
+              <td><a href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
 
-        </tr><?php
+            </tr><?php
+          } ?>
+        </table> <?php
+        }else{
+          echo $donnee;
+        }
       }
-      echo '</table>';
-    }else{
-      echo $donnee;
-    }
-  }
-}elseif ($orga == 'assoc') { ?>
+    }elseif ($orga == 'assoc') { ?>
 
-  <form class="" action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="post">
-    <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;}
-      if(isset($confirmation) && !empty($confirmation)){
-        echo $confirmation.'<br/><br/>';
-      }?>
-    <label for="mail">Inviter quelqu'un à nous rejoindre? <br/>Entrez son adresse email :
-    <input type="text" name="mail" value=""></label>
-    <input type="submit" name="submit" value="Inviter!">
-  </form> <?php
+      <form class="" action="<?php echo $this->url('admin_assoc_invit',['slug'=>$slug])?>" method="post">
+        <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span style="color:red;">'.$error['mail'].'</span><br/>' ;}
+        if(isset($confirmation) && !empty($confirmation)){
+          echo $confirmation.'<br/><br/>';
+        }?>
+        <label for="mail">Inviter quelqu'un à nous rejoindre? <br/>Entrez son adresse email :
+          <input type="text" name="mail" value=""></label>
+          <input type="submit" name="submit" value="Inviter!">
+        </form> <?php
 
-  if(isset($donnee)){
-    if(is_array($donnee)){
-      echo '<table>';
-      foreach ($donnee as $key => $value) { ?>
+        if(isset($donnee)){
+          if(is_array($donnee)){ ?>
+            <table> <?php
+            foreach ($donnee as $key => $value) { ?>
 
-        <tr>
+              <tr>
 
-          <td class="bouge"><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
+                <td class="bouge"><?php echo $value['pseudo'].' : '.$value['role']; ?></td>
 
-          <td><a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info bouge">Consulter</button></a></td>
-          <td><a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
-          <?php if($value['role'] == 'Admin'){ ?>
-            <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Passer en mode User</button></a></td>
-          <?php }else{ ?>
-            <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Passer en mode Admin</button></a></td>
-          <?php } ?>
-          <td><a href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
-        </tr>
-        <?php
+                <td><a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info bouge">Consulter</button></a></td>
+                <td><a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td>
+                <?php if($value['role'] == 'Admin'){ ?>
+                  <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Passer en mode User</button></a></td>
+                  <?php }else{ ?>
+                    <td><a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning bouge">Passer en mode Admin</button></a></td>
+                    <?php } ?>
+                    <td><a href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+                  </tr>
+                  <?php
 
-      }
-      echo '</table>';
-    }else{
-      echo $donnee;
-    }
-  }
-}elseif ($orga == 'webmaster') {
-  if(isset($donnee)){
-    if(is_array($donnee)){
-      echo '<table>';
-      foreach ($donnee as $key => $value) { ?>
+                } ?>
+              </table> <?php
+            }else{
+              echo $donnee;
+            }
+          }
+        }elseif ($orga == 'webmaster') {
+          if(isset($donnee)){
+            if(is_array($donnee)){ ?>
+              <table> <?php
+              foreach ($donnee as $key => $value) { ?>
 
-        <tr>
+                <tr>
 
-          <td class="bouge"><?php echo $value['nom'].' : '.$value['status']; ?></td>
+                  <td class="bouge"><?php echo $value['nom'].' : '.$value['status']; ?></td>
 
-          <td><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]);?>"><button class="btn btn-info bouge">Consulter</button></a></td>
-          <!-- <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td> -->
-          <?php if($value['status'] == 'Actif'){ ?>
-            <td><a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
-          <?php }else { ?>
-            <td><a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-success bouge">Activer</button></a></td>
-          <?php } ?>
-          <td><a href="<?php echo $this->url('admin_webmaster_delete_mairie',['id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
+                  <td><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]);?>"><button class="btn btn-info bouge">Consulter</button></a></td>
+                  <!-- <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info bouge">Contacter</button></a></td> -->
+                  <?php if($value['status'] == 'Actif'){ ?>
+                    <td><a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-warning bouge">Suspendre</button></a></td>
+                    <?php }else { ?>
+                      <td><a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-success bouge">Activer</button></a></td>
+                      <?php } ?>
+                      <td><a href="<?php echo $this->url('admin_webmaster_delete_mairie',['id' => $value['id']]);?>"><button class="btn btn-danger bouge">Supprimer</button></a></td>
 
-        </tr>
-        <?php
+                    </tr>
+                    <?php
 
-      }
-      echo '</table>';
-    }else{
-      echo $donnee;
-    }
-  }
-}
-echo '</div>';
-?>
-<a href="#" class="btn btn-info return">Retour en haut</a>
-<?php $this->stop('main_content') ?>
+                  } ?>
+                  </table> <?php
+                }else{
+                  echo $donnee;
+                }
+              }
+            } ?>
+          </div> <?php
+            ?>
+            <a href="#" class="btn btn-info return">Retour en haut</a>
+            <?php $this->stop('main_content') ?>
 
 
 
-<?php $this->start('main_script') ?>
-	<!-- //ici les script js de la Page courante UNIQUEMENT
-  //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
-<?php $this->stop('main_script') ?>
+            <?php $this->start('main_script') ?>
+            <!-- //ici les script js de la Page courante UNIQUEMENT
+            //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
+            <?php $this->stop('main_script') ?>

@@ -10,13 +10,13 @@
 		background-image: url('<?= $this->assetUrl($donnees['background']); ?>');
 		}		<?php
 	} ?>
-	</style>
-	<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_assoc.css'); ?>">
-	<?php $this->stop('main_head') ?>
+</style>
+<link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_assoc.css'); ?>">
+<?php $this->stop('main_head') ?>
 
 
 
-	<?php $this->start('main_content') ?>
+<?php $this->start('main_content') ?>
 	<?php if($slug == 'All'){ ?>
 
 		<!-- Form recherche d'assoc -->
@@ -39,15 +39,17 @@
 		<!-- Quand recherche soumise, affiche les liens vers Mairies concernées -->
 		<br>
 		<div class="row text-center">
-			<?php if(isset($donnees)) {
+<?php if(isset($donnees)) {
 				if(is_array($donnees)) {
 					foreach ($donnees as $key => $value) { ?>
 						<a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]) ; ?>">
 							<button class="btn btn-success btn-sm assocLien"><?php echo '"'.$value['nom'].'" - enregistrée en '.$value['mnom'].', '.$value['mCP']; ?></button>
 						</a>
-						<?php }
-					} else {
-						echo '<span class="errorForm">' . $donnees . '</span>';
+						<?php
+						}
+					} else { ?>
+						<span class="errorForm"><?= $donnees; ?></span>
+				 <?php
 					}
 				} ?>
 			</div>
@@ -98,21 +100,21 @@
 											</form>
 										</td>
 									</tr>
-								</table>
-							</div>
+							 </table>
+						 </div>
 
 							<?php	} else {
 								echo $donnees;
 							}
 						} ?>
-					</div>
-					<!-- end row -->
-					<!-- Fin tableau infos assoc -->
+					 </div>
+						<!-- end row -->
+						<!-- Fin tableau infos assoc -->
 
-					<!-- ///////////////////////////////////////////////////////////////// -->
+						<!-- ///////////////////////////////////////////////////////////////// -->
 
-					<!-- Display des articles/news des assoc -->
-					<!-- Style thumbnail -->
+						<!-- Display des articles/news des assoc -->
+						<!-- Style thumbnail -->
 					<hr>
 
 					<?php if(isset($news)){
@@ -161,10 +163,10 @@
 														- <b>Rédigé le :</b> <?= $dateCreaNews; ?><br>
 														- <b>Dernière modification :</b> <?php if(!empty($value['updated_at'])) { echo $dateModifNews; } else { echo 'Pas encore de modification.'; }?>
 													</p>
-												</div>
 											</div>
 										</div>
 									</div>
+								</div>
 									<!-- end row -->
 
 									<?php

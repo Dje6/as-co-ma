@@ -185,10 +185,10 @@ if(isset($donnee)){
 
         <h3>Statut : <?php echo $donnee['status'] ; ?></h3><br/><?php
 
-        if(!isset($acces)){
-          echo '<a href="'.$this->url('admin_mairie_edit_form', ['slug' => $slug]).'">
+        if(!isset($acces)){ ?>
+          <a href="<?= $this->url('admin_mairie_edit_form', ['slug' => $slug]); ?>">
           <button class="btn btn-primary centerBut">Modifier</button></a>';
-        }?>
+        <?php } ?>
       </div><?php
     }
   }else{ ?>

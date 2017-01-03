@@ -21,12 +21,12 @@
 				<?php
 				if(!isset($confirmation)){
 
-					if($slug == 'All'){
-						echo '<h2 class="text-center" ><b>Contacter les Administrateurs d\'AS-CO-MA</b></h2>';
-					}else{
-						if($orga == 'mairie'){
-							echo '<h2 class="text-center" ><b>Contacter la '.$this->unslug($slug).'</b></h2>'; //unslug du slug de la mairie à contacter
-						}elseif($orga == 'assoc') {
+					if($slug == 'All'){ ?>
+						<h2 class="text-center" ><b>Contacter les Administrateurs d'AS-CO-MA</b></h2>
+					<?php }else{
+						if($orga == 'mairie'){ ?>
+							<h2 class="text-center" ><b>Contacter la <?= $this->unslug($slug); ?></b></h2> <!-- unslug du slug de la mairie à contacter -->
+						<?php }elseif($orga == 'assoc') {
 							echo '<h2 class="text-center" ><b>Contacter l\'association '.$this->unslug($slug) .'</b></h2>'; //unslug du nom de l'assoc a contacter
 						}
 					} ?>
