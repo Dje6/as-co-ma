@@ -51,5 +51,17 @@ class NewsModel extends customModel
     }
   }
 
+  public function AllNewsID($id_orga,$orga)
+  {
+    $sql = 'SELECT id FROM '.$this->table.' WHERE id_orga = :id_orga AND orga = :orga';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':id_orga', $id_orga);
+    $sth->bindValue(':orga', $orga);
+    if($sth->execute()){
+      return $sth->fetchAll();
+
+    }
+  }
+
 
 }

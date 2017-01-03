@@ -34,4 +34,12 @@ class AbonnesModel extends CustomModel
 
   }
 
+  public function deleteByOrga($id,$orga)
+  {
+    $sql = 'DELETE FROM ' . $this->table . ' WHERE id_'.$orga.' = :id';
+    $sth = $this->dbh->prepare($sql);
+    $sth->bindValue(':id', $id);
+    return $sth->execute();
+  }
+
 }

@@ -11,12 +11,23 @@
 <div class="row errorPage">
   <?php if(is_array($error)){ ?>
     <h2><b><i>Un problème est survenu... Toutes nos excuses : <br><?php foreach ($error as $key => $value) {
-      echo $value.' <br>';
+      if(is_array($value)){
+        foreach ($value as $keyy => $valuey) {
+          if(is_array($valuey)){
+            foreach ($valuey as $keyx => $valuex) {
+              echo $valuex.'br/>;'
+            }
+          }else {
+            echo $valuey.' <br>';
+          }
+        }
+      }else {
+        echo $value.' <br>';
+      }
     } ?></i></b></h2><?php
   }else { ?>
     <h2><b><i>Un problème est survenu... Toutes nos excuses : <?php echo $error; ?></i></b></h2><?php
   } ?>
-  <img src="<?= $this->assetUrl('img/loading.gif'); ?>" alt="409" class="img-responsive">
 </div>
 <?php $this->stop('main_content'); ?>
 
