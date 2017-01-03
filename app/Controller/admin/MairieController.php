@@ -86,6 +86,12 @@ class MairieController extends CustomController
         if(ValidationTools::IsValid($error)){
 
           unset($r_POST['submit']);
+          if(isset($r_POST['avt'])){
+            unset($r_POST['avt']);
+          }
+          if(isset($r_POST['bg'])){
+            unset($r_POST['bg']);
+          }
           $r_POST['horaire'] = serialize($r_POST['horaire']);
 
           if(isset($r_POST['ville'])){//uniquement lors de la creation

@@ -20,9 +20,9 @@ if(isset($donnee)){
   if(is_array($donnee)){
     if(isset($edition) && !isset($acces)){ ?>
 
-      <div class="container-fluid fichecontact ">
+      <div class="container fichecontact ">
         <div class="row ">
-          <div class="col-sm-8 col-sm-offset-2 col-centered ">
+          <div class="col-sm-8 col-sm-offset-2 ">
             <div class="panel panel-default">
 
               <form method="POST" enctype="multipart/form-data" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
@@ -77,14 +77,18 @@ if(isset($donnee)){
                   </div>
 
                   <div class="form-group couleur_bleue">Pensez a préciser 'Fermé' les jours de fermeture<br/>
-                    <div class="input-group">
+
+                    <div class="input-group" >
                       <span class="input-group-addon">Horaires</span>
-                      <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br>' ;} ?>
-                      <?php $horaire = unserialize($donnee['horaire']); ?>
+                      <?php if(!is_array($donnee['horaire'])){
+                        $horaire = unserialize($donnee['horaire']);
+                      }else {
+                        $horaire = $donnee['horaire'];
+                      } ?>
 
                       <div class="input-group">
-                        <span class="input-group-addon">Lundi</span>
-                          <input type="text" name="horaire[Lundi]" class="form-control" value="<?php echo $horaire['Lundi']?>">
+                        <span class=  "input-group-addon">Lundi</span>
+                        <input type=  "text" name="horaire[Lundi]" class="form-control" value="<?php echo $horaire['Lundi']?>">
                       </div>
                       <div class="input-group">
                         <span class="input-group-addon" >Mardi</span>
@@ -115,17 +119,34 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">Avatar</span>
+                      <span class="input-group-addon">
+                        <?php if(isset($donnee['avt'])){ $avt = $donnee['avt']; }
+                              elseif(isset($donnee['avatar'])){ $avt = $donnee['avatar']; }
+                              else { $avt = 'img/neutre.jpg';} ?>
+                        <img alt="User Pic" src="<?= $this->assetUrl($avt) ?>"
+                        class="img-circle img-responsive col-md-12 "><br/>
+                        <!-- //formulaire d'envoi d'image -->
+                      </span>
                       <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
                       <input type="file" name="avatar" value=""/>
+                      <input type="hidden" name="avt" value="<?php echo $avt ;?>">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">Background</span>
+                      <span class="input-group-addon">
+                        <?php if(isset($donnee['bg'])){ $bg = $donnee['bg']; }
+                              elseif(isset($donnee['background'])){ $bg = $donnee['background']; }
+                              else { $bg = 'img/neutre.jpg';} ?>
+
+                        <img alt="User Pic" src="<?= $this->assetUrl($bg) ?>"
+                        class="img-circle img-responsive col-md-12 "><br/>
+                        <!-- //formulaire d'envoi d'image -->
+                      </span>
                       <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
                       <input type="file" name="background" value=""/>
+                      <input type="hidden" name="bg" value="<?php echo $bg ;?>">
                     </div>
                   </div>
 

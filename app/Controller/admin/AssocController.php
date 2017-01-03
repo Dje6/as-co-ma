@@ -93,6 +93,12 @@ class AssocController extends CustomController
         if(ValidationTools::IsValid($error)){
 
           unset($r_POST['submit']);
+          if(isset($r_POST['avt'])){
+            unset($r_POST['avt']);
+          }
+          if(isset($r_POST['bg'])){
+            unset($r_POST['bg']);
+          }
 
           if(isset($r_POST['nom'])){
             $r_POST['slug'] = Slugify::slugify($r_POST['nom']);

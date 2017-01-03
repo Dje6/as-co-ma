@@ -257,7 +257,7 @@ button[type="reset"]    {
 		margin-right: auto;
 }
 .fichecontact .input-group {
-	display: flex;
+	width: 100%;
 }
 /*/////////////////////////////////////////////////////////////////////////////*/
 /*css page asso.php*/

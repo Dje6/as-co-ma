@@ -29,9 +29,10 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
               </div>
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-md-12 col-lg-12 " align="center"><?php
-                    if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';}?>
-                    <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>" class="img-circle img-responsive col-md-3 col-lg-3">
+                  <div class="col-md-12 col-lg-12 " align="center">  <?php if(isset($donnee['avt'])){ $avt = $donnee['avt']; }
+                          elseif(isset($donnee['avatar'])){ $avt = $donnee['avatar']; }
+                          else { $avt = 'img/neutre.jpg';} ?>
+                    <img alt="User Pic" src="<?= $this->assetUrl($avt) ?>" class="img-circle img-responsive col-md-3 col-lg-3">
                     <div class=" col-md-9 col-lg-9 cartevisite">
                       <?php
                         if(isset($edition) && !isset($acces)){ ?>
@@ -74,6 +75,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 
                               <tr><td><label class ="couleur_bleue" for="avatar">Avatar</label></td>
                               <td><input type="file" name="image" value="image"/><td/></tr>
+                                <input type="hidden" name="avt" value="<?php echo $avt ;?>">
 
                               </tbody>
                             </table>

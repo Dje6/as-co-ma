@@ -54,8 +54,11 @@ class UsersController extends CustomController
 
 
         if(ValidationTools::IsValid($error)){
-        
+
           unset($r_POST['submit']);
+          if(isset($r_POST['avt'])){
+            unset($r_POST['avt']);
+          }
 
           $id = $_SESSION['user']['id'];
           $result = $userModel->update($r_POST,$id);
