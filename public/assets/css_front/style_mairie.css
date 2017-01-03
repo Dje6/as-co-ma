@@ -87,7 +87,8 @@
   transition: all 0.3s ease;
 }
 .newsImg:hover {
-  opacity: .7;
+  opacity: .9;
+  filter: blur(1px);
 }
 
 /*///////////////////////////////////////////////////////////*/

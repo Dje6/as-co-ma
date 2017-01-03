@@ -24,30 +24,43 @@
 .carousel {
   box-shadow: 5px 5px 5px #888888;
 }
-.carousel-caption h2 {
+.carousel-caption button {
+  height: 40px;
+  font-size: 25px;
   display: inline;
   padding: 0 15px;
-  /*border-radius: 3px;*/
-  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 3px;
+  background-color: #5e982e;
+  box-shadow: 5px 5px 5px rgba(4, 4, 4, 0.53)
 }
-/*Animation img*/
-.carousel img{
-  transition: all .5s ease;
+.carousel-caption a {
+  color: white;
 }
-.carousel:hover img {
-  transform: scale(1.1);
-  opacity: 0.7;
-  /*-webkit-filter: blur(2px);*/
+.carousel-caption button:active {
+  transform: translateY(4px);
 }
 /*Animation titre sur image*/
 .carousel-caption {
-  transition: all .5s ease;
+  transition: all .3s ease;
   opacity: 0;
 }
 .carousel:hover .carousel-caption {
   transform: scale(1.1);
   margin-bottom: 30px;
   opacity: 1;
+}
+.carousel-caption a:hover {
+  text-decoration: none;
+  color: white;
+}
+/*Animation img*/
+.carousel img{
+  transition: all .3s ease;
+}
+.carousel:hover img {
+  transform: scale(1.1);
+  opacity: 0.7;
+  -webkit-filter: blur(2px);
 }
 
 /*////////////////////////////////////////*/

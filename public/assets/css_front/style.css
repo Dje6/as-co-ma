@@ -93,6 +93,9 @@ hr {
 
 }
 .main_content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	min-height: 520px;
 	margin-top: 3em;
 	margin-bottom: 3em;
@@ -100,7 +103,7 @@ hr {
 /*min-height du container plus grande en mobile portrait*/
 @media screen and (max-width: 768px) {
 	.main_content {
-		width: 650px;
+		width: 600px;
 		min-height: 610px;
 		position: relative;
 		top: -8em;
@@ -135,7 +138,7 @@ blockquote footer {
 /*Les span d'error des form*/
 .errorForm {
 	font-weight: 900;
-	color: firebrick;
+	color: maroon;
 	background-color: rgba(0, 0, 0, 0.3);
 	border-radius: 2px;
 	/*padding: 2px;*/
