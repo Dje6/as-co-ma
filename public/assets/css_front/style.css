@@ -41,8 +41,21 @@ hr {
 
 /*Le header dégage pour les < 768px et on laisse la slicknav*/
 @media screen and (max-width: 768px) {
-	header > .row {
+	header .description_home {
 		display: none;
+	}
+	header {
+		background: none;
+	}
+	.logo {
+		display: block;
+		width: 50px;
+		position: relative;
+		bottom: 153px;
+		right: 48px;
+	}
+	.ASCOMA {
+		width: 100px;
 	}
 }
 /*viré img-responsive du logo, marche mieux comme ça*/
@@ -89,6 +102,9 @@ hr {
 	.main_content {
 		width: 650px;
 		min-height: 610px;
+		position: relative;
+		top: -8em;
+		margin-bottom: -6em;
 	}
 }
 blockquote footer {
