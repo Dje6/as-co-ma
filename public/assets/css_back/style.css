@@ -416,3 +416,6 @@ span.input-group-addon {
 	margin-bottom: 2em;
 
 }
+.listing span {
+	text-align: center;
+}
