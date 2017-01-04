@@ -104,9 +104,10 @@
 						 </div>
 
 							<?php	} else {
-								echo '<div class="row formFront">';
-								echo '<h3 class="text-center" style="color:maroon"><b>' . $donnees . ' N\'hésitez pas à contacter la Mairie dont dépend votre Association pour l\'enregistrer !</b></h3>';
-								echo '</div>';
+								header('location: '. $this->url('default_home'));
+								// echo '<div class="row formFront">';
+								// echo '<h3 class="text-center" style="color:maroon"><b>' . $donnees . ' N\'hésitez pas à contacter la Mairie dont dépend votre Association pour l\'enregistrer !</b></h3>';
+								// echo '</div>';
 							}
 						} ?>
 					 </div>
