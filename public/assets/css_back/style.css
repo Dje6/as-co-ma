@@ -120,6 +120,7 @@ h1.navbar-brand {
 	background-color: #52C9FF;
 	color: white;
 	font-weight: bolder;
+	}
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
@@ -134,6 +135,8 @@ h1.navbar-brand {
 		font-weight: bold;
 		font-size: 40px;
 }
+
+
 a {
 	font-size: 18px;
 	margin: 10px 5px;
@@ -371,10 +374,10 @@ font-size: 20px;
 	color: #108fcc;
 }
 /*//////////////////////////////////////////////////////*/
-span.input-group-addon {
+/*span.input-group-addon {
 		color :#108fcc;
 		width: 150px;
-}
+}*/
 
 /*//////////////////////////////////////////////////////////*/
 .padd{
@@ -437,4 +440,27 @@ span.input-group-addon {
 
 .aligng{
 	text-align: left;
+}
+/*////////////////////////////////////////////////////////////*/
+@media screen and (max-width: 768px) {
+	.forcewidth {
+		width: 200px;
+	}
+}
+/*//////////////////////////////////////////////////////////////*/
+ .navbar-inverse {
+     background-color: #52c9ff;
+     border-color: #080808;
+ }
+ @media (max-width: 767px){
+ .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+     color: white;
+ }
+}
+
+navbar-inverse .navbar-toggle {
+    border-color: ;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #52c9ff;
 }

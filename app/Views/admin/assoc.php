@@ -86,16 +86,16 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
+                      <span class=" col-xs-12 col-md-2 ">
                         <?php if(isset($donnee['avt'])){ $avt = $donnee['avt']; }
                               elseif(isset($donnee['avatar'])){ $avt = $donnee['avatar']; }
                               else { $avt = 'img/neutre.jpg';} ?>
                         <img alt="User Pic" src="<?= $this->assetUrl($avt) ?>"
-                        class="img-circle img-responsive col-md-12"><br/>
+                        class="img-circle img-responsive col-xs-12"><br/>
                         <!-- //formulaire d'envoi d'image -->
                       </span>
                       <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
-                      <input type="file" name="avatar" value=""/>
+                      <input type="file" name="avatar"  class="col-xs-12 col-sm-9" value=""/>
 
                       <input type="hidden" name="avt" value="<?php echo $avt ;?>">
                     </div>
@@ -103,17 +103,17 @@ if(isset($donnee)){
 
                   <div class="form-group">
                     <div class="input-group">
-                      <span class="input-group-addon">
+                      <span class=" col-xs-12 col-md-2">
                         <?php if(isset($donnee['bg'])){ $bg = $donnee['bg']; }
                               elseif(isset($donnee['background'])){ $bg = $donnee['background']; }
                               else { $bg = 'img/neutre.jpg';} ?>
 
                         <img alt="User Pic" src="<?= $this->assetUrl($bg) ?>"
-                        class="img-circle img-responsive col-md-12 "><br/>
+                        class="img-circle img-responsive col-xs-12 "><br/>
                         <!-- //formulaire d'envoi d'image -->
                       </span>
                       <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
-                      <input type="file" name="background" value=""/>
+                      <input type="file" name="background" class="col-xs-12 col-sm-9" value=""/>
 
                       <input type="hidden" name="bg" value="<?php echo $bg ;?>">
                     </div>
