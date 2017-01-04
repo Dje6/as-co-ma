@@ -58,10 +58,10 @@
 
 				////////////////////////////////////////////////////////////////////////////////
 
-				//affichage des contenus de l'association cliquée
-				if(isset($donnees)) {
+				//affichage des contenus de l'association cliquée ?>
+				<div class="row">
+	<?php if(isset($donnees)) {
 					if(is_array($donnees)) { ?>
-						<div class="row">
 
 							<!-- <h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2> -->
 							<!-- <br> -->
@@ -104,7 +104,9 @@
 						 </div>
 
 							<?php	} else {
-								echo $donnees;
+								echo '<div class="row formFront">';
+								echo '<h3 class="text-center" style="color:maroon"><b>' . $donnees . ' N\'hésitez pas à contacter la Mairie dont dépend votre Association pour l\'enregistrer !</b></h3>';
+								echo '</div>';
 							}
 						} ?>
 					 </div>
@@ -174,11 +176,11 @@
 							}else { ?>
 								<!-- Sinon "Pas encore de news" -->
 								<div class="row">
-									<h3 class="text-center"><b><?= $news ?> N'hésitez pas à contacter votre président d'Association pour suggérer un article !</b></h3>
+									<h3 class="text-center"><b><?= $news ?>. N'hésitez pas à contacter votre président d'Association pour suggérer un article !</b></h3>
 								</div>
 						<?php	}
 						} ?>
-						<?php } ?>
+	<?php } ?>
 						<!-- fin du display des contenus de l'association -->
 
 
