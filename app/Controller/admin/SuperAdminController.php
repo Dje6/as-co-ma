@@ -6,6 +6,7 @@ use \Model\MairieModel;
 use \Model\RolesModel;
 use \Model\ContactModel;
 use \Model\AssocModel;
+use \Controller\admin\DestroyController;
 
 
 class SuperAdminController extends CustomController
@@ -53,63 +54,15 @@ class SuperAdminController extends CustomController
     {
       if($this->allowToTwo('SuperAdmin','Webmaster',0)){
 
-        $MairieModel = new MairieModel;
+        $DestroyController = new DestroyController;
 
-        $id = $this->nettoyage($id);
+        $id_mairie = $this->nettoyage($id);
+        $resultat = $DestroyController->DeleteMairie($id_mairie);
 
-        $ContactModel = new ContactModel;
-        if($ContactModel->deleteByType($id,'mairie')){
-
-          $slug_Mairie = $MairieModel->FindElementByElement('slug','id',$id);
-          $assoc_affilier = $MairieModel->findListe($slug_Mairie);
-          $erreur = 0;
-
-          if(!empty($assoc_affilier)){
-            $assocModel = new AssocModel;
-            $rolesModel = new RolesModel;
-            $contactModel = new ContactModel;
-
-            foreach ($assoc_affilier as $key => $value) {
-              $result = $assocModel->delete($value['id']);
-              if($result){
-                $result2 = $rolesModel->deleteRoles($value['id'],'id_assoc');
-
-                $roleSession = $this->in_multi_array_return_array_and_key($value['slug'],$_SESSION['user']['roles']);
-                unset($_SESSION['user']['roles'][$roleSession['key']]);
-
-                if($result2){
-                  $result3 = $contactModel->deleteByType($value['id'],'assoc');
-                  if(!$result3){
-                    $erreur += 1;
-                  }
-                }else {
-                  $erreur += 1;
-                }
-              }else {
-                $erreur += 1;
-              }
-            }
-          }
-          if($erreur == 0){
-            if($MairieModel->delete($id)){
-              $rolesModel2 = new RolesModel;
-
-              if($rolesModel2->deleteRoles($id,'id_mairie')){
-                $roleSession2 = $this->in_multi_array_return_array_and_key($slug_Mairie,$_SESSION['user']['roles']);
-                unset($_SESSION['user']['roles'][$roleSession2['key']]);
-                $this->redirectToRoute('admin_webmaster_mairie',['page' => 1]);
-
-              }else {
-                $this->showErrors('Un problème est survenu lors de la suppression des rôles.');
-              }
-            }else {
-              $this->showErrors('Un problème est survenu lors de la suppression de la Mairie.');
-            }
-          }else {
-            $this->showErrors('Un problème est survenu lors de la suppression des '.$erreur.' associations affiliées.');
-          }
+        if(is_array($resultat)){
+          $this->showErrors($resultat);
         }else {
-          $this->showErrors('Un problème est survenu lors de la suppression des messages.');
+          $this->redirectToRoute('admin_webmaster_mairie',['page' => 1]);
         }
       }
     }else {

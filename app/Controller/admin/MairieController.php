@@ -8,6 +8,7 @@ use \Model\AssocModel;
 use \Model\ContactModel;
 use \Model\RolesModel;
 use \Service\Slugify;
+use \Controller\admin\DestroyController;
 
 class MairieController extends CustomController
 {
@@ -97,6 +98,7 @@ class MairieController extends CustomController
           if(isset($r_POST['ville'])){//uniquement lors de la creation
             $r_POST['nom'] = 'Mairie de '.$r_POST['ville'];
             $r_POST['slug'] = Slugify::slugify($r_POST['nom']);
+            $slug_temp = $slug;
           }
 
           $r_POST['departement'] = substr($r_POST['code_postal'], -5, 2);
@@ -106,6 +108,9 @@ class MairieController extends CustomController
           if(!$result){
             $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
+            if(isset($r_POST['ville'])){//uniquement lors de la creation
+              $slug = $r_POST['slug'];
+            }
             $ArrayAvatar = $_FILES['avatar'];
             $ArrayBackground = $_FILES['background'];
             unset($_FILES['avatar']);
@@ -126,7 +131,7 @@ class MairieController extends CustomController
 
 
             if(isset($r_POST['ville'])){//uniquement lors de la creation
-              $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
+              $roleSession = $this->in_multi_array_return_array_and_key($slug_temp,$_SESSION['user']['roles']);
               $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
               $_SESSION['user']['roles'][$roleSession['key']]['slug'] = $r_POST['slug'];
               $this->redirectToRoute('admin_mairie', ['slug' => $r_POST['slug']]);
@@ -177,29 +182,15 @@ class MairieController extends CustomController
       if($this->allowToTwo('Admin','Mairie',$slug)){
         $slug = $this->nettoyage($slug);
         $slugA = $this->nettoyage($slugA);
-        $id = $assocModel->FindElementByElement('id','slug',$slugA);
+        $id_assoc = $assocModel->FindElementByElement('id','slug',$slugA);
 
-        $result = $assocModel->delete($id);
-        if($result){
-          $rolesModel = new RolesModel;
-          $result2 = $rolesModel->deleteRoles($id,'id_assoc');
+        $DestroyController = new DestroyController;
+        $resultat = $DestroyController->DeleteAssoc($id_assoc);
 
-          $roleSession = $this->in_multi_array_return_array_and_key($slugA,$_SESSION['user']['roles']);
-          unset($_SESSION['user']['roles'][$roleSession['key']]);
-
-          if($result2){
-            $contactModel = new ContactModel;
-            $result3 = $contactModel->deleteByType($id,'assoc');
-            if($result3){
-              $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
-            }else {
-              $this->showErrors('Un problème est survenu lors de la suppression du contact.');
-            }
-          }else {
-            $this->showErrors('Un problème est survenu lors de la suppression du rôle.');
-          }
+        if(is_array($resultat)){
+          $this->showErrors($resultat);
         }else {
-          $this->showErrors('Un problème est survenu lors de la suppression de l\'Association.');
+          $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
         }
       }
     }else {
