@@ -1,30 +1,6 @@
 <?php $this->layout('layout_back', ['title' => 'AdminAssoc','slug' => $slug,'orga' => $orga]) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
-
-
-
-
-
-
-<!-- CETTE PAGE EST COPIER COLLER RIEN NE FONCTIONNE  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
@@ -36,27 +12,34 @@
 <?php
 if(!isset($confirmation)){
 
-	if($slug == 'All'){
-		echo '<p>Contacter les administrateurs du site</p>';
+	if($slug == 'All'){ ?>
+		<p>Contacter les administrateurs du site</p>
+	<?php
 	}else{
-		if($orga == 'mairie'){
-			echo '<p>Contacter la '.$slug.'</p>';
-		}elseif($orga == 'assoc') {
-			echo '<p>Contacter l\'association '.$slug.'</p>';
+		if($orga == 'mairie'){ ?>
+			<p>Contacter la <?= $slug; ?></p>
+		<?php
+	}elseif($orga == 'assoc') { ?>
+			<p>Contacter l'association <?= $slug; ?></p>
+	<?php
 		}
 	} ?>
-  <form class="" action="<?php echo $this->url('racine_contact_send',['orga'=> $orga,'slug'=>$slug]); ?>" method="post">
+  <form class="" action="<?php echo $this->url('racine_contact_send',['orga'=> $orga,'slug'=>$slug]); ?>" method="POST">
     <label for="emeteur_pseudo">Pseudo</label><?php if(isset($error['emeteur_pseudo'])){ echo '<span>'.$error['emeteur_pseudo'].'</span>' ;} ?><br/>
-		<?php if($_SESSION['user']){
-			echo '<input type="text" name="emeteur_pseudo" value="'.$_SESSION['user']['pseudo'].'" readonly><br/>';
-		}else{
-		 echo '<input type="text" name="emeteur_pseudo" value=""><br/>';
+		<?php if($_SESSION['user']){ ?>
+			<input type="text" name="emeteur_pseudo" value="<?= $_SESSION['user']['pseudo']; ?>" readonly><br/>
+		<?php
+		}else{ ?>
+		 <input type="text" name="emeteur_pseudo" value=""><br/>
+		<?php
 	 	} ?>
     <label for="mail">Email</label><?php if(isset($error['mail'])){ echo '<span>'.$error['mail'].'</span>' ;} ?><br/>
-		<?php if($_SESSION['user']){
-			echo '<input type="text" name="mail" value="'.$_SESSION['user']['mail'].'" readonly><br/>';
-		}else{
-		 echo '<input type="text" name="mail" value=""><br/>';
+		<?php if($_SESSION['user']){ ?>
+		 <input type="text" name="mail" value="<?= $_SESSION['user']['mail']; ?>" readonly><br/>
+		<?php
+		}else{ ?>
+		 <input type="text" name="mail" value=""><br/>
+		<?php
 		} ?>
     <label for="objet">Objet</label><?php if(isset($error['objet'])){ echo '<span>'.$error['objet'].'</span>' ;} ?><br/>
     <select class="" name="objet"><?php
@@ -88,8 +71,9 @@ if(!isset($confirmation)){
     <input type="submit" name="submit" value="envoyer">
 
   </form>
-	<?php if($slug == 'All'){
-		echo '<br/>* : Pour toute inscription de mairie, <br/>nous vous recontacterons pour confirmation de votre identité';
+	<?php if($slug == 'All'){ ?>
+		<br/><p>* : Pour toute inscription de mairie, <br/>nous vous recontacterons pour confirmation de votre identité</p>
+	<?php
 	}
 }else {
 	echo $confirmation;

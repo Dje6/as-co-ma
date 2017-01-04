@@ -11,8 +11,9 @@
 
 <?php $this->start('main_content') ?>
 <?php
-if(isset($confirmation)){
-  echo '<span class="confirmForm">' . $confirmation . '</span>';
+if(isset($confirmation)){ ?>
+  <span class="confirmForm"><?= $confirmation; ?></span>
+  <?php
 }else { ?>
 
   <form class="formFront" action="<?php echo $this->url('default_desinscription',['orga'=>$orga,'slug'=>$slug]); ?>" method="POST">

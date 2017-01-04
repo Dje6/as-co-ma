@@ -205,10 +205,11 @@
 					<?php
 				}
 			}else {
-				//Sinon "Pas encore de news"
-				echo '<div class="row">';
-				echo '<h3 class="text-center"><b>' . $news . '. N\'hésitez pas à contacter votre Maire pour suggérer un article !</b></h3>';
-				echo '</div>';
+				//Sinon "Pas encore de news" ?>
+				<div class="row">
+					<h3 class="text-center"><b> <?= $news; ?> N\'hésitez pas à contacter votre Maire pour suggérer un article !</b></h3>
+				</div>
+	<?php
 			}
 		}
 	} ?>
