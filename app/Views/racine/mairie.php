@@ -96,10 +96,10 @@
 						<td>
 						<!-- Form abonnement newsletter des articles mairie -->
 							<form class="form-inline" action="<?php $this->url('racine_mairie',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
-								<?php if(isset($confirmation)){ echo '<span class="confirmForm">'.$confirmation.'</span>'; } ?>
-								<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span class="errorForm">'.$error['mail'].'</span>' ; } ?>
-								<div class="form-group">
+								<?php if(isset($confirmation)){ echo '<span class="confirmForm">'.$confirmation.'</span><br/>'; } ?>
+								<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span class="errorForm">'.$error['mail'].'</span><br/>' ; } ?>
 
+								<div class="form-group">
 									<input type="text" name="mail" class="form-control" placeholder="exemple@mail.com">
 								</div>
 
