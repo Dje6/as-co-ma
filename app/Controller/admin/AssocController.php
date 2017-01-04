@@ -11,6 +11,7 @@ use \W\Security\AuthentificationModel;
 use \Service\Slugify;
 use \Model\ContactModel;
 use \PHPMailer;
+use \Controller\admin\DestroyController;
 
 
 class AssocController extends CustomController
@@ -102,6 +103,7 @@ class AssocController extends CustomController
 
           if(isset($r_POST['nom'])){
             $r_POST['slug'] = Slugify::slugify($r_POST['nom']);
+            $slug_temp = $slug;
           }
 
           $id = $assocModel->FindElementByElement('id','slug',$slug);
@@ -109,6 +111,9 @@ class AssocController extends CustomController
           if(!$result){
             $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
+            if(isset($r_POST['nom'])){
+              $slug = $r_POST['slug'];
+            }
             $ArrayAvatar = $_FILES['avatar'];
             $ArrayBackground = $_FILES['background'];
             unset($_FILES['avatar']);
@@ -128,7 +133,7 @@ class AssocController extends CustomController
             }
 
             if(isset($r_POST['nom'])){
-              $roleSession = $this->in_multi_array_return_array_and_key($slug,$_SESSION['user']['roles']);
+              $roleSession = $this->in_multi_array_return_array_and_key($slug_temp,$_SESSION['user']['roles']);
               $_SESSION['user']['roles'][$roleSession['key']]['nom'] = $r_POST['nom'];
               $_SESSION['user']['roles'][$roleSession['key']]['slug'] = $r_POST['slug'];
 
@@ -156,83 +161,63 @@ class AssocController extends CustomController
       $rolesModel = New RolesModel;
       if($this->allowToTwo('Admin','Assoc',$slug)){
 
-         $slug = $this->nettoyage($slug);
-         $id_membre = $this->nettoyage($id);
-         $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
-         $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
-         $id_roles =  $resultat['id'];
-         $role = $resultat['role'];
-         if($role == 'Admin'){
-           $newRole = 'User';
-           $result = $rolesModel->update(['role' => 'User'],$id_roles);
-         }else {
-            $newRole = 'Admin';
-           $result = $rolesModel->update(['role' => 'Admin'],$id_roles);
-         }
-            if($result){
-              if($id_membre == $_SESSION['user']['id']){
-                 $pseudo = $_SESSION['user']['pseudo'];
-                 $authent = new AuthentificationModel();
-                 $authent->logUserOut();
-                 $get_user = new UserModel;
-                 $user = $get_user->getUserByUsernameOrEmail($pseudo);
+        $slug = $this->nettoyage($slug);
+        $id_membre = $this->nettoyage($id);
+        $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
+        $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
+        $id_roles =  $resultat['id'];
+        $role = $resultat['role'];
+        if($role == 'Admin'){
+          $newRole = 'User';
+          $result = $rolesModel->update(['role' => 'User'],$id_roles);
+        }else {
+          $newRole = 'Admin';
+          $result = $rolesModel->update(['role' => 'Admin'],$id_roles);
+        }
+        if($result){
+          if($id_membre == $_SESSION['user']['id']){
+            $pseudo = $_SESSION['user']['pseudo'];
+            $authent = new AuthentificationModel();
+            $authent->logUserOut();
+            $get_user = new UserModel;
+            $user = $get_user->getUserByUsernameOrEmail($pseudo);
 
-                 $authent->logUserIn($user);
-                 if($newRole == 'User'){
-                   $this->redirectToRoute('racine_assoc',['orga'=>'Assoc','slug' => $slug]);
-                 }elseif($newRole == 'Admin') {
-                   $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-                 }
-               }
-               $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-            } else {
-              $this->showErrors('Un poblème est survenu lors de la mise à jour du rôle');
+            $authent->logUserIn($user);
+            if($newRole == 'User'){
+              $this->redirectToRoute('racine_assoc',['orga'=>'Assoc','slug' => $slug]);
+            }elseif($newRole == 'Admin') {
+              $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
             }
+          }
+          $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+        } else {
+          $this->showErrors('Un poblème est survenu lors de la mise à jour du rôle');
+        }
       }
     }else {
       $this->redirectToRoute('racine_form');
     }
   }
 
-  public function homeDeleteUserAssoc($slug,$id)
+  public function homeDeleteUserAssoc($slug,$id_membre)
   {
     if(isset($_SESSION['user']))
     {
-      $assocModel = new AssocModel;
-      $rolesModel = New RolesModel;
       if($this->allowToTwo('Admin','Assoc',$slug)){
-
          $slug = $this->nettoyage($slug);
-         $id_membre = $this->nettoyage($id);
-         $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
-         $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
-         $id_roles =  $resultat['id'];
-         $role = $resultat['role'];
-         $result = $rolesModel->deleteRoles($id_roles,'id');
-            if($result){
-              $confirm = 'Le membre a bien été supprimé';
+         $id_membre = $this->nettoyage($id_membre);
+         $DestroyController = new DestroyController;
+         $resultat = $DestroyController->DeleteMembre($slug,$id_membre);
 
-              if($id_membre == $_SESSION['user']['id']){
-                 $pseudo = $_SESSION['user']['pseudo'];
-                 $authent = new AuthentificationModel();
-                 $authent->logUserOut();
-                 $get_user = new UserModel;
-                 $user = $get_user->getUserByUsernameOrEmail($pseudo);
-
-                 $authent->logUserIn($user);
-
-                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1,'confirmation'=>$confirm]);
-               } else {
-                 $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1,'confirmation'=>$confirm]);
-               }
-            } else {
-              $this->showErrors('Un problème est survenu lors de la suppression du rôle');
-            }
+         if(!$resultat){
+           $this->showErrors('Un problème est survenu lors de la suppression du membre');
+         }else {
+            $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+         }
       }
     }else {
       $this->redirectToRoute('racine_form');
     }
-
   }
 
 }

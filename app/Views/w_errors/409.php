@@ -15,7 +15,7 @@
         foreach ($value as $keyy => $valuey) {
           if(is_array($valuey)){
             foreach ($valuey as $keyx => $valuex) {
-              echo $valuex.'br/>;'
+              echo $valuex.'<br/>';
             }
           }else {
             echo $valuey.' <br>';

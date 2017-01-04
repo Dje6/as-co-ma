@@ -199,21 +199,23 @@ class NewsController extends CustomController
     }
   }
 //on supprime
-  public function delete($slug,$orga,$id,$page=1)
+  public function delete($slug,$orga,$id_news,$page=1)
   {
     if(isset($_SESSION['user']))
     {
       if($this->allowToTwo('Admin',ucfirst($orga),$slug)){
         $orga = $this->nettoyage($orga);
         $slug = $this->nettoyage($slug);
-        $id = $this->nettoyage($id);
+        $id_news = $this->nettoyage($id_news);
         $page = $this->nettoyage($page);
+                
+        $DestroyController = new DestroyController;
+        $resultat = $DestroyController->DeleteNews($id_news);
 
-        $NewsModel = new NewsModel;
-        if($NewsModel->delete($id)){
-          $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
-        }else {
+        if(!$resultat){
           $this->showErrors('Un problème est survenu lors de la suppression de l\'article.');
+        }else {
+           $this->redirectToRoute('admin_'.$orga.'_news',['slug'=> $slug,'orga' =>$orga,'page' => $page]);
         }
       }
     }else{

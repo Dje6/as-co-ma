@@ -208,7 +208,7 @@ if(isset($donnee)){
             }
             if(!isset($acces)){ ?>
               <a href="<?= $this->url('admin_mairie_edit_form', ['slug' => $slug]); ?>">
-              <button class="btn btn-primary centerBut">Modifier</button></a>';
+              <button class="btn btn-primary centerBut">Modifier</button></a>
             <?php } ?>
           </div>
         </div>

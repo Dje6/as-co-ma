@@ -27,7 +27,11 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
           <div class="panel panel-info">
             <div class="panel-heading">
+              <?php if(!isset($acces)){ ?>
               <h3 classe"userpseudo">Votre Pseudo  : <?= $_SESSION['user']['pseudo']; ?></h3><br/>
+              <?php }else { ?>
+                <h3 classe"userpseudo">Fiche de  : <?= $donnee['pseudo']; ?></h3><br/>
+              <?php  } ?>
             </div>
             <div class="panel-body">
               <div class="row">

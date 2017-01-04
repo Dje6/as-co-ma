@@ -116,17 +116,13 @@ class DestroyController extends CustomController
       }
   }
 
-  public function DeleteMembre($slug,$id_membre,$route=NULL,$argument=[])
+  public function DeleteMembre($slug,$id_membre)
   {
     $assocModel = new AssocModel;
     $rolesModel = New RolesModel;
     $id_assoc = $assocModel->FindElementByElement('id','slug',$slug);
-    $resultat = $rolesModel->FindRole($id_assoc,$id_membre);
 
-    $id_roles =  $resultat['id'];
-    $role = $resultat['role'];
-
-    if($this->deleteRole($id_roles,'id',$route,$argument)){
+    if($this->deleteRole($id_membre,'assoc')){
       return true;
     }
     return false;
@@ -146,9 +142,9 @@ class DestroyController extends CustomController
           return true;
         }
       }
+      return false;
     }
-
-    return false;
+    return true;
   }
 
   public function DeleteNews($id_news)
