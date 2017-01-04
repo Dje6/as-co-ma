@@ -207,7 +207,7 @@
 			}else {
 				//Sinon "Pas encore de news" ?>
 				<div class="row">
-					<h3 class="text-center"><b> <?= $news; ?> N\'hésitez pas à contacter votre Maire pour suggérer un article !</b></h3>
+					<h3 class="text-center"><b> <?= $news; ?> N'hésitez pas à contacter votre Maire pour suggérer un article !</b></h3>
 				</div>
 	<?php
 			}
