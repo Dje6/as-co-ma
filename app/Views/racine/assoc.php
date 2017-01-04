@@ -195,13 +195,13 @@
 								<footer><strong>Les Administrateurs</strong>, <cite title="Les Administrateurs">AS-CO-MA</cite></footer>
 							</blockquote>
 						</div>
-						<?php $this->stop('main_content') ?>
+<?php $this->stop('main_content') ?>
 
 
 
 
-						<?php $this->start('main_script') ?>
-						<!-- //ici les script js de la Page courante UNIQUEMENT -->
-						<!-- //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
-						<script type="text/javascript" src="<?= $this->assetUrl('js/app-news.js'); ?>"></script>
-						<?php $this->stop('main_script') ?>
+<?php $this->start('main_script') ?>
+<!-- //ici les script js de la Page courante UNIQUEMENT -->
+<!-- //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
+<script type="text/javascript" src="<?= $this->assetUrl('js/app-news.js'); ?>"></script>
+<?php $this->stop('main_script') ?>
