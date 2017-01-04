@@ -112,7 +112,7 @@
           </span>
           <?php }else { ?>
           <span class="col-xs-12 col-sm-3">
-            <a href="<?php echo $this->ur l('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-success ">Activer</button></a>
+            <a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-success ">Activer</button></a>
           </span>
           <?php } ?>
           <span class="col-xs-12 col-sm-3">
