@@ -42,46 +42,47 @@ if(isset($donnees)){
             <img alt="User Pic" src="<?= $this->assetUrl($value['picture']) ?>"
             class="img-responsive "><?php
           }else { ?>
-            <p>Image : pas d'image</p><br/><?php
+            <p class="textnews">Image : pas d'image</p><br/><?php
           } ?>
           <br/><p class="textnews"><br> <?php echo $value['content']; ?></p><br/>
-          <p>Crée le : <?php echo $value['created_at']; ?></p><?php
+          <p class="textnews">Crée le : <?php echo $value['created_at']; ?></p><?php
           if(!empty($value['updated_at'])){ ?>
 
-            <p>Modifié le : <?php echo $value['updated_at']; ?></p><br/><?php
+            <p class="textnews">Modifié le : <?php echo $value['updated_at']; ?></p><br/><?php
           }
           if(!empty($value['newsletter'])){ ?>
-            <p>NewsLetter Envoyée : <?php echo $value['newsletter']; ?></p><br/><?php
+            <p class="textnews">NewsLetter Envoyée : <?php echo $value['newsletter']; ?></p><br/><?php
 
           } ?>
 
           <a href="<?php echo $this->url('admin_'.$orga.'_update_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-            <button class="btn btn-success padd">Modifier</button>
+            <button class="btn btn-success padd margin1">Modifier</button>
           </a>
           <?php
           if($value['status'] == 'Activer'){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug ,'page' => $page]); ?> ">
-              <button class="btn btn-warning padd">Désactiver</button>
+              <button class="btn btn-warning padd margin1">Désactiver</button>
             </a><?php
           }else {  ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-              <button class="btn btn-warning padd">Activer</button>
+              <button class="btn btn-warning padd margin1">Activer</button>
             </a><?php
           }?>
           <a href="<?php echo $this->url('admin_'.$orga.'_delete_news',['id' => $value['id'],
           'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-          <button class="btn btn-danger padd">Supprimer</button>
+          <button class="btn btn-danger padd margin1">Supprimer</button>
         </a><?php
           if(empty($value['newsletter'])){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_newsletter',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-            <button class="btn btn-success">Déclencher la NewsLetter</button>
+            <button class="btn btn-success margin1">Déclencher la NewsLetter</button>
           </a><br><?php
-          }
-        }?>
-      </div><?php
+        } ?>
+          </div>
+      <?php }
+
 			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
 				echo $pagination;
 			}

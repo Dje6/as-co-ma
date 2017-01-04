@@ -98,21 +98,21 @@ if($orga == 'mairie'){
       echo '<div class="container">';
       foreach ($donnee as $key => $value) { ?>
         <div class="row col-xs-12 listing">
-          <span class="col-xs-12 col-sm-2"><?php echo $value['nom'].' : '.$value['status']; ?></span>
-          <span class="col-xs-12 col-sm-2">
+          <span class="col-xs-12 col-sm-3"><?php echo $value['nom'].' : '.$value['status']; ?></span>
+          <span class="col-xs-12 col-sm-3">
             <a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]);?>"><button class="btn btn-info ">Consulter</button></a>
           </span>
           <!-- <td><a href="<?php echo $this->url('admin_mairie_contact_assoc',['slugE' => $slug,'slugR' => $value['slug']]);?>"><button class="btn btn-info ">Contacter</button></a></td> -->
           <?php if($value['status'] == 'Actif'){ ?>
-          <span class="col-xs-12 col-sm-2">
+          <span class="col-xs-12 col-sm-3">
             <a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-warning ">Suspendre</button></a>
           </span>
           <?php }else { ?>
-          <span class="col-xs-12 col-sm-2">
+          <span class="col-xs-12 col-sm-3">
             <a href="<?php echo $this->url('admin_webmaster_edit_status',['id' => $value['id']]);?>"><button class="btn btn-success ">Activer</button></a>
           </span>
           <?php } ?>
-          <span class="col-xs-12 col-sm-2">
+          <span class="col-xs-12 col-sm-3">
             <a href="<?php echo $this->url('admin_webmaster_delete_mairie',['id' => $value['id']]);?>"><button class="btn btn-danger ">Supprimer</button></a>
           </span>
         </div>

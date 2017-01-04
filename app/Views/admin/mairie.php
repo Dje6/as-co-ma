@@ -28,9 +28,9 @@ if(isset($donnee)){
               <form method="POST" enctype="multipart/form-data" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
                 <div class="panel-body"><?php
                 if(!isset($creation)){ //uniquement si la creation est deja faite ?>
-                  <p class="couleur_bleue">Si votre ville est concernée par un regroupement communal,</p>
-                  <p class="couleur_bleue">Si votre ville procéde à une modification de nom,</p>
-                  <p class="couleur_bleue">Merci de nous en informer en cliquant sur "contacter le webmaster".</p>
+                  <p class="couleur_bleue margin1">Si votre ville est concernée par un regroupement communal,</p>
+                  <p class="couleur_bleue margin1">Si votre ville procéde à une modification de nom,</p>
+                  <p class="couleur_bleue margin1">Merci de nous en informer en cliquant sur <b>"Contacter le Webmaster"</b>.</p>
                   <?php
                 } ?>
 
@@ -178,7 +178,7 @@ if(isset($donnee)){
         <div class="row">
           <div class='colxs-12 col-md-5 col-md-offset-1'><?php
             if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
-             <h3 class=""><?php echo $donnee['nom'] ; ?></h3><?php
+             <h3 class="taille"><?php echo $donnee['nom'] ; ?></h3><?php
             }
             if(empty($donnee['adresse'])){ $donnee['adresse'] = 'Non Renseignée' ; } ?>
             <h3 class="">Adresse : <?php echo $donnee['adresse'] ; ?></h3><?php
@@ -208,7 +208,7 @@ if(isset($donnee)){
             }
             if(!isset($acces)){ ?>
               <a href="<?= $this->url('admin_mairie_edit_form', ['slug' => $slug]); ?>">
-              <button class="btn btn-primary centerBut">Modifier</button></a>';
+              <button class="btn btn-primary centerBut">Modifier</button></a>
             <?php } ?>
           </div>
         </div>

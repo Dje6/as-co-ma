@@ -65,25 +65,25 @@ if(isset($donnees)){
 
           if(isset($value['destinataire_pseudo'])){
           // si on est dans les message envoyer il affiche ca ?>
-            <h3>Destinataire : <?= $value['destinataire_pseudo']; ?></h3>
-            <p>Email : <?= $value['destinataire_mail']; ?></p><br/>
+            <h3 class="padleft4">Destinataire : <?= $value['destinataire_pseudo']; ?></h3>
+            <p class="padleft4">Email : <?= $value['destinataire_mail']; ?></p><br/>
           <?php }else {
           //sinon c'est ca ?>
-            <h3>Emetteur : <?= $value['emeteur_pseudo']; ?></h3>
-            <p>Email : <?= $value['emeteur_mail']; ?></p><br/>
+            <h3 class="padleft4">Emetteur : <?= $value['emeteur_pseudo']; ?></h3>
+            <p class="padleft4">Email : <?= $value['emeteur_mail']; ?></p><br/>
           <?php } ?>
-    				<p>Objet : <?= $value['objet']; ?></p>
-    				<p>Message : <?= $value['contenu']; ?></p>
-    				<p>Envoye le : <?= $value['date_envoi']; ?></p><br/>
+    				<p class="padleft4">Objet : <?= $value['objet']; ?></p>
+    				<p class="padleft4">Message : <?= $value['contenu']; ?></p>
+    				<p class="padleft4">Envoye le : <?= $value['date_envoi']; ?></p><br/>
         <?php if($value['status'] == 'lu'){
           //si le statu est a lu , on affiche la date de lecture ?>
-            <p>Lu le : <?= $value['date_lecture']; ?></p><br/>
+            <p class="padleft4">Lu le : <?= $value['date_lecture']; ?></p><br/>
         <?php }elseif ($value['status'] != 'lu' && $value['status'] != 'non-lu') {
           //si une reponse a ete faite a ce message on indique la date de reponse
           //qui es la meme date que pour la lecture mais mise a jour ?>
-            <p>Repondu le : <?= $value['date_lecture']; ?></p><br/>
+            <p class="padleft4">Repondu le : <?= $value['date_lecture']; ?></p><br/>
           <?php } ?>
-          <p>Status : <?= $value['status']; ?></p><br/><br>
+          <p class="padleft4">Status : <?= $value['status']; ?></p><br/><br>
           <?php
           preg_match_all('/inscript/', $value['objet'], $matches);
           // on detect si il s'agit dune demande d'inscription
@@ -95,24 +95,24 @@ if(isset($donnees)){
 
             <a href="<?php echo $this->url('admin_decide',['id' => $value['id'],'orga' => $orga,
             'slug' => $slug,'decision'=>'Accepter']); ?> ">
-              <button class="btn btn-success">Accepter</button>
+              <button class="btn btn-success margin1">Accepter</button>
             </a>
             <a href="<?php echo $this->url('admin_decide',['id' => $value['id'],'orga' => $orga,
             'slug' => $slug,'decision'=>'Plus-Info']); ?> ">
-              <button class="btn btn-warning">Manque d'informations</button>
+              <button class="btn btn-warning margin1">Manque d'informations</button>
             </a>
             <a href="<?php echo $this->url('admin_decide',['id' => $value['id'],'orga' => $orga,
             'slug' => $slug,'decision'=>'Refuser']); ?> ">
-              <button class="btn btn-danger">Refuser</button>
+              <button class="btn btn-danger margin1">Refuser</button>
             </a><?php
 
           }elseif ((!empty($matches2[0]) && $value['status'] == 'non-lu' && $orga == 'user')) {
             ?>
              <a href="<?php echo $this->url('admin_invitation_decision',['id' => $value['id'],'decision'=>'Accepter']); ?> ">
-               <button class="btn btn-success">Accepter</button>
+               <button class="btn btn-success margin1">Accepter</button>
              </a>
              <a href="<?php echo $this->url('admin_invitation_decision',['id' => $value['id'],'decision'=>'Refuser']); ?> ">
-               <button class="btn btn-danger">Refuser</button>
+               <button class="btn btn-danger margin1">Refuser</button>
              </a><?php
           }else{
           //sinon j'affiche les autre bouton
@@ -120,7 +120,7 @@ if(isset($donnees)){
             //si on es un user , on ne peu que repondre , declarer Lu ou le supprimer
               if(!isset($value['destinataire_pseudo'])){ ?>
                 <a href="<?php echo $this->url('admin_repondre_User',['id'=> $value['id']]) ; ?>">
-                  <button class="btn btn-primary">Répondre</button>
+                  <button class="btn btn-primary margin1">Répondre</button>
                 </a><?php
               }
             }else {
@@ -128,7 +128,7 @@ if(isset($donnees)){
               if(!isset($value['destinataire_pseudo']) && ($value['status'] == 'non-lu' || $value['status'] == 'lu')){
                 // le bouton repondre quan on es un organisme ne safiche que sous plusieur condition ?>
                 <a href="<?php echo $this->url('admin_repondre',['id'=> $value['id'],'orga' => $orga,'slug' => $slug]) ; ?>">
-                  <button class="btn btn-primary">Répondre</button>
+                  <button class="btn btn-primary margin1">Répondre</button>
                 </a><?php
               }
             }
@@ -136,13 +136,13 @@ if(isset($donnees)){
             //le bouton pour declarer le message comme lu ne safiche QUE si on es mode boite de reception et si le message
             // n'a pas encor ete lu ?>
               <a href="<?php echo $this->url('admin_message_asSeen',['id'=> $value['id'],'orga' => $orga,'slug' => $slug,'page' => $page]) ; ?>">
-                <button class="btn btn-success">Lu</button>
+                <button class="btn btn-success margin1">Lu</button>
               </a><?php
             }
             //le bouton supprimer lui saffiche tout le temp dés lors que ce n'est pas une demande dinscritpion ou
             //Si s'en est une ,il ne saffiche qui si la demande a ete traiter ?>
             <a href="<?php echo $this->url('admin_message_delete',['id'=> $value['id'],'orga' => $orga,'slug' => $slug,'page' =>$page]) ; ?>">
-              <button class="btn btn-danger">supprimer</button>
+              <button class="btn btn-danger margin1">supprimer</button>
             </a><?php
           }?>
           <br/>
