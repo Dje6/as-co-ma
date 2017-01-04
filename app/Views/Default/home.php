@@ -78,7 +78,7 @@
 	<div class="row">
 		<blockquote class="presentSite blockquote-reverse">
 		  <p class="text-justify">
-				<strong>AS-CO-MA</strong> offre la possibilité aux utilisateurs (Maire, Conseil municipal...) d'enregistrer la mairie qu'ils administrent. Il laisse également la possibilité aux présidents d'associations de les inscrire auprès des mairies dont ils dépendent.<br>
+				<strong>AS-CO-MA</strong> offre la possibilité à des utilisateurs (Maire, Conseil municipal...) d'enregistrer la mairie qu'ils administrent. Il laisse également la possibilité aux présidents d'associations de les inscrire auprès des mairies dont ils dépendent.<br>
 				Aux utilisateurs du site appartenant à ces associations, nous leur laissons la possibilité de consulter les derniers articles postés par les mairies, les associations, mais aussi d'avoir accès à un système de contact simple d'utilisation.<br>
 				Toutes les informations (adresses, contacts, horaires d'ouverture, articles...) sont libres d'accès, mais dès lors que vous souhaitez participer à la vie active du site, une inscription vous sera demandée avec vos informations personnelles, permettant ainsi à tout utilisateur (ainsi qu'à l'équipe du site) de vous contacter rapidement.
 			</p>

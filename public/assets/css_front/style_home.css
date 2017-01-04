@@ -1,15 +1,8 @@
 /*////////////////////////////////////////*/
-/*STYLE TITRE SUR HOME (viré) */
-/*////////////////////////////////////////*/
-/*.titre_home {
-  font-weight: 900;
-  font-style: oblique;
-}*/
-
-/*////////////////////////////////////////*/
 /*STYLE BLOCKQUOTE SUR HOME*/
 /*////////////////////////////////////////*/
 .presentSite {
+  max-width: 940px;
   margin: 2em auto;
   border: 2px solid #6aa33b;
   border-radius: 5px;
