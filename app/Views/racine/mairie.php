@@ -136,14 +136,17 @@
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1297.0962810775059!2d1.098189548172286!3d49.44307742382861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e0ddd5c7e15663%3A0x6bc2b11371fda7d8!2s2+Place+du+G%C3%A9n%C3%A9ral+de+Gaulle%2C+76000+Rouen!5e0!3m2!1sfr!2sfr!4v1483022647507" width="600" height="250" style="border:0" allowfullscreen></iframe>
 			<?php } elseif ($slug == 'mairie-de-bourneville') { ?>
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5193.9894418604845!2d0.6184841296266613!3d49.390091859464555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e0549bb805dc1f%3A0x22ac955b307c448a!2s1+Place+de+la+Mairie%2C+27500+Bourneville!5e0!3m2!1sfr!2sfr!4v1483023852000" width="600" height="250" style="border:0" allowfullscreen></iframe>
-			<?php } else { ?>
+			<?php } elseif ($slug = 'mairie-d-epaignes') { ?>
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.8388259038547!2d0.43869151379403665!3d49.27945117336963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf6c2f6bfa27f06f5!2sMairie!5e0!3m2!1sfr!2sfr!4v1483023362144" width="600" height="250" style="border:0" allowfullscreen></iframe>
 			<?php } ?>
 		</div>
 
 <?php
 		} else {
-			echo $donnees;
+			header('location: '. $this->url('default_home'));
+			// echo '<div class="row formFront">';
+			// echo '<h3 class="text-center" style="color:maroon"><b>' . $donnees . ' N\'hésitez pas à contacter les administrateurs d\'AS-CO-MA pour enregistrer votre Mairie !</b></h3>';
+			// echo '</div>';
 		}
 	} ?>
 
