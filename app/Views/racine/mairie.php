@@ -48,8 +48,9 @@
 					</a>
 
 	<?php }
-		} else {
-			echo '<span class="errorForm">' . $donnees . '</span>';
+} else { ?>
+			<span class="errorForm"><?= $donnees; ?></span>
+  <?php
 		}
 	} ?>
 </div>
@@ -82,11 +83,11 @@
 					</tr>
 					<tr>
 
-	<?php			echo '<td>' . $donnees['adresse'] . '</td>';
-						echo '<td>' . $donnees['code_postal'] . '</td>';
-						echo '<td>' . $donnees['ville'] . '</td>';
-						echo '<td><a href="tel:'.$donnees['fix'].'">'.$donnees['fix'].'</a></td>';
-						echo '<td><a href="mailto:'.$donnees['mail'].'">'.$donnees['mail'] . '</a></td>'; ?>
+	      		<td><?= $donnees['adresse']; ?></td>
+						<td><?= $donnees['code_postal']; ?></td>
+						<td><?= $donnees['ville']; ?></td>
+						<td><a href="tel:<?= $donnees['fix']; ?>"><?= $donnees['fix']; ?></a></td>
+						<td><a href="mailto:<?= $donnees['mail']; ?>"><?= $donnees['mail']; ?></a></td>
 						<td>
 							<a href="<?php echo $this->url('racine_contact',['orga' => 'mairie' ,'slug' => $slug]); ?>">
 								<button class="btn btn-success btn-xs">Contacter la Mairie</button>
@@ -117,8 +118,9 @@
 						<th>Dimanche</th>
 					</tr>
 					<tr>
-	<?php		foreach (unserialize($donnees['horaire']) as $key => $value) {
-						echo '<td>' . $value . '</td>';
+	<?php		foreach (unserialize($donnees['horaire']) as $key => $value) { ?>
+						<td><?= $value; ?></td>
+						<?php
 					} ?>
 					</tr>
 				</table>
