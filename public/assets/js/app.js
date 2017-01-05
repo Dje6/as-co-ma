@@ -7,11 +7,11 @@ $(function(){
 // Mise en place du scrollTop
 $(document).ready(function () {
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-        $('.return').fadeIn();
-    } else {
-        $('.return').fadeOut();
-    }
+    // if ($(this).scrollTop() > 100) {
+    //     $('.return').fadeIn();
+    // } else {
+    //     $('.return').fadeOut();
+    // }
   });
   $('.return').click(function () {
     $("html, body").animate({
@@ -19,4 +19,17 @@ $(document).ready(function () {
     }, 600);
     return false;
   });
+});
+
+// deroule les CGU
+$('#toggleCGU').click(function(event) {
+	event.preventDefault();
+
+	$('.cguHidden').slideToggle("slow");
+
+	if ($(this).text() == 'Dérouler') {
+		$(this).text('Cacher');
+	} else {
+		$(this).text('Dérouler');
+	}
 });
