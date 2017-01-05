@@ -44,7 +44,7 @@ if(isset($donnees)){
           }else { ?>
             <p class="textnews">Image : pas d'image</p><br/><?php
           } ?>
-          <br/><p class="textnews"><br> <?php echo $value['content']; ?></p><br/>
+          <br/><p class="textnews"><br> <?= nl2br($value['content']); ?></p><br/>
           <p class="textnews">Crée le : <?php echo $value['created_at']; ?></p><?php
           if(!empty($value['updated_at'])){ ?>
 

@@ -189,7 +189,7 @@
 
 								<!-- Contenu de la news -->
 								<h3 class="text-justify">
-									<?php echo $value['content']; ?>
+									<?= nl2br($value['content']); ?>
 									<!-- effet de flou pour masquer le reste du texte -->
 									<div class="blank"></div>
 								</h3>

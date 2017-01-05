@@ -60,11 +60,15 @@
 /*STYLE CGU via HOME*/
 /*////////////////////////////////////////*/
 .cgu {
+  position: relative;
   border: 2px solid #6aa33b;
   border-radius: 5px;
   background-color: rgba(106, 163, 59, 0.5);
   padding: 20px;
   box-shadow: 5px 5px 5px #888888;
+}
+.cguHidden {
+  display: none;
 }
 .cgu h2 {
   font-weight: bolder;
@@ -72,4 +76,10 @@
 }
 .cgu h3 {
   font-style: italic;
+}
+#toggleCGU {
+  position: relative;
+  left: 45%;
+  bottom: 45px;
+  border-radius: 50%;
 }
