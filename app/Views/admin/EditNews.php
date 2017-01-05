@@ -20,9 +20,8 @@ if(!isset($confirmation)){ ?>
 
 <!-- // debut du formulaire intégré -->
 
-<div class="container fichecontact">
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 col-centered ">
+<div class="container-fluid col-md-10 col-md-offset-2 fichecontact">
+    <div class="col-md-10 col-md-offset-2 col-centered ">
       <div class="panel panel-default ">
         <form class="" enctype="multipart/form-data"  action="<?php echo $urlPost; ?>" method="post">
           <div class="panel-body">
@@ -78,7 +77,6 @@ if(!isset($confirmation)){ ?>
         </form>
       </div>
     </div>
-  </div>
 </div>
 <!-- // fin du formulaire intégré -->
 <?php

@@ -10,16 +10,14 @@
 <h1 class="titreback">Administration</h1><br/>
 
 <!-- liste s'occupe d'afficher les boutons dans liste menbre et liste association , sur le back -->
-<div class="container affichage">
-  <div class="row">
+<div class="container-fluid col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 affichage">
     <?php
     if($orga == 'mairie'){
       if(isset($donnee)){
         if(is_array($donnee)){
-          echo '<div class="container">';
           foreach ($donnee as $key => $value) { ?>
             <div class="row col-xs-12">
-              <span class="col-xs-12 col-sm-2"><?php echo $value['nom']; ?></span>
+              <span class="col-xs-12 col-sm-4"><?php echo $value['nom']; ?></span>
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button class="btn btn-info ">Consulter</button></a>
               </span>
@@ -41,7 +39,6 @@
             </div>
     <?php
           }
-          echo '</div>';
         }else{
           echo $donnee;
         }
@@ -61,11 +58,10 @@
 
       if(isset($donnee)){
         if(is_array($donnee)){
-          echo '<div class="container">';
           foreach ($donnee as $key => $value) { ?>
-            <div class="row col-xs-12 listing">
+            <div class="row col-xs-12 ">
 
-              <span id="span_roles<?php echo $value['id']; ?>" class="col-xs-12 col-sm-2 <?php echo $value['pseudo']; ?>"><?php echo $value['pseudo'].' : '.$value['role']; ?></span>
+              <span id="span_roles<?php echo $value['id']; ?>" class="col-xs-12 col-sm-3 <?php echo $value['pseudo']; ?>"><?php echo $value['pseudo'].' : '.$value['role']; ?></span>
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info ">Consulter</button></a>
               </span>
@@ -73,12 +69,12 @@
                 <a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info ">Contacter</button></a>
               </span>
               <?php if($value['role'] == 'Admin'){ ?>
-                <span class="col-xs-12 col-sm-2">
-                  <a class="update_user <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning update_user_btn<?php echo $value['id']; ?> ">Passer en mode User</button></a>
+                <span class="col-xs-12 col-sm-3">
+                  <a class="update_user <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning update_user_btn<?php echo $value['id']; ?> ">Attribuer role User</button></a>
                 </span>
               <?php }else{ ?>
-                <span class="col-xs-12 col-sm-2">
-                  <a class="update_admin <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning update_admin_btn<?php echo $value['id']; ?> ">Passer en mode Admin</button></a>
+                <span class="col-xs-12 col-sm-3">
+                  <a class="update_admin <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning update_admin_btn<?php echo $value['id']; ?> ">Attribuer role Admin</button></a>
                 </span>
               <?php } ?>
                 <span class="col-xs-12 col-sm-2">
@@ -88,7 +84,6 @@
             <?php
 
           }
-          echo '</div>';
         }else{
           echo $donnee;
         }
@@ -98,10 +93,9 @@
 }elseif ($orga == 'webmaster') {
   if(isset($donnee)){
     if(is_array($donnee)){
-      echo '<div class="container">';
       foreach ($donnee as $key => $value) { ?>
-        <div class="row col-xs-12 listing">
-          <span class="col-xs-12 col-sm-3"><?php echo $value['nom'].' : '.$value['status']; ?></span>
+        <div class="row col-xs-12">
+          <span class="col-xs-12 col-sm-4"><?php echo $value['nom'].' : '.$value['status']; ?></span>
           <span class="col-xs-12 col-sm-2">
             <a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => $value['slug']]);?>"><button class="btn btn-info ">Consulter</button></a>
           </span>
@@ -121,13 +115,11 @@
         </div>
         <?php
            }
-          echo '</div>';
         }else{
           echo $donnee;
         }
       }
     } ?>
-  </div>
  </div>
 
 <a href="#" class="btn btn-info return">Retour en haut</a>

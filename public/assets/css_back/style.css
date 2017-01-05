@@ -1,3 +1,7 @@
+#navbar2 li{
+	width: 100%;
+	float: left;
+}
 html, body {
 	font-family: 'Arvo', serif;
 	/*font-family: Consolas, monaco, monospace;*/
@@ -22,7 +26,7 @@ h3 {
 }
 /*MAIN CONTENT*/
 .main_content {
-	margin-top: 5em;
+
 	margin-bottom: 3em;
 }
 
@@ -76,6 +80,7 @@ padding: 0;
   z-index: 20;
 }*/
 .return {
+	
 		display: none;
 }
 button.btn.btn-success.btn-xs.return{
@@ -288,8 +293,6 @@ button[type="reset"]    {
 		background-image: url('../img/backblanc.png');
 		background-repeat: no-repeat;
 		background-size: cover;
-	  margin-left: auto;
-		margin-right: auto;
 		border: 3px solid #99ccff;
 		color: #108fcc;
 		border-radius: 10px;
@@ -301,29 +304,16 @@ button[type="reset"]    {
 }
 .affichage {
 	background-image: url('../img/backblanc.png');
-	margin-left: auto;
-	margin-right: auto;
 	border: 3px solid #99ccff;
 	color: #108fcc;
 	border-radius: 10px;
 	padding: 1em;
 }
-/*.affichage table tr {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}*/
-/*@media screen and (min-width: 768px) {
-	.affichage {
-		background-image: url('../img/backblanc.png');
-		margin-left: auto;
-		margin-right: auto;
-		border: 3px solid #99ccff;
-		color: #108fcc;
-		border-radius: 10px;
-		padding: 1em;
-	}
-}*/
+.marginR
+{
+	margin-right: 5%;
+}
+
 .bouge {
 	padding: 15px;
 	margin:  25px ;
@@ -334,8 +324,8 @@ button[type="reset"]    {
 	background-image: url('../img/backblanc.png');
 	background-repeat: no-repeat;
 	background-size: cover;
-	margin-left: auto;
-	margin-right: auto;
+	/*margin-left: auto;
+	margin-right: auto;*/
 	border: 3px solid #99ccff;
 	color: #108fcc;
 	border-radius: 10px;

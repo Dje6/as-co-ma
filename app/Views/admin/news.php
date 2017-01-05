@@ -34,7 +34,7 @@ if(isset($donnees)){
       }
       ?>
 
-      <div class="container affichageMairie"><?php
+      <div class="container-fluid col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 affichageMairie"><?php
   			foreach ($donnees as $key => $value) { ?>
           <div class="thumbnail">
           <h2> <?php echo $value['title']; ?></h2><br/>
@@ -56,28 +56,28 @@ if(isset($donnees)){
           } ?>
 
           <a href="<?php echo $this->url('admin_'.$orga.'_update_news',['id' => $value['id'],'orga' => $orga,'slug' => $slug]); ?> ">
-            <button class="btn btn-success padd margin1">Modifier</button>
+            <button class="btn btn-success ">Modifier</button>
           </a>
           <?php
           if($value['status'] == 'Activer'){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug ,'page' => $page]); ?> ">
-              <button class="btn btn-warning padd margin1">Désactiver</button>
+              <button class="btn btn-warning ">Désactiver</button>
             </a><?php
           }else {  ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_status_news',['id' => $value['id'],
             'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-              <button class="btn btn-warning padd margin1">Activer</button>
+              <button class="btn btn-warning ">Activer</button>
             </a><?php
           }?>
           <a href="<?php echo $this->url('admin_'.$orga.'_delete_news',['id' => $value['id'],
           'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-          <button class="btn btn-danger padd margin1">Supprimer</button>
+          <button class="btn btn-danger ">Supprimer</button>
         </a><?php
           if(empty($value['newsletter'])){ ?>
             <a href="<?php echo $this->url('admin_'.$orga.'_newsletter',['id' => $value['id'],
-            'orga' => $orga,'slug' => $slug,'page' => $page]); ?> ">
-            <button class="btn btn-success margin1">Déclencher la NewsLetter</button>
+            'orga' => $orga,'slug' => $slug,'page' => $page]); ?> " class="marginR">
+            <button class="btn btn-success marginR ">Déclencher la NewsLetter</button>
           </a><br><?php
         } ?>
           </div>

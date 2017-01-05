@@ -60,7 +60,7 @@ if(isset($donnees)){
       ?>
 
 
-      <div class="container affichageMairie"><?php
+      <div class="container-fluid col-md-12 col-offset-0 col-lg-10 col-lg-offset-1 affichageMairie"><?php
   			foreach ($donnees as $key => $value) {
 
           if(isset($value['destinataire_pseudo'])){

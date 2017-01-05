@@ -20,9 +20,8 @@ if(isset($donnee)){
   if(is_array($donnee)){
     if(isset($edition) && !isset($acces)){ ?>
 
-      <div class="container fichecontact ">
-        <div class="row ">
-          <div class="col-sm-8 col-sm-offset-2 ">
+      <div class="container-fluid fichecontact ">
+          <div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1">
             <div class="panel panel-default">
 
               <form method="POST" enctype="multipart/form-data" action ="<?php echo $this->url('admin_mairie_edit_post', ['slug' => $slug]);?>">
@@ -154,13 +153,12 @@ if(isset($donnee)){
                 </div>
               </form>
             </div>
-          </div>
         </div>
       </div>
 
       <?php
     }else { ?>
-      <div class="container affichageMairie">
+      <div class="container-fluid affichageMairie col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1">
         <div class="col-md-12 col-lg-12">
         <?php
       //affichage de lavatar de la mairie
@@ -212,7 +210,7 @@ if(isset($donnee)){
             <?php } ?>
           </div>
         </div>
-      </div><?php
+    </div><?php
     }
   }else{ ?>
     <div class="container affichageMairie">

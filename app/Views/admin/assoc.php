@@ -19,9 +19,8 @@ if(isset($donnee)){
     if(isset($edition) && !isset($acces)){
       if(isset($bug)){ echo $bug ; } ?>
 
-      <div class="container fichecontact">
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2">
+      <div class="container-fluid fichecontact">
+          <div class="col-md-10 col-md-offset-2">
             <div class="panel panel-default">
               <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_assoc_edit_post',['slug' => $slug]);?>">
                 <div class="panel-body"><?php
@@ -126,12 +125,11 @@ if(isset($donnee)){
                 </div>
               </form>
             </div>
-          </div>
         </div>
       </div>
       <?php
     }else { ?>
-      <div class="container affichageMairie">
+      <div class="container-fluid affichageMairie">
         <div class="col-md-12 col-lg-12"><?php
           //affichage de lavatar de la mairie
           //si il ny en pas on affiche une image neutre

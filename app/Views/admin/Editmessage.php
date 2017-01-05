@@ -44,9 +44,9 @@ if(!isset($confirmation)){ ?>
 
 <!-- // debut du formulaire intégré -->
 
-<div class="container fichecontact">
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 col-centered ">
+<div class="container-fluid fichecontact">
+
+    <div class="col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 col-centered ">
       <div class="panel panel-default ">
         <form class="" action="<?php echo $urlDePost; ?>" method="post">
           <div class="panel-body">
@@ -84,7 +84,6 @@ if(!isset($confirmation)){ ?>
         </form>
       </div>
     </div>
-  </div>
 </div>
 
 <!-- // fin du formulaire intégré -->

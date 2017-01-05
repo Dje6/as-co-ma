@@ -3,10 +3,11 @@
 
 if($w_current_route == 'admin_repondre_User'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id']]);
-  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à '.$leMessage['emeteur_pseudo'].'</div>';
+  $quiContacter = '<div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered couleur_bleue"><h1> Répondre à '.$leMessage['emeteur_pseudo'].'</h1></div>';
+  $orga = NULL;
 }elseif($w_current_route == 'admin_repondre'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id'],'slug' => $slug,'orga' => $orga]);
-  $quiContacter = '<div class="col-sm-8 col-sm-offset-4 col-centered couleur_bleue"> Répondre à '.$leMessage['emeteur_pseudo'].'</div>';
+  $quiContacter = '<div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered couleur_bleue"><h1> Répondre à '.$leMessage['emeteur_pseudo'].'</h1></div>';
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
@@ -28,9 +29,9 @@ if(!isset($confirmation)){ ?>
 
 <!-- // debut du formulaire intégré -->
 
-<div class="container fichecontact">
+<div class="container-fluid fichecontact">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2 col-centered ">
+    <div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered ">
       <div class="panel panel-default">
         <form class="" action="<?php echo $urldePost; ?>" method="post">
           <div class="panel-body">

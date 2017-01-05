@@ -102,6 +102,8 @@
 				</ul>
 			</div>
 		 </nav>
+	 </div>
+	</div>
 				<?php
 				if(!empty($orga) && $orga != 'user'){
 
@@ -109,7 +111,8 @@
 					if(isset($slug) && !empty($slug) && !isset($creation)){
 						 $nom_orga = '<h1 id="menu_back" class="Nom_Orga col-xs-12 col-md-12">'.$this->unslug($slug).'</h1>' ;
 					 } ?>
-
+			<div class="navbar-wrapper">
+				<div class="container-fluid">
 					<nav class="navbar navbar-inverse navbar-static-top col-md-2 test">
 						<?php if(isset($nom_orga)){ echo $nom_orga;} ?>
 						<div class="navbar-header">
@@ -120,7 +123,7 @@
 								<span class="icon-bar"></span>
 							</button>
 						</div>
-					<div id="navbar2" class=" col-xs-offset-0 col-md-offset-3 container-fluid navbar-collapse collapse" ><?php
+					<div id="navbar2" class=" col-xs-offset-0 container-fluid navbar-collapse collapse" ><?php
 
 					if($orga == 'mairie'){ ?>
 
@@ -184,12 +187,14 @@
 					} ?>
 				</div>
 			</nav><?php
-				}
+		}else { ?>
+			<div class="col-md-2">
+			</div> <?php
+		}
 				 ?>
-	 </div>
- </div>
 
-		<section class="main_content">
+
+		<section class="main_content col-md-8">
 			<?= $this->section('main_content') ?>
 		</section>
 
