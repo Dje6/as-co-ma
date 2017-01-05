@@ -33,7 +33,7 @@
         Il est possible de créer un lien vers la page de présentation de ce site sans autorisation expresse des développeurs. Aucune autorisation ou demande d’information préalable ne peut être exigée par les développeurs à l’égard d’un site qui souhaite établir un lien vers le site. Il convient toutefois d’afficher ce site dans une nouvelle fenêtre du navigateur. Cependant, l'équipe de développement se réserve le droit de demander la suppression d’un lien qu’il estime non conforme à l’objet du site "AS-CO-MA".
       </p>
 
-    <div class="cguHidden">    
+    <div class="cguHidden">
       <h3><b>Responsabilité des développeurs :</b></h3>
       <p class="text-justify">
         Les informations et/ou documents figurant sur ce site et/ou accessibles par ce site proviennent de sources considérées comme étant fiables.
