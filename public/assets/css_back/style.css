@@ -29,8 +29,16 @@ h3 {
 a:link {
  text-decoration:none;
 }
-
+h1.Nom_Orga{
+	background-color: blue;
+	font-weight: bolder;
+	word-wrap: break-word;
+	text-align:center;
+	color: white;
+	font-size: inherit;
+}
 .texte_3D{
+
 	margin-bottom: 20px;
     text-shadow:
         1px 1px 1px #108fcc,
@@ -51,7 +59,7 @@ a:link {
 	left: 0;
 	margin-left: 0;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	flex-wrap: wrap;
 }
 .barredyna li a{
@@ -67,8 +75,11 @@ padding: 0;
   left: 0;
   z-index: 20;
 }*/
-
+.return {
+		display: none;
+}
 button.btn.btn-success.btn-xs.return{
+
 	background-color: : #108fcc;
 }
 

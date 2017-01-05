@@ -31,7 +31,7 @@ if(isset($orga) && ($orga == 'mairie' || $orga == 'assoc' || $orga == 'webmaster
         <a href="<?php echo $urlSend ; ?>"><button  class="btn btn-default ">Messages Envoyés</button></a>
       </div>
       <div class="bouton_rec">
-        <a href="<?php echo  $urlReceive; ?>"><button  class="btn btn-default ">Messages Reçus</button></a>
+        <a href="<?php echo $urlReceive; ?>"><button  class="btn btn-default ">Messages Reçus</button></a>
       </div>
     </div>
   </div>

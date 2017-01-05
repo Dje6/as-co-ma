@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<title><?= $this->e($title) ?></title>
  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
   <link rel="stylesheet" href="<?= $this->assetUrl('css_back/style.css') ?>">
@@ -17,9 +17,10 @@
 
 	<div class="navbar-wrapper">
   	<div class="container-fluid">
+
 			<nav class="navbar navbar-inverse navbar-static-top test">
-				<h1 class="texte_3D col-sm-2">As-Co-Ma</h1>
-				<div class="navbar-header">
+				<h1 class="texte_3D col-xs-12 col-md-2">As-Co-Ma</h1>
+				<div class="navbar-header col-xs-12 col-md-10">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -28,7 +29,7 @@
           </button>
       	</div>
 
-			<div id="navbar" class="col-xs-offset-3 navbar-collapse collapse">
+			<div id="navbar" class="col-xs-offset-0 col-md-offset-3 navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
@@ -102,77 +103,87 @@
 			</div>
 		 </nav>
 				<?php
-				if(isset($orga) && $orga != 'user'){
+				if(!empty($orga) && $orga != 'user'){
 
-					if(isset($slug) && !empty($slug) && !isset($creation)){ echo '<h1 class="titreback">'.$this->unslug($slug).'</h1>' ; }
+
+					if(isset($slug) && !empty($slug) && !isset($creation)){
+						 $nom_orga = '<h1 id="menu_back" class="Nom_Orga col-xs-12 col-md-12">'.$this->unslug($slug).'</h1>' ;
+					 } ?>
+
+					<nav class="navbar navbar-inverse navbar-static-top col-md-2 test">
+						<?php if(isset($nom_orga)){ echo $nom_orga;} ?>
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<div id="navbar2" class=" col-xs-offset-0 col-md-offset-3 container-fluid navbar-collapse collapse" ><?php
 
 					if($orga == 'mairie'){ ?>
 
-
-
-						<div id="navbar" class=" container-fluid ">
-							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
+							<ul class="nav navbar-nav ">
 							<li><a href="<?php echo $this->url('admin_mairie_contact_Webmaster',['slugE' => $slug]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Contacter le Webmaster</button></a>
+								Contacter le Webmaster</a>
 							</li>
 							<li><a href="<?php echo $this->url('admin_message_mairie',['slug' => $slug,'orga' => 'mairie','page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
+								Messagerie</a>
 							</li>
 							<li><a href="<?php echo $this->url('admin_mairie',['orga' => $orga,'slug' => $slug]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
+								Compte</a>
 							</li>
 							<?php if(!isset($creation)){ ?>
 								<li><a href="<?php echo $this->url('admin_mairie_assoc',['slug' => $slug,'page' => 1]); ?>">
-									<button type="button" class="btn btn-info btn-lg">Voir Association</button></a>
+									Voir Association</a>
 								</li>
 								<li><a href="<?php echo $this->url('admin_mairie_news',['slug' => $slug,'orga'=>'mairie' ,'page' => 1]); ?>">
-									<button type="button" class="btn btn-info btn-lg">News</button></a>
+									News</a>
 								</li>
 							<?php } ?>
-						</ul>
-					</div> <?php
+						</ul><?php
 
 					}elseif($orga == 'assoc'){ ?>
-						<div id="navbar" class=" container-fluid">
-							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
+							<ul class="nav navbar-nav ">
 								<li><a href="<?php echo $this->url('admin_assoc_contact_tout_membres',['slugE' => $slug]); ?>">
-									<button type="button" class="btn btn-info btn-lg">Message aux Membres</button></a>
+									Message aux Membres</a>
 								</li>
 							<?php $array_retourner = $this->in_multi_array_return_array($slug,$_SESSION['user']['roles']);
 							if(is_array($array_retourner)){ ?>
 								<li><a href="<?php echo $this->url('admin_assoc_contact_mairie',['slugE' => $slug,'slugR' => $array_retourner['slug_mairie']]); ?>">
-									<button type="button" class="btn btn-info btn-lg">Contacter la mairie</button></a>
+									Contacter la mairie</a>
 								</li>
 							<?php } ?>
 							<li><a href="<?php echo $this->url('admin_message_assoc',['slug' => $slug,'orga' => 'assoc','page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
+								Messagerie</a>
 							</li>
 							<li><a href="<?php echo $this->url('admin_assoc',['orga' => $orga,'slug' => $slug]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Compte</button></a>
+								Compte</a>
 							</li>
 							<?php if(!isset($creation)){ ?>
 								<li><a href="<?php echo $this->url('admin_assoc_membres',['slug' => $slug,'page' => 1]); ?>">
-									<button type="button" class="btn btn-info btn-lg">Voir Membres</button></a>
+									Voir Membres</a>
 								</li>
 								<li><a href="<?php echo $this->url('admin_assoc_news',['slug' => $slug,'orga'=>'assoc' ,'page' => 1]); ?>">
-									<button type="button" class="btn btn-info btn-lg">News</button></a>
+									News</a>
 								</li><?php
 							} ?>
-						</ul>
-					</div><?php
+						</ul><?php
 				}elseif($orga == 'webmaster'){ ?>
-						<div id="navbar" class=" container-fluid">
-							<ul class="nav navbar-nav navbar_organisation col-sm-12 barredyna">
+
+							<ul class="nav navbar-nav ">
 
 							<li><a href="<?php echo $this->url('admin_message_webmaster',['slug' => 'webmaster','orga' => 'webmaster','page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Messagerie</button></a>
+								Messagerie</a>
 							</li>
 							<li><a href="<?php echo $this->url('admin_webmaster_mairie',['page' => 1]); ?>">
-								<button type="button" class="btn btn-info btn-lg">Voir Mairies</button></a>
+								Voir Mairies</a>
 							</li>
-						</ul>
-					</div><?php
-					}
+						</ul><?php
+					} ?>
+				</div>
+			</nav><?php
 				}
 				 ?>
 	 </div>

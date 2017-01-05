@@ -39,12 +39,12 @@
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php
 				}else{ ?>
-					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li>
-					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>">Nous Rejoindre</a></li><?php
+					<li><a href="<?php echo $this->url('racine_connexion'); ?>#menu">Connexion</a></li>
+					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>#menu">Nous Rejoindre</a></li><?php
 				} ?>
-					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
-					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
-					<li><a href="<?php echo $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']); ?>">Contact</a></li>
+					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>#menu">Mairies</a></li>
+					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>#menu">Associations</a></li>
+					<li><a href="<?php echo $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']); ?>#menu">Contact</a></li>
 				</ul>
 			</div>
 		</div>

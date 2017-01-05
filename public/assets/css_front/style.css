@@ -34,6 +34,9 @@ a:hover {
 hr {
 	border-color: #6aa33b;
 }
+.return {
+		display: none;
+}
 
 /*////////////////////////////////////////*/
 /*STYLE CONTENU DU HEADER*/

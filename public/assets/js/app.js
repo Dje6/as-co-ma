@@ -12,7 +12,7 @@ $(document).ready(function () {
     } else {
         $('.return').fadeOut();
     }
-  });
+  }).scroll();
   $('.return').click(function () {
     $("html, body").animate({
         scrollTop: 0

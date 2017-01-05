@@ -16,43 +16,6 @@ if(isset($acces)){ ?>
   <?php
 }else{ ?>
   <h1 class="titreusers">Vos informations </h1><br/>
-<!--  Horloge SVG-->
-<div class="filler"></div>
-  <svg width="200" height="200">
-    <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-        <feOffset in="blur" dx="2.5" dy="2.5"/>
-    </filter>
-    <g>
-        <circle id="shadow" style="fill:rgba(0,0,0,0.1)" cx="97" cy="100" r="87" filter="url(#innerShadow)"></circle>
-        <circle id="circle" style="stroke: #FFF; stroke-width: 12px; fill:#5bc0de" cx="100" cy="100" r="80"></circle>
-    </g>
-    <g>
-        <line x1="100" y1="100" x2="100" y2="55" transform="rotate(80 100 100)" style="stroke-width: 3px; stroke: #fffbf9;" id="hourhand">
-            <animatetransform attributeName="transform"
-                              attributeType="XML"
-                              type="rotate"
-                              dur="43200s"
-                              repeatCount="indefinite"/>
-        </line>
-        <line x1="100" y1="100" x2="100" y2="40" style="stroke-width: 4px; stroke: #fdfdfd;" id="minutehand">
-            <animatetransform attributeName="transform"
-                              attributeType="XML"
-                              type="rotate"
-                              dur="3600s"
-                              repeatCount="indefinite"/>
-        </line>
-        <line x1="100" y1="100" x2="100" y2="30" style="stroke-width: 2px; stroke: #C1EFED;" id="secondhand">
-            <animatetransform attributeName="transform"
-                              attributeType="XML"
-                              type="rotate"
-                              dur="60s"
-                              repeatCount="indefinite"/>
-        </line>
-    </g>
-    <circle id="center" style="fill:#5bc0de; stroke: #C1EFED; stroke-width: 2px;" cx="100" cy="100" r="3"></circle>
-  </svg>
-<!-- Fin de horloge #5bc0de -->
   <?php
 }
 if(isset($donnee)){//si la base de donnee retourne des information , array comme string
@@ -195,7 +158,6 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 
 <?php $this->start('main_script') ?>
 <script type="text/javascript" src="<?= $this->assetUrl('js/upload.js'); ?>"></script>
-<script type="text/javascript" src="<?= $this->assetUrl('js/horloge.js'); ?>"></script>
 <!-- //ici les script js de la Page courante UNIQUEMENT
 //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_script') ?>
