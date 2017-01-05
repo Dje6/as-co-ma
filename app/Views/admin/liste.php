@@ -19,7 +19,7 @@
           echo '<div class="container">';
           foreach ($donnee as $key => $value) { ?>
             <div class="row col-xs-12">
-              <span class="col-xs-12 col-sm-2"><?php echo $value['nom']; ?></span>
+              <span id="span_update<?php echo $value['id']; ?>" class="col-xs-12 col-sm-2"><?php echo $value['nom']; ?></span>
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => $value['slug']]);?>"><button class="btn btn-info ">Consulter</button></a>
               </span>
@@ -30,12 +30,16 @@
               </span>
               <?php if($value['status'] == 'Actif'){ ?>
                 <span class="col-xs-12 col-sm-2">
-                  <a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>">
-                    <button class="btn btn-warning ">Suspendre</button>
+                  <a class="update_suspendre <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>">
+                    <button class="btn btn-warning update_suspendre_btn<?php echo $value['id']; ?> ">Suspendre</button>
                   </a>
                 </span>
               <?php }else { ?>
-                <span class="col-xs-12 col-sm-2"><a href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>"><button class="btn btn-success ">Activer</button></a></span>
+                <span class="col-xs-12 col-sm-2">
+                  <a class="update_activer <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_mairie_edit_status',['slug' => $slug,'slugA' => $value['slug']]);?>">
+                    <button class="btn btn-success update_activer_btn<?php echo $value['id']; ?> ">Activer</button>
+                  </a>
+                </span>
               <?php } ?>
               <span class="col-xs-12 col-sm-2"><a href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>"><button class="btn btn-danger ">Supprimer</button></a></span>
             </div>
