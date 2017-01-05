@@ -68,24 +68,24 @@
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php
 				}else{ ?>
-					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li>
-					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>">Nous Rejoindre</a></li><?php
+					<li><a href="<?php echo $this->url('racine_connexion'); ?>#menu">Connexion</a></li>
+					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>#menu">Nous Rejoindre</a></li><?php
 				} ?>
-					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
-					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
+					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>#menu">Mairies</a></li>
+					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>#menu">Associations</a></li>
 				</ul>
 			<!-- </div> -->
 
 			<!-- Footer bouton contact -->
 			<div class="bouton_contact">
-				<a href="<?= $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']) ?>">
+				<a href="<?= $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']) ?>#menu">
 					<button type="button" class="btn btn-success btn-md">Contactez-nous</button>
 				</a>
 			</div>
 
 			<!-- Lien vers CGU -->
 			<div class="bouton_cgu">
-				<a href="<?= $this->url('default_cgu'); ?>">
+				<a href="<?= $this->url('default_cgu'); ?>#menu">
 					<button type="button" class="btn btn-success btn-md">CGU</button>
 				</a>
 			</div>
