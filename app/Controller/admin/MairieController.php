@@ -105,6 +105,7 @@ class MairieController extends CustomController
 
           $id = $mairieModel->FindElementByElement('id','slug',$slug);
           $result = $mairieModel->update($r_POST,$id);
+
           if(!$result){
             $this->show('admin/mairie',['slug' => $slug,'orga' => 'mairie','edition' => true,'bug' => 'L\'insertion n\'a pas pu aboutir', 'donnee' => $r_POST]);
           }else {
@@ -166,7 +167,9 @@ class MairieController extends CustomController
          }else {
            $result = $assocModel->update(['status' => 'Actif'],$id);
          }
-
+         if ($this->isAjax()) {
+           return $this->showJson(['result' =>$result]);
+         }
         $this->redirectToRoute('admin_mairie_assoc',['slug' => $slug, 'page' => 1]);
       }
     }else {
