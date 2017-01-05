@@ -170,10 +170,16 @@ class AssocController extends CustomController
         if($role == 'Admin'){
           $newRole = 'User';
           $result = $rolesModel->update(['role' => 'User'],$id_roles);
+
         }else {
           $newRole = 'Admin';
           $result = $rolesModel->update(['role' => 'Admin'],$id_roles);
         }
+
+        if ($this->isAjax()) {
+          return $this->showJson(['result' =>$result]);
+        }
+
         if($result){
           if($id_membre == $_SESSION['user']['id']){
             $pseudo = $_SESSION['user']['pseudo'];
@@ -183,15 +189,16 @@ class AssocController extends CustomController
             $user = $get_user->getUserByUsernameOrEmail($pseudo);
 
             $authent->logUserIn($user);
-            if($newRole == 'User'){
-              $this->redirectToRoute('racine_assoc',['orga'=>'Assoc','slug' => $slug]);
-            }elseif($newRole == 'Admin') {
-              $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+
+              if($newRole == 'User'){
+                $this->redirectToRoute('racine_assoc',['orga'=>'Assoc','slug' => $slug]);
+              }elseif($newRole == 'Admin') {
+                $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+              }
             }
-          }
-          $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
-        } else {
-          $this->showErrors('Un poblème est survenu lors de la mise à jour du rôle');
+            $this->redirectToRoute('admin_assoc_membres',['slug' => $slug, 'page' => 1]);
+        }else {
+          $this->showErrors('Un problème est survenu lors de la mise à jour du rôle');
         }
       }
     }else {

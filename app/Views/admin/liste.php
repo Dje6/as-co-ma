@@ -65,7 +65,7 @@
           foreach ($donnee as $key => $value) { ?>
             <div class="row col-xs-12 listing">
 
-              <span class="col-xs-12 col-sm-2"><?php echo $value['pseudo'].' : '.$value['role']; ?></span>
+              <span id="span_roles<?php echo $value['id']; ?>" class="col-xs-12 col-sm-2 <?php echo $value['pseudo']; ?>"><?php echo $value['pseudo'].' : '.$value['role']; ?></span>
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info ">Consulter</button></a>
               </span>
@@ -74,11 +74,11 @@
               </span>
               <?php if($value['role'] == 'Admin'){ ?>
                 <span class="col-xs-12 col-sm-2">
-                  <a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning ">Passer en mode User</button></a>
+                  <a class="update_user <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning update_user_btn<?php echo $value['id']; ?> ">Passer en mode User</button></a>
                 </span>
               <?php }else{ ?>
                 <span class="col-xs-12 col-sm-2">
-                  <a href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning ">Passer en mode Admin</button></a>
+                  <a class="update_admin <?php echo $value['id']; ?>" href="<?php echo $this->url('admin_assoc_edit_user_role',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-warning update_admin_btn<?php echo $value['id']; ?> ">Passer en mode Admin</button></a>
                 </span>
               <?php } ?>
                 <span class="col-xs-12 col-sm-2">
@@ -136,6 +136,7 @@
 
 
 <?php $this->start('main_script') ?>
+	<script type="text/javascript" src="<?= $this->assetUrl('js/update_status.js'); ?>"></script>
 	<!-- //ici les script js de la Page courante UNIQUEMENT
   //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_script') ?>
