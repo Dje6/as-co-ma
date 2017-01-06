@@ -83,7 +83,6 @@ if(!isset($confirmation)){ ?>
 }else {
 	echo $confirmation;
 } ?>
-<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('main_script') ?>

@@ -3,11 +3,11 @@
 
 if($w_current_route == 'admin_repondre_User'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id']]);
-  $quiContacter = '<div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered couleur_bleue"><h1> Répondre à '.$leMessage['emeteur_pseudo'].'</h1></div>';
+  $quiContacter = '<div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered couleur_bleue"><h3 class="titrecontact"> Répondre à '.$this->unslug($leMessage['emeteur_pseudo']).'</h3></div>';
   $orga = NULL;
 }elseif($w_current_route == 'admin_repondre'){
   $urldePost = $this->url($w_current_route,['id' => $leMessage['id'],'slug' => $slug,'orga' => $orga]);
-  $quiContacter = '<div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered couleur_bleue"><h1> Répondre à '.$leMessage['emeteur_pseudo'].'</h1></div>';
+  $quiContacter = '<div class="col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 col-centered couleur_bleue"><h3 class="titrecontact"> Répondre à '.$this->unslug($leMessage['emeteur_pseudo']).'</h3></div>';
 }
 
 $this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
@@ -90,7 +90,7 @@ if(!isset($confirmation)){ ?>
 }else {
 	echo $confirmation;
 } ?>
-<a href="#" class="btn btn-info return">Retour en haut</a>
+
 <?php $this->stop('main_content') ?>
 
 

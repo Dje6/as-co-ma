@@ -115,37 +115,33 @@ if(isset($donnee)){
                       </div>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-group col-xs-12 col-xs-offset-0"><?php
+                      if(isset($donnee['avt'])){ $avt = $donnee['avt']; }
+                      elseif(isset($donnee['avatar'])){ $avt = $donnee['avatar']; }
+                      else { $avt = 'img/neutre.jpg';} ?>
 
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="col-xs-12 col-md-2 ">
-                        <?php if(isset($donnee['avt'])){ $avt = $donnee['avt']; }
-                              elseif(isset($donnee['avatar'])){ $avt = $donnee['avatar']; }
-                              else { $avt = 'img/neutre.jpg';} ?>
-                        <img alt="User Pic" src="<?= $this->assetUrl($avt) ?>"
-                        class="img-circle img-responsive col-xs-12 "><br/>
-                        <!-- //formulaire d'envoi d'image -->
-                      </span>
-                      <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
-                      <input type="file" name="avatar" value=""/>
-                      <input type="hidden" name="avt" value="<?php echo $avt ;?>">
+                      <img alt="User Pic" src="<?= $this->assetUrl($avt) ?>"
+                        class="img-circle img-responsive col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0">
+
+                        <input id="avatar_choise" class="col-xs-12 col-sm-9" type="file" name="avatar" value=""/>
+                        <label for="avatar_choise" class="col-xs-6 col-xs-offset-3">Selectionnez un avatar</label>
+
+                        <input type="hidden" name="avt" value="<?php echo $avt ;?>">
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="form-group col-xs-12 col-xs-offset-0 ">
+                          <?php if(isset($donnee['bg'])){ $bg = $donnee['bg']; }
+                                elseif(isset($donnee['background'])){ $bg = $donnee['background']; }
+                                else { $bg = 'img/neutre.jpg';} ?>
 
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="col-xs-12 col-md-2 ">
-                        <?php if(isset($donnee['bg'])){ $bg = $donnee['bg']; }
-                              elseif(isset($donnee['background'])){ $bg = $donnee['background']; }
-                              else { $bg = 'img/neutre.jpg';} ?>
+                          <img alt="User Pic" src="<?= $this->assetUrl($bg) ?>"
+                          class="img-circle img-responsive col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 ">
 
-                        <img alt="User Pic" src="<?= $this->assetUrl($bg) ?>"
-                        class="img-circle img-responsive col-xs-12 "><br/>
-                        <!-- //formulaire d'envoi d'image -->
-                      </span>
-                      <?php //if(isset($error['description']) && !empty($error['description'])){ echo '<span>'.$error['description'].'</span><br>' ;} ?>
-                      <input type="file" name="background" value=""/>
-                      <input type="hidden" name="bg" value="<?php echo $bg ;?>">
+                        <input id="background_choise" class="col-xs-12 col-sm-9" type="file" name="background" value=""/>
+                        <label for="background_choise" class="col-xs-6 col-xs-offset-3">Sélectionnez un arrière plan</label>
+                        <input type="hidden" name="bg" value="<?php echo $bg ;?>">
                     </div>
                   </div>
 
@@ -159,22 +155,24 @@ if(isset($donnee)){
       <?php
     }else { ?>
       <div class="container-fluid affichageMairie col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1">
-        <div class="col-md-12 col-lg-12">
-        <?php
-      //affichage de lavatar de la mairie
-      //si il ny en pas on affiche une image neutre
-        if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
-        <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
-        class="img-circle img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3 pad padd"><br/>
-        <!-- //formulaire d'envoi d'image -->
-        <?php
-        if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
-        <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
-        class="img-responsive col-md-offset-2 col-lg-offset-2 col-md-3 col-lg-3 pad"><br/>
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1 col-lg-offset-0 col-lg-12">
+          <?php
+        //affichage de lavatar de la mairie
+        //si il ny en pas on affiche une image neutre
+          if(empty($donnee['avatar'])){ $donnee['avatar'] = 'img/neutre.jpg';} ?>
+          <img alt="User Pic" src="<?= $this->assetUrl($donnee['avatar']) ?>"
+          class="img-circle img-responsive col-xs-8 col-xs-offset-2  col-sm-5 col-sm-offset-1 col-lg-4 col-lg-offset-2 pad padd"><br/>
+          <!-- //formulaire d'envoi d'image -->
+          <?php
+          if(empty($donnee['background'])){ $donnee['background'] = 'img/neutre.jpg';} ?>
+          <img alt="User Pic" src="<?= $this->assetUrl($donnee['background']) ?>"
+          class="img-responsive col-xs-8 col-xs-offset-2  col-sm-5 col-sm-offset-1 col-lg-4 col-lg-offset-1 pad"><br/>
+          </div>
         </div>
 
         <div class="row">
-          <div class='colxs-12 col-md-5 col-md-offset-1'><?php
+          <div class='col-xs-12 col-sm-5 col-sm-offset-1'><?php
             if(!empty($donnee['nom'])){//si le nom es vide c'est une inscritpion , on ne laffiche pas ?>
              <h3 class="taille"><?php echo $donnee['nom'] ; ?></h3><?php
             }
@@ -195,7 +193,7 @@ if(isset($donnee)){
 
             <h3 class="">Statut : <?php echo $donnee['status'] ; ?></h3>
           </div>
-          <div class='colxs-12 col-md-5 col-md-offset-1'>
+          <div class='col-xs-12 col-sm-5 col-sm-offset-1'>
             <h3 class="souligne ">Horaires d'ouverture: </h3><?php
 
             foreach (unserialize($donnee['horaire']) as $key => $value) {
@@ -218,7 +216,6 @@ if(isset($donnee)){
     </div><?php
   }
 } ?>
-<a href="#" class="btn btn-info return">Retour en haut</a>
 <?php $this->stop('main_content') ?>
 
 

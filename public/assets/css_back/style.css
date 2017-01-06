@@ -1,7 +1,8 @@
-#navbar2 li{
+#navbar2 li {
 	width: 100%;
 	float: left;
 }
+
 html, body {
 	font-family: 'Arvo', serif;
 	/*font-family: Consolas, monaco, monospace;*/
@@ -13,10 +14,19 @@ html, body {
 	background-attachment: fixed;
 }
 body {
+	word-wrap: break-word;
 	font-size: 15px;
 }
 h3 {
 	font-size: 2rem;
+}
+.center
+{
+	text-align: center;
+}
+.table-user-information td
+{
+	display:inline-block;
 }
 .wrapper {
 	width: 100%;
@@ -26,7 +36,6 @@ h3 {
 }
 /*MAIN CONTENT*/
 .main_content {
-
 	margin-bottom: 3em;
 }
 
@@ -34,7 +43,7 @@ a:link {
  text-decoration:none;
 }
 h1.Nom_Orga{
-	background-color: blue;
+	background-color: #337ab7;
 	font-weight: bolder;
 	word-wrap: break-word;
 	text-align:center;
@@ -42,7 +51,6 @@ h1.Nom_Orga{
 	font-size: inherit;
 }
 .texte_3D{
-
 	margin-bottom: 20px;
     text-shadow:
         1px 1px 1px #108fcc,
@@ -80,11 +88,10 @@ padding: 0;
   z-index: 20;
 }*/
 .return {
-	
 		display: none;
 }
-button.btn.btn-success.btn-xs.return{
 
+button.btn.btn-success.btn-xs.return{
 	background-color: : #108fcc;
 }
 
@@ -114,7 +121,6 @@ h1.navbar-brand {
   width: auto;
 }
 
-
 @media screen and (min-width: 768px) {
   .navbar-wrapper {
     margin-top: 20px;
@@ -127,12 +133,11 @@ h1.navbar-brand {
     padding-right: 0;
     padding-left: 0;
   }
-
   .navbar-wrapper .navbar {
     border-radius: 4px;
   }
 
-.navbar-static-top {
+  .navbar-static-top {
 	background-color: #52C9FF;
 	color: white;
 	font-weight: bolder;
@@ -152,7 +157,6 @@ h1.navbar-brand {
 		font-size: 40px;
 }
 
-
 a {
 	font-size: 18px;
 	margin: 10px 5px;
@@ -163,10 +167,11 @@ a {
 	color: #108fcc;
 	font-weight: bold;
 	font-size: 30px;
-	border : 3px solid ##337ab7;
+	/*border : 3px solid ##337ab7;*/
 	/*margin-left: 30%;
 	margin-right: 30%;
 	margin-top: 6%;*/
+
 }
 .navbar_organisation{
 	list-style-type: none;
@@ -191,14 +196,12 @@ a {
 input {
 	color: black;
 }
-
 input.form-control {
 	color: #108fcc;
 	font-size: 1.2em;
 }
 
 /*///////////////////////////////////////////////////////////////////////*/
-
 /*user.php*/
 .titreusers {
 	text-align: center;
@@ -222,7 +225,6 @@ tbody {
 	font-size: 15px;
 }
 /*///////////////////////////////////////////////////////////////////////*/
-
 /*formulaire contact mairie*/
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 /*panel heading*/
@@ -269,7 +271,6 @@ button[type="reset"]    {
     border:1px solid black;
 }
 /*///////////////////////////////////////////////////////////////////////*/
-
 /*Glyphicon color*/
 .blue   {
     color: #80bfff;
@@ -309,8 +310,7 @@ button[type="reset"]    {
 	border-radius: 10px;
 	padding: 1em;
 }
-.marginR
-{
+.marginR {
 	margin-right: 5%;
 }
 
@@ -330,7 +330,7 @@ button[type="reset"]    {
 	color: #108fcc;
 	border-radius: 10px;
 }
-.centragetitre{
+.centragetitre {
 	text-align: center;
 	font-weight: bolder;
 	font-size: 2.5em;
@@ -348,8 +348,17 @@ button[type="reset"]    {
 	color: #108fcc;
 	font-weight: bold;
 	font-size: 26px;
-	border : 3px solid ##337ab7;
+	margin-left: 10%;
+  margin-right: 10%;
+	background-image: url('../img/backblanc.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 1em;
+	border: 3px solid #99ccff;
+	color: #108fcc;
+	border-radius: 10px;
 }
+
 .btn.btn-default {
 color: #108fcc;
 font-size: 20px;
@@ -362,18 +371,17 @@ font-size: 20px;
 
 /*pagination*/
 .pagin{
-	margin-left: 45%;
-	margin-right: 45%;
-	background-color: white;
+
+	background-color: inherit;;
 	border-radius: 20px;
 	color: #108fcc;
 	font-weight: bolder;
 	text-align: center;
 }
-.voisin{
+.voisin {
 	color: #108fcc;
 }
-.actuel{
+.actuel {
 	color: #108fcc;
 }
 /*///////////////////////////////////////////////////////////////////////*/
@@ -467,8 +475,21 @@ navbar-inverse .navbar-toggle {
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
     background-color: #52c9ff;
 }
-/*horloge page users*/
-svg {
-	margin-left: 26%;
-  }
+
 /*///////////////////////////////////////////////////////////////////////*/
+#background_choise ,#avatar_choise
+{
+	display: none;
+
+}
+#background_choise + label ,#avatar_choise + label
+{
+	margin-top : 10%;
+text-align: center;
+
+}
+@media screen and (max-width: 991px) {
+	.dropdown-menu {
+		position:relative;
+	}
+}

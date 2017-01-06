@@ -111,9 +111,10 @@
 					if(isset($slug) && !empty($slug) && !isset($creation)){
 						 $nom_orga = '<h1 id="menu_back" class="Nom_Orga col-xs-12 col-md-12">'.$this->unslug($slug).'</h1>' ;
 					 } ?>
-			<div class="navbar-wrapper">
-				<div class="container-fluid">
-					<nav class="navbar navbar-inverse navbar-static-top col-md-2 test">
+
+			<div class="navbar-wrapper container-fluid col-md-2">
+
+					<nav class="navbar navbar-inverse navbar-static-top col-xs-12 test">
 						<?php if(isset($nom_orga)){ echo $nom_orga;} ?>
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
@@ -186,22 +187,23 @@
 						</ul><?php
 					} ?>
 				</div>
-			</nav><?php
+			</nav>
+		</div><?php
 		}else { ?>
-			<div class="col-md-2">
+			<div class="container-fluid col-md-2">
 			</div> <?php
 		}
 				 ?>
 
+	<section class="main_content col-md-8">
+		<?= $this->section('main_content') ?>
+	</section>
 
-		<section class="main_content col-md-8">
-			<?= $this->section('main_content') ?>
-		</section>
-
-	</div>
+</div>
 	<!-- fin wrapper global -->
 
 
+	<a href="#" class="btn btn-info return col-xs-offset-4 col-xs-4 col-md-offset-5 col-md-2">Retour en haut</a>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.1.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js'); ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/app.js'); ?>"></script>

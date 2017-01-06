@@ -94,7 +94,7 @@ if(isset($donnees)){
 }
 ?>
   </div>
- <a href="#" class="btn btn-info return">Retour en Haut</a>
+ 
 <?php $this->stop('main_content') ?>
 
 

@@ -23,44 +23,29 @@ if(isset($orga) && ($orga == 'mairie' || $orga == 'assoc' || $orga == 'webmaster
 
 
 <!-- l'affichage commence ici ,avec les deux boutons pour les messages recus ou envoyés -->
-	<h1 class="titreback">Messagerie</h1><br/>
+	<h1 class="titreback">Messagerie</h1>
 
-  <div class="container-fluid">
-    <div class="row messageall">
-      <div class="bouton_env">
-        <a href="<?php echo $urlSend ; ?>"><button  class="btn btn-default ">Messages Envoyés</button></a>
-      </div>
-      <div class="bouton_rec">
-        <a href="<?php echo $urlReceive; ?>"><button  class="btn btn-default ">Messages Reçus</button></a>
-      </div>
+  <div class="container-fluid col-md-12 col-offset-0 col-lg-10 col-lg-offset-1">
+    <div class="row center">
+      <a class="bouton_env " href="<?php echo $urlSend ; ?>">
+        <button  class="btn btn-default ">Messages Envoyés</button>
+      </a>
+      <a class="bouton_rec" href="<?php echo $urlReceive; ?>">
+        <button  class="btn btn-default ">Messages Reçus</button>
+      </a>
     </div>
-  </div>
 
   <?php
 
   // ensuite on affiche les données retournées par sql
 if(isset($donnees)){
 	if(!empty($donnees)){
-		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message qu'il contient
+		if(is_array($donnees)){ // si donnee est un array on explore , sinon on affiche le message qu'il contient ?>
 
-			if(isset($pagination)){  //si il y a assez d'element , la pagination s'active toute seul
-        //si tu a besoin de diminuer le nombre d'affichage c'est dan le MessageController
-        //les ligne avec '$limit', si tu es sur la messagerie :
-        //user : methode home (message recu)
-        //              homeSend (message envoyer)
-        //orga :        orga(message recu)
-        //              orgaSend (message envoyer)
-        //tout le systeme de message fonctionne ormi les boutons accepter refuser et plus info , lu suppr et rep c ok
-        //donc si besoin tu peut ecrire des messages pour remplir les messageries
-        // pense a faire la mise a jour de la table contact si tu l'avais pas fait ?>
-
-				<div id="page"><?= $pagination ?></div>
-
-      <?php }
-      ?>
-
-
-      <div class="container-fluid col-md-12 col-offset-0 col-lg-10 col-lg-offset-1 affichageMairie"><?php
+      <div class="row affichageMairie"><?php
+        if(isset($pagination)){  ?>
+          <div class="container-fluid"><?= $pagination ?></div> <?php
+        }
   			foreach ($donnees as $key => $value) {
 
           if(isset($value['destinataire_pseudo'])){
@@ -148,18 +133,19 @@ if(isset($donnees)){
           <br/>
           <br/>
           <br/><?php
-  			}//fin du foreach ?>
+  			}//fin du foreach
+        if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul ?>
+        <div ><?= $pagination ?></div><?php
+      } ?>
       </div><?php
-			if(isset($pagination)){ //si il y a assez d'element , la pagination s'active toute seul
-				echo $pagination;
-			}
 		}
 	}else{ ?>
     <h3 class="titreback">Aucun messages</h3>
   <?php }
 }
 ?>
- <a href="#" class="btn btn-info return">Retour en haut</a>
+</div>
+
 <?php $this->stop('main_content') ?>
 
 

@@ -72,7 +72,7 @@ if(!isset($confirmation)){
 
   </form>
 	<?php if($slug == 'All'){ ?>
-		<br/><p>* : Pour toute inscription de mairie, <br/>nous vous recontacterons pour confirmation de votre identité</p>
+		<br/><p>* : Pour toute inscription de mairie, <br/>nous vous recontacterons pour confirmation de votre identité.</p>
 	<?php
 	}
 }else {
