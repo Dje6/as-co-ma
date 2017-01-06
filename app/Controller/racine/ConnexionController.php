@@ -5,6 +5,7 @@ use \W\Security\AuthentificationModel;
 use \W\Security\AuthorizationModel;
 use \Controller\CustomController ;
 use \Model\UserModel;
+use \Model\UsersCustomModel;
 use \Model\ContactModel;
 use \Model\RolesModel;
 use \Service\ValidationTools;
