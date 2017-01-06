@@ -190,6 +190,10 @@ class MairieController extends CustomController
         $DestroyController = new DestroyController;
         $resultat = $DestroyController->DeleteAssoc($id_assoc);
 
+        if ($this->isAjax()) {
+          return $this->showJson(['resultat' =>$resultat]);
+        }
+
         if(is_array($resultat)){
           $this->showErrors($resultat);
         }else {

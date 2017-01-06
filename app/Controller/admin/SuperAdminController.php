@@ -59,6 +59,10 @@ class SuperAdminController extends CustomController
         $id_mairie = $this->nettoyage($id);
         $resultat = $DestroyController->DeleteMairie($id_mairie);
 
+        if ($this->isAjax()) {
+          return $this->showJson(['resultat' =>$resultat]);
+        }
+
         if(is_array($resultat)){
           $this->showErrors($resultat);
         }else {

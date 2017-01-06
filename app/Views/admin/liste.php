@@ -40,7 +40,11 @@
                   </a>
                 </span>
               <?php } ?>
-              <span class="col-xs-12 col-sm-2"><a href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>"><button class="btn btn-danger ">Supprimer</button></a></span>
+              <span class="col-xs-12 col-sm-2">
+                <a class="delete_assoc" href="<?php echo $this->url('admin_mairie_delete_assoc',['slug' => $slug, 'slugA' => $value['slug']]);?>">
+                  <button class="btn btn-danger">Supprimer</button>
+                </a>
+              </span>
             </div>
     <?php
           }
@@ -83,7 +87,7 @@
                 </span>
               <?php } ?>
                 <span class="col-xs-12 col-sm-2">
-                  <a href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger ">Supprimer</button></a>
+                  <a class="delete_user" href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger ">Supprimer</button></a>
                 </span>
             </div>
             <?php
@@ -115,7 +119,7 @@
           </span>
           <?php } ?>
           <span class="col-xs-12 col-sm-2">
-            <a href="<?php echo $this->url('admin_webmaster_delete_mairie',['id' => $value['id']]);?>"><button class="btn btn-danger ">Supprimer</button></a>
+            <a class="delete_mairie" href="<?php echo $this->url('admin_webmaster_delete_mairie',['id' => $value['id']]);?>"><button class="btn btn-danger ">Supprimer</button></a>
           </span>
         </div>
         <?php
@@ -133,6 +137,7 @@
 
 <?php $this->start('main_script') ?>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/update_status.js'); ?>"></script>
+  <script type="text/javascript" src="<?= $this->assetUrl('js/delete.js'); ?>"></script>
 	<!-- //ici les script js de la Page courante UNIQUEMENT
   //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_script') ?>

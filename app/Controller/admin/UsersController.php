@@ -24,6 +24,7 @@ class UsersController extends CustomController
   }
   public function homeEditionForm()
   {
+    // affiche le formulaire de modification des données de l'utilisateur
     if(isset($_SESSION['user']))
     {
       $donnees = $_SESSION['user'];
@@ -34,6 +35,7 @@ class UsersController extends CustomController
   }
   public function homeEditionPost()
   {
+    // Traite le formulaire en POST, si tout se passe bien : update des données de l'utilisateur
     if(isset($_SESSION['user']))
     {
       $error = array();
