@@ -1,3 +1,4 @@
+<!-- PAGE DE MODIFICATION DE MDP OUBLIE APRES RECEPTION D'UN MAIL DE CHEZ L'UTILISATEUR -->
 <?php $this->layout('layout', ['title' => 'AS-CO-MA - Modifier mot de passe']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -22,13 +23,13 @@
   <!-- PASSWORD MODIFY -->
   <div class="form-group">
     <label for="password">Nouveau mot de passe : </label><span class="errorForm"><?php if(isset($error['password'])){ echo $error['password']; } ?></span>
-    <input type="text" class="form-control" name="password" value=""><br/>
+    <input type="password" class="form-control" name="password" value=""><br/>
   </div>
 
   <!-- REPEAT PASSWORD MODIFY -->
   <div class="form-group">
     <label for="repeat_password">Répétez votre nouveau mot de passe :</label>
-    <input type="text" class="form-control" name="repeat_password" value=""><br/>
+    <input type="password" class="form-control" name="repeat_password" value=""><br/>
   </div>
 
 

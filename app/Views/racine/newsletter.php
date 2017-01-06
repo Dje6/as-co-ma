@@ -1,3 +1,4 @@
+<!-- PAGE DE DESINSCRIPTION A LA NEWSLETTER DES ARTICLES ABONNES apres reception d'un mail chez l'utilisateur -->
 <?php $this->layout('layout', ['title' => 'AS-CO-MA - Se désinscrire de la newsletter']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -12,6 +13,7 @@
 <?php $this->start('main_content') ?>
 <?php
 if(isset($confirmation)){ ?>
+  <!-- Message de confirmation de bonne désinscription -->
   <span class="confirmForm"><?= $confirmation; ?></span>
   <?php
 }else { ?>
@@ -23,10 +25,10 @@ if(isset($confirmation)){ ?>
           <h2 class="text-center"><b>Vous désinscrire de la newsletter</b></h2>
         </legend>
 
+        <!-- EMAIL UTILISATEUR -->
         <div class="form-group">
-          <label for="mail">Adresse e-mail :</label>
-          <input type="text" class="form-control" name="mail" value="
-          <?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span>'.$error['mail'].'</span><br/>' ; } ?>"><br/>
+          <label for="mail">Adresse e-mail :</label><span class="errorForm"><?php if(isset($error['mail']) && !empty($error['mail'])){ echo $error['mail']; } ?></span>
+          <input type="text" class="form-control" name="mail" value=""><br/>
         </div>
 
         <input type="hidden" name="capcha" value="">

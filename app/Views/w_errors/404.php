@@ -1,3 +1,4 @@
+<!-- PAGE D'ERREUR 404 SI LE SITE NE TROUVE AUCUNE PAGE A RETOURNER SUIVANT L'URL -->
 <?php $this->layout('layout', ['title' => 'Perdu ?']) ?>
 
 <?php $this->start('main_head') ?>
@@ -8,6 +9,7 @@
 
 
 <?php $this->start('main_content'); ?>
+<!-- Titre et image personnalisée a l'erreur -->
 <div class="row errorPage">
   <h2><b><i>Cette page n'existe pas :(</i></b></h2>
   <img src="<?= $this->assetUrl('img/404.png'); ?>" alt="404" class="img-responsive" width="100%">

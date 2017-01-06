@@ -29,27 +29,30 @@
 			<!-- </div> -->
 		</div>
 
-		<!-- Menu haut -->
+		<!-- Menu du header dans layout front -->
 		<div class="row">
 			<div>
 				<ul id="menu" class="menu_home nav nav-tabs">
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
+					<!-- Si l'utilisateur est connecté, on propose son compte et deconnexion -->
 				<?php	if(isset($_SESSION['user'])){ ?>
-					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Administration</a></li>
+					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon Compte</a></li>
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php
 				}else{ ?>
-					<li><a href="<?php echo $this->url('racine_connexion'); ?>#menu">Connexion</a></li>
-					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>#menu">Nous Rejoindre</a></li><?php
+					<!-- Sinon, si pas de session active, liens vers connexion ou inscription -->
+					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li>
+					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>">Nous Rejoindre</a></li><?php
 				} ?>
-					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>#menu">Mairies</a></li>
-					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>#menu">Associations</a></li>
-					<li><a href="<?php echo $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']); ?>#menu">Contact</a></li>
+					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
+					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
+					<li><a href="<?php echo $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']); ?>">Contact</a></li>
 				</ul>
 			</div>
 		</div>
 	</header>
 
+	<!-- CONTENT AVEC LES FICHIERS DE VUE -->
 	<section class="container main_content">
 		<?= $this->section('main_content') ?>
 	</section>
@@ -64,28 +67,28 @@
 				<ul class="menu_footer">
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
 				<?php	if(isset($_SESSION['user'])){ ?>
-					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Administration</a></li>
+					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon Compte</a></li>
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php
 				}else{ ?>
-					<li><a href="<?php echo $this->url('racine_connexion'); ?>#menu">Connexion</a></li>
-					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>#menu">Nous Rejoindre</a></li><?php
+					<li><a href="<?php echo $this->url('racine_connexion'); ?>">Connexion</a></li>
+					<li><a href="<?php echo $this->url('racine_inscriptForm'); ?>">Nous Rejoindre</a></li><?php
 				} ?>
-					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>#menu">Mairies</a></li>
-					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>#menu">Associations</a></li>
+					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
+					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
 				</ul>
 			<!-- </div> -->
 
 			<!-- Footer bouton contact -->
 			<div class="bouton_contact">
-				<a href="<?= $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']) ?>#menu">
+				<a href="<?= $this->url('racine_contact',['orga' => 'All' ,'slug' => 'All']) ?>">
 					<button type="button" class="btn btn-success btn-md">Contactez-nous</button>
 				</a>
 			</div>
 
 			<!-- Lien vers CGU -->
 			<div class="bouton_cgu">
-				<a href="<?= $this->url('default_cgu'); ?>#menu">
+				<a href="<?= $this->url('default_cgu'); ?>">
 					<button type="button" class="btn btn-success btn-md">CGU</button>
 				</a>
 			</div>

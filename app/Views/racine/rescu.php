@@ -1,3 +1,4 @@
+<!-- PAGE D'ENVOI D'UNE DEMANDE DE MODIFICATION DE MOT DE PASSE -->
 <?php $this->layout('layout', ['title' => 'Récupération de mot de passe']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -16,9 +17,10 @@
 <form class="formFront" action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
   <legend><h2>Mot de passe oublié ?</h2></legend>
 
+  <!-- EMAIL UTILISATEUR -->
   <div class="form-group">
     <label for="email">Adresse E-mail : </label>
-    <span><?php if(isset($error['email'])){ echo $error['email'] ;} ?></span>
+    <span class="errorForm"><?php if(isset($error['email'])){ echo $error['email'] ;} ?></span>
 
     <input type="email" class="form-control" name="email" value=""><br/>
     <input type="hidden" class="form-control" name="capcha" value="">

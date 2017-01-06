@@ -1,3 +1,4 @@
+<!-- PAGE DES CONDITIONS GENERALES D'UTILISATION DU SITE -->
 <?php $this->layout('layout', ['title' => 'AS-CO-MA - Conditions Générales d\'utilisation']) ?>
 <!-- tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -8,7 +9,10 @@
 <link rel="stylesheet" href="<?= $this->assetUrl('css_front/style_home.css'); ?>">
 <?php $this->stop('main_head') ?>
 
+
 <?php $this->start('main_content') ?>
+
+<!-- BLOC DES CGU. Se déroule et se cache au click du bouton dérouler -->
 <div class="row">
   <blockquote class="cgu">
     <h2 class="text-center">Présentation</h2>
@@ -33,6 +37,7 @@
         Il est possible de créer un lien vers la page de présentation de ce site sans autorisation expresse des développeurs. Aucune autorisation ou demande d’information préalable ne peut être exigée par les développeurs à l’égard d’un site qui souhaite établir un lien vers le site. Il convient toutefois d’afficher ce site dans une nouvelle fenêtre du navigateur. Cependant, l'équipe de développement se réserve le droit de demander la suppression d’un lien qu’il estime non conforme à l’objet du site "AS-CO-MA".
       </p>
 
+      <!-- Partie caché des cgu qui se déroule au clic -->
     <div class="cguHidden">
       <h3><b>Responsabilité des développeurs :</b></h3>
       <p class="text-justify">
@@ -92,6 +97,7 @@
     </div>
   <button id="toggleCGU" class="btn btn-success btn-lg" type="button">Dérouler</button>
 </div>
+
 <?php $this->stop('main_content') ?>
 
 
