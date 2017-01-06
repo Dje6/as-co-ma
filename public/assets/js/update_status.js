@@ -17,12 +17,12 @@ $('.update_user,.update_admin').on("click", function(event) {
         var nbr = classListSpan.length-1;
         var pseudo = classListSpan[nbr];
 
-        if( ($('.'+classList[0]+'_btn'+classList[1]).html()) == 'Passer en mode User'){
-          $('.'+classList[0]+'_btn'+classList[1]).html('Passer en mode Admin');
+        if( ($('.'+classList[0]+'_btn'+classList[1]).html()) == 'Attribuer role User'){
+          $('.'+classList[0]+'_btn'+classList[1]).html('Attribuer role Admin');
           $('#span_roles'+classList[1]).html(pseudo+' : User');
 
-        }else if( ($('.'+classList[0]+'_btn'+classList[1]).html()) == 'Passer en mode Admin') {
-          $('.'+classList[0]+'_btn'+classList[1]).html('Passer en mode User');
+        }else if( ($('.'+classList[0]+'_btn'+classList[1]).html()) == 'Attribuer role Admin') {
+          $('.'+classList[0]+'_btn'+classList[1]).html('Attribuer role User');
           $('#span_roles'+classList[1]).html(pseudo+' : Admin');
         }
       }else {

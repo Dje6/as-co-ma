@@ -110,7 +110,7 @@ class DestroyController extends CustomController
       }
 
       if(!isset($error)){
-        return true;
+          return true;
       }else {
         return $error;
       }
