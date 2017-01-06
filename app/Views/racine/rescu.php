@@ -14,20 +14,22 @@
 <?php $this->start('main_content') ?>
 
 <!-- FORMULAIRE OUBLI DE MOT DE PASSE -->
-<form class="formFront" action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
-  <legend><h2>Mot de passe oublié ?</h2></legend>
+<div class="row">
+  <form class="formFront" action="<?php echo $this->url('racine_mdpPost'); ?>" method="POST">
+    <legend><h2>Mot de passe oublié ?</h2></legend>
 
-  <!-- EMAIL UTILISATEUR -->
-  <div class="form-group">
-    <label for="email">Adresse E-mail : </label>
-    <span class="errorForm"><?php if(isset($error['email'])){ echo $error['email'] ;} ?></span>
+    <!-- EMAIL UTILISATEUR -->
+    <div class="form-group">
+      <label for="email">Adresse E-mail : </label>
+      <span class="errorForm"><?php if(isset($error['email'])){ echo $error['email'] ;} ?></span>
 
-    <input type="email" class="form-control" name="email" value=""><br/>
-    <input type="hidden" class="form-control" name="capcha" value="">
-  </div>
+      <input type="email" class="form-control" name="email" value=""><br/>
+      <input type="hidden" class="form-control" name="capcha" value="">
+    </div>
 
-  <button type="submit" class="btn btn-success btn-md" name="submit">Envoyer</button>
-</form>
+    <button type="submit" class="btn btn-success btn-md" name="submit">Envoyer</button>
+  </form>
+</div>
 
 <?php $this->stop('main_content') ?>
 

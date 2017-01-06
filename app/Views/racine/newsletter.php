@@ -14,28 +14,32 @@
 <?php
 if(isset($confirmation)){ ?>
   <!-- Message de confirmation de bonne désinscription -->
-  <span class="confirmForm"><?= $confirmation; ?></span>
+  <div class="row">
+    <h2 class="confirmForm"><?= $confirmation; ?></h2>
+  </div>
   <?php
 }else { ?>
 
-  <form class="formFront" action="<?php echo $this->url('default_desinscription',['orga'=>$orga,'slug'=>$slug]); ?>" method="POST">
+  <div class="row">
+    <form class="formFront" action="<?php echo $this->url('default_desinscription',['orga'=>$orga,'slug'=>$slug]); ?>" method="POST">
 
-      <fieldset>
-        <legend>
-          <h2 class="text-center"><b>Vous désinscrire de la newsletter</b></h2>
-        </legend>
+        <fieldset>
+          <legend>
+            <h2 class="text-center"><b>Vous désinscrire de la newsletter</b></h2>
+          </legend>
 
-        <!-- EMAIL UTILISATEUR -->
-        <div class="form-group">
-          <label for="mail">Adresse e-mail :</label><span class="errorForm"><?php if(isset($error['mail']) && !empty($error['mail'])){ echo $error['mail']; } ?></span>
-          <input type="text" class="form-control" name="mail" value=""><br/>
-        </div>
+          <!-- EMAIL UTILISATEUR -->
+          <div class="form-group">
+            <label for="mail">Adresse e-mail :</label><span class="errorForm"><?php if(isset($error['mail']) && !empty($error['mail'])){ echo $error['mail']; } ?></span>
+            <input type="text" class="form-control" name="mail" value=""><br/>
+          </div>
 
-        <input type="hidden" name="capcha" value="">
-        <button class="btn btn-success btn-sm" type="submit" name="submit">Se désinscrire</button>
+          <input type="hidden" name="capcha" value="">
+          <button class="btn btn-success btn-sm" type="submit" name="submit">Se désinscrire</button>
 
-      </fieldset>
-  </form>
+        </fieldset>
+    </form>
+  </div>
   <?php
 } ?>
 
