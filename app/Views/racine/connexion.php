@@ -13,32 +13,34 @@
 
 <?php $this->start('main_content') ?>
 
-  <form class="formFront" action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
+  <div class="row">
+    <form class="formFront" action="<?php echo $this->url('racine_connexion'); ?>" method="POST">
 
-    <fieldset>
-      <legend><h2 class="text-center"><b>Connectez-vous à votre compte sur AS-CO-MA :</b></h2></legend>
+      <fieldset>
+        <legend><h2 class="text-center"><b>Connectez-vous à votre compte sur AS-CO-MA :</b></h2></legend>
 
-      <!-- PSEUDO ou EMAIL DE CONNEXION -->
-      <div class="form-group">
-        <label for="pseudo">Pseudo ou Email : </label><span class="errorForm"><?php if(isset($error)){ echo $error; } ?></span>
-        <input class="form-control" type="text" name="pseudo" value="<?php if(isset($saisi['pseudo'])) { echo $saisi['pseudo']; } ?>">
-      </div>
+        <!-- PSEUDO ou EMAIL DE CONNEXION -->
+        <div class="form-group">
+          <label for="pseudo">Pseudo ou Email : </label><span class="errorForm"><?php if(isset($error)){ echo $error; } ?></span>
+          <input class="form-control" type="text" name="pseudo" value="<?php if(isset($saisi['pseudo'])) { echo $saisi['pseudo']; } ?>">
+        </div>
 
-      <!-- MDP DE CONNEXION -->
-      <div class="form-group">
-        <label for="password">Password : </label>
-        <input class="form-control" type="password" name="password" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
-      </div>
+        <!-- MDP DE CONNEXION -->
+        <div class="form-group">
+          <label for="password">Password : </label>
+          <input class="form-control" type="password" name="password" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
+        </div>
 
-      <button class="btn btn-success btn-md col-xs-offset-5" type="submit" name="submit">Se Connecter</button>
-    </fieldset>
+        <button class="btn btn-success btn-md col-xs-offset-5" type="submit" name="submit">Se Connecter</button>
+      </fieldset>
 
-    <!-- Si pas encore de compte, redirection formulaire inscription -->
-    <p>Pas encore de compte ? <a href="<?php echo $this->url('racine_inscriptForm'); ?>">Rejoignez-nous !</a></p>
-    <!-- Lien vers formulaire d'oubli de mdp -->
-    <a href="<?php echo $this->url('racine_mdpForm'); ?>">Mot de passe oublié ?</a>
+      <!-- Si pas encore de compte, redirection formulaire inscription -->
+      <p>Pas encore de compte ? <a href="<?php echo $this->url('racine_inscriptForm'); ?>">Rejoignez-nous !</a></p>
+      <!-- Lien vers formulaire d'oubli de mdp -->
+      <a href="<?php echo $this->url('racine_mdpForm'); ?>">Mot de passe oublié ?</a>
 
-  </form>
+    </form>
+  </div>
 
 <?php $this->stop('main_content') ?>
 
