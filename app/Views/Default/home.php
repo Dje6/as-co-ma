@@ -1,3 +1,4 @@
+<!-- PAGE D'ACCUEIL A L'ARRIVEE SUR LE SITE -->
 <?php $this->layout('layout', ['title' => 'AS-CO-MA - Accueil']) ?>
 <!-- tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -11,16 +12,12 @@
 
 
 <?php $this->start('main_content') ?>
-<!-- Titre page d'accueil -->
-<!-- <div class="row">
-<h2 class="text-center titre_home">Bienvenue sur AS-CO-MA</h2>
-</div>
-<br> -->
 
-<!-- CAROUSEL -->
+<!-- CAROUSEL AVEC LIEN VERS MAIRIES, ASSOC et/ou FORMULAIRE D'INSCRIPTION -->
+<!-- Le slider se pause au survol de la souris -->
 <div class="row">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
+		<!-- Boutons indicateurs en bas du slider -->
 		<ol class="carousel-indicators">
 			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -29,7 +26,7 @@
 			<?php } ?>
 		</ol>
 
-		  <!-- Wrapper for slides -->
+		  <!-- Items du sliders, 3 SLIDES -->
 		  <div class="carousel-inner" role="listbox">
 		    <div class="item active">
 		      <img src="<?= $this->assetUrl('img/rouen.jpg'); ?>" alt="Première image slider">
@@ -47,6 +44,7 @@
 						</button>
 		      </div>
 		    </div>
+				<!-- Si l'utilisateur est deja connecté, on masque le 3e slide vers formulaire d'inscription -->
 				<?php if(!isset($_SESSION['user'])){ ?>
 					<div class="item">
 						<img src="<?= $this->assetUrl('img/want-you.jpg'); ?>" alt="Troisième image slider">
@@ -60,7 +58,7 @@
 
 		  </div>
 
-		  <!-- Controls -->
+		  <!-- Fleches de controle du slider -->
 		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		    <span class=""></span>
@@ -73,7 +71,7 @@
 	</div>
 	<!-- Fin du carousel -->
 
-	<!-- Qui sommes-nous? -->
+	<!-- Qui sommes-nous? Cadre présentation explication du site -->
 	<br><br>
 	<div class="row">
 		<blockquote class="presentSite blockquote-reverse">
@@ -88,7 +86,7 @@
 
 
 
-		<!-- Bouton vers INSCRIPTION -->
+		<!-- Bouton vers formulaire INSCRIPTION disparait si l'utilisateur est déjà connecté-->
 		<?php if(!isset($_SESSION['user'])) { ?>
 
 			<hr><br>

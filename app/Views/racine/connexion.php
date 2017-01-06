@@ -1,3 +1,4 @@
+<!-- PAGE DE FORMULAIRE DE CONNEXION UTILISATEUR  -->
 <?php $this->layout('layout', ['title' => 'AS-CO-MA - Connexion']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
@@ -17,27 +18,27 @@
     <fieldset>
       <legend><h2 class="text-center"><b>Connectez-vous à votre compte sur AS-CO-MA :</b></h2></legend>
 
-      <!-- PSEUDO CONNEXION -->
+      <!-- PSEUDO ou EMAIL DE CONNEXION -->
       <div class="form-group">
         <label for="pseudo">Pseudo ou Email : </label><span class="errorForm"><?php if(isset($error)){ echo $error; } ?></span>
         <input class="form-control" type="text" name="pseudo" value="<?php if(isset($saisi['pseudo'])) { echo $saisi['pseudo']; } ?>">
       </div>
 
-      <!-- MDP CONNEXION -->
+      <!-- MDP DE CONNEXION -->
       <div class="form-group">
         <label for="password">Password : </label>
-        <input class="form-control" type="text" name="password" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
+        <input class="form-control" type="password" name="password" value="<?php if(isset($saisi['password'])) { echo $saisi['password']; } ?>">
       </div>
 
       <button class="btn btn-success btn-md col-xs-offset-5" type="submit" name="submit">Se Connecter</button>
     </fieldset>
 
+    <!-- Si pas encore de compte, redirection formulaire inscription -->
     <p>Pas encore de compte ? <a href="<?php echo $this->url('racine_inscriptForm'); ?>">Rejoignez-nous !</a></p>
+    <!-- Lien vers formulaire d'oubli de mdp -->
     <a href="<?php echo $this->url('racine_mdpForm'); ?>">Mot de passe oublié ?</a>
 
   </form>
-  <br>
-
 
 <?php $this->stop('main_content') ?>
 

@@ -1,3 +1,4 @@
+<!-- PAGE D'ERREUR 409 REQUETE HTTP N'A PAS PU ABOUTIR -->
 <?php $this->layout('layout_back', ['title' => 'Perdu ?']) ?>
 
 <?php $this->start('main_head') ?>
@@ -11,6 +12,7 @@
 <div class="row errorPage">
   <?php if(is_array($error)){ ?>
     <h2><b><i>Un problème est survenu... Toutes nos excuses : <br><?php foreach ($error as $key => $value) {
+      // Affiche l'erreur en fonction de la requete demandée
       if(is_array($value)){
         foreach ($value as $keyy => $valuey) {
           if(is_array($valuey)){

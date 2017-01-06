@@ -30,15 +30,15 @@ class DestroyController extends CustomController
       }
 
       if(!$this->DeleteRole($id_mairie,'mairie')){
-        $error['roles'] = 'probleme pour la suppression des roles';
+        $error['roles'] = 'Un problème est survenu lors de la suppression des rôles';
       }
 
       if(!$this->DeletePicture($MairieFull['avatar'])){
-        $error['picture']['avatar'] = 'probleme de suppression image avatar';
+        $error['picture']['avatar'] = 'Un problème est survenu lors de la suppression de l\'avatar';
       }
 
       if(!$this->DeletePicture($MairieFull['background'])){
-        $error['picture']['background'] = 'probleme de suppression image background';
+        $error['picture']['background'] = 'Un problème est survenu lors de la suppression de l\'image d\'arrière-plan';
       }
 
       $NewsModel = new NewsModel;
@@ -46,21 +46,21 @@ class DestroyController extends CustomController
       if(!empty($AllNews)){
         foreach ($AllNews as $key => $value) {
           if(!$this->DeleteNews($value['id'])){
-            $error['news'][$value['id']] = 'probleme de suppression news '.$value['id'];
+            $error['news'][$value['id']] = 'Un problème est survenu lors de la suppression de l\'article '.$value['id'];
           }
         }
       }
 
       if(!$this->DeleteContact($id_mairie,'mairie')){
-        $error['contact'] = 'probleme de suppression des messages';
+        $error['contact'] = 'Un problème est survenu lors de la suppression des messages';
       }
 
       if(!$this->DeleteAbonnee($id_mairie,'mairie')){
-        $error['abonnee'] = 'probleme de suppression des entrer de newsletter';
+        $error['abonnee'] = 'Un problème est survenu lors de la suppression des entrées de la newsletter';
       }
 
       if(!$MairieModel->delete($id_mairie)){
-        $error['mairie'] = 'probleme pour la suppression de la mairie';
+        $error['mairie'] = 'Un problème est survenu lors de la suppression de la Mairie';
       }
 
     if(!isset($error)){
@@ -76,15 +76,15 @@ class DestroyController extends CustomController
       $AssocFull = $assocModel->Find($id_assoc);
 
       if(!$this->DeleteRole($id_assoc,'assoc')){
-        $error['roles'] = 'probleme pour la suppression des roles';
+        $error['roles'] = 'Un problème est survenu lors de la suppression des rôles';
       }
 
       if(!$this->DeletePicture($AssocFull['avatar'])){
-        $error['picture']['avatar'] = 'probleme de suppression image avatar';
+        $error['picture']['avatar'] = 'Un problème est survenu lors de la suppression de l\'avatar';
       }
 
       if(!$this->DeletePicture($AssocFull['background'])){
-        $error['picture']['background'] = 'probleme de suppression image background';
+        $error['picture']['background'] = 'Un problème est survenu lors de la suppression de l\'image d\'arrière-plan';
       }
 
       $NewsModel = new NewsModel;
@@ -92,21 +92,21 @@ class DestroyController extends CustomController
       if(!empty($AllNews)){
         foreach ($AllNews as $key => $value) {
           if(!$this->DeleteNews($value['id'])){
-            $error['news'][$value['id']] = 'probleme de suppression news '.$value['id'];
+            $error['news'][$value['id']] = 'Un problème est survenu lors de la suppression de l\'article '.$value['id'];
           }
         }
       }
 
       if(!$this->DeleteContact($id_assoc,'assoc')){
-        $error['contact'] = 'probleme de suppression des messages';
+        $error['contact'] = 'Un problème est survenu lors de la suppression des messages';
       }
 
       if(!$this->DeleteAbonnee($id_assoc,'assoc')){
-        $error['abonnee'] = 'probleme de suppression des entrer de newsletter';
+        $error['abonnee'] = 'Un problème est survenu lors de la suppression des entrées de la newsletter';
       }
 
       if(!$assocModel->delete($id_assoc)){
-        $error['assoc'] = 'probleme pour la suppression de l assoc';
+        $error['assoc'] = 'Un problème est survenu lors de la suppression de l\'Association';
       }
 
       if(!isset($error)){

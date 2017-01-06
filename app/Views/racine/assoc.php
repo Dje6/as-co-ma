@@ -1,9 +1,10 @@
+<!-- PAGE DES ASSOCIATIONS. Recherche + affichage des informations de l'association et ses articles liés -->
 <?php $this->layout('layout', ['title' => 'AS-CO-MA - Association']) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 
 <?php $this->start('main_head') ?>
-<!-- ici le style de l'img en background des articles suivant le slug de l'assoc -->
+<!-- ici le style de l'img en background des articles suivant le slug de l'assoc en url -->
 <style media="screen">
 <?php if(is_array($donnees) && !empty($donnees['background'])){  ?>
 	.thumbnail {
@@ -19,7 +20,7 @@
 <?php $this->start('main_content') ?>
 	<?php if($slug == 'All'){ ?>
 
-		<!-- Form recherche d'assoc -->
+		<!-- Formulaire recherche d'assoc par code postal ou nom de l'assoc-->
 		<div class="row">
 			<form class="formFront form-inline" action="<?php echo $this->url('racine_assoc',['orga' => $orga ,'slug' => $slug]) ; ?>" method="post">
 
@@ -36,7 +37,7 @@
 
 		<!-- ////////////////////////////////////////////////////////////////////// -->
 
-		<!-- Quand recherche soumise, affiche les liens vers Mairies concernées -->
+		<!-- Quand recherche soumise, affiche les liens vers Associations concernées -->
 		<br>
 		<div class="row text-center">
 <?php if(isset($donnees)) {
@@ -58,13 +59,10 @@
 
 				////////////////////////////////////////////////////////////////////////////////
 
-				//affichage des contenus de l'association cliquée ?>
+				// AFFICHAGE TABLEAU D'INFORMATIONS DE L'ASSOCIATION CLIQUEE ?>
 				<div class="row">
 	<?php if(isset($donnees)) {
 					if(is_array($donnees)) { ?>
-
-							<!-- <h2 class="text-center"><strong>"<?php echo $this->unslug($slug); // unslug du slug assoc ?>"</strong></h2> -->
-							<!-- <br> -->
 
 							<div class="table-responsive">
 								<!-- Tableau infos assoc -->
@@ -84,10 +82,10 @@
 										<td> <?= $donnees['ville']; ?> </td>
 									 	<td><a href="tel: <?= $donnees['fix']; ?>"> <?= $donnees['fix']; ?> </a></td>
 										<td>
-											<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter l'association</button></a>
+											<a href="<?php echo $this->url('racine_contact',['orga' => 'assoc' ,'slug' => $slug]); ?>"><button class="btn btn-success btn-xs">Contacter <?= $donnees['nom']; ?></button></a>
 										</td>
 										<td>
-											<!-- Form abonnement newsletter des articles assoc -->
+											<!-- Formulaire abonnement newsletter des articles assoc -->
 											<form class="form-inline" action="<?php $this->url('racine_assoc',['orga'=>$orga,'slug'=>$slug]) ; ?>" method="post">
 												<?php if(isset($confirmation)){ echo '<span class="confirmForm">'.$confirmation.'</span><br/>'; } ?>
 												<?php if(isset($error['mail']) && !empty($error['mail'])){ echo '<span class="errorForm">'.$error['mail'].'</span><br/>' ; } ?>
@@ -104,35 +102,32 @@
 						 </div>
 
 							<?php	} else {
+								// Si aucun résultat de recherche d'assoc (notamment par slug), redirection vers l'accueil
 								header('location: '. $this->url('default_home'));
-								// echo '<div class="row formFront">';
-								// echo '<h3 class="text-center" style="color:maroon"><b>' . $donnees . ' N\'hésitez pas à contacter la Mairie dont dépend votre Association pour l\'enregistrer !</b></h3>';
-								// echo '</div>';
 							}
 						} ?>
 					 </div>
 						<!-- end row -->
 						<!-- Fin tableau infos assoc -->
 
+
 						<!-- ///////////////////////////////////////////////////////////////// -->
 
-						<!-- Display des articles/news des assoc -->
+
+						<!-- AFFICHAGE DES ARTICLES PUBLIES PAR L'ASSOCIATION -->
 						<!-- Style thumbnail -->
 					<hr>
 
 					<?php if(isset($news)){
 						if(is_array($news)){
 							foreach ($news as $key => $value) {
-								// Format de date
+								// Format de date pour creation et modification des articles
 								$dateCreaNews = date("d M Y à H:i", strtotime($value['created_at']));
 								$dateModifNews = date("d M Y à H:i", strtotime($value['updated_at']));?>
 
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="thumbnail">
-											<!-- Mettre le background du thumbnail avec l'image de l'association -->
-											<!-- php : chercher la picture de l'assoc en bdd -->
-
 											<div class="caption text-center">
 												<!-- Titre de la news -->
 												<h2 class=""><b><?= $value['title']; ?></b></h2>
@@ -141,18 +136,18 @@
 													<img class="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
 													width="550" height="300">
 													<?php } ?>
-													<!-- Fenetre modale (pop up qui zoom) -->
-													<div id="myModal" class="modal">
+														<!-- Fenetre modale au clic sur une image d'article -->
+														<div id="myModal" class="modal">
 
-														<!-- Close Button -->
-														<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+															<!-- Bouton fermer en haut a droite -->
+															<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
 
-														<!-- Modal Content (The Image) -->
-														<img class="modal-content" id="img01">
+															<!-- Image, contenu de la modale -->
+															<img class="modal-content" id="img01">
 
-														<!-- Modal Caption (Image Text) -->
-														<div id="caption"></div>
-													</div>
+															<!-- Texte descriptif modale (titre de l'article) -->
+															<div id="caption"></div>
+														</div>
 
 													<!-- Contenu de la news -->
 													<h3 class="text-justify">
@@ -170,12 +165,12 @@
 										</div>
 									</div>
 								</div>
-									<!-- end row -->
+									<!-- end row des news -->
 
 									<?php
 								}
 							}else { ?>
-								<!-- Sinon "Pas encore de news" -->
+								<!-- Si pas de d'articles publiés par l'assoc, affichage message -->
 								<div class="row">
 									<h3 class="text-center"><b><?= $news ?>. N'hésitez pas à contacter votre président d'Association pour suggérer un article !</b></h3>
 								</div>
@@ -188,7 +183,7 @@
 						<!-- /////////////////////////////////////////////////////// -->
 
 
-						<!-- Lien vers contact d'inscription d'assoc -->
+						<!-- QUOTE POUR INSCRIRE UNE ASSOCIATON. Redirection formulaire de contact ciblé vers une mairie -->
 						<br>
 						<div class="row">
 							<blockquote class="quoteAssoc blockquote-reverse">
