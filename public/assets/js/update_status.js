@@ -3,12 +3,9 @@ $('.update_user,.update_admin').on("click", function(event) {
   event.preventDefault();
 
   var $this = $(this);
-  // console.log('HELLO');
   $.ajax({
     type: "GET",
     url: $(this).attr("href"),
-    // data: {},
-    // dataType: 'json',
     success: function(response) {
 
       if(response.result){
@@ -41,13 +38,9 @@ $('.update_suspendre,.update_activer').on("click", function(event) {
   event.preventDefault();
 
   var $this = $(this);
-  // console.log('HELLO');
   $.ajax({
     type: "GET",
     url: $(this).attr("href"),
-    // data: {},
-    // dataType: 'json',
-    // console.log('aha');
     success: function(response) {
 
       if(response.result){

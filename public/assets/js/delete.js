@@ -3,7 +3,6 @@ $('.delete_user, .delete_assoc , .delete_mairie').on("click", function(event) {
   event.preventDefault();
 
   var $this = $(this);
-  // console.log('HELLO');
   var $messageAssoc = 'Voulez vous vraiment supprimer cette association ?';
   var $messageMairie = 'Voulez vous vraiment supprimer cette mairie ?';
   var $messageUser = 'Voulez vous vraiment supprimer ce membre ?';
