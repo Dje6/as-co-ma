@@ -38,7 +38,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
         } ?>
 
         <img alt="User Pic" src="<?= $this->assetUrl($avt) ?>" class="img-circle img-responsive col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-6 col-md-offset-3 col-lg-3 col-lg-offset-1">
-          <div class=" col-xs-12 col-xs-offset-0 col-md-9 col-lg-6 col-lg-offset-1 cartevisite"><?php
+          <div class=" col-xs-12 col-xs-offset-0 col-md-9 col-lg-7 col-lg-offset-1 cartevisite"><?php
             if(isset($edition) && !isset($acces)){ ?>
               <form method="POST" enctype="multipart/form-data" action="<?php echo $this->url('admin_monCompte_edition_post') ; ?>">
                 <table class="table table-user-information">

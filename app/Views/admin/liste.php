@@ -13,7 +13,7 @@
 <!-- liste s'occupe d'afficher les boutons dans liste menbre et liste association , sur le back -->
 <div class="container-fluid col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 affichage">
     <?php
-    if($orga == 'mairie'){
+    if($orga == 'mairie'){ 
       if(isset($donnee)){
         if(is_array($donnee)){
           foreach ($donnee as $key => $value) { ?>

@@ -1,3 +1,4 @@
+//pagination
 $('.pagin').on("click",'.ajaxPagin', function(event) {
   event.preventDefault();
 
@@ -26,6 +27,9 @@ $('.pagin').on("click",'.ajaxPagin', function(event) {
 
 })
 
+//selection message recu ou envoyer
+//
+//
 $('.bouton_rec ,.bouton_env ').on("click", function(event) {
   event.preventDefault();
 
@@ -65,4 +69,78 @@ $('.bouton_rec ,.bouton_env ').on("click", function(event) {
     }
   })
 
+})
+
+//action btn
+//
+//
+$('#Recu, #Envoyer').on("click", '.message_btn, .message_btn_supprimer',function(event) {
+  event.preventDefault();
+  var $this = $(this);
+  var $key = $(this).parent().attr('id');
+
+  if($(this).attr('class') == 'message_btn_supprimer'){
+    $message = 'Voulez vous vraiment supprimer ce message ?';
+    if (confirm($message)){
+      $.ajax({
+        type: "GET",
+        url: $(this).attr("href"),
+        success: function(response) {
+          if(response.error){
+
+          }else if(response.redirect){
+            $.ajax({
+              type: "GET",
+              url: response.redirect,
+              success: function(response) {
+                  $('#'+$key).empty();
+                  $('#'+$key).html(response.donnee);
+                  $('.'+$key).empty();
+                  $('.'+$key).html(response.pagination);
+              },
+              error: function(response) {
+                console.log(response);
+              }
+            })
+          }
+
+        },
+        error: function(response) {
+          console.log(response);
+        }
+      })
+    }else {
+      console.log('operation annuler');
+    }
+  } //fin de si c'est un supprimer
+  else {
+    $.ajax({
+      type: "GET",
+      url: $(this).attr("href"),
+      success: function(response) {
+        if(response.error){
+          console.log('php retourne une erreur : '+response.error);
+        }else if(response.redirect){
+          $.ajax({
+            type: "GET",
+            url: response.redirect,
+            success: function(response) {
+                $('#'+$key).empty();
+                $('#'+$key).html(response.donnee);
+                $('.'+$key).empty();
+                $('.'+$key).html(response.pagination);
+            },
+            error: function(response) {
+              console.log('le deuxieem ajax a cracher');
+              console.log(response);
+            }
+          })
+        }
+      },
+      error: function(response) {
+        console.log('le premier ajax a cracher');
+        console.log(response);
+      }
+    })
+  }
 })

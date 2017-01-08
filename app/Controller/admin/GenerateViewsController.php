@@ -30,7 +30,7 @@ class GenerateViewsController extends CustomController
                }
         				$html .= '<p class="padleft4">Objet : '.$value['objet'].'</p>
         				<p class="padleft4">Message : '.$value['contenu'].'</p><br/>
-                
+
         				<p class="padleft4">Envoye le : '.$value['date_envoi'].'</p>';
              if($value['status'] == 'lu'){
               //si le statu est a lu , on affiche la date de lecture
@@ -51,24 +51,26 @@ class GenerateViewsController extends CustomController
               //si oui on affiche les bouton de decision
 
                 $html .= '<a href=" '.$this->generateUrl('admin_decide',['id' => $value['id'],'orga' => $orga,
-                'slug' => $slug,'decision'=>'Accepter']).' ">
-                  <button class="btn btn-success margin1">Accepter</button>
+                'slug' => $slug,'decision'=>'Accepter']).' " class="message_btn">
+                  <button class="btn btn-success margin1 ">Accepter</button>
                 </a>';
                 $html .='<a href="'.$this->generateUrl('admin_decide',['id' => $value['id'],'orga' => $orga,
-                'slug' => $slug,'decision'=>'Plus-Info']).'">
+                'slug' => $slug,'decision'=>'Plus-Info']).'" class="message_btn">
                   <button class="btn btn-warning margin1">Manque d\'informations</button>
                 </a>';
                 $html .='<a href="'.$this->generateUrl('admin_decide',['id' => $value['id'],'orga' => $orga,
-                'slug' => $slug,'decision'=>'Refuser']).'">
+                'slug' => $slug,'decision'=>'Refuser']).'" class="message_btn">
                   <button class="btn btn-danger margin1">Refuser</button>
                 </a>';
 
               }elseif ((!empty($matches2[0]) && $value['status'] == 'non-lu' && $orga == 'user')) {
 
-                 $html .= '<a href="'.$this->generateUrl('admin_invitation_decision',['id' => $value['id'],'decision'=>'Accepter']).'">
+                 $html .= '<a href="'.$this->generateUrl('admin_invitation_decision',['id' => $value['id'],
+                 'decision'=>'Accepter']).'" class="message_btn">
                    <button class="btn btn-success margin1">Accepter</button>
                  </a>
-                 <a href="'.$this->generateUrl('admin_invitation_decision',['id' => $value['id'],'decision'=>'Refuser']).'">
+                 <a href="'.$this->generateUrl('admin_invitation_decision',['id' => $value['id'],
+                 'decision'=>'Refuser']).'" class="message_btn">
                    <button class="btn btn-danger margin1">Refuser</button>
                  </a>';
               }else{
@@ -92,19 +94,22 @@ class GenerateViewsController extends CustomController
                 if($value['status'] == 'non-lu' && !isset($value['destinataire_pseudo'])){
                 //le bouton pour declarer le message comme lu ne safiche QUE si on es mode boite de reception et si le message
                 // n'a pas encor ete lu
-                  $html .='<a href="'.$this->generateUrl('admin_message_asSeen',['id'=> $value['id'],'orga' => $orga,'slug' => $slug,'page' => $page]).'">
+                  $html .='<a href="'.$this->generateUrl('admin_message_asSeen',['id'=> $value['id'],'orga' => $orga,
+                  'slug' => $slug,'page' => $page]).'" class="message_btn">
                     <button class="btn btn-success margin1">Lu</button>
                   </a>';
                 }
                 //le bouton supprimer lui saffiche tout le temp dés lors que ce n'est pas une demande dinscritpion ou
                 //Si s'en est une ,il ne saffiche qui si la demande a ete traiter
-                $html .= '<a href="'.$this->generateUrl('admin_message_delete',['id'=> $value['id'],'orga' => $orga,'slug' => $slug,'page' =>$page]).'">
+                $html .= '<a href="'.$this->generateUrl('admin_message_delete',['id'=> $value['id'],'orga' => $orga,
+                'slug' => $slug,'page' =>$page]).'" class="message_btn_supprimer">
                   <button class="btn btn-danger margin1">supprimer</button>
                 </a>';
               }
               $html .='<br/>
               <br/>
               <br/>';
+
       			}//fin du foreach
     		}
     	}else{

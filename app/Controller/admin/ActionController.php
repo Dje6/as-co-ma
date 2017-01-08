@@ -39,6 +39,9 @@ class ActionController extends CustomController
                 $contactModel->update(['emeteur_status'=> 'del'],$leMessage['id']);
               }
             }
+            if($this->isAjax()){
+              return $this->showJson(['redirect'=>$this->generateUrl('admin_message_send',['page' => $page])]);
+            }
             $this->redirectToRoute('admin_message_send',['page' => $page]);
 
           }elseif ($leMessage['destinataire_mailOrId'] == $_SESSION['user']['id'] && $leMessage['destinataire_orga'] == 'users') {
@@ -55,6 +58,9 @@ class ActionController extends CustomController
                   //sinon on ajoute simplement 'del' a notre status pour quil ne safiche plus dans notre messagerie
                   $contactModel->update(['destinataire_status'=> 'del'],$leMessage['id']);
                 }
+            }
+            if($this->isAjax()){
+              return $this->showJson(['redirect'=>$this->generateUrl('admin_message',['page' => $page])]);
             }
             $this->redirectToRoute('admin_message',['page' => $page]);
           }
@@ -103,13 +109,22 @@ class ActionController extends CustomController
                     $contactModel->update(['destinataire_status'=> 'del'],$leMessage['id']);
                   }
               }
+              if($this->isAjax()){
+                return $this->showJson(['redirect'=>$this->generateUrl('admin_message_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug])]);
+              }
               $this->redirectToRoute('admin_message_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug]);
             }else {
+              if($this->isAjax()){
+                return $this->showJson(['error'=>'Une erreur est survenue']);
+              }
               $this->showErrors('Une erreur est survenue');
             }
           }
         }
       }else{
+        if($this->isAjax()){
+          return $this->showJson(['redirect'=>$this->generateUrl('racine_form')]);
+        }
         $this->redirectToRoute('racine_form');
       }
     }
@@ -130,6 +145,9 @@ class ActionController extends CustomController
             //si le message n'a pas ete lu on update la date de lecture
               $contactModel->update(['date_lecture' =>date('Y-m-d H:i:s'),'status' => 'lu'],$leMessage['id']);
             }
+          }
+          if($this->isAjax()){
+            return $this->showJson(['redirect'=>$this->generateUrl('admin_message',['page' => $page])]);
           }
           $this->redirectToRoute('admin_message',['page' => $page]);
         }else{
@@ -155,10 +173,16 @@ class ActionController extends CustomController
                 $contactModel->update(['date_lecture' =>date('Y-m-d H:i:s'),'status' => 'lu'],$leMessage['id']);
               }
             }
+            if($this->isAjax()){
+              return $this->showJson(['redirect'=>$this->generateUrl('admin_message_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug])]);
+            }
             $this->redirectToRoute('admin_message_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug]);
           }
         }
       }else{
+        if($this->isAjax()){
+          return $this->showJson(['redirect'=>$this->generateUrl('racine_form')]);
+        }
         $this->redirectToRoute('racine_form');
       }
     }

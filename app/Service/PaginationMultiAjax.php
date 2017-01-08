@@ -45,7 +45,7 @@ class PaginationMultiAjax extends CustomModel
   {
     $html = '';
 
-    if($nb_page > 1){ $html .='<br/>';};
+    //if($nb_page > 1){ $html .='<br/>';};
     // $html .='<div class="pagin">';
     $argumentFull='';
 
