@@ -98,6 +98,7 @@
 		//administration user
 		//
 		['GET', '/profile/', 'admin\Users#home', 'admin_monCompte'],//affiche les info du user connecter
+		['GET', '/DeleteProfil/', 'admin\Users#delete', 'admin_monCompte_supprimer'],//supprime definitivement le compte de lutilisateur
 		['GET', '/EditProfile/', 'admin\Users#homeEditionForm', 'admin_monCompte_edition'],//affiche le formulaire de modification des données
 		['POST', '/SaveProfile/', 'admin\Users#homeEditionPost', 'admin_monCompte_edition_post'],//modifie les données
 		//messagerie

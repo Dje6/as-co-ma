@@ -2,6 +2,7 @@
 namespace Controller\admin;
 
 use \Controller\CustomController;
+use \Controller\admin\DestroyController;
 use \Model\monCompteModel;
 use \Model\UserModel;
 use \Service\ValidationTools;
@@ -112,6 +113,35 @@ class UsersController extends CustomController
       $this->redirectToRoute('racine_form');
     }
   }
+
+  public function delete()
+  {
+    // affiche le formulaire de modification des données de l'utilisateur
+    if(isset($_SESSION['user']))
+    {
+      $id_user = $_SESSION['user']['id'];
+
+      $DestroyController = new DestroyController;
+      $resultat = $DestroyController->DeleteUser($id_user);
+      
+      if($this->isAjax()){
+        if(!is_array($resultat)){
+          $resultat = $this->generateUrl('default_home');
+        }
+        return $this->showJson(['resultat' => $resultat]);
+      }
+
+      if(!$resultat){
+        $this->showErrors('Un problème est survenu lors de la suppression du compte utilisateur');
+      }else {
+        $this->redirectToRoute('default_home');
+      }
+    }else{
+      $this->redirectToRoute('racine_form');
+    }
+  }
+
+
 
 
 }

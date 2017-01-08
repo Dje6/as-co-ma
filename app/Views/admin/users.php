@@ -4,8 +4,6 @@
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
 
-<link rel="stylesheet" href="<?= $this->assetUrl('css_back/upload.css') ?>">
-
 <?php $this->stop('main_head') ?>
 
 <?php $this->start('main_content') ?>
@@ -134,8 +132,14 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
                 </tbody>
               </table><?php
               if(!isset($acces)){ ?>
-                <span class="centrer"><a href="<?= $this->url('admin_monCompte_edition'); ?>"><button class="btn btn-primary">EDITER</button></a>
-                  <a href="<?= $this->url('admin_monCompte_edition') ?>"><button class="btn btn-danger">SUPPRIMER</button></a></span><br/><?php
+                <span class="centrer">
+                  <a href="<?= $this->url('admin_monCompte_edition'); ?>">
+                    <button class="btn btn-primary">EDITER</button>
+                  </a>
+                  <a href="<?= $this->url('admin_monCompte_supprimer') ?>" class="delete_user">
+                    <button class="btn btn-danger">SUPPRIMER</button>
+                  </a>
+                </span><?php
               }
             } ?>
       </div>
@@ -150,6 +154,7 @@ if(isset($donnee)){//si la base de donnee retourne des information , array comme
 <?php $this->stop('main_content') ?>
 
 <?php $this->start('main_script') ?>
+<script type="text/javascript" src="<?= $this->assetUrl('js/delete.js'); ?>"></script>
 <!-- //ici les script js de la Page courante UNIQUEMENT
 //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_script') ?>
