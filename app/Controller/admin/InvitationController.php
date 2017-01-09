@@ -62,6 +62,9 @@ class InvitationController extends CustomController
           }elseif ($decision == 'Refuser') {
               $contactModel->update(['status'=>'Refuser','date_lecture'=>date('Y-m-d H:i:s')],$id);
           }
+          if($this->isAjax()){
+            return $this->showJson(['redirect'=>$this->generateUrl('admin_message',['page'=>1])]);
+          }
         $this->redirectToRoute('admin_message',['page'=>1]);
         }
     }

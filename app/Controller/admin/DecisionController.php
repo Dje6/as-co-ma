@@ -156,6 +156,10 @@ class DecisionController extends ReponseController
               if(!empty($RolesModel->FindRole($id_assoc,$maildestinataire))){
                 //si le membre fais deja partie de lassociation on detruit la demande
                 $contactModel->delete($id);
+                if($this->isAjax()){
+                  return $this->showJson(['redirect'=>$this->generateUrl('admin_message_assoc',['orga' => 'assoc',
+                  'slug' => $AssocComplete['slug'] ,'page'=>1])]);
+                }
                 $this->redirectToRoute('admin_message_assoc',['orga' => 'assoc',
                 'slug' => $AssocComplete['slug'] ,'page'=>1]);
               }
