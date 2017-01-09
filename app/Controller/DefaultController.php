@@ -22,4 +22,12 @@ class DefaultController extends CustomController
 		$this->show('default/cgu');
 	}
 
+	/**
+	 * Page AVENIR
+	 */
+	public function futur()
+	{
+		$this->show('default/futur');
+	}
+
 }

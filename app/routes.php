@@ -6,6 +6,8 @@
 		//
 		['GET', '/', 'Default#home', 'default_home'],//page d'acceuil
 		['GET', '/cgu/', 'Default#cgu', 'default_cgu'],//page CGU redirigé depuis footer layout front
+		['GET', '/futur/', 'Default#futur', 'default_futur'],//page CGU redirigé depuis footer layout front
+
 		['GET|POST', '/DesinscritpionNewsletter/[:orga]/[:slug]', 'racine\newsletter#home', 'default_desinscription'],//desinscription news letter
 
 		['GET|POST', '/a/[:orga]/[:slug]', 'racine\Assoc#home', 'racine_assoc'],//page de recherche et affichage d'association
