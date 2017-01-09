@@ -143,7 +143,12 @@ class AssocController extends CustomController
             }
           }
         } else {
-          $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'error' => $error, 'donnee' => $r_POST]);
+          if(isset($r_POST['nom'])){
+            $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'creation'=>true,'error' => $error, 'donnee' => $r_POST]);
+
+          }else {
+            $this->show('admin/assoc',['slug' => $slug,'orga' => 'assoc','edition' => true,'error' => $error, 'donnee' => $r_POST]);
+          }
         }
       } else {
         $error['donnee'] = 'Donnée(s) manquante(s).';
