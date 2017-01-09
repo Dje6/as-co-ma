@@ -16,8 +16,32 @@
 <div class="row">
   <blockquote class="cgu">
     <h2 class="text-center">L'Avenir d'AS-CO-MA</h2>
+    <h3><b>Fonctionalités à venir : </b></h3>
     <p>
-      Ici le futur du site
+      - Pouvoir inviter des collaborateurs dans une mairie,<br/>
+      - Listing de tous les utilisateurs du site pour les Administrateurs du site,<br/>
+      - Possibilité de bannir un utilisateur du site,<br/>
+      - Enquête de satisfaction à la suppression d'un compte utilisateur,<br/>
+      - Mise en place d'un agenda public pour les mairies et associations, souhaitant informer de futurs évènements.
+    </p>
+
+    <h3><b>Fonctionalités désirées : </b></h3>
+    <p>
+      <i><u>Mairies :</u></i><br/>
+      - Possibilité d'intégration d'un site externe sur une page d'AS-CO-MA ou lien vers le-dit site
+      <br/><br/>
+      <i><u>Associations :</u></i><br/>
+      - Comptabilité des cotisations,<br/>
+      - Bilan simplifié rédigeable en ligne , exportable au format pdf et visible pour tous les membres de l'association,<br/>
+      - Possibilité d'intégration d'un site externe sur une page d'AS-CO-MA ou lien direct vers le-dit site
+      <br/><br/>
+      <i><u>Membres :</u></i><br/>
+      - Système de paiement de cotisations,<br/>
+      - Acces aux news en back-office,<br/>
+      - Accès à l'historique des bilans,<br/>
+      - Tchat interne à l'association proposant un canal général et canal privé,<br/>
+      - Lien pour contacter l'association en interne.<br/>
+
     </p>
 
     <footer><strong>Les Administrateurs</strong>, <cite title="Source Title">AS-CO-MA</cite></footer>
