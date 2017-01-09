@@ -79,6 +79,7 @@ $('#Recu, #Envoyer').on("click", '.message_btn, .message_btn_supprimer',function
   var $this = $(this);
   var $key = $(this).parent().attr('id');
 
+
   if($(this).attr('class') == 'message_btn_supprimer'){
     $message = 'Voulez vous vraiment supprimer ce message ?';
     if (confirm($message)){
@@ -86,13 +87,18 @@ $('#Recu, #Envoyer').on("click", '.message_btn, .message_btn_supprimer',function
         type: "GET",
         url: $(this).attr("href"),
         success: function(response) {
+          console.log($($this).attr("href"));
+          console.log('premier succes');
+          console.log(response);
           if(response.error){
 
           }else if(response.redirect){
+            console.log('if redirect : '+response.redirect);
             $.ajax({
               type: "GET",
               url: response.redirect,
               success: function(response) {
+                console.log($key);
                   $('#'+$key).empty();
                   $('#'+$key).html(response.donnee);
                   $('.'+$key).empty();
@@ -103,8 +109,7 @@ $('#Recu, #Envoyer').on("click", '.message_btn, .message_btn_supprimer',function
               }
             })
           }
-
-        },
+        },//fin de succes
         error: function(response) {
           console.log(response);
         }
