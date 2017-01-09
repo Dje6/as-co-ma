@@ -29,6 +29,9 @@ class InvitationController extends CustomController
           if(!empty($RolesModel->FindRole($id_assoc,$_SESSION['user']['id']))){
             //si on fais deja partie de lassociation on detruit la demande
             $contactModel->delete($id);
+            if($this->isAjax()){
+              return $this->showJson(['redirect'=>$this->generateUrl('admin_message',['page'=>1])]);
+            }
             $this->redirectToRoute('admin_message',['page'=>1]);
           }
 

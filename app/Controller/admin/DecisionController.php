@@ -231,6 +231,9 @@ class DecisionController extends ReponseController
           if(is_numeric($maildestinataire)){
             if($contactModel->insert($r_POST,false)){
               $contactModel->update(['status' => $laDecision,'date_lecture' => date('Y-m-d H:i:s')],$leMessage['id']);
+              if($this->isAjax()){
+                return $this->showJson(['redirect'=>$this->generateUrl('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1])]);
+              }
               $this->redirectToRoute('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1]);
             }else{
               if($this->isAjax()){
