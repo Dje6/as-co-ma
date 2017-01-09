@@ -112,7 +112,7 @@
 		<div class="row text-center">
 			<span>
 				<button class="btn btn-success btn-xs return">Retour en haut</button><br>
-				<i><strong>AS-CO-MA ©</strong> - Copyright 2016</i>
+				<i><strong>AS-CO-MA ©</strong> - Tous droits réservés, 2016</i>
 			</span>
 		</div>
 	</footer>
