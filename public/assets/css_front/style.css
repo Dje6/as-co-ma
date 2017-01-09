@@ -52,7 +52,7 @@ hr {
 		background: none;
 	}
 	.logo {
-		display: none;
+		display: block;
 		width: 50px;
 		position: relative;
 		bottom: 153px;
