@@ -20,13 +20,18 @@ if($(this).attr('class') == 'delete_assoc'){
       type: "GET",
       url: $(this).attr("href"),
         success: function(response) {
+          console.log(response);
 
           if($.isArray(response.resultat) == false){
             // var $parents = $($this).parents();
             // var $pere = $parents[0];
             // var $grandPere = $parents[1];
-
-            $($this).parent().parent().remove();
+            if($($this).attr('class') != 'delete_user'){
+              $($this).parent().parent().remove();
+            }else {
+// console.log(response);
+               window.location.replace(response.resultat);
+            }
           }else {
             // afficher les erreurs du tableau
             console.log(response.result);
@@ -41,6 +46,6 @@ if($(this).attr('class') == 'delete_assoc'){
       })
   }else {
     console.log('operation annuler');
-      alert('operation annulér');
+
   }
 })

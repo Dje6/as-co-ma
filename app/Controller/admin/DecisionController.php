@@ -85,9 +85,15 @@ class DecisionController extends ReponseController
                     $_SESSION['user']['roles'][$nbr]['id_user'] = $maildestinataire;
                   }
                 }else {
+                  if($this->isAjax()){
+                    return $this->showJson(['error'=>'Un problème est survenu lors de l\'attribution du rôle']);
+                  }
                   $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
                 }
               }else {
+                if($this->isAjax()){
+                  return $this->showJson(['error'=>'Un problème est survenu lors de la création'.$result]);
+                }
                 $this->showErrors('Un problème est survenu lors de la création'.$result);
               }
               //////////////////////////////////////////////////////////////////
@@ -124,9 +130,15 @@ class DecisionController extends ReponseController
                     $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug;
                   }
                 }else{
+                  if($this->isAjax()){
+                    return $this->showJson(['error'=>'Un problème est survenu lors de l\'attribution du rôle']);
+                  }
                   $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
                 }
               }else {
+                if($this->isAjax()){
+                  return $this->showJson(['error'=>'Un problème est survenu lors de la création'.$result]);
+                }
                 $this->showErrors('Un problème est survenu lors de la création'.$result);
               }
 
@@ -165,6 +177,9 @@ class DecisionController extends ReponseController
                   $_SESSION['user']['roles'][$nbr]['slug_mairie'] = $slug_mairie;
                 }
               }else{
+                if($this->isAjax()){
+                  return $this->showJson(['error'=>'Un problème est survenu lors de l\'attribution du rôle']);
+                }
                 $this->showErrors('Un problème est survenu lors de l\'attribution du rôle');
               }
             }
@@ -189,6 +204,9 @@ class DecisionController extends ReponseController
           $maildestinataire,$leMessage,$r_POST);
         }
       }else{
+        if($this->isAjax()){
+          return $this->showJson(['redirect'=>$this->generateUrl('racine_form')]);
+        }
         $this->redirectToRoute('racine_form');
       }
     }
@@ -215,6 +233,9 @@ class DecisionController extends ReponseController
               $contactModel->update(['status' => $laDecision,'date_lecture' => date('Y-m-d H:i:s')],$leMessage['id']);
               $this->redirectToRoute('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1]);
             }else{
+              if($this->isAjax()){
+                return $this->showJson(['error'=>'L\'envoi du message a échoué']);
+              }
               $this->showErrors('L\'envoi du message a échoué');
             }
           }else{ //sinon on envoi une copi interne + le mail externe
@@ -235,9 +256,15 @@ class DecisionController extends ReponseController
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             if(!$mail->send()) {
+              if($this->isAjax()){
+                return $this->showJson(['error'=>'L\'envoi du message a échoué '.$mail->ErrorInfo]);
+              }
               $this->showErrors('L\'envoi du message a échoué '.$mail->ErrorInfo);
             } else {
               $contactModel->update(['status' => $laDecision,'date_lecture' => date('Y-m-d H:i:s')],$leMessage['id']);
+              if($this->isAjax()){
+                return $this->showJson(['redirect'=>$this->generateUrl('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1])]);
+              }
               $this->redirectToRoute('admin_message_'.$orgaEmeteur,['orga' => $orgaEmeteur,'slug' => $r_POST['emeteur_pseudo'] ,'page'=>1]);
           }
         }

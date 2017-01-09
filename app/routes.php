@@ -79,9 +79,11 @@
 		['GET', '/Admin/Mairie/[:slug]/', 'admin\Mairie#home', 'admin_mairie'],//page d'administration des mairie,affichage des info
 		['GET', '/Admin/Mairie/status/[:slug]/[:slugA]', 'admin\Mairie#homeEditStatus', 'admin_mairie_edit_status'],//edition du statut de l'assoc (actif, en attente)
 		['GET', '/Admin/Mairie/delete/[:slug]/[:slugA]', 'admin\Mairie#homeDeleteAssoc', 'admin_mairie_delete_assoc'],//edition du statut de l'assoc (actif, en attente)
-		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
 		['GET', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditForm', 'admin_mairie_edit_form'],//edition des données mairie
 		['POST', '/Admin/EditMairie/[:slug]/', 'admin\Mairie#homeEditPost', 'admin_mairie_edit_post'],//edition des données mairie
+		//liste assoc
+		['GET', '/Admin/ListeAssoc/[:slug]/[:page]', 'admin\Mairie#listeAssoc', 'admin_mairie_assoc'],//listing des assoc enregistrer dans la mairie
+		//['POST', '/Admin/InvitCollaborateur/[:slug]', 'admin\Invitation#invitCollaborateur', 'admin_mairie_invit_colab'],//envoi une invitation a rejoindre lassocation
 		// Messagerie Mairie
 		['GET|POST', '/Admin/ContactAssoc/[:slugE]/[:slugR]', 'admin\contact#contactAssoc', 'admin_mairie_contact_assoc'],//permet d'envoyer un message personnel a une assoc
 		['GET|POST', '/Admin/ContactWebmaster/[:slugE]', 'admin\contact#contactWebmaster', 'admin_mairie_contact_Webmaster'],//permet d'envoyer un message personnel au webmaster du site
@@ -98,6 +100,7 @@
 		//administration user
 		//
 		['GET', '/profile/', 'admin\Users#home', 'admin_monCompte'],//affiche les info du user connecter
+		['GET', '/DeleteProfil/', 'admin\Users#delete', 'admin_monCompte_supprimer'],//supprime definitivement le compte de lutilisateur
 		['GET', '/EditProfile/', 'admin\Users#homeEditionForm', 'admin_monCompte_edition'],//affiche le formulaire de modification des données
 		['POST', '/SaveProfile/', 'admin\Users#homeEditionPost', 'admin_monCompte_edition_post'],//modifie les données
 		//messagerie

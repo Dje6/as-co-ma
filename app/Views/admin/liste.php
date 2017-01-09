@@ -2,6 +2,7 @@
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 <?php $this->start('main_head') ?>
+<link rel="stylesheet" href="<?= $this->assetUrl('css_back/modal.css') ?>">
 <!-- //ici les css de la page courante UNIQUEMENT
 //si besoin d'un css dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_head') ?>
@@ -12,7 +13,7 @@
 <!-- liste s'occupe d'afficher les boutons dans liste menbre et liste association , sur le back -->
 <div class="container-fluid col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 affichage">
     <?php
-    if($orga == 'mairie'){
+    if($orga == 'mairie'){ 
       if(isset($donnee)){
         if(is_array($donnee)){
           foreach ($donnee as $key => $value) { ?>
@@ -72,7 +73,7 @@
 
               <span id="span_roles<?php echo $value['id']; ?>" class="col-xs-12 col-sm-3 <?php echo $value['pseudo']; ?>"><?php echo $value['pseudo'].' : '.$value['role']; ?></span>
               <span class="col-xs-12 col-sm-2">
-                <a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>"><button class="btn btn-info ">Consulter</button></a>
+                <a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>" data-width="500" data-rel="popup1" class="poplight"><button class="btn btn-info ">Consulter</button></a>
               </span>
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info ">Contacter</button></a>
@@ -131,6 +132,44 @@
     } ?>
  </div>
 
+<!-- pop up pour la fiche membre -->
+ <div id="popup1" class="popup_block col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2" style="text-align:center;">
+
+  <h3 class="userpseudo modal_user_pseudo"></h3><br/>
+  <span class="modal_avatar col-xs-4 col-xs-offset-4">
+  </span>
+
+   <table class="table table-user-information">
+     <tbody>
+       <tr>
+         <td class="modal_nom"></td>
+       </tr>
+       <tr>
+         <td class="modal_prenom"></td>
+       </tr>
+       <tr>
+         <td class="modal_mail"></td>
+       </tr>
+       <tr>
+         <td class="modal_adresse"></td>
+       </tr>
+       <tr>
+         <td class="modal_code_postal"></td>
+       </tr>
+       <tr>
+         <td class="modal_ville"></td>
+       </tr>
+       <tr>
+         <td class="modal_fix"></td>
+       </tr>
+       <tr>
+         <td class="modal_portable"></td>
+       </tr>
+
+     </tbody>
+   </table>
+</div>
+
 <?php $this->stop('main_content') ?>
 
 
@@ -138,6 +177,7 @@
 <?php $this->start('main_script') ?>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/update_status.js'); ?>"></script>
   <script type="text/javascript" src="<?= $this->assetUrl('js/delete.js'); ?>"></script>
+    <script type="text/javascript" src="<?= $this->assetUrl('js/modal.js'); ?>"></script>
 	<!-- //ici les script js de la Page courante UNIQUEMENT
   //si besoin d'un js dans TOUTE les pages , le mettre dans layout.php -->
 <?php $this->stop('main_script') ?>

@@ -9,6 +9,8 @@ use \Model\NewsModel;
 use \Model\RolesModel;
 use \Model\ContactModel;
 use \Model\AbonnesModel;
+use \Model\UserModel;
+use \W\Security\AuthentificationModel;
 /**
  *
  */
@@ -107,6 +109,37 @@ class DestroyController extends CustomController
 
       if(!$assocModel->delete($id_assoc)){
         $error['assoc'] = 'Un problème est survenu lors de la suppression de l\'Association';
+      }
+
+      if(!isset($error)){
+          return true;
+      }else {
+        return $error;
+      }
+  }
+
+  public function DeleteUser($id_user)
+  {
+      $UserModel = new UserModel;
+      $UserFull = $UserModel->Find($id_user);
+
+      if(!$this->DeleteRole($id_user,'user')){
+        $error['roles'] = 'Un problème est survenu lors de la suppression des rôles';
+      }
+
+      if(!$this->DeletePicture($UserFull['avatar'])){
+        $error['picture']['avatar'] = 'Un problème est survenu lors de la suppression de l\'avatar';
+      }
+
+      if(!$this->DeleteContact($id_user,'users')){
+        $error['contact'] = 'Un problème est survenu lors de la suppression des messages';
+      }
+
+      if(!$UserModel->delete($id_user)){
+        $error['user'] = 'Un problème est survenu lors de la suppression de l\'Utilisateur';
+      }else {
+        $Authent = new AuthentificationModel();
+        $Authent -> logUserOut();
       }
 
       if(!isset($error)){
