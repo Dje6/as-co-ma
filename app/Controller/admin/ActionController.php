@@ -95,6 +95,9 @@ class ActionController extends CustomController
                     $contactModel->update(['emeteur_status'=> 'del'],$leMessage['id']);
                   }
               }
+              if($this->isAjax()){
+                return $this->showJson(['redirect'=>$this->generateUrl('admin_message_send_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug])]);
+              }
               $this->redirectToRoute('admin_message_send_'.$orga,['page' => $page,'orga' => $orga,'slug' => $slug]);
             }elseif ($leMessage['destinataire_mailOrId'] == $id_orga && $leMessage['destinataire_orga'] == $orga) {
               if($leMessage['emeteur_status'] == 'del'){
