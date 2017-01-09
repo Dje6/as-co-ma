@@ -92,9 +92,9 @@
         Pour toute question relative aux présentes conditions d’utilisation du site, vous pouvez nous contacter via le formulaire présent sur le site.
       </p>
       <footer><strong>Les Administrateurs</strong>, <cite title="Source Title">AS-CO-MA</cite></footer>
-      <br>
-    </blockquote>
     </div>
+    <br>
+  </blockquote>
   <button id="toggleCGU" class="btn btn-success btn-lg" type="button">Dérouler</button>
 </div>
 

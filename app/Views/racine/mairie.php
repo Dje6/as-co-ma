@@ -172,7 +172,7 @@
 								<!-- Titre de la news -->
 								<h2 class=""><b><?php echo $value['title']; ?></b></h2>
 								<?php if(!empty($value['picture'])){  ?>
-									<img class="newsImg" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
+									<img class="newsImg img-responsive" src="<?= $this->assetUrl($value['picture']); ?>" alt="<?= $value['title']; ?>"
 									width="550" height="300">
 								<?php } ?>
 								<!-- Fenetre modale au clic sur une image d'article -->
