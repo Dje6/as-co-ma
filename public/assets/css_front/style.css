@@ -52,7 +52,7 @@ hr {
 		background: none;
 	}
 	.logo {
-		display: block;
+		display: none;
 		width: 50px;
 		position: relative;
 		bottom: 153px;
@@ -251,11 +251,6 @@ footer {
 .slicknav_menu {
 	display:none;
 }
-@media screen and (max-width: 768px) {
-	.slicknav_nav > :first-child {
-		display: none;
-	}
-}
 @media screen and (max-width: 1024px) {
 	/* #menu is the original menu */
 	#menu {
@@ -269,5 +264,15 @@ footer {
 	.slicknav_nav {
 		display: flex;
 		justify-content: center;
+	}
+}
+@media screen and (max-width: 768px) {
+	.slicknav_nav {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+	}
+	.slicknav_nav > :first-child {
+		display: none;
 	}
 }

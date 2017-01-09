@@ -136,12 +136,8 @@
 			$adresse = $donnees['adresse'].','.$donnees['ville'].' '.$donnees['code_postal'];
 			$adresse = str_replace(' ','+',$adresse);
 			?>
-			<iframe
-  		width="600"
-		  height="450"
-		  frameborder="0" style="border:0"
-		  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-mUWepHHxFhrhU30NAFyY8zFOTs57ZW0
-	    &q=<?php echo $adresse ; ?>" allowfullscreen>
+			<iframe width="600" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-mUWepHHxFhrhU30NAFyY8zFOTs57ZW0
+	    &q=<?= $adresse; ?>" allowfullscreen>
 			</iframe>
 		</div>
 
