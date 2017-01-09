@@ -131,6 +131,7 @@ class ReponseController extends CustomController
           $urlBase = $app->getConfig('urlBase');
 
           $mail = new PHPMailer();
+          $mail->CharSet = "utf8";
           //$mail->SMTPDebug = 3;                              // Enable verbose debug output
           $mail->isMail();
           $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');
