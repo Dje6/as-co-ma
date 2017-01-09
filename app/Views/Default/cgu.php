@@ -27,13 +27,13 @@
 
       <h3><b>Propriété intellectuelle : </b></h3>
       <p class="text-justify">
-        La structure générale du site "AS-CO-MA" , ainsi que les textes, graphiques, images, sons et  vidéos la composant, sont la propriété de ses développeurs ou de leurs partenaires. Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site "AS-CO-MA" , par quelque procédé que ce soit, sans l'autorisation préalable et par écrit de  l'équipe en charge du développement est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle.
         <h4><b>Equipe de Développement, Administration du site : </b><br><br>
           <p>
             - Associés Développement / Programmation Backend : SAVALLE Simon, LEROY Jessy <br>
             - Associés Développement / Intégration Frontend : BLONDEL Benoît (Front-office), DUBEC Laurent (Back-office).
           </p>
         </h4>
+        La structure générale du site "AS-CO-MA" , ainsi que les textes, graphiques, images, sons et  vidéos la composant, sont la propriété de ses développeurs ou de leurs partenaires. Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site "AS-CO-MA" , par quelque procédé que ce soit, sans l'autorisation préalable et par écrit de  l'équipe en charge du développement est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle.
       </p>
 
       <h3><b>Liens hypertextes : </b></h3>

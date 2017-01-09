@@ -76,6 +76,7 @@
 				} ?>
 					<li><a href="<?php echo $this->url('racine_mairie',['orga' => 'Mairie','slug' => 'All']); ?>">Mairies</a></li>
 					<li><a href="<?php echo $this->url('racine_assoc',['orga' => 'Assoc','slug' => 'All']); ?>">Associations</a></li>
+					<li><a href="<?php echo $this->url('default_futur'); ?>">Avenir du site</a></li>
 				</ul>
 			<!-- </div> -->
 
