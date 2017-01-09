@@ -29,8 +29,8 @@ if(isset($donnee)){
                 if(isset($creation)){ ?>
                   <div class="form-group">
                     <div class="input-group">
-                      <?php if(isset($error['nom']) && !empty($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
                       <span class="input-group-addon">Nom</span>
+                      <?php if(isset($error['nom']) && !empty($error['nom'])){ echo '<span>'.$error['nom'].'</span><br>' ;} ?>
                       <input type="text" name="nom" class="form-control" value="<?php echo $donnee['nom'] ; ?>">
                     </div>
                   </div><?php

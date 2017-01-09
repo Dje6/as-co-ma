@@ -208,7 +208,7 @@ class NewsController extends CustomController
         $slug = $this->nettoyage($slug);
         $id_news = $this->nettoyage($id_news);
         $page = $this->nettoyage($page);
-                
+
         $DestroyController = new DestroyController;
         $resultat = $DestroyController->DeleteNews($id_news);
 
@@ -267,6 +267,7 @@ class NewsController extends CustomController
           if(empty($laNews['newsletter'])){
 
             $mail = new PHPMailer();
+            $mail->CharSet = "utf8";
             //$mail->SMTPDebug = 3;                              // Enable verbose debug output
             $mail->isMail();
             $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');

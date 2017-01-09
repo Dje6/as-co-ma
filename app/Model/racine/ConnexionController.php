@@ -132,6 +132,7 @@ class ConnexionController extends CustomController
     ['mail' => trim(strip_tags($email)), 'token' => trim(strip_tags($token))],true);
 
     $mail = new PHPMailer();
+    $mail->CharSet = "utf8";
     //$mail->SMTPDebug = 3;                              // Enable verbose debug output
     $mail->isMail();
     $mail->setFrom('Webmaster@as-co-ma.com', 'Mailer');
@@ -204,6 +205,7 @@ class ConnexionController extends CustomController
   {
 
     $mail = new PHPMailer();
+    $mail->CharSet = "utf8";
     $error = array();
     if($_POST){
       $r_POST = $this->nettoyage($_POST);

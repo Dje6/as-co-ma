@@ -160,6 +160,7 @@ class InvitationController extends CustomController
                 $contactModel = new ContactModel;
                 $contactModel->insert($r_POST,false);
                 $mail = new PHPMailer();
+                $mail->CharSet = "utf8";
                 //$mail->SMTPDebug = 3;                              // Enable verbose debug output
                 $mail->isMail();
                 $mail->setFrom('Webmaster@as-co-ma.fr', 'Mailer');
