@@ -114,6 +114,33 @@ hr {
 		margin-bottom: -6em;
 	}
 }
+@media screen and (max-width: 620px) {
+	.main_content {
+		width: 500px;
+		min-height: 610px;
+		position: relative;
+		top: -8em;
+		margin-bottom: -6em;
+	}
+}
+@media screen and (max-width: 520px) {
+	.main_content {
+		width: 350px;
+		min-height: 610px;
+		position: relative;
+		top: -8em;
+		margin-bottom: -6em;
+	}
+}
+@media screen and (max-width: 370px) {
+	.main_content {
+		width: 300px;
+		min-height: 610px;
+		position: relative;
+		top: -8em;
+		margin-bottom: -6em;
+	}
+}
 blockquote footer {
 	color: black;
 }
