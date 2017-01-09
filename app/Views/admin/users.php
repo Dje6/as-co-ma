@@ -1,4 +1,4 @@
-<?php $this->layout('layout_back', ['title' => 'User','orga' => isset($orga),'slug' => isset($slug)]) ?>
+<?php $this->layout('layout_back', ['title' => 'AS-CO-MA - Comptes','orga' => isset($orga),'slug' => isset($slug)]) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 <?php $this->start('main_head') ?>
 <!-- //ici les css de la page courante UNIQUEMENT

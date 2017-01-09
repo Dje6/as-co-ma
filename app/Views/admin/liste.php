@@ -1,4 +1,4 @@
-<?php $this->layout('layout_back', ['title' => 'Liste','slug' => $slug,'orga' => $orga]) ?>
+<?php $this->layout('layout_back', ['title' => 'AS-CO-MA - Listing','slug' => $slug,'orga' => $orga]) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 <?php $this->start('main_head') ?>
@@ -13,7 +13,7 @@
 <!-- liste s'occupe d'afficher les boutons dans liste menbre et liste association , sur le back -->
 <div class="container-fluid col-md-12 col-md-offset-0 col-lg-10 col-lg-offset-1 affichage">
     <?php
-    if($orga == 'mairie'){ 
+    if($orga == 'mairie'){
       if(isset($donnee)){
         if(is_array($donnee)){
           foreach ($donnee as $key => $value) { ?>

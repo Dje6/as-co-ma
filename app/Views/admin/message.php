@@ -1,7 +1,7 @@
 <?php
 if(!isset($slug)){ $slug = 'user' ;}
 if(!isset($orga)){ $orga = 'user' ;}
-$this->layout('layout_back', ['title' => 'Message','slug' => $slug,'orga' => $orga]);
+$this->layout('layout_back', ['title' => 'AS-CO-MA - Messagerie','slug' => $slug,'orga' => $orga]);
  ?>
 <!-- //tableau de données que l'on peut faire afficher au travers du layout -->
 
