@@ -33,7 +33,7 @@
 				<ul class="nav navbar-nav">
 
 					<li><a href="<?php echo $this->url('default_home'); ?>">Accueil</a></li>
-					<li><a href="<?php echo $this->url('admin_message',['page' => 1]); ?>">Message</a></li>
+					<li><a href="<?php echo $this->url('admin_message',['page' => 1]); ?>">Messagerie</a></li>
 					<li><a href="<?php echo $this->url('admin_monCompte'); ?>">Mon compte</a></li>
 					<li><a href="<?php echo $this->url('racine_unlog'); ?>">Déconnexion</a></li>
 					<?php

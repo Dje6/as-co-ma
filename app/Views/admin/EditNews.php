@@ -1,5 +1,5 @@
 <?php
-$this->layout('layout_back', ['title' => 'News','slug' => $slug,'orga' => $orga]);
+$this->layout('layout_back', ['title' => 'AS-CO-MA - News','slug' => $slug,'orga' => $orga]);
  ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 

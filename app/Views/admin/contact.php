@@ -1,4 +1,4 @@
-<?php $this->layout('layout_back', ['title' => 'AdminAssoc','slug' => $slug,'orga' => $orga]) ?>
+<?php $this->layout('layout_back', ['title' => 'AS-CO-MA - Contact','slug' => $slug,'orga' => $orga]) ?>
 <!-- //tableau de donnee que l'on peu faire afficher au travers du layout -->
 
 <?php $this->start('main_head') ?>

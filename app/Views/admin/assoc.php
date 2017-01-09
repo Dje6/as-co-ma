@@ -1,8 +1,8 @@
 <?php
 if(isset($creation)){
-  $this->layout('layout_back', ['title' => 'AdminAssoc','slug' => $slug,'orga' => $orga,'creation' => true]) ;
+  $this->layout('layout_back', ['title' => 'AS-CO-MA - Association','slug' => $slug,'orga' => $orga,'creation' => true]) ;
 }else {
-  $this->layout('layout_back', ['title' => 'AdminAssoc','slug' => $slug,'orga' => $orga]);
+  $this->layout('layout_back', ['title' => 'AS-CO-MA - Association','slug' => $slug,'orga' => $orga]);
 }  ?>
 <!-- //tableau de donnee que l'on peut faire afficher au travers du layout -->
 
