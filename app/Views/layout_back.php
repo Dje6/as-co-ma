@@ -49,7 +49,7 @@
 											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Gérer
 											<?php echo $value['nom']; ?></a></li>
 											<li><a href="<?php echo $this->url('racine_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Consulter
-											<?php echo $value['nom']; ?></a></li><?php
+											<?php echo $value['nom']; ?></a></li><hr style="margin: 0;"><?php
 										}else { ?>
 											<li><a href="<?php echo $this->url('admin_assoc',['orga' => $value['orga'],'slug' => $value['slug']]); ?>">Créer
 											une Association</a></li><?php
