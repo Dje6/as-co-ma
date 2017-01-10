@@ -40,7 +40,7 @@ class GenerateViewsController extends CustomController
               //qui es la meme date que pour la lecture mais mise a jour
               $html .= '<p class="padleft4">Repondu le : '.$value['date_lecture'].'</p>';
                }
-              $html .= '<p class="padleft4">Status : '.$value['status'].' </p><br/>';
+              $html .= '<p class="padleft4">Statut : '.$value['status'].' </p><br/>';
 
               preg_match_all('/inscript/', $value['objet'], $matches);
               // on detect si il s'agit dune demande d'inscription
@@ -103,7 +103,7 @@ class GenerateViewsController extends CustomController
                 //Si s'en est une ,il ne saffiche qui si la demande a ete traiter
                 $html .= '<a href="'.$this->generateUrl('admin_message_delete',['id'=> $value['id'],'orga' => $orga,
                 'slug' => $slug,'page' =>$page]).'" class="message_btn_supprimer">
-                  <button class="btn btn-danger margin1">supprimer</button>
+                  <button class="btn btn-danger margin1">Supprimer</button>
                 </a>';
               }
               $html .='<br/>

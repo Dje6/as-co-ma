@@ -75,6 +75,9 @@
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('admin_assoc_membre',['slug' => $slug ,'id' => $value['id']]) ;?>" data-width="500" data-rel="popup1" class="poplight"><button class="btn btn-info ">Consulter</button></a>
               </span>
+              <?php if ($_SESSION['user']['id'] != $value['id']){ ?>
+
+
               <span class="col-xs-12 col-sm-2">
                 <a href="<?php echo $this->url('admin_assoc_contact_membre',['slugE' => $slug,'id' => $value['id']]);?>"><button class="btn btn-info ">Contacter</button></a>
               </span>
@@ -90,6 +93,7 @@
                 <span class="col-xs-12 col-sm-2">
                   <a class="delete_user" href="<?php echo $this->url('admin_assoc_delete_user',['slug' => $slug, 'id' => $value['id']]);?>"><button class="btn btn-danger ">Supprimer</button></a>
                 </span>
+              <?php } ?>
             </div>
             <?php
 
