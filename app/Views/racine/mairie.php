@@ -105,6 +105,8 @@
 						</td>
 					</tr>
 	<!-- Deuxieme ligne tableau info mairie -->
+</table>
+	<table class="table table-striped table-bordered table-horaire">
 					<tr>
 						<th>Lundi</th>
 						<th>Mardi</th>
